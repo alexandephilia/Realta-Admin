@@ -1,0 +1,122 @@
+<h4 class=" mb-3 text-body mb-0">Business Section</h4>
+<div class="card">
+  <div class="card-body">
+        <div class="row">
+      <div class="col-6">
+        <div class="mb-3">
+      <label class="p-0 col-form-label" for="staticEmail">Title</label>
+      <input class="form-control" id="exampleFormControlInput" type="email" placeholder="Title">
+    </div>
+      </div>
+      <div class="col-6">
+        <div class="mb-3">
+      <label class="p-0 col-form-label" for="staticEmail">Sub Title</label>
+      <input class="form-control" id="exampleFormControlInput" type="email" placeholder="Sub Title">
+    </div>
+      </div>
+    </div>
+    <div class="text-end mt-3">
+      <button class="btn btn-success">
+        <span class="fas fa-save me-2"></span>Save Change </button>
+    </div>
+  </div>
+</div>
+<div class="card mt-4">
+  <div class="card-body">
+    <div class="text-end">
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ctaModal">
+        <span class="fas fa-plus me-2"></span>Create Change </button>
+    </div>
+    <!-- start pop up -->
+    <div class="modal fade" id="ctaModal" tabindex="-1" aria-labelledby="ctaModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="ctaModalLabel">Create Customer</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Content from customerSection.html will be loaded here -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function() {
+        $('#ctaModal').on('show.bs.modal', function(e) {
+          $(this).find('.modal-body').load('pages/createBusiness.html');
+          
+          $.getScript('assets/js/phoenix.js');
+        });
+      });
+    </script>
+    <!-- end pop up -->
+    <div class="container mt-4">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Ordering</th>
+              <th>Customer Name</th>
+              <th class="text-center">Logo Image</th>
+              <th class="text-center">Active</th>
+              <th class="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class=" text-center">
+                <button class="btn px-1 btn-sm btn-falcon-default me-1">
+                  <span class="fas fa-chevron-up"></span>
+                </button>
+                <button class="btn px-1  btn-sm btn-falcon-default">
+                  <span class="fas fa-chevron-down"></span>
+                </button>
+              </td>
+              <td class=" text-center">Hotel Managemen System</td>
+              <td class="text-center">
+                <span class="badge badge-phoenix fs-10 badge-phoenix-success">
+                  <span class="fa fa-check"></span>
+                </span>
+              </td>
+              <td class="text-center">
+                <span class="badge badge-phoenix fs-10 badge-phoenix-success">
+                  <span class="fa fa-check"></span>
+                </span>
+              </td>
+              <td class="text-center">
+                <button class="btn btn-sm btn-falcon-default">
+                  <span class="fas fa-trash-alt"></span>
+                </button>
+                <button class="btn btn-sm btn-falcon-default" href="#" id="detailBusiness">
+                  <span class="fas fa-eye"></span>
+                </button>
+              </td>
+            </tr>
+            
+            <!-- Add more rows as needed -->
+          </tbody>
+        </table>
+      </div>
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <a class="page-link" href="#">Previous</a>
+          </li>
+          <li class="page-item active">
+            <a class="page-link" href="#">1</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">2</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">3</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
