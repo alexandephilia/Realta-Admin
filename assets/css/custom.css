@@ -1,0 +1,66 @@
+.image-upload-container .preview-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+    position: relative;
+    overflow: hidden;
+    border: 2px dashed #dee2e6;
+    border-radius: 8px;
+    min-height: 150px;
+}
+
+.image-upload-container .upload-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+    pointer-events: none;
+    background: #f8f9fa;
+}
+
+.image-upload-container .upload-text .fas {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.7;
+}
+
+.image-upload-container img#imagePreview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+/* States */
+.image-upload-container.has-image img#imagePreview {
+    display: block;
+}
+
+.image-upload-container.has-image .upload-text {
+    display: none;
+}
+
+/* Hover/Drag states */
+.preview-area:hover,
+.preview-area.drag-over {
+    border-color: #0d6efd;
+    cursor: pointer;
+}
+
+.preview-area.drag-over {
+    background-color: rgba(13, 110, 253, 0.05);
+}
+
+.preview-area.drag-over .upload-text {
+    color: #0d6efd;
+}
+
+.preview-area.drag-over .upload-text .fas {
+    opacity: 1;
+    transform: scale(1.1);
+}
+ 
