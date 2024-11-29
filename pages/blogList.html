@@ -20,114 +20,124 @@
                     <div class="modal-body">
                         <form id="createBlogForm">
                             <div class="row g-3">
-                                <!-- Image Upload -->
-                                <div class="col-12 col-md-4">
-                                    <div class="card h-100 d-flex">
-                                        <div class="card-body d-flex flex-column justify-content-center">
-                                            <h6 class="mb-4 text-center">Thumbnail Image</h6>
-                                            <div class="text-center">
-                                                <div class="image-upload-container">
-                                                    <div class="preview-area mb-3"
-                                                        style="width: 300px; height: 225px; margin: 0 auto; border: 2px solid #dee2e6; border-radius: 8px; overflow: hidden; position: relative; background: #f8f9fa;">
-                                                        <img id="imagePreview"
-                                                            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                                                            alt="Preview"
-                                                            style="width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1;">
-                                                        <div id="uploadText" class="upload-text"
-                                                            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 2;">
-                                                            <span class="fas fa-cloud-upload-alt fs-2"></span>
-                                                            <p class="mb-0 fs--1 mt-2">Click or drag image here</p>
-                                                        </div>
+                                <!-- Left Column -->
+                                <div class="col-12 col-lg-4">
+                                    <!-- Image Upload -->
+                                    <div class="card">
+                                        <div class="card-body p-3">
+                                            <h6 class="mb-3">Thumbnail Image</h6>
+                                            <div class="image-upload-container">
+                                                <div class="preview-area"
+                                                    style="width: 100%; height: 200px; border: 2px dashed #dee2e6; border-radius: 8px; overflow: hidden; position: relative; background: #f8f9fa;">
+                                                    <img id="imagePreview"
+                                                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                                                        alt="Preview"
+                                                        style="width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1;">
+                                                    <div id="uploadText" class="upload-text"
+                                                        style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 2; width: 100%;">
+                                                        <span class="fas fa-cloud-upload-alt fs-2"></span>
+                                                        <p class="mb-0 mt-2">Click or drag image here</p>
+                                                        <small class="text-muted d-block mt-1">Recommended: 800x600px
+                                                            (Max 2MB)</small>
                                                     </div>
-                                                    <input type="file" class="d-none" id="imageUpload" accept="image/*">
-                                                    <div class="mt-2">
+                                                </div>
+                                                <input type="file" class="d-none" id="imageUpload" accept="image/*">
+                                                <div class="d-flex justify-content-between align-items-center mt-2">
+                                                    <small class="text-muted">JPG, PNG, GIF</small>
+                                                    <div>
                                                         <button type="button" class="btn btn-falcon-default btn-sm"
                                                             onclick="document.getElementById('imageUpload').click()">
-                                                            <span class="fas fa-upload me-2"></span>Choose Image
+                                                            <span class="fas fa-upload me-1"></span>Choose
                                                         </button>
                                                         <button type="button" id="removeImage"
                                                             class="btn btn-link btn-sm text-danger d-none">
-                                                            <span class="fas fa-times me-2"></span>Remove
+                                                            <span class="fas fa-times me-1"></span>Remove
                                                         </button>
                                                     </div>
-                                                    <small class="text-muted d-block mt-1">
-                                                        Recommended size: 800x600px (Max 2MB)
-                                                    </small>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- Form Fields -->
-                                <div class="col-12 col-md-8">
-                                    <div class="row g-3">
-                                        <!-- Title -->
-                                        <div class="col-12">
-                                            <label class="form-label" for="blogTitle">Title</label>
-                                            <input type="text" class="form-control" id="blogTitle" required>
-                                        </div>
+                                <!-- Right Column -->
+                                <div class="col-12 col-lg-8">
+                                    <div class="card h-100">
+                                        <div class="card-body d-flex align-items-center">
+                                            <div class="w-100">
+                                                <div class="row g-3">
+                                                    <!-- Title -->
+                                                    <div class="col-12">
+                                                        <label class="form-label" for="blogTitle">Title</label>
+                                                        <input type="text" class="form-control" id="blogTitle" required>
+                                                    </div>
 
-                                        <!-- Category & Date -->
-                                        <div class="col-md-6">
-                                            <label class="form-label" for="blogCategory">Category</label>
-                                            <select class="form-select" id="blogCategory" required>
-                                                <option value="">Select category</option>
-                                                <option value="Technology">Technology</option>
-                                                <option value="Cloud">Cloud</option>
-                                                <option value="Security">Security</option>
-                                                <option value="Development">Development</option>
-                                            </select>
-                                            <div class="mt-3 ps-3">
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox"
-                                                        id="articleFeatured">
-                                                    <label class="form-check-label" for="articleFeatured">
-                                                        Featured Article
-                                                        <span class="ms-1 featured-text text-danger">No</span>
-                                                    </label>
+                                                    <!-- Category & Date -->
+                                                    <div class="col-md-6">
+                                                        <label class="form-label" for="blogCategory">Category</label>
+                                                        <select class="form-select" id="blogCategory" required>
+                                                            <option value="">Select category</option>
+                                                            <option value="Technology">Technology</option>
+                                                            <option value="Cloud">Cloud</option>
+                                                            <option value="Security">Security</option>
+                                                            <option value="Development">Development</option>
+                                                        </select>
+                                                        <div class="mt-3 ps-3">
+                                                            <div class="form-check form-switch">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    id="articleFeatured">
+                                                                <label class="form-check-label" for="articleFeatured">
+                                                                    Featured Article
+                                                                    <span
+                                                                        class="ms-1 featured-text text-danger">No</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label" for="blogDate">Publish Date</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="blogDate"
+                                                                placeholder="Select date" required readonly>
+                                                            <span class="input-group-text"><i
+                                                                    class="fas fa-calendar"></i></span>
+                                                        </div>
+                                                        <div class="mt-3 ps-3">
+                                                            <div class="form-check form-switch">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    id="articleStatus" checked>
+                                                                <label class="form-check-label" for="articleStatus">
+                                                                    Article Status
+                                                                    <span
+                                                                        class="ms-1 text-success status-text">Active</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label" for="blogDate">Publish Date</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" id="blogDate"
-                                                    placeholder="Select date" required readonly>
-                                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
-                                            </div>
-                                            <div class="mt-3 ps-3">
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" id="articleStatus"
-                                                        checked>
-                                                    <label class="form-check-label" for="articleStatus">
-                                                        Article Status
-                                                        <span class="ms-1 text-success status-text">Active</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    </div>
+                                </div>
 
-                                        <!-- Rich Text Editor -->
-                                        <div class="col-12">
-                                            <label class="form-label" for="blogContent">Content</label>
-                                            <textarea id="blogContent" class="tinymce-editor"></textarea>
-                                        </div>
+                                <!-- Editor - Full Width -->
+                                <div class="col-12">
+                                    <label class="form-label" for="blogContent">Content</label>
+                                    <textarea id="blogContent" class="tinymce-editor"></textarea>
+                                </div>
 
-                                        <!-- Hashtags Section -->
-                                        <div class="col-md-6">
-                                            <label class="form-label" for="hashtagInput">SEO Keywords/Tags</label>
-                                            <div class="input-group mb-2">
-                                                <span class="input-group-text bg-soft-primary text-primary">
-                                                    <span class="fas fa-hashtag"></span>
-                                                </span>
-                                                <input type="text" class="form-control" id="hashtagInput"
-                                                    placeholder="Enter keyword and press Enter">
-                                            </div>
-                                            <div class="hashtag-container d-flex flex-wrap gap-2">
-                                                <!-- Tags will be dynamically added here -->
-                                            </div>
-                                        </div>
+                                <!-- SEO Tags - Full Width -->
+                                <div class="col-12">
+                                    <label class="form-label" for="hashtagInput">SEO Keywords/Tags</label>
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text bg-soft-primary text-primary">
+                                            <span class="fas fa-hashtag"></span>
+                                        </span>
+                                        <input type="text" class="form-control" id="hashtagInput"
+                                            placeholder="Enter keyword and press Enter">
+                                    </div>
+                                    <div class="hashtag-container d-flex flex-wrap gap-2">
+                                        <!-- Tags will be dynamically added here -->
                                     </div>
                                 </div>
                             </div>
@@ -268,114 +278,125 @@
                     <div class="modal-body">
                         <form id="editBlogForm">
                             <div class="row g-3">
-                                <!-- Image Upload -->
-                                <div class="col-12 col-md-4">
-                                    <div class="card h-100 d-flex">
-                                        <div class="card-body d-flex flex-column justify-content-center">
-                                            <h6 class="mb-4 text-center">Thumbnail Image</h6>
-                                            <div class="text-center">
-                                                <div class="image-upload-container">
-                                                    <div class="preview-area mb-3"
-                                                        style="width: 300px; height: 225px; margin: 0 auto; border: 2px solid #dee2e6; border-radius: 8px; overflow: hidden; position: relative; background: #f8f9fa;">
-                                                        <img id="editImagePreview"
-                                                            src="assets/img/generic/empty-image.png" alt="Preview"
-                                                            style="width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1;">
-                                                        <div id="editUploadText" class="upload-text">
-                                                            <span class="fas fa-cloud-upload-alt fs-2"></span>
-                                                            <p class="mb-0 fs--1 mt-2">Click or drag image here</p>
-                                                        </div>
+                                <!-- Left Column -->
+                                <div class="col-12 col-lg-4">
+                                    <!-- Image Upload -->
+                                    <div class="card">
+                                        <div class="card-body p-3">
+                                            <h6 class="mb-3">Thumbnail Image</h6>
+                                            <div class="image-upload-container">
+                                                <div class="preview-area"
+                                                    style="width: 100%; height: 200px; border: 2px dashed #dee2e6; border-radius: 8px; overflow: hidden; position: relative; background: #f8f9fa;">
+                                                    <img id="editImagePreview" src="assets/img/generic/empty-image.png"
+                                                        alt="Preview"
+                                                        style="width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1;">
+                                                    <div id="editUploadText" class="upload-text">
+                                                        <span class="fas fa-cloud-upload-alt fs-2"></span>
+                                                        <p class="mb-0 mt-2">Click or drag image here</p>
+                                                        <small class="text-muted d-block mt-1">Recommended: 800x600px
+                                                            (Max 2MB)</small>
                                                     </div>
-                                                    <input type="file" class="d-none" id="editImageUpload"
-                                                        accept="image/*">
-                                                    <div class="mt-2">
+                                                </div>
+                                                <input type="file" class="d-none" id="editImageUpload" accept="image/*">
+                                                <div class="d-flex justify-content-between align-items-center mt-2">
+                                                    <small class="text-muted">JPG, PNG, GIF</small>
+                                                    <div>
                                                         <button type="button" class="btn btn-falcon-default btn-sm"
                                                             onclick="document.getElementById('editImageUpload').click()">
-                                                            <span class="fas fa-upload me-2"></span>Choose Image
+                                                            <span class="fas fa-upload me-1"></span>Choose
                                                         </button>
                                                         <button type="button"
                                                             class="btn btn-link btn-sm text-danger d-none"
                                                             id="editRemoveImage">
-                                                            <span class="fas fa-times me-2"></span>Remove
+                                                            <span class="fas fa-times me-1"></span>Remove
                                                         </button>
                                                     </div>
-                                                    <small class="text-muted d-block mt-1">
-                                                        Recommended size: 800x600px (Max 2MB)
-                                                    </small>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- Form Fields -->
-                                <div class="col-12 col-md-8">
-                                    <div class="row g-3">
-                                        <!-- Title -->
-                                        <div class="col-12">
-                                            <label class="form-label" for="editBlogTitle">Title</label>
-                                            <input type="text" class="form-control" id="editBlogTitle" required>
-                                        </div>
+                                <!-- Right Column -->
+                                <div class="col-12 col-lg-8">
+                                    <div class="card h-100">
+                                        <div class="card-body d-flex align-items-center">
+                                            <div class="w-100">
+                                                <div class="row g-3">
+                                                    <!-- Title -->
+                                                    <div class="col-12">
+                                                        <label class="form-label" for="editTitle">Title</label>
+                                                        <input type="text" class="form-control" id="editTitle" required>
+                                                    </div>
 
-                                        <!-- Category & Date -->
-                                        <div class="col-md-6">
-                                            <label class="form-label" for="editBlogCategory">Category</label>
-                                            <select class="form-select" id="editBlogCategory" required>
-                                                <option value="">Select category</option>
-                                                <option value="Technology">Technology</option>
-                                                <option value="Cloud">Cloud</option>
-                                                <option value="Security">Security</option>
-                                                <option value="Development">Development</option>
-                                            </select>
-                                            <div class="mt-3 ps-3">
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox"
-                                                        id="editArticleFeatured">
-                                                    <label class="form-check-label" for="editArticleFeatured">
-                                                        Featured Article
-                                                        <span class="ms-1 featured-text text-danger">No</span>
-                                                    </label>
+                                                    <!-- Category & Date -->
+                                                    <div class="col-md-6">
+                                                        <label class="form-label" for="editCategory">Category</label>
+                                                        <select class="form-select" id="editCategory" required>
+                                                            <option value="">Select category</option>
+                                                            <option value="Technology">Technology</option>
+                                                            <option value="Cloud">Cloud</option>
+                                                            <option value="Security">Security</option>
+                                                            <option value="Development">Development</option>
+                                                        </select>
+                                                        <div class="mt-3 ps-3">
+                                                            <div class="form-check form-switch">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    id="editArticleFeatured">
+                                                                <label class="form-check-label"
+                                                                    for="editArticleFeatured">
+                                                                    Featured Article
+                                                                    <span
+                                                                        class="ms-1 featured-text text-danger">No</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label" for="editBlogDate">Publish
+                                                            Date</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="editBlogDate"
+                                                                placeholder="Select date" required readonly>
+                                                            <span class="input-group-text"><i
+                                                                    class="fas fa-calendar"></i></span>
+                                                        </div>
+                                                        <div class="mt-3 ps-3">
+                                                            <div class="form-check form-switch">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    id="editArticleStatus" checked>
+                                                                <label class="form-check-label" for="editArticleStatus">
+                                                                    Article Status
+                                                                    <span
+                                                                        class="ms-1 text-success status-text">Active</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label" for="editBlogDate">Publish Date</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" id="editBlogDate"
-                                                    placeholder="Select date" required readonly>
-                                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
-                                            </div>
-                                            <div class="mt-3 ps-3">
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox"
-                                                        id="editArticleStatus" checked>
-                                                    <label class="form-check-label" for="editArticleStatus">
-                                                        Article Status
-                                                        <span class="ms-1 text-success status-text">Active</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    </div>
+                                </div>
 
-                                        <!-- Rich Text Editor -->
-                                        <div class="col-12">
-                                            <label class="form-label" for="editBlogContent">Content</label>
-                                            <textarea id="editBlogContent" class="tinymce-editor"></textarea>
-                                        </div>
+                                <!-- Editor - Full Width -->
+                                <div class="col-12">
+                                    <label class="form-label" for="editContent">Content</label>
+                                    <textarea id="editContent" class="tinymce-editor"></textarea>
+                                </div>
 
-                                        <!-- Hashtags Section -->
-                                        <div class="col-md-6">
-                                            <label class="form-label" for="editHashtagInput">SEO Keywords/Tags</label>
-                                            <div class="input-group mb-2">
-                                                <span class="input-group-text bg-soft-primary text-primary">
-                                                    <span class="fas fa-hashtag"></span>
-                                                </span>
-                                                <input type="text" class="form-control" id="editHashtagInput"
-                                                    placeholder="Enter keyword and press Enter">
-                                            </div>
-                                            <div class="edit-hashtag-container d-flex flex-wrap gap-2">
-                                                <!-- Tags will be dynamically added here -->
-                                            </div>
-                                        </div>
+                                <!-- SEO Tags - Full Width -->
+                                <div class="col-12">
+                                    <label class="form-label" for="hashtagInput">SEO Keywords/Tags</label>
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text bg-soft-primary text-primary">
+                                            <span class="fas fa-hashtag"></span>
+                                        </span>
+                                        <input type="text" class="form-control" id="hashtagInput"
+                                            placeholder="Enter keyword and press Enter">
+                                    </div>
+                                    <div class="hashtag-container d-flex flex-wrap gap-2">
+                                        <!-- Tags will be dynamically added here -->
                                     </div>
                                 </div>
                             </div>
@@ -496,33 +517,51 @@
         button.addEventListener('click', function () {
             const row = this.closest('tr');
 
-            // Populate basic fields from table data
-            document.getElementById('editBlogTitle').value = row.querySelector('td:nth-child(3)')
-                .textContent;
-            document.getElementById('editBlogCategory').value = row.querySelector('td:nth-child(5)')
-                .textContent;
-            document.getElementById('editImagePreview').src = row.querySelector('.avatar img').src;
+            // Get image source from the table's image column
+            const imgSrc = row.querySelector('td:nth-child(2) img') ? .src ||
+                'assets/img/generic/empty-image.png';
+
+            // Populate the edit modal fields
+            document.getElementById('editTitle').value = row.querySelector('td:nth-child(3)')
+                .textContent.trim();
+            document.getElementById('editCategory').value = row.querySelector('td:nth-child(5)')
+                .textContent.trim();
+
+            // Update image preview
+            const editImagePreview = document.getElementById('editImagePreview');
+            const editUploadText = document.getElementById('editUploadText');
+            editImagePreview.src = imgSrc;
+
+            // Show/hide upload text based on whether there's an image
+            if (imgSrc !== 'assets/img/generic/empty-image.png') {
+                editUploadText.style.display = 'none';
+                document.getElementById('editRemoveImage').classList.remove('d-none');
+            } else {
+                editUploadText.style.removeProperty('display');
+                document.getElementById('editRemoveImage').classList.add('d-none');
+            }
 
             // Set date from table
-            const dateText = row.querySelector('td:nth-child(4)').textContent;
-            document.getElementById('editBlogDate')._flatpickr.setDate(dateText);
+            const dateText = row.querySelector('td:nth-child(4)').textContent.trim();
+            document.getElementById('editBlogDate').value = dateText;
 
-            // Set status based on badge
-            const isActive = row.querySelector('.badge-phoenix-success') !== null;
-            document.getElementById('editArticleStatus').checked = isActive;
-            const statusText = document.querySelector('#editArticleStatus').parentElement.querySelector(
-                '.status-text');
-            statusText.textContent = isActive ? 'Active' : 'Inactive';
-            statusText.className = `ms-1 status-text ${isActive ? 'text-success' : 'text-danger'}`;
+            // Set featured and status toggles
+            const isFeatured = row.querySelector('td:nth-child(6) .badge-phoenix-success') !== null;
+            const isActive = row.querySelector('td:nth-child(7) .badge-phoenix-success') !== null;
 
-            // Set featured status based on badge
-            const isFeatured = row.querySelector('td:nth-child(7) .badge-phoenix-success') !== null;
             document.getElementById('editArticleFeatured').checked = isFeatured;
-            const featuredText = document.querySelector('#editArticleFeatured').parentElement
-                .querySelector('.featured-text');
+            document.getElementById('editArticleStatus').checked = isActive;
+
+            // Update status texts
+            const featuredText = document.querySelector('#editArticleFeatured + label .featured-text');
+            const statusText = document.querySelector('#editArticleStatus + label .status-text');
+
             featuredText.textContent = isFeatured ? 'Yes' : 'No';
             featuredText.className =
-                `ms-1 featured-text ${isFeatured ? 'text-success' : 'text-danger'}`;
+            `ms-1 featured-text ${isFeatured ? 'text-success' : 'text-danger'}`;
+
+            statusText.textContent = isActive ? 'Active' : 'Inactive';
+            statusText.className = `ms-1 status-text ${isActive ? 'text-success' : 'text-danger'}`;
         });
     });
 </script>
