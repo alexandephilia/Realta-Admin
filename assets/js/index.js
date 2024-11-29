@@ -262,7 +262,7 @@ $(function () {
     // Separate the TinyMCE initialization into its own function
     function initializeTinyMCE() {
         tinymce.init({
-            selector: '#blogContent',
+            selector: '.tinymce-editor',
             height: 400,
             menubar: false,
             branding: false,
@@ -298,5 +298,19 @@ $(function () {
             }
         });
     }
+
+    // Initialize TinyMCE when modals are shown
+    $('#createBlogModal').on('shown.bs.modal', function() {
+        initializeTinyMCE();
+    });
+
+    $('#editBlogModal').on('shown.bs.modal', function() {
+        initializeTinyMCE();
+    });
+
+    // Clean up TinyMCE instances when modals are hidden
+    $('#createBlogModal, #editBlogModal').on('hidden.bs.modal', function() {
+        tinymce.remove('.tinymce-editor');
+    });
 
 });

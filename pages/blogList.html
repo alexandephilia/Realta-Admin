@@ -110,7 +110,7 @@
                                         <!-- Rich Text Editor -->
                                         <div class="col-12">
                                             <label class="form-label" for="blogContent">Content</label>
-                                            <div id="blogContent"></div>
+                                            <textarea id="blogContent" class="tinymce-editor"></textarea>
                                         </div>
 
                                         <!-- Hashtags Section -->
@@ -151,6 +151,7 @@
                         <th class="text-center">Date</th>
                         <th class="text-center">Category</th>
                         <th class="text-center">Active</th>
+                        <th class="text-center">Featured</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -178,11 +179,17 @@
                             </span>
                         </td>
                         <td class="text-center">
+                            <span class="badge badge-phoenix fs-10 badge-phoenix-danger">
+                                <span class="fa fa-times"></span>
+                            </span>
+                        </td>
+                        <td class="text-center">
                             <button class="btn btn-sm btn-falcon-default text-danger" data-bs-toggle="modal"
                                 data-bs-target="#deleteModal">
                                 <span class="fas fa-trash-alt"></span>
                             </button>
-                            <button class="btn btn-sm btn-falcon-default text-warning">
+                            <button class="btn btn-sm btn-falcon-default text-warning" data-bs-toggle="modal"
+                                data-bs-target="#editBlogModal">
                                 <span class="fas fa-edit me-2"></span>Edit
                             </button>
                         </td>
@@ -210,11 +217,17 @@
                             </span>
                         </td>
                         <td class="text-center">
+                            <span class="badge badge-phoenix fs-10 badge-phoenix-success">
+                                <span class="fa fa-check"></span>
+                            </span>
+                        </td>
+                        <td class="text-center">
                             <button class="btn btn-sm btn-falcon-default text-danger" data-bs-toggle="modal"
                                 data-bs-target="#deleteModal">
                                 <span class="fas fa-trash-alt"></span>
                             </button>
-                            <button class="btn btn-sm btn-falcon-default text-warning">
+                            <button class="btn btn-sm btn-falcon-default text-warning" data-bs-toggle="modal"
+                                data-bs-target="#editBlogModal">
                                 <span class="fas fa-edit me-2"></span>Edit
                             </button>
                         </td>
@@ -237,6 +250,139 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         <button type="button" class="btn btn-danger">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Article Modal -->
+        <div class="modal fade" id="editBlogModal" tabindex="-1" aria-labelledby="editBlogModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editBlogModalLabel">Edit Article</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editBlogForm">
+                            <div class="row g-3">
+                                <!-- Image Upload -->
+                                <div class="col-12 col-md-4">
+                                    <div class="card h-100 d-flex">
+                                        <div class="card-body d-flex flex-column justify-content-center">
+                                            <h6 class="mb-4 text-center">Thumbnail Image</h6>
+                                            <div class="text-center">
+                                                <div class="image-upload-container">
+                                                    <div class="preview-area mb-3"
+                                                        style="width: 200px; height: 150px; margin: 0 auto; border: 2px dashed #dee2e6; border-radius: 8px; overflow: hidden; position: relative; background: #f8f9fa;">
+                                                        <img id="editImagePreview"
+                                                            src="assets/img/generic/empty-image.png" alt="Preview"
+                                                            style="width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1;">
+                                                        <div id="editUploadText" class="upload-text">
+                                                            <span class="fas fa-cloud-upload-alt fs-2"></span>
+                                                            <p class="mb-0 fs--1 mt-2">Click or drag image here</p>
+                                                        </div>
+                                                    </div>
+                                                    <input type="file" class="d-none" id="editImageUpload"
+                                                        accept="image/*">
+                                                    <div class="mt-2">
+                                                        <button type="button" class="btn btn-falcon-default btn-sm"
+                                                            onclick="document.getElementById('editImageUpload').click()">
+                                                            <span class="fas fa-upload me-2"></span>Choose Image
+                                                        </button>
+                                                        <button type="button"
+                                                            class="btn btn-link btn-sm text-danger d-none"
+                                                            id="editRemoveImage">
+                                                            <span class="fas fa-times me-2"></span>Remove
+                                                        </button>
+                                                    </div>
+                                                    <small class="text-muted d-block mt-1">
+                                                        Recommended size: 800x600px (Max 2MB)
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Form Fields -->
+                                <div class="col-12 col-md-8">
+                                    <div class="row g-3">
+                                        <!-- Title -->
+                                        <div class="col-12">
+                                            <label class="form-label" for="editBlogTitle">Title</label>
+                                            <input type="text" class="form-control" id="editBlogTitle" required>
+                                        </div>
+
+                                        <!-- Category & Date -->
+                                        <div class="col-md-6">
+                                            <label class="form-label" for="editBlogCategory">Category</label>
+                                            <select class="form-select" id="editBlogCategory" required>
+                                                <option value="">Select category</option>
+                                                <option value="Technology">Technology</option>
+                                                <option value="Cloud">Cloud</option>
+                                                <option value="Security">Security</option>
+                                                <option value="Development">Development</option>
+                                            </select>
+                                            <div class="mt-3 ps-3">
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        id="editArticleFeatured">
+                                                    <label class="form-check-label" for="editArticleFeatured">
+                                                        Featured Article
+                                                        <span class="ms-1 featured-text text-danger">No</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label" for="editBlogDate">Publish Date</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="editBlogDate"
+                                                    placeholder="Select date" required readonly>
+                                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                            </div>
+                                            <div class="mt-3 ps-3">
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        id="editArticleStatus" checked>
+                                                    <label class="form-check-label" for="editArticleStatus">
+                                                        Article Status
+                                                        <span class="ms-1 text-success status-text">Active</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Rich Text Editor -->
+                                        <div class="col-12">
+                                            <label class="form-label" for="editBlogContent">Content</label>
+                                            <textarea id="editBlogContent" class="tinymce-editor"></textarea>
+                                        </div>
+
+                                        <!-- Hashtags Section -->
+                                        <div class="col-md-6">
+                                            <label class="form-label" for="editHashtagInput">SEO Keywords/Tags</label>
+                                            <div class="input-group mb-2">
+                                                <span class="input-group-text bg-soft-primary text-primary">
+                                                    <span class="fas fa-hashtag"></span>
+                                                </span>
+                                                <input type="text" class="form-control" id="editHashtagInput"
+                                                    placeholder="Enter keyword and press Enter">
+                                            </div>
+                                            <div class="edit-hashtag-container d-flex flex-wrap gap-2">
+                                                <!-- Tags will be dynamically added here -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" form="editBlogForm" class="btn btn-primary">Save Changes</button>
                     </div>
                 </div>
             </div>
@@ -266,6 +412,24 @@
 
 <!-- Add this script at the bottom of the file -->
 <script>
+    // Initialize Flatpickr for both modals with consistent config
+    ['blogDate', 'editBlogDate'].forEach(id => {
+        flatpickr(`#${id}`, {
+            dateFormat: "dMY",
+            altInput: true,
+            altFormat: "d M Y",
+            defaultDate: "today",
+            allowInput: false,
+            clickOpens: true,
+            appendTo: document.querySelector(`#${id}`).parentElement,
+            positionElement: document.querySelector(`#${id}`),
+            monthSelectorType: "static",
+            prevArrow: '<svg class="svg-inline--fa fa-chevron-left" width="8" height="8" viewBox="0 0 8 8"><path d="M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z"/></svg>',
+            nextArrow: '<svg class="svg-inline--fa fa-chevron-right" width="8" height="8" viewBox="0 0 8 8"><path d="M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z"/></svg>'
+        });
+    });
+
+    // Handle status toggle
     document.getElementById('articleStatus').addEventListener('change', function () {
         const statusText = this.parentElement.querySelector('.status-text');
         if (this.checked) {
@@ -279,6 +443,7 @@
         }
     });
 
+    // Handle featured toggle
     document.getElementById('articleFeatured').addEventListener('change', function () {
         const featuredText = this.parentElement.querySelector('.featured-text');
         if (this.checked) {
@@ -292,6 +457,7 @@
         }
     });
 
+    // Handle hashtag input
     document.getElementById('hashtagInput').addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
             e.preventDefault();
@@ -309,18 +475,53 @@
             }
         }
     });
-    // Initialize Flatpickr with custom format
-    flatpickr("#blogDate", {
-        dateFormat: "dMY",
-        altInput: true,
-        altFormat: "d M Y",
-        defaultDate: "today",
-        allowInput: false,
-        clickOpens: true,
-        appendTo: document.querySelector('#blogDate').parentElement,
-        positionElement: document.querySelector('#blogDate'),
-        monthSelectorType: "static",
-        prevArrow: '<svg class="svg-inline--fa fa-chevron-left" width="8" height="8" viewBox="0 0 8 8"><path d="M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z"/></svg>',
-        nextArrow: '<svg class="svg-inline--fa fa-chevron-right" width="8" height="8" viewBox="0 0 8 8"><path d="M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z"/></svg>',
+
+    // Basic image upload handling for both modals
+    ['imageUpload', 'editImageUpload'].forEach(id => {
+        document.getElementById(id).addEventListener('change', function (e) {
+            if (e.target.files && e.target.files[0]) {
+                const reader = new FileReader();
+                const previewId = id === 'imageUpload' ? 'imagePreview' : 'editImagePreview';
+                reader.onload = function (e) {
+                    document.getElementById(previewId).src = e.target.result;
+                };
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+    });
+
+    // Update the edit button handler
+    document.querySelectorAll('.btn-falcon-default.text-warning').forEach(button => {
+        button.addEventListener('click', function () {
+            const row = this.closest('tr');
+
+            // Populate basic fields from table data
+            document.getElementById('editBlogTitle').value = row.querySelector('td:nth-child(3)')
+                .textContent;
+            document.getElementById('editBlogCategory').value = row.querySelector('td:nth-child(5)')
+                .textContent;
+            document.getElementById('editImagePreview').src = row.querySelector('.avatar img').src;
+
+            // Set date from table
+            const dateText = row.querySelector('td:nth-child(4)').textContent;
+            document.getElementById('editBlogDate')._flatpickr.setDate(dateText);
+
+            // Set status based on badge
+            const isActive = row.querySelector('.badge-phoenix-success') !== null;
+            document.getElementById('editArticleStatus').checked = isActive;
+            const statusText = document.querySelector('#editArticleStatus').parentElement.querySelector(
+                '.status-text');
+            statusText.textContent = isActive ? 'Active' : 'Inactive';
+            statusText.className = `ms-1 status-text ${isActive ? 'text-success' : 'text-danger'}`;
+
+            // Set featured status based on badge
+            const isFeatured = row.querySelector('td:nth-child(7) .badge-phoenix-success') !== null;
+            document.getElementById('editArticleFeatured').checked = isFeatured;
+            const featuredText = document.querySelector('#editArticleFeatured').parentElement
+                .querySelector('.featured-text');
+            featuredText.textContent = isFeatured ? 'Yes' : 'No';
+            featuredText.className =
+            `ms-1 featured-text ${isFeatured ? 'text-success' : 'text-danger'}`;
+        });
     });
 </script>
