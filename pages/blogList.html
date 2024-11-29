@@ -77,10 +77,30 @@
                                                 <option value="Security">Security</option>
                                                 <option value="Development">Development</option>
                                             </select>
+                                            <div class="mt-2">
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="articleStatus"
+                                                        checked>
+                                                    <label class="form-check-label" for="articleStatus">
+                                                        Article Status
+                                                        <span class="ms-1 text-success status-text">Active</span>
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label" for="blogDate">Publication Date</label>
+                                            <label class="form-label" for="blogDate">Publish Date</label>
                                             <input type="date" class="form-control" id="blogDate" required>
+                                            <div class="mt-2">
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        id="articleFeatured">
+                                                    <label class="form-check-label" for="articleFeatured">
+                                                        Featured Article
+                                                        <span class="ms-1 featured-text text-danger">No</span>
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <!-- Rich Text Editor -->
@@ -89,17 +109,18 @@
                                             <div id="blogContent"></div>
                                         </div>
 
-                                        <!-- Add this new section for the active toggle -->
-                                        <div class="col-12 mt-3">
-                                            <div class="d-flex align-items-center">
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" id="articleStatus"
-                                                        checked>
-                                                    <label class="form-check-label ms-2 fw-bold" for="articleStatus">
-                                                        Article Status
-                                                        <span class="ms-1 text-success status-text">Active</span>
-                                                    </label>
-                                                </div>
+                                        <!-- Hashtags Section -->
+                                        <div class="col-md-6">
+                                            <label class="form-label" for="hashtagInput">SEO Keywords/Tags</label>
+                                            <div class="input-group mb-2">
+                                                <span class="input-group-text bg-soft-primary text-primary">
+                                                    <span class="fas fa-hashtag"></span>
+                                                </span>
+                                                <input type="text" class="form-control" id="hashtagInput"
+                                                    placeholder="Enter keyword and press Enter">
+                                            </div>
+                                            <div class="hashtag-container d-flex flex-wrap gap-2">
+                                                <!-- Tags will be dynamically added here -->
                                             </div>
                                         </div>
                                     </div>
@@ -146,9 +167,7 @@
                         </td>
                         <td class="text-center">10 Tips for Successful Digital Transformation</td>
                         <td class="text-center">Fri, 15/03/2024</td>
-                        <td class="text-center">
-                            <span class="badge badge-phoenix badge-phoenix-primary">Technology</span>
-                        </td>
+                        <td class="text-center">Technology</td>
                         <td class="text-center">
                             <span class="badge badge-phoenix fs-10 badge-phoenix-success">
                                 <span class="fa fa-check"></span>
@@ -180,9 +199,7 @@
                         </td>
                         <td class="text-center">The Future of Cloud Computing</td>
                         <td class="text-center">Thu, 14/03/2024</td>
-                        <td class="text-center">
-                            <span class="badge badge-phoenix badge-phoenix-primary">Cloud</span>
-                        </td>
+                        <td class="text-center">Cloud</td>
                         <td class="text-center">
                             <span class="badge badge-phoenix fs-10 badge-phoenix-danger">
                                 <span class="fa fa-times"></span>
@@ -258,6 +275,37 @@
             statusText.textContent = 'Inactive';
             statusText.classList.remove('text-success');
             statusText.classList.add('text-danger');
+        }
+    });
+
+    document.getElementById('articleFeatured').addEventListener('change', function () {
+        const featuredText = this.parentElement.querySelector('.featured-text');
+        if (this.checked) {
+            featuredText.textContent = 'Yes';
+            featuredText.classList.remove('text-danger');
+            featuredText.classList.add('text-success');
+        } else {
+            featuredText.textContent = 'No';
+            featuredText.classList.remove('text-success');
+            featuredText.classList.add('text-danger');
+        }
+    });
+
+    document.getElementById('hashtagInput').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const value = this.value.trim();
+            if (value) {
+                const container = document.querySelector('.hashtag-container');
+                const tag = document.createElement('div');
+                tag.className = 'badge badge-phoenix badge-phoenix-primary d-flex align-items-center gap-1';
+                tag.innerHTML = `
+                    #${value}
+                    <span class="fas fa-times cursor-pointer" onclick="this.parentElement.remove()"></span>
+                `;
+                container.appendChild(tag);
+                this.value = '';
+            }
         }
     });
 </script>

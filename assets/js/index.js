@@ -54,6 +54,7 @@ $(function () {
     $("#blogArticles").click(function(){
       $('#contentPages').load('pages/blogList.html', function() {
           initializeImageUpload();
+          initializeTinyMCE();
       });
     });
 
@@ -256,8 +257,10 @@ $(function () {
         
         // Handle preview area click
         dropArea.addEventListener('click', () => imageUpload.click());
+    }
 
-        // Initialize TinyMCE
+    // Separate the TinyMCE initialization into its own function
+    function initializeTinyMCE() {
         tinymce.init({
             selector: '#blogContent',
             height: 400,
@@ -293,7 +296,6 @@ $(function () {
             `,
             setup: function(editor) {
                 editor.on('init', function() {
-                    // Add custom styles directly to the editor iframe's parent document
                     const editorContainer = editor.getContainer();
                     const customStyles = document.createElement('style');
                     customStyles.textContent = `
