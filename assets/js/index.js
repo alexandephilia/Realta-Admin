@@ -265,33 +265,14 @@ $(function () {
             selector: '#blogContent',
             height: 400,
             menubar: false,
+            branding: false,
             statusbar: false,
-            elementpath: false,
             plugins: [
-                'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
-                'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-                'insertdatetime', 'media', 'table', 'help'
+                'lists', 'link', 'image', 'code', 'table', 'help'
             ],
-            formats: {
-                h1: { block: 'h1' },
-                h2: { block: 'h2' },
-                h3: { block: 'h3' },
-                p: { block: 'p' }
-            },
-            style_formats: [
-                { title: 'Heading 1', format: 'h1' },
-                { title: 'Heading 2', format: 'h2' },
-                { title: 'Heading 3', format: 'h3' },
-                { title: 'Paragraph', format: 'p' },
-                { title: 'Blockquote', format: 'blockquote' }
-            ],
-            toolbar: 'styles | bold italic underline | alignleft aligncenter alignright | bullist numlist | link image | undo redo | removeformat',
-            content_css: false,
+            toolbar: 'styles | bold italic | alignleft aligncenter alignright | bullist numlist | link image | removeformat',
             content_style: `
                 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 14px; }
-                h1 { font-size: 2em; margin-bottom: 0.5em; }
-                h2 { font-size: 1.5em; margin-bottom: 0.5em; }
-                h3 { font-size: 1.17em; margin-bottom: 0.5em; }
                 p { margin: 0 0 1em; }
             `,
             setup: function(editor) {
