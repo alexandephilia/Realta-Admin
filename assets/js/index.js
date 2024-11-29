@@ -316,12 +316,7 @@ $(function () {
         tinymce.remove('.tinymce-editor');
     });
 
-    $("#jobCategory").click(function(){
-      $('#contentPages').load('pages/SubPages/Career/jobCategories.html',function(){
-            $.getScript('assets/js/pages/jobCategories.js');
-         });
-    });
-
+    
     $("#jobListings").click(function(){
       $('#contentPages').load('pages/SubPages/Career/jobListings.html', function() {
           // Initialize TinyMCE for job description and requirements
