@@ -77,27 +77,31 @@
                                                 <option value="Security">Security</option>
                                                 <option value="Development">Development</option>
                                             </select>
-                                            <div class="mt-2">
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" id="articleStatus"
-                                                        checked>
-                                                    <label class="form-check-label" for="articleStatus">
-                                                        Article Status
-                                                        <span class="ms-1 text-success status-text">Active</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label" for="blogDate">Publish Date</label>
-                                            <input type="date" class="form-control" id="blogDate" required>
-                                            <div class="mt-2">
+                                            <div class="mt-3 ps-3">
                                                 <div class="form-check form-switch">
                                                     <input class="form-check-input" type="checkbox"
                                                         id="articleFeatured">
                                                     <label class="form-check-label" for="articleFeatured">
                                                         Featured Article
                                                         <span class="ms-1 featured-text text-danger">No</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label" for="blogDate">Publish Date</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="blogDate"
+                                                    placeholder="Select date" required readonly>
+                                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                            </div>
+                                            <div class="mt-3 ps-3">
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="articleStatus"
+                                                        checked>
+                                                    <label class="form-check-label" for="articleStatus">
+                                                        Article Status
+                                                        <span class="ms-1 text-success status-text">Active</span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -166,7 +170,7 @@
                             </div>
                         </td>
                         <td class="text-center">10 Tips for Successful Digital Transformation</td>
-                        <td class="text-center">Fri, 15/03/2024</td>
+                        <td class="text-center">29 Nov 2024</td>
                         <td class="text-center">Technology</td>
                         <td class="text-center">
                             <span class="badge badge-phoenix fs-10 badge-phoenix-success">
@@ -198,7 +202,7 @@
                             </div>
                         </td>
                         <td class="text-center">The Future of Cloud Computing</td>
-                        <td class="text-center">Thu, 14/03/2024</td>
+                        <td class="text-center">29 Nov 2024</td>
                         <td class="text-center">Cloud</td>
                         <td class="text-center">
                             <span class="badge badge-phoenix fs-10 badge-phoenix-danger">
@@ -304,5 +308,19 @@
                 this.value = '';
             }
         }
+    });
+    // Initialize Flatpickr with custom format
+    flatpickr("#blogDate", {
+        dateFormat: "dMY",
+        altInput: true,
+        altFormat: "d M Y",
+        defaultDate: "today",
+        allowInput: false,
+        clickOpens: true,
+        appendTo: document.querySelector('#blogDate').parentElement,
+        positionElement: document.querySelector('#blogDate'),
+        monthSelectorType: "static",
+        prevArrow: '<svg class="svg-inline--fa fa-chevron-left" width="8" height="8" viewBox="0 0 8 8"><path d="M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z"/></svg>',
+        nextArrow: '<svg class="svg-inline--fa fa-chevron-right" width="8" height="8" viewBox="0 0 8 8"><path d="M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z"/></svg>',
     });
 </script>
