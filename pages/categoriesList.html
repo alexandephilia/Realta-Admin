@@ -42,6 +42,40 @@
             </div>
         </div>
 
+        <!-- Edit Category Modal -->
+        <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editCategoryForm">
+                            <input type="hidden" id="editCategoryId">
+                            <div class="mb-3">
+                                <label class="form-label" for="editCategoryName">Category Name</label>
+                                <input type="text" class="form-control" id="editCategoryName" required>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="editCategoryStatus">
+                                    <label class="form-check-label ms-2 fw-bold" for="editCategoryStatus">
+                                        Category Status
+                                        <span class="ms-1 text-success edit-status-text">Active</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" form="editCategoryForm" class="btn btn-primary">Update Category</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Categories Table -->
         <div class="table-responsive mt-4">
             <table class="table table-hover">
@@ -85,7 +119,8 @@
                                 data-bs-target="#deleteCategoryModal">
                                 <span class="fas fa-trash-alt"></span>
                             </button>
-                            <button class="btn btn-sm btn-falcon-default text-warning">
+                            <button class="btn btn-sm btn-falcon-default text-warning" data-bs-toggle="modal"
+                                data-bs-target="#editCategoryModal">
                                 <span class="fas fa-edit me-2"></span>Edit
                             </button>
                         </td>
@@ -148,5 +183,34 @@
             statusText.classList.remove('text-success');
             statusText.classList.add('text-danger');
         }
+    });
+
+    // Add event listener for edit category status switch
+    document.getElementById('editCategoryStatus').addEventListener('change', function () {
+        const statusText = this.parentElement.querySelector('.edit-status-text');
+        statusText.textContent = this.checked ? 'Active' : 'Inactive';
+        statusText.className = 'ms-1 ' + (this.checked ? 'text-success' : 'text-danger') + ' edit-status-text';
+    });
+
+    // Update edit buttons to populate modal with data
+    document.querySelectorAll('.btn-falcon-default.text-warning').forEach(button => {
+        button.addEventListener('click', function () {
+            const row = this.closest('tr');
+            const categoryName = row.querySelector('td:first-child').textContent;
+            const isActive = row.querySelector('.badge-phoenix-success') !== null;
+
+            // Populate the edit modal
+            document.getElementById('editCategoryName').value = categoryName;
+            document.getElementById('editCategoryStatus').checked = isActive;
+
+            // Trigger status text update
+            const statusText = document.querySelector('.edit-status-text');
+            statusText.textContent = isActive ? 'Active' : 'Inactive';
+            statusText.className = 'ms-1 ' + (isActive ? 'text-success' : 'text-danger') +
+                ' edit-status-text';
+
+            // Show the modal
+            new bootstrap.Modal(document.getElementById('editCategoryModal')).show();
+        });
     });
 </script>
