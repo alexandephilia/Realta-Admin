@@ -518,8 +518,8 @@
             const row = this.closest('tr');
 
             // Get image source from the table's image column
-            const imgSrc = row.querySelector('td:nth-child(2) img') ? .src ||
-                'assets/img/generic/empty-image.png';
+            const imgElement = row.querySelector('td:nth-child(2) img');
+            const imgSrc = imgElement ? imgElement.src : 'assets/img/generic/empty-image.png';
 
             // Populate the edit modal fields
             document.getElementById('editTitle').value = row.querySelector('td:nth-child(3)')
@@ -558,7 +558,7 @@
 
             featuredText.textContent = isFeatured ? 'Yes' : 'No';
             featuredText.className =
-            `ms-1 featured-text ${isFeatured ? 'text-success' : 'text-danger'}`;
+                `ms-1 featured-text ${isFeatured ? 'text-success' : 'text-danger'}`;
 
             statusText.textContent = isActive ? 'Active' : 'Inactive';
             statusText.className = `ms-1 status-text ${isActive ? 'text-success' : 'text-danger'}`;
