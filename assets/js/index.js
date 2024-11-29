@@ -52,14 +52,14 @@ $(function () {
     // });
 
     $("#blogArticles").click(function(){
-      $('#contentPages').load('pages/blogList.html', function() {
+      $('#contentPages').load('pages/SubPages/Blog/blogList.html', function() {
           initializeImageUpload();
           initializeTinyMCE();
       });
     });
 
     $("#blogCategories").click(function(){
-      $('#contentPages').load('pages/categoriesList.html', function() {
+      $('#contentPages').load('pages/SubPages/Blog/categoriesList.html', function() {
           // Initialize any category-specific scripts if needed
           const categoryStatus = document.getElementById('categoryStatus');
           if (categoryStatus) {
@@ -116,7 +116,7 @@ $(function () {
     });
 
     $("#blogSection").click(function(){
-      $('#contentPages').load('pages/blogSection.html',function(){
+      $('#contentPages').load('pages/SubPages/Blog/blogSection.html',function(){
             $.getScript('assets/js/pages/blogSection.js');
          });
     });
@@ -314,6 +314,12 @@ $(function () {
     // Clean up TinyMCE instances when modals are hidden
     $('#createBlogModal, #editBlogModal').on('hidden.bs.modal', function() {
         tinymce.remove('.tinymce-editor');
+    });
+
+    $("#jobCategory").click(function(){
+      $('#contentPages').load('pages/SubPages/Career/jobCategories.html',function(){
+            $.getScript('assets/js/pages/jobCategories.js');
+         });
     });
 
 });
