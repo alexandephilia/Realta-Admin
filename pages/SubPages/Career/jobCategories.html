@@ -40,9 +40,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-center">Human Resources</td>
+                        <td class="text-center">Research & Development</td>
                         <td class="text-center">Internship</td>
-                        <td class="text-center">HR Manager</td>
+                        <td class="text-center">Business Analyst</td>
                         <td class="text-center">Bandung</td>
                         <td class="text-center">
                             <span class="badge badge-phoenix fs-10 badge-phoenix-success">
@@ -98,7 +98,17 @@
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label class="form-label" for="department">Department</label>
-                            <input class="form-control" id="department" type="text" placeholder="Enter department">
+                            <select class="form-control" id="department" name="department" required>
+                                <option value="">Select Department</option>
+                                <option value="IT">Information Technology</option>
+                                <option value="HR">Human Resources</option>
+                                <option value="FIN">Finance & Accounting</option>
+                                <option value="SALES">Sales & Marketing</option>
+                                <option value="OPS">Operations</option>
+                                <option value="RND">Research & Development</option>
+                                <option value="PROJ">Project Management</option>
+                                <option value="QA">Quality Assurance</option>
+                            </select>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label" for="opportunity">Opportunity</label>
@@ -110,7 +120,23 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label" for="position">Position</label>
-                            <input class="form-control" id="position" type="text" placeholder="Enter position">
+                            <select class="form-control" id="position" name="position" required>
+                                <option value="">Select Position</option>
+                                <option value="SE">Software Engineer</option>
+                                <option value="PM">Project Manager</option>
+                                <option value="BA">Business Analyst</option>
+                                <option value="QAE">QA Engineer</option>
+                                <option value="UI">UI/UX Designer</option>
+                                <option value="DBA">Database Administrator</option>
+                                <option value="DEV">Developer</option>
+                                <option value="SA">System Analyst</option>
+                                <option value="NET">Network Engineer</option>
+                                <option value="SEC">Security Specialist</option>
+                                <option value="HR">HR Specialist</option>
+                                <option value="ACC">Accountant</option>
+                                <option value="MKT">Marketing Specialist</option>
+                                <option value="SALES">Sales Executive</option>
+                            </select>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label" for="location">Location</label>
@@ -149,7 +175,14 @@
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label class="form-label" for="editDepartment">Department</label>
-                            <input class="form-control" id="editDepartment" type="text" placeholder="Enter department">
+                            <select class="form-select" id="editDepartment">
+                                <option value="">Select Department</option>
+                                <option value="it">Information Technology</option>
+                                <option value="hr">Human Resources</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="finance">Finance</option>
+                                <option value="operations">Operations</option>
+                            </select>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label" for="editOpportunity">Opportunity</label>
@@ -161,7 +194,14 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label" for="editPosition">Position</label>
-                            <input class="form-control" id="editPosition" type="text" placeholder="Enter position">
+                            <select class="form-select" id="editPosition">
+                                <option value="">Select Position</option>
+                                <option value="software-engineer">Software Engineer</option>
+                                <option value="hr-manager">HR Manager</option>
+                                <option value="marketing-specialist">Marketing Specialist</option>
+                                <option value="finance-analyst">Finance Analyst</option>
+                                <option value="operations-manager">Operations Manager</option>
+                            </select>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label" for="editLocation">Location</label>
@@ -236,7 +276,19 @@
             const isActive = row.cells[4].querySelector('.badge-phoenix-success') !== null;
 
             // Populate the edit modal
-            document.getElementById('editDepartment').value = department;
+            // Map department text to value
+            const departmentSelect = document.getElementById('editDepartment');
+            const departmentMap = {
+                'Information Technology': 'IT',
+                'Human Resources': 'HR',
+                'Finance & Accounting': 'FIN',
+                'Sales & Marketing': 'SALES',
+                'Operations': 'OPS',
+                'Research & Development': 'RND',
+                'Project Management': 'PROJ',
+                'Quality Assurance': 'QA'
+            };
+            departmentSelect.value = departmentMap[department] || '';
 
             // Handle opportunity value mapping
             const opportunitySelect = document.getElementById('editOpportunity');
@@ -248,7 +300,26 @@
                 opportunitySelect.value = '';
             }
 
-            document.getElementById('editPosition').value = position;
+            // Map position text to value
+            const positionSelect = document.getElementById('editPosition');
+            const positionMap = {
+                'Software Engineer': 'SE',
+                'Project Manager': 'PM',
+                'Business Analyst': 'BA',
+                'QA Engineer': 'QAE',
+                'UI/UX Designer': 'UI',
+                'Database Administrator': 'DBA',
+                'Developer': 'DEV',
+                'System Analyst': 'SA',
+                'Network Engineer': 'NET',
+                'Security Specialist': 'SEC',
+                'HR Specialist': 'HR',
+                'Accountant': 'ACC',
+                'Marketing Specialist': 'MKT',
+                'Sales Executive': 'SALES'
+            };
+            positionSelect.value = positionMap[position] || '';
+
             document.getElementById('editLocation').value = location;
 
             // Set the status switch and update its text
