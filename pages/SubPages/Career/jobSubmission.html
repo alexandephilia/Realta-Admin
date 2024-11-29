@@ -145,11 +145,14 @@
                         <div class="card mb-4">
                             <div class="card-body py-3">
                                 <div class="row justify-content-center">
-                                    <div class="col-md-4">
-                                        <div class="text-center">
-                                            <label class="form-label text-uppercase fw-bold mb-2">DATE SUBMITTED</label>
-                                            <p class="form-control-plaintext border-bottom pb-2 mb-0" id="appliedDate">
-                                                January 1, 2024</p>
+                                    <div class="col-md-6">
+                                        <div class="d-flex flex-column align-items-center">
+                                            <div class="text-muted small text-uppercase mb-1">Application Submitted On
+                                            </div>
+                                            <div class="fs-5 fw-bold text-primary" id="appliedDate">January 1, 2024
+                                            </div>
+                                            <div class="border-bottom my-2 w-75"></div>
+                                            <div class="small text-muted" id="appliedTimeAgo">(2 months ago)</div>
                                         </div>
                                     </div>
                                 </div>
@@ -182,7 +185,7 @@
             modalBody.querySelector('.form-control-plaintext:nth-of-type(3)').textContent = phone;
             modalBody.querySelector('.form-control-plaintext:nth-of-type(4)').textContent = position;
 
-            // Update document filenames (you can replace these with actual data)
+            // Update document filenames
             modalBody.querySelector('.resume-filename').textContent =
                 `${name.toLowerCase().replace(' ', '_')}_resume.pdf`;
             modalBody.querySelector('.coverletter-filename').textContent =
@@ -190,13 +193,39 @@
             modalBody.querySelector('.portfolio-url').textContent = 'https://portfolio.example.com/' +
                 name.toLowerCase().replace(' ', '');
 
-            // Update applied date
-            document.getElementById('appliedDate').textContent = new Date().toLocaleDateString(
-                'en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
+            // Update applied date with formatted date and relative time
+            const applicationDate = new Date(); // Replace with actual application date
+            const formattedDate = applicationDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            document.getElementById('appliedDate').textContent = formattedDate;
+
+            // Calculate and display relative time
+            const now = new Date();
+            const diffTime = Math.abs(now - applicationDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            let timeAgo;
+
+            if (diffDays < 1) {
+                timeAgo = 'Today';
+            } else if (diffDays === 1) {
+                timeAgo = 'Yesterday';
+            } else if (diffDays < 7) {
+                timeAgo = `${diffDays} days ago`;
+            } else if (diffDays < 30) {
+                const weeks = Math.floor(diffDays / 7);
+                timeAgo = `${weeks} ${weeks === 1 ? 'week' : 'weeks'} ago`;
+            } else if (diffDays < 365) {
+                const months = Math.floor(diffDays / 30);
+                timeAgo = `${months} ${months === 1 ? 'month' : 'months'} ago`;
+            } else {
+                const years = Math.floor(diffDays / 365);
+                timeAgo = `${years} ${years === 1 ? 'year' : 'years'} ago`;
+            }
+
+            document.getElementById('appliedTimeAgo').textContent = `(${timeAgo})`;
         });
     });
 </script>
