@@ -1,4 +1,4 @@
-<h4 class="mb-3 text-body mb-0">Career Categories</h4>
+<h4 class="mb-3 text-body mb-0">Job Categories</h4>
 <div class="card">
     <div class="card-body">
         <div class="text-end mb-3">
@@ -98,7 +98,7 @@
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label class="form-label" for="department">Department</label>
-                            <select class="form-control" id="department" name="department" required>
+                            <select class="form-select" id="department" name="department" required>
                                 <option value="">Select Department</option>
                                 <option value="IT">Information Technology</option>
                                 <option value="HR">Human Resources</option>
@@ -120,7 +120,7 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label" for="position">Position</label>
-                            <select class="form-control" id="position" name="position" required>
+                            <select class="form-select" id="position" name="position" required>
                                 <option value="">Select Position</option>
                                 <option value="SE">Software Engineer</option>
                                 <option value="PM">Project Manager</option>
@@ -175,13 +175,16 @@
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label class="form-label" for="editDepartment">Department</label>
-                            <select class="form-select" id="editDepartment">
+                            <select class="form-select" id="editDepartment" name="department" required>
                                 <option value="">Select Department</option>
-                                <option value="it">Information Technology</option>
-                                <option value="hr">Human Resources</option>
-                                <option value="marketing">Marketing</option>
-                                <option value="finance">Finance</option>
-                                <option value="operations">Operations</option>
+                                <option value="IT">Information Technology</option>
+                                <option value="HR">Human Resources</option>
+                                <option value="FIN">Finance & Accounting</option>
+                                <option value="SALES">Sales & Marketing</option>
+                                <option value="OPS">Operations</option>
+                                <option value="RND">Research & Development</option>
+                                <option value="PROJ">Project Management</option>
+                                <option value="QA">Quality Assurance</option>
                             </select>
                         </div>
                         <div class="col-md-6">
@@ -194,13 +197,22 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label" for="editPosition">Position</label>
-                            <select class="form-select" id="editPosition">
+                            <select class="form-select" id="editPosition" name="position" required>
                                 <option value="">Select Position</option>
-                                <option value="software-engineer">Software Engineer</option>
-                                <option value="hr-manager">HR Manager</option>
-                                <option value="marketing-specialist">Marketing Specialist</option>
-                                <option value="finance-analyst">Finance Analyst</option>
-                                <option value="operations-manager">Operations Manager</option>
+                                <option value="SE">Software Engineer</option>
+                                <option value="PM">Project Manager</option>
+                                <option value="BA">Business Analyst</option>
+                                <option value="QAE">QA Engineer</option>
+                                <option value="UI">UI/UX Designer</option>
+                                <option value="DBA">Database Administrator</option>
+                                <option value="DEV">Developer</option>
+                                <option value="SA">System Analyst</option>
+                                <option value="NET">Network Engineer</option>
+                                <option value="SEC">Security Specialist</option>
+                                <option value="HR">HR Specialist</option>
+                                <option value="ACC">Accountant</option>
+                                <option value="MKT">Marketing Specialist</option>
+                                <option value="SALES">Sales Executive</option>
                             </select>
                         </div>
                         <div class="col-md-6">
@@ -275,9 +287,7 @@
             const location = row.cells[3].textContent.trim();
             const isActive = row.cells[4].querySelector('.badge-phoenix-success') !== null;
 
-            // Populate the edit modal
             // Map department text to value
-            const departmentSelect = document.getElementById('editDepartment');
             const departmentMap = {
                 'Information Technology': 'IT',
                 'Human Resources': 'HR',
@@ -288,20 +298,13 @@
                 'Project Management': 'PROJ',
                 'Quality Assurance': 'QA'
             };
-            departmentSelect.value = departmentMap[department] || '';
+            document.getElementById('editDepartment').value = departmentMap[department] || '';
 
             // Handle opportunity value mapping
-            const opportunitySelect = document.getElementById('editOpportunity');
-            if (opportunity === 'Full Time') {
-                opportunitySelect.value = 'fulltime';
-            } else if (opportunity === 'Internship') {
-                opportunitySelect.value = 'internship';
-            } else {
-                opportunitySelect.value = '';
-            }
+            document.getElementById('editOpportunity').value = opportunity === 'Full Time' ?
+                'fulltime' : 'internship';
 
             // Map position text to value
-            const positionSelect = document.getElementById('editPosition');
             const positionMap = {
                 'Software Engineer': 'SE',
                 'Project Manager': 'PM',
@@ -318,8 +321,9 @@
                 'Marketing Specialist': 'MKT',
                 'Sales Executive': 'SALES'
             };
-            positionSelect.value = positionMap[position] || '';
+            document.getElementById('editPosition').value = positionMap[position] || '';
 
+            // Set location
             document.getElementById('editLocation').value = location;
 
             // Set the status switch and update its text

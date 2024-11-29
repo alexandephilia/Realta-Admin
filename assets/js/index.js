@@ -322,4 +322,27 @@ $(function () {
          });
     });
 
+    $("#jobListings").click(function(){
+      $('#contentPages').load('pages/SubPages/Career/jobListings.html', function() {
+          // Initialize TinyMCE for job description and requirements
+          document.querySelectorAll('.tinymce-editor').forEach(editor => {
+              tinymce.init({
+                  target: editor,
+                  height: 300,
+                  menubar: false,
+                  plugins: [
+                      'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                      'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                      'insertdatetime', 'media', 'table', 'help', 'wordcount'
+                  ],
+                  toolbar: 'undo redo | blocks | ' +
+                      'bold italic backcolor | alignleft aligncenter ' +
+                      'alignright alignjustify | bullist numlist outdent indent | ' +
+                      'removeformat | help',
+                  content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif; font-size: 14px; }'
+              });
+          });
+      });
+    });
+
 });
