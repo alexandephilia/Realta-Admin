@@ -207,22 +207,25 @@ $(function () {
         }
 
         function resetUploadArea() {
-            // Reset the image
-            imagePreview.src = 'assets/img/generic/empty-image.png';
+            // Reset the image with transparent GIF
+            imagePreview.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
             imageUpload.value = '';
             
             // Reset classes
             container.classList.remove('has-image');
-            removeButton.classList.add('d-none');
+            if (removeButton) {
+                removeButton.classList.add('d-none');
+            }
             
             // Show upload text
-            uploadText.style.removeProperty('display');
-            uploadText.style.removeProperty('opacity');
-            uploadText.style.removeProperty('visibility');
+            if (uploadText) {
+                uploadText.style.removeProperty('display');
+                uploadText.style.removeProperty('opacity');
+                uploadText.style.removeProperty('visibility');
+            }
             
-            // Reset preview styles
-            imagePreview.removeAttribute('style');
-            imagePreview.style.cssText = 'width: 100%; height: 100%; object-fit: cover;';
+            // Reset preview styles while preserving required styles
+            imagePreview.style.cssText = 'width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1;';
         }
 
         // Drag and Drop handlers
