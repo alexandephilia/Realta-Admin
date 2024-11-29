@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<h4 class="mb-3 text-body mb-0">Job Applications</h4>
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive mt-4">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center">Full Name</th>
+                        <th class="text-center">Email Address</th>
+                        <th class="text-center">Phone Number</th>
+                        <th class="text-center">Applied Position</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">John Doe</td>
+                        <td class="text-center">john.doe@email.com</td>
+                        <td class="text-center">+62 812-3456-7890</td>
+                        <td class="text-center">Software Engineer</td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-falcon-default text-primary" data-bs-toggle="modal"
+                                data-bs-target="#viewDetailsModal">
+                                <span class="fas fa-eye me-2"></span>Details
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">Jane Smith</td>
+                        <td class="text-center">jane.smith@email.com</td>
+                        <td class="text-center">+62 812-9876-5432</td>
+                        <td class="text-center">UI/UX Designer</td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-falcon-default text-primary" data-bs-toggle="modal"
+                                data-bs-target="#viewDetailsModal">
+                                <span class="fas fa-eye me-2"></span>Details
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">Previous</a>
+                </li>
+                <li class="page-item active">
+                    <a class="page-link" href="#">1</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">2</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">3</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<!-- View Details Modal -->
+<div class="modal fade" id="viewDetailsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Application Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-3">
+                    <!-- Personal Information -->
+                    <div class="col-12">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h6 class="mb-4 text-center">Personal Information</h6>
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <label class="form-label text-uppercase fw-bold mb-3">FULL NAME</label>
+                                        <p class="form-control-plaintext text-center border-bottom pb-3">John Doe</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label text-uppercase fw-bold mb-3">EMAIL ADDRESS</label>
+                                        <p class="form-control-plaintext text-center border-bottom pb-3">
+                                            john.doe@email.com</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label text-uppercase fw-bold mb-3">PHONE NUMBER</label>
+                                        <p class="form-control-plaintext text-center border-bottom pb-3">+62
+                                            812-3456-7890</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label text-uppercase fw-bold mb-3">APPLIED POSITION</label>
+                                        <p class="form-control-plaintext text-center border-bottom pb-3">Software
+                                            Engineer</p>
+                                    </div>
+                                    <!-- Attachments Section -->
+                                    <div class="col-12">
+                                        <label class="form-label text-uppercase fw-bold mb-3">ATTACHMENTS</label>
+                                        <div class="row g-3">
+                                            <div class="col-md-4 text-center">
+                                                <label
+                                                    class="form-label text-uppercase fw-bold mb-3 d-block">RESUME</label>
+                                                <a href="#" class="text-decoration-none" id="resumeLink">
+                                                    <span class="text-primary">
+                                                        <i class="fas fa-file-pdf me-1"></i>
+                                                        <span class="resume-filename">resume.pdf</span>
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-4 text-center">
+                                                <label class="form-label text-uppercase fw-bold mb-3 d-block">COVER
+                                                    LETTER</label>
+                                                <a href="#" class="text-decoration-none" id="coverLetterLink">
+                                                    <span class="text-primary">
+                                                        <i class="fas fa-file-pdf me-1"></i>
+                                                        <span class="coverletter-filename">cover-letter.pdf</span>
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-4 text-center">
+                                                <label class="form-label text-uppercase fw-bold mb-3 d-block">PORTFOLIO
+                                                    URL</label>
+                                                <a href="#" target="_blank" class="text-decoration-none"
+                                                    id="portfolioLink">
+                                                    <span class="text-primary portfolio-url">portfolio.com</span>
+                                                    <i class="fas fa-external-link-alt ms-1"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Applied Date Section -->
+                    <div class="col-12">
+                        <div class="card mb-4">
+                            <div class="card-body py-3">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-4">
+                                        <div class="text-center">
+                                            <label class="form-label text-uppercase fw-bold mb-2">DATE SUBMITTED</label>
+                                            <p class="form-control-plaintext border-bottom pb-2 mb-0" id="appliedDate">
+                                                January 1, 2024</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Handle row click to populate modal
+    document.querySelectorAll('[data-bs-target="#viewDetailsModal"]').forEach(button => {
+        button.addEventListener('click', function () {
+            const row = this.closest('tr');
+            const name = row.cells[0].textContent;
+            const email = row.cells[1].textContent;
+            const phone = row.cells[2].textContent;
+            const position = row.cells[3].textContent;
+
+            // Update modal content with proper selectors
+            const modalBody = document.querySelector('#viewDetailsModal .modal-body');
+            modalBody.querySelector('.form-control-plaintext:nth-of-type(1)').textContent = name;
+            modalBody.querySelector('.form-control-plaintext:nth-of-type(2)').textContent = email;
+            modalBody.querySelector('.form-control-plaintext:nth-of-type(3)').textContent = phone;
+            modalBody.querySelector('.form-control-plaintext:nth-of-type(4)').textContent = position;
+
+            // Update document filenames (you can replace these with actual data)
+            modalBody.querySelector('.resume-filename').textContent =
+                `${name.toLowerCase().replace(' ', '_')}_resume.pdf`;
+            modalBody.querySelector('.coverletter-filename').textContent =
+                `${name.toLowerCase().replace(' ', '_')}_cover_letter.pdf`;
+            modalBody.querySelector('.portfolio-url').textContent = 'https://portfolio.example.com/' +
+                name.toLowerCase().replace(' ', '');
+
+            // Update applied date
+            document.getElementById('appliedDate').textContent = new Date().toLocaleDateString(
+                'en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+        });
+    });
+</script>
+
+<style>
+    /* Override default disabled button opacity */
+    .btn:disabled {
+        opacity: 1 !important;
+    }
+
+    /* Keep hover effect on disabled button */
+    .btn:disabled:hover {
+        background-color: var(--falcon-btn-hover-bg) !important;
+        border-color: var(--falcon-btn-hover-border-color) !important;
+    }
+</style>

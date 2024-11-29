@@ -340,4 +340,8 @@ $(function () {
       });
     });
 
+    $("#jobSubmissions").click(function(){
+      $('#contentPages').load('pages/SubPages/Career/jobSubmission.html');
+    });
+
 });
