@@ -107,7 +107,7 @@
                                 </div>
                             </td>
                             <td class="text-center">
-                                <span class="badge badge-phoenix fs-10 badge-phoenix-success">Active</span>
+                                <span class="badge badge-phoenix fs-10 badge-phoenix-danger">Inactive</span>
                             </td>
                             <td class="text-center">
                                 <button class="btn btn-sm btn-falcon-default text-warning me-1" data-bs-toggle="modal"
@@ -807,7 +807,7 @@
             positions: ['HR Manager', 'Recruiter', 'HR Specialist'],
             locations: ['Jakarta', 'Semarang'],
             employmentTypes: ['Full Time'],
-            status: true
+            status: false
         }
     };
 
@@ -820,7 +820,21 @@
         // Update basic department info
         document.getElementById('editDepartmentName').value = department.name;
         document.getElementById('editDepartmentCode').value = department.code;
-        document.getElementById('editDepartmentStatus').checked = department.status;
+        
+        // Update status toggle and label
+        const statusCheckbox = document.getElementById('editDepartmentStatus');
+        const statusLabel = statusCheckbox.parentElement.querySelector('.status-text');
+        
+        statusCheckbox.checked = department.status;
+        if (department.status) {
+            statusLabel.textContent = 'Active';
+            statusLabel.classList.remove('text-danger');
+            statusLabel.classList.add('text-success');
+        } else {
+            statusLabel.textContent = 'Inactive';
+            statusLabel.classList.remove('text-success');
+            statusLabel.classList.add('text-danger');
+        }
 
         // Update positions
         const positionTags = document.querySelector('.position-tags');
@@ -876,5 +890,19 @@
                 select.value = '';
             }
         });
+    });
+
+    // Add status toggle handler
+    document.getElementById('editDepartmentStatus').addEventListener('change', function() {
+        const statusText = this.parentElement.querySelector('.status-text');
+        if (this.checked) {
+            statusText.textContent = 'Active';
+            statusText.classList.remove('text-danger');
+            statusText.classList.add('text-success');
+        } else {
+            statusText.textContent = 'Inactive';
+            statusText.classList.remove('text-success');
+            statusText.classList.add('text-danger');
+        }
     });
 </script>
