@@ -1,0 +1,49 @@
+
+
+<div class="row">
+    <div class="col-md-6 col-12 mx-auto">
+        <h4 class="mb-3">Profile</h4>
+        <div class="card">
+            <div class="card-body">
+                <div class="vstack gap-2 ">
+                    <div class="mb-2 text-center">
+                        <input class="d-none" id="upload-avatar" type="file" />
+                        <div class="hoverbox mx-auto" style="width: 96px; height: 96px">
+                            <div class="hoverbox-content rounded-circle d-flex flex-center z-1" style="--phoenix-bg-opacity: .56;"><span class="fa-solid fa-camera fs-1 text-body-quaternary"></span></div>
+                            <div class="position-relative bg-body-quaternary rounded-circle cursor-pointer d-flex flex-center mb-xxl-7">
+                                <div class="avatar avatar-4xl"><img class="rounded-circle" src="assets/img/team/150x150/58.webp" alt="" /></div>
+                                <label class="w-100 h-100 position-absolute z-1" for="upload-avatar"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <div class="form-floating">
+                            <input class="form-control form-icon-input" id="username" type="text" value="Jerry Seinfield" />
+                            <label class="text-body-tertiary form-icon-label" for="username">Username</label>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <div class="form-floating">
+                            <input class="form-control form-icon-input" id="emailuser" type="email" value="J.seinfield@mail.com" />
+                            <label class="text-body-tertiary form-icon-label" for="emailuser">Email address</label>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <div class="form-floating"><select class="form-select" id="roleAdmin" disabled>
+                            <option value="0">Editor</option>
+                            <option value="1">Admin</option>
+                            <option value="2" selected>Super Admin</option>
+                            </select><label for="roleAdmin">Role</label>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-outline-danger"><i class="fa fa-trash me-2"></i>Delete Account</button>
+                        <button class="btn btn-primary"><i class="fa fa-save me-2"></i>Save Changes</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

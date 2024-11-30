@@ -1,0 +1,79 @@
+<h4 class="mb-3 text-body mb-0">Detail Business Section</h4>
+<div class="card">
+  <div class="card-body">
+    
+    <div class="row">
+      <div class="col-6">
+        <div class="mb-3">
+          <label class="p-0 col-form-label" for="staticEmail">Title </label>
+          <input class="form-control" id="exampleFormControlInput" type="email" placeholder="title">
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="mb-3">
+          <label class="p-0 col-form-label" for="staticEmail">Sub Title </label>
+          <input class="form-control" id="exampleFormControlInput" type="email" placeholder="Sub Title">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <div class="mb-3">
+          <label class="p-0 col-form-label" for="staticEmail">Image Logo </label>
+          <div class="p-0 code-to-copy">
+            <div class="dropzone dropzone-multiple p-0" id="dropzone" data-dropzone="data-dropzone" data-options='{"url":"valid/url","maxFiles":1,"dictDefaultMessage":"Choose or Drop a file here"}'>
+              <div class="fallback">
+                <input type="file" name="file" />
+              </div>
+              <div class="dz-message" data-dz-message="data-dz-message">
+                <div class="dz-message-text">
+                  <img class="me-2" src="assets/img/icons/cloud-upload.svg" width="25" alt="" />Drop your file here
+                </div>
+              </div>
+              <div class="dz-preview dz-preview-multiple m-0 d-flex flex-column">
+                <div class="d-flex pb-3 border-bottom border-translucent media px-2">
+                  <div class="border p-2 rounded-2 me-2">
+                    <img class="rounded-2 dz-image" src="assets/img/icons/file.png" alt="..." data-dz-thumbnail="data-dz-thumbnail" />
+                  </div>
+                  <div class="flex-1 d-flex flex-between-center">
+                    <div>
+                      <h6 data-dz-name="data-dz-name"></h6>
+                      <div class="d-flex align-items-center">
+                        <p class="mb-0 fs-9 text-body-quaternary lh-1" data-dz-size="data-dz-size"></p>
+                        <div class="dz-progress">
+                          <span class="dz-upload" data-dz-uploadprogress=""></span>
+                        </div>
+                      </div>
+                      <span class="fs-10 text-danger" data-dz-errormessage="data-dz-errormessage"></span>
+                    </div>
+                    <div class="dropdown">
+                      <button class="btn btn-link text-body-quaternary btn-sm dropdown-toggle btn-reveal dropdown-caret-none" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="fas fa-ellipsis-h"></span>
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-end border border-translucent py-2">
+                        <a class="dropdown-item" href="#!" data-dz-remove="data-dz-remove">Remove File</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="mb-3">
+          <label class="p-0 col-sm-4 col-form-label" for="staticEmail">Active </label>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="activeSwitch">
+            <label class="form-check-label" for="activeSwitch"></label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="btn-toolbar justify-content-between mt-4" role="toolbar" aria-label="Toolbar with button groups">
+      <button class="btn btn-secondary me-1 mb-1" type="button">Back</button>
+      <button class="btn btn-primary me-1 mb-1" type="button">Save</button>
+    </div>
+  </div>
+</div>

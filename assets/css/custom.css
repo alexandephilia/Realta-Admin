@@ -1,0 +1,17 @@
+/* Flatpickr styles for modal context */
+.flatpickr-calendar {
+    position: absolute !important;
+    z-index: 1056 !important; /* Above modal */
+    margin-top: 35px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1) !important;
+}
+
+.input-group .form-control[readonly] {
+    background-color: #fff;
+    cursor: pointer;
+}
+
+/* Ensure proper positioning context */
+.input-group {
+    position: relative;
+}

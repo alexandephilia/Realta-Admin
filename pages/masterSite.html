@@ -1,0 +1,128 @@
+<h4 class="mb-3 text-body mb-0">Master Site</h4>
+<div class="card">
+  <div class="card-body">
+    <div class="text-end">
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createUserModal">
+        <span class="fas fa-plus me-2"></span>Create New </button>
+    </div>
+    <!-- start pop up new User -->
+    <div class="modal fade" id="createUserModal" tabindex="-1" aria-labelledby="createUserModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="createUserModalLabel">Create New Site</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <!-- <label for="userEmail" class="form-label">User Name</label> -->
+                <input type="email" class="form-control" id="userEmail" placeholder="Site Name" required>
+              </div>
+            </form>
+            <form>
+              <div class="mb-3">
+                <!-- <label for="userEmail" class="form-label">User Name</label> -->
+                <input type="email" class="form-control" id="userEmail" placeholder="Url" required>
+              </div>
+            </form>
+            <div class="form-check form-switch ">
+              <input class="form-check-input" id="flexSwitchCheckDefault" type="checkbox" />
+              <label class="form-check-label" for="flexSwitchCheckDefault">Active</label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end pop up -->
+    <div class="table-responsive mt-4">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Site Name</th>
+            <th>URL</th>
+            <th class="text-center">Active</th>
+            <th class="text-center">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Hotel Management System</td>
+            <td>http://RealtaCha.com</td>
+            <td class="text-center">
+              <span class="badge badge-phoenix fs-10 badge-phoenix-success">
+                <span class="fa fa-check"></span>
+              </span>
+            </td>
+            <td class="text-center">
+              <button class="btn btn-sm btn-falcon-default">
+                <span class="fas fa-trash-alt"></span>
+              </button>
+              <button class="btn btn-sm btn-falcon-default" data-bs-toggle="modal" data-bs-target="#viewUserModal">
+                <span class="fas fa-eye"></span>
+              </button>
+            </td>
+            <!-- start pop up view new User -->
+            <div class="modal fade" id="viewUserModal" tabindex="-1" aria-labelledby="viewUserModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="viewUserModalLabel">Edit Site</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="mb-3">
+                        <!-- <label for="userEmail" class="form-label">User Name</label> -->
+                        <input type="email" class="form-control" id="userEmail" placeholder="Site Name" required>
+                      </div>
+                    </form>
+                    <form>
+                      <div class="mb-3">
+                        <!-- <label for="userEmail" class="form-label">User Name</label> -->
+                        <input type="email" class="form-control" id="userEmail" placeholder="Url" required>
+                      </div>
+                    </form>
+                    <div class="mb-3">
+                      <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="activeSwitch" checked>
+                        <label class="form-check-label" for="activeSwitch">Active</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Submit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end pop up -->
+          </tr>
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
+    </div>
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center">
+        <li class="page-item disabled">
+          <a class="page-link" href="#">Previous</a>
+        </li>
+        <li class="page-item active">
+          <a class="page-link" href="#">1</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">2</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">3</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

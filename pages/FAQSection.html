@@ -1,0 +1,156 @@
+<h4 class=" mb-3 text-body mb-0">FAQ Section</h4>
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-6">
+        <div class="mb-3">
+          <label class="p-0 col-form-label" for="staticEmail">Title </label>
+          <input class="form-control" id="exampleFormControlInput" type="email" placeholder="title">
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="mb-3">
+          <label class="p-0 col-form-label" for="staticEmail">Sub Title </label>
+          <input class="form-control" id="exampleFormControlInput" type="email" placeholder="Sub Title">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="mb-3">
+          <label class=" col-form-label" for="staticEmail">Background Image</label>
+          <div class="dropzone dropzone-multiple p-0 mb-5" id="my-awesome-dropzone" data-dropzone="data-dropzone">
+            <div class="fallback">
+              <input name="file" type="file" multiple="multiple" />
+            </div>
+            <div class="dz-preview d-flex flex-wrap">
+              <div class="border border-translucent bg-body-emphasis rounded-3 d-flex flex-center position-relative me-2 mb-2" style="height:80px;width:80px;">
+                <img class="dz-image" src="../../../assets/img/products/23.png" alt="..." data-dz-thumbnail="data-dz-thumbnail" />
+                <a class="dz-remove text-body-quaternary" href="#!" data-dz-remove="data-dz-remove">
+                  <span data-feather="x"></span>
+                </a>
+              </div>
+            </div>
+            <div class="dz-message text-body-tertiary text-opacity-85" data-dz-message="data-dz-message">Drag your photo here <span class="text-body-secondary px-1">or</span>
+              <button class="btn btn-link p-0" type="button">Browse from device</button>
+              <br />
+              <img class="mt-3 me-2" src="../../../assets/img/icons/image-icon.png" width="40" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+      <div class="mb-3">
+        <label class="p-0 col-form-label" for="staticEmail">Active </label>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="activeSwitch">
+          <label class="form-check-label" for="activeSwitch"></label>
+        </div>
+      </div>
+    </div>
+    
+    </div>
+    <div class="btn-toolbar justify-content-between mt-4" role="toolbar" aria-label="Toolbar with button groups">
+      <button class="btn btn-secondary me-1 mb-1" type="button">Back</button>
+      <button class="btn btn-primary me-1 mb-1" type="button">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="card mt-4">
+  <div class="card-body">
+    <div class="text-end">
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ctaModal">
+        <span class="fas fa-plus me-2"></span>Create Change </button>
+    </div>
+    <!-- start pop up -->
+    <div class="modal fade" id="ctaModal" tabindex="-1" aria-labelledby="ctaModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="ctaModalLabel">Create Customer</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Content from customerSection.html will be loaded here -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function() {
+        $('#ctaModal').on('show.bs.modal', function(e) {
+          $(this).find('.modal-body').load('pages/createCustomer.html');
+          $.getScript('assets/js/phoenix.js');
+        });
+      });
+    </script>
+    <!-- end pop up -->
+    <div class="container mt-4">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Ordering</th>
+              <th>Question</th>
+              <th class="text-center">Logo Image</th>
+              <th class="text-center">Active</th>
+              <th class="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class=" text-center">
+                <button class="btn px-1 btn-sm btn-falcon-default me-1">
+                  <span class="fas fa-chevron-up"></span>
+                </button>
+                <button class="btn px-1  btn-sm btn-falcon-default">
+                  <span class="fas fa-chevron-down"></span>
+                </button>
+              </td>
+              <td class=" text-center">What Service do You Offer ?</td>
+              <td class="text-center">
+                <span class="badge badge-phoenix fs-10 badge-phoenix-success">
+                  <span class="fa fa-check"></span>
+                </span>
+              </td>
+              <td class="text-center">
+                <span class="badge badge-phoenix fs-10 badge-phoenix-success">
+                  <span class="fa fa-check"></span>
+                </span>
+              </td>
+              <td class="text-center">
+                <button class="btn btn-sm btn-falcon-default">
+                  <span class="fas fa-trash-alt"></span>
+                </button>
+                <button class="btn btn-sm btn-falcon-default" href="#" id="detailFAQSection">
+                  <span class="fas fa-eye"></span>
+                </button>
+              </td>
+            </tr>
+            <!-- Add more rows as needed -->
+          </tbody>
+        </table>
+      </div>
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <a class="page-link" href="#">Previous</a>
+          </li>
+          <li class="page-item active">
+            <a class="page-link" href="#">1</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">2</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">3</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

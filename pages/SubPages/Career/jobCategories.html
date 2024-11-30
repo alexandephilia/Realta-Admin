@@ -1,0 +1,1508 @@
+<div class="mb-5">
+    <h4 class="mb-3 text-body">Job Categories</h4>
+
+    <!-- Department Section -->
+    <div class="card mb-4">
+        <div class="card-header bg-light">
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Categories</h5>
+                <div>
+                    <button class="btn btn-primary btn-sm me-2" data-bs-toggle="modal"
+                        data-bs-target="#createDepartmentModal">
+                        <span class="fas fa-plus me-2"></span>Add Department
+                    </button>
+                    <button class="btn btn-primary btn-sm me-2" data-bs-toggle="modal"
+                        data-bs-target="#createPositionModal">
+                        <span class="fas fa-plus me-2"></span>Add Position
+                    </button>
+                    <button class="btn btn-primary btn-sm me-2" data-bs-toggle="modal"
+                        data-bs-target="#createEmploymentTypeModal">
+                        <span class="fas fa-plus me-2"></span>Add Opportunity
+                    </button>
+                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#createLocationModal">
+                        <span class="fas fa-plus me-2"></span>Add Location
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Department</th>
+                            <th>Positions</th>
+                            <th class="text-center">Locations</th>
+                            <th class="text-center">Opportunity</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center">Information Technology</td>
+                            <td>
+                                <div class="position-relative">
+                                    <div class="d-flex flex-wrap gap-1 position-container">
+                                        <span class="category-tag">Software Engineer</span>
+                                        <span class="category-tag">System Analyst</span>
+                                        <span class="category-tag">QA Engineer</span>
+                                        <span class="category-tag">DevOps Engineer</span>
+                                        <span class="category-tag">UI/UX Designer</span>
+                                        <span class="category-tag hidden-position">Frontend Developer</span>
+                                        <span class="category-tag hidden-position">Backend Developer</span>
+                                        <span class="category-tag hidden-position">Mobile Developer</span>
+                                        <span class="category-tag more-tag" role="button" onclick="togglePositions(this)">
+                                            +3 more
+                                        </span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="d-flex flex-wrap gap-1 justify-content-center">
+                                    <span class="category-tag">Jakarta</span>
+                                    <span class="category-tag">Semarang</span>
+                                    <span class="category-tag">Bali</span>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="d-flex flex-wrap gap-1 justify-content-center">
+                                    <span class="category-tag">Full Time</span>
+                                    <span class="category-tag">Internship</span>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <span class="badge badge-phoenix fs-10 badge-phoenix-success">Active</span>
+                            </td>
+                            <td class="text-center">
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" data-bs-toggle="modal"
+                                        data-bs-target="#editDepartmentModal" data-department="IT">
+                                        <span class="fas fa-edit"></span>
+                                    </button>
+                                    <button class="btn btn-sm btn-falcon-default text-danger" data-bs-toggle="modal"
+                                        data-bs-target="#deleteConfirmModal">
+                                        <span class="fas fa-trash"></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">Human Resources</td>
+                            <td>
+                                <div class="position-relative">
+                                    <div class="d-flex flex-wrap gap-1">
+                                        <span class="category-tag">HR Manager</span>
+                                        <span class="category-tag">Recruiter</span>
+                                        <span class="category-tag">HR Specialist</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="d-flex flex-wrap gap-1 justify-content-center">
+                                    <span class="category-tag">Jakarta</span>
+                                    <span class="category-tag">Semarang</span>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="d-flex flex-wrap gap-1 justify-content-center">
+                                    <span class="category-tag">Full Time</span>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <span class="badge badge-phoenix fs-10 badge-phoenix-danger">Inactive</span>
+                            </td>
+                            <td class="text-center">
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" data-bs-toggle="modal"
+                                        data-bs-target="#editDepartmentModal" data-department="HR">
+                                        <span class="fas fa-edit"></span>
+                                    </button>
+                                    <button class="btn btn-sm btn-falcon-default text-danger" data-bs-toggle="modal"
+                                        data-bs-target="#deleteConfirmModal">
+                                        <span class="fas fa-trash"></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer bg-light py-2">
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-falcon-default" data-bs-toggle="modal" data-bs-target="#categoryManagementModal">
+                    <span class="fas fa-cog me-2"></span>Category Management
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Replace all separate management sections with this single modal -->
+    <div class="modal fade" id="categoryManagementModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Category Management</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Tab navigation -->
+                    <ul class="nav nav-tabs nav-tabs-custom justify-content-center border-bottom-0 mb-3" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active px-3" data-bs-toggle="tab" href="#departmentTab">
+                                Departments
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3" data-bs-toggle="tab" href="#positionTab">
+                                Positions
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3" data-bs-toggle="tab" href="#locationTab">
+                                Locations
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3" data-bs-toggle="tab" href="#employmentTab">
+                                Opportunity
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab content -->
+                    <div class="tab-content">
+                        <!-- Departments Tab -->
+                        <div class="tab-pane fade show active" id="departmentTab">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Department Name</th>
+                                            <th class="text-center">Code</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center">Information Technology</td>
+                                            <td class="text-center">IT</td>
+                                            <td class="text-center">
+                                                <div class="form-check form-switch d-flex justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" checked 
+                                                        onchange="updateStatus(this, 'department', 'IT')">
+                                                    <span class="ms-2 status-text text-success">Active</span>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                        onclick="editItem('department', 'IT')">
+                                                        <span class="fas fa-edit"></span>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                        onclick="deleteItem('department', 'IT')">
+                                                        <span class="fas fa-trash"></span>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">Human Resources</td>
+                                            <td class="text-center">HR</td>
+                                            <td class="text-center">
+                                                <div class="form-check form-switch d-flex justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" 
+                                                        onchange="updateStatus(this, 'department', 'HR')">
+                                                    <span class="ms-2 status-text text-danger">Inactive</span>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                        onclick="editItem('department', 'HR')">
+                                                        <span class="fas fa-edit"></span>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                        onclick="deleteItem('department', 'HR')">
+                                                        <span class="fas fa-trash"></span>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Positions Tab -->
+                        <div class="tab-pane fade" id="positionTab">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Position Name</th>
+                                            <th class="text-center">Position Code</th>
+                                            <th class="text-center">Department</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center">Software Engineer</td>
+                                            <td class="text-center">SE</td>
+                                            <td class="text-center">Information Technology</td>
+                                            <td class="text-center">
+                                                <div class="form-check form-switch d-flex justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" checked 
+                                                        onchange="updateStatus(this, 'position', 'SE')">
+                                                    <span class="ms-2 status-text text-success">Active</span>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                        onclick="editItem('position', 'SE')">
+                                                        <span class="fas fa-edit"></span>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                        onclick="deleteItem('position', 'SE')">
+                                                        <span class="fas fa-trash"></span>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">System Analyst</td>
+                                            <td class="text-center">SA</td>
+                                            <td class="text-center">Information Technology</td>
+                                            <td class="text-center">
+                                                <div class="form-check form-switch d-flex justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" checked 
+                                                        onchange="updateStatus(this, 'position', 'SA')">
+                                                    <span class="ms-2 status-text text-success">Active</span>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                        onclick="editItem('position', 'SA')">
+                                                        <span class="fas fa-edit"></span>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                        onclick="deleteItem('position', 'SA')">
+                                                        <span class="fas fa-trash"></span>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">HR Manager</td>
+                                            <td class="text-center">HRM</td>
+                                            <td class="text-center">Human Resources</td>
+                                            <td class="text-center">
+                                                <div class="form-check form-switch d-flex justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" 
+                                                        onchange="updateStatus(this, 'position', 'HRM')">
+                                                    <span class="ms-2 status-text text-danger">Inactive</span>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                        onclick="editItem('position', 'HRM')">
+                                                        <span class="fas fa-edit"></span>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                        onclick="deleteItem('position', 'HRM')">
+                                                        <span class="fas fa-trash"></span>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">Recruiter</td>
+                                            <td class="text-center">REC</td>
+                                            <td class="text-center">Human Resources</td>
+                                            <td class="text-center">
+                                                <div class="form-check form-switch d-flex justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" 
+                                                        onchange="updateStatus(this, 'position', 'REC')">
+                                                    <span class="ms-2 status-text text-danger">Inactive</span>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                        onclick="editItem('position', 'REC')">
+                                                        <span class="fas fa-edit"></span>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                        onclick="deleteItem('position', 'REC')">
+                                                        <span class="fas fa-trash"></span>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Locations Tab -->
+                        <div class="tab-pane fade" id="locationTab">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Location Name</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center">Jakarta</td>
+                                            <td class="text-center">
+                                                <div class="form-check form-switch d-flex justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" checked 
+                                                        onchange="updateStatus(this, 'location', 'JKT')">
+                                                    <span class="ms-2 status-text text-success">Active</span>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                        onclick="editItem('location', 'JKT')">
+                                                        <span class="fas fa-edit"></span>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                        onclick="deleteItem('location', 'JKT')">
+                                                        <span class="fas fa-trash"></span>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">Semarang</td>
+                                            <td class="text-center">
+                                                <div class="form-check form-switch d-flex justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" checked 
+                                                        onchange="updateStatus(this, 'location', 'SMG')">
+                                                    <span class="ms-2 status-text text-success">Active</span>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                        onclick="editItem('location', 'SMG')">
+                                                        <span class="fas fa-edit"></span>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                        onclick="deleteItem('location', 'SMG')">
+                                                        <span class="fas fa-trash"></span>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">Bali</td>
+                                            <td class="text-center">
+                                                <div class="form-check form-switch d-flex justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" checked 
+                                                        onchange="updateStatus(this, 'location', 'BAL')">
+                                                    <span class="ms-2 status-text text-success">Active</span>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                        onclick="editItem('location', 'BAL')">
+                                                        <span class="fas fa-edit"></span>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                        onclick="deleteItem('location', 'BAL')">
+                                                        <span class="fas fa-trash"></span>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Opportunity Tab -->
+                        <div class="tab-pane fade" id="employmentTab">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Opportunity</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center">Full Time</td>
+                                            <td class="text-center">
+                                                <div class="form-check form-switch d-flex justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" checked 
+                                                        onchange="updateStatus(this, 'employment', 'FT')">
+                                                    <span class="ms-2 status-text text-success">Active</span>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                        onclick="editItem('employment', 'FT')">
+                                                        <span class="fas fa-edit"></span>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                        onclick="deleteItem('employment', 'FT')">
+                                                        <span class="fas fa-trash"></span>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">Internship</td>
+                                            <td class="text-center">
+                                                <div class="form-check form-switch d-flex justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" checked 
+                                                        onchange="updateStatus(this, 'employment', 'INT')">
+                                                    <span class="ms-2 status-text text-success">Active</span>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                        onclick="editItem('employment', 'INT')">
+                                                        <span class="fas fa-edit"></span>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                        onclick="deleteItem('employment', 'INT')">
+                                                        <span class="fas fa-trash"></span>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Department Modal -->
+<div class="modal fade" id="createDepartmentModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Department</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="departmentForm">
+                    <div class="mb-3">
+                        <label class="form-label" for="departmentName">Department Name</label>
+                        <input class="form-control" id="departmentName" type="text" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="departmentCode">Department Code</label>
+                        <input class="form-control" id="departmentCode" type="text" required>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" id="departmentStatus" type="checkbox" checked>
+                            <label class="form-check-label fw-bold" for="departmentStatus">
+                                Department Status
+                                <span class="ms-1 text-success status-text">Active</span>
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" form="departmentForm" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Position Modal -->
+<div class="modal fade" id="createPositionModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Position</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="positionForm">
+                    <div class="mb-3">
+                        <label class="form-label" for="positionName">Position Name</label>
+                        <input class="form-control" id="positionName" type="text" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="positionCode">Position Code</label>
+                        <input class="form-control" id="positionCode" type="text" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="positionDepartment">Department</label>
+                        <select class="form-select" id="positionDepartment" required>
+                            <option value="">Select Department</option>
+                            <option value="IT">Information Technology</option>
+                            <option value="HR">Human Resources</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" id="positionStatus" type="checkbox" checked>
+                            <label class="form-check-label fw-bold" for="positionStatus">
+                                Position Status
+                                <span class="ms-1 text-success status-text">Active</span>
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" form="positionForm" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteConfirmModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this item?</p>
+                <p class="text-danger">
+                    <strong>Note: Deleting a category may affect job listings assigned to it.</strong>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Location Modal -->
+<div class="modal fade" id="createLocationModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Location</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="locationForm">
+                    <div class="mb-3">
+                        <label class="form-label" for="locationName">Location Name</label>
+                        <select class="form-select" id="locationName" required>
+                            <option value="">Select Location</option>
+                            <option value="Jakarta">Jakarta</option>
+                            <option value="Semarang">Semarang</option>
+                            <option value="Bali">Bali</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="locationDepartment">Department</label>
+                        <select class="form-select" id="locationDepartment" required>
+                            <option value="">Select Department</option>
+                            <option value="IT">Information Technology</option>
+                            <option value="HR">Human Resources</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" id="locationStatus" type="checkbox" checked>
+                            <label class="form-check-label fw-bold" for="locationStatus">
+                                Location Status
+                                <span class="ms-1 text-success status-text">Active</span>
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" form="locationForm" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Opportunity Modal -->
+<div class="modal fade" id="createEmploymentTypeModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Opportunity</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="employmentTypeForm">
+                    <div class="mb-3">
+                        <label class="form-label" for="employmentTypeName">Opportunity</label>
+                        <select class="form-select" id="employmentTypeName" required>
+                            <option value="">Select Opportunity</option>
+                            <option value="Full Time">Full Time</option>
+                            <option value="Internship">Internship</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="employmentTypeDepartment">Department</label>
+                        <select class="form-select" id="employmentTypeDepartment" required>
+                            <option value="">Select Department</option>
+                            <option value="IT">Information Technology</option>
+                            <option value="HR">Human Resources</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" id="employmentTypeStatus" type="checkbox" checked>
+                            <label class="form-check-label fw-bold" for="employmentTypeStatus">
+                                Status
+                                <span class="ms-1 text-success status-text">Active</span>
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" form="employmentTypeForm" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Department Modal -->
+<div class="modal fade" id="editDepartmentModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Department</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editDepartmentForm">
+                    <!-- Basic Department Info -->
+                    <div class="mb-4">
+                        <div class="mb-3">
+                            <label class="form-label text-uppercase small">Department Name</label>
+                            <input class="form-control" id="editDepartmentName" type="text"
+                                value="Information Technology" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-uppercase small">Department Code</label>
+                            <input class="form-control" id="editDepartmentCode" type="text" value="IT" required>
+                        </div>
+                    </div>
+
+                    <!-- Positions Section -->
+                    <div class="mb-4">
+                        <label class="form-label text-uppercase small">Positions</label>
+                        <div class="d-flex flex-wrap gap-2 mb-2 position-tags">
+                            <div class="category-tag">
+                                Software Engineer
+                                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+                            </div>
+                            <div class="category-tag">
+                                System Analyst
+                                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+                            </div>
+                            <div class="category-tag">
+                                QA Engineer
+                                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+                            </div>
+                            <div class="category-tag">
+                                DevOps Engineer
+                                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+                            </div>
+                            <div class="category-tag">
+                                UI/UX Designer
+                                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <select class="form-select">
+                                <option value="">Select Position</option>
+                                <option value="Software Engineer">Software Engineer</option>
+                                <option value="System Analyst">System Analyst</option>
+                                <option value="QA Engineer">QA Engineer</option>
+                                <option value="DevOps Engineer">DevOps Engineer</option>
+                                <option value="UI/UX Designer">UI/UX Designer</option>
+                                <option value="Frontend Developer">Frontend Developer</option>
+                                <option value="Backend Developer">Backend Developer</option>
+                                <option value="Mobile Developer">Mobile Developer</option>
+                            </select>
+                            <button class="btn btn-primary px-3" type="button">Add</button>
+                        </div>
+                    </div>
+
+                    <!-- Locations Section -->
+                    <div class="mb-4">
+                        <label class="form-label text-uppercase small">Locations</label>
+                        <div class="d-flex flex-wrap gap-2 mb-2">
+                            <div class="category-tag">
+                                Jakarta
+                                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+                            </div>
+                            <div class="category-tag">
+                                Semarang
+                                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+                            </div>
+                            <div class="category-tag">
+                                Bali
+                                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <select class="form-select">
+                                <option value="">Select Location</option>
+                                <option value="Jakarta">Jakarta</option>
+                                <option value="Semarang">Semarang</option>
+                                <option value="Bali">Bali</option>
+                            </select>
+                            <button class="btn btn-primary px-3" type="button">Add</button>
+                        </div>
+                    </div>
+
+                    <!-- Opportunity Section -->
+                    <div class="mb-4">
+                        <label class="form-label text-uppercase small">Opportunity</label>
+                        <div class="d-flex flex-wrap gap-2 mb-2">
+                            <div class="category-tag">
+                                Full Time
+                                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+                            </div>
+                            <div class="category-tag">
+                                Internship
+                                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <select class="form-select">
+                                <option value="">Select Opportunity</option>
+                                <option value="Full Time">Full Time</option>
+                                <option value="Internship">Internship</option>
+                            </select>
+                            <button class="btn btn-primary px-3" type="button">Add</button>
+                        </div>
+                    </div>
+
+                    <!-- Status Toggle -->
+                    <div class="mb-3">
+                        <div class="col-12 d-flex">
+                            <div class="form-check form-switch ms-2">
+                                <input class="form-check-input" type="checkbox" id="editDepartmentStatus" checked>
+                                <label class="form-check-label" for="editDepartmentStatus">
+                                    Department Status
+                                    <span class="ms-1 text-success status-text">Active</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" form="editDepartmentForm" class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modals for Category Management -->
+<!-- Edit Department Modal in Category Management -->
+<div class="modal fade" id="editCategoryDepartmentModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Department</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editCategoryDepartmentForm">
+                    <div class="mb-3">
+                        <label class="form-label" for="editCatDepartmentName">Department Name</label>
+                        <input class="form-control" id="editCatDepartmentName" type="text" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="editCatDepartmentCode">Department Code</label>
+                        <input class="form-control" id="editCatDepartmentCode" type="text" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" form="editCategoryDepartmentForm" class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Position Modal in Category Management -->
+<div class="modal fade" id="editCategoryPositionModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Position</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editCategoryPositionForm">
+                    <div class="mb-3">
+                        <label class="form-label" for="editCatPositionName">Position Name</label>
+                        <input class="form-control" id="editCatPositionName" type="text" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="editCatPositionCode">Position Code</label>
+                        <input class="form-control" id="editCatPositionCode" type="text" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="editCatPositionDepartment">Department</label>
+                        <select class="form-select" id="editCatPositionDepartment" required>
+                            <option value="">Select Department</option>
+                            <option value="IT">Information Technology</option>
+                            <option value="HR">Human Resources</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" form="editCategoryPositionForm" class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Location Modal in Category Management -->
+<div class="modal fade" id="editCategoryLocationModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Location</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editCategoryLocationForm">
+                    <div class="mb-3">
+                        <label class="form-label" for="editCatLocationName">Location Name</label>
+                        <input class="form-control" id="editCatLocationName" type="text" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" form="editCategoryLocationForm" class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Opportunity Modal in Category Management -->
+<div class="modal fade" id="editCategoryEmploymentModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Opportunity</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editCategoryEmploymentForm">
+                    <div class="mb-3">
+                        <label class="form-label" for="editCatEmploymentName">Opportunity Name</label>
+                        <input class="form-control" id="editCatEmploymentName" type="text" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" form="editCategoryEmploymentForm" class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .category-tag {
+        margin: 0.25rem;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        color: #495057;
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 0.25rem;
+    }
+
+    .btn-close-sm {
+        font-size: 0.5rem;
+        padding: 0.25rem;
+    }
+
+    .form-select {
+        min-width: 200px;
+    }
+
+    .modal-dialog {
+        max-width: 500px;
+    }
+
+    /* Override Bootstrap's default button styles */
+    .btn-primary {
+        background-color: #6f42c1;
+        border-color: #6f42c1;
+    }
+
+    .btn-outline-primary {
+        color: #6f42c1;
+        border-color: #6f42c1;
+    }
+
+    .btn-outline-primary:hover {
+        background-color: #6f42c1;
+        border-color: #6f42c1;
+    }
+
+    /* Consistent label styling */
+    .form-label {
+        margin-bottom: 0.5rem;
+        color: #6c757d;
+    }
+
+    .position-tags {
+        max-width: 100%;
+        min-height: fit-content;
+    }
+
+    /* Add some style for the floating button */
+    .btn-lg.rounded-circle {
+        width: 60px;
+        height: 60px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-lg.rounded-circle .fas {
+        font-size: 1.5rem;
+    }
+
+    .nav-tabs-custom {
+        border-bottom: 1px solid #e9ecef;
+        margin-bottom: 1.5rem !important;
+        gap: 0.5rem;
+    }
+
+    .nav-tabs-custom .nav-item {
+        position: relative;
+        min-width: fit-content;
+    }
+
+    .nav-tabs-custom .nav-link {
+        border: none;
+        color: #6c757d;
+        font-weight: 500;
+        white-space: nowrap;
+        padding: 0.5rem 1rem;
+    }
+
+    .nav-tabs-custom .nav-link.active {
+        color: #6f42c1;
+        background: transparent;
+    }
+
+    .nav-tabs-custom .nav-link.active::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: #6f42c1;
+    }
+
+    .nav-tabs-custom .nav-link:hover {
+        color: #6f42c1;
+    }
+
+    .table th,
+    .table td {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    /* Table-specific styles */
+    .table .position-relative .d-flex {
+        justify-content: flex-start;
+    }
+
+    .table .d-flex.flex-wrap {
+        justify-content: flex-start;
+    }
+
+    /* Modal-specific styles */
+    .modal .d-flex.flex-wrap {
+        justify-content: flex-start;
+    }
+
+    .modal .position-relative .d-flex {
+        justify-content: flex-start;
+    }
+
+    /* Category tag styling */
+    .category-tag {
+        margin: 0.25rem;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        color: #495057;
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 0.25rem;
+    }
+
+    .form-switch {
+        padding-left: 2.5em;
+    }
+
+    .form-switch .form-check-input {
+        cursor: pointer;
+    }
+
+    .status-text {
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    /* Update modal width */
+    .modal-xl {
+        max-width: 1120px; /* Increased from default */
+    }
+
+    /* Improve toggle switch layout */
+    .form-check.form-switch {
+        padding-left: 0; /* Remove default padding */
+        min-width: 110px; /* Ensure minimum width for the toggle container */
+        margin: 0 auto; /* Center the switch */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px; /* Reduce space between switch and text */
+    }
+
+    .form-check.form-switch .form-check-input {
+        float: none; /* Remove float */
+        margin: 0; /* Remove all margins */
+        width: 2.5em; /* Standardize switch width */
+    }
+
+    .form-check.form-switch .status-text {
+        display: inline-block;
+        min-width: 45px; /* Slightly reduce min-width */
+        text-align: left;
+        margin: 0; /* Remove any margins */
+        line-height: 1; /* Align text vertically */
+    }
+
+    /* Optional: Adjust switch size if needed */
+    .form-check-input {
+        height: 1.25em; /* Standardize height */
+    }
+
+    /* Adjust table column widths */
+    .table th:nth-child(1) { width: 30%; } /* Name column */
+    .table th:nth-child(2) { width: 25%; } /* Department/Code column */
+    .table th:nth-child(3) { width: 25%; } /* Status column */
+    .table th:nth-child(4) { width: 20%; } /* Action column */
+
+    .modal-child {
+        background: rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-child .modal-dialog {
+        margin: 2rem auto;
+    }
+
+    .modal-backdrop + .modal-backdrop {
+        opacity: 0.1;
+    }
+
+    /* Position tab specific column widths */
+    #positionTab .table th:nth-child(1) { width: 30%; } /* Position Name */
+    #positionTab .table th:nth-child(2) { width: 15%; } /* Position Code */
+    #positionTab .table th:nth-child(3) { width: 25%; } /* Department */
+    #positionTab .table th:nth-child(4) { width: 15%; } /* Status */
+    #positionTab .table th:nth-child(5) { width: 15%; } /* Action */
+
+    /* Department tab specific column widths */
+    #departmentTab .table th:nth-child(1) { width: 30%; } /* Department Name */
+    #departmentTab .table th:nth-child(2) { width: 25%; } /* Code */
+    #departmentTab .table th:nth-child(3) { width: 25%; } /* Status */
+    #departmentTab .table th:nth-child(4) { width: 20%; } /* Action */
+
+    /* Location tab specific column widths */
+    #locationTab .table th:nth-child(1) { width: 40%; } /* Location Name */
+    #locationTab .table th:nth-child(2) { width: 35%; } /* Status */
+    #locationTab .table th:nth-child(3) { width: 25%; } /* Action */
+
+    /* Opportunity tab specific column widths */
+    #employmentTab .table th:nth-child(1) { width: 40%; } /* Opportunity */
+    #employmentTab .table th:nth-child(2) { width: 35%; } /* Status */
+    #employmentTab .table th:nth-child(3) { width: 25%; } /* Action */
+
+    .hidden-position {
+        display: none;
+    }
+
+    .more-tag {
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    .more-tag:hover {
+        background-color: #e9ecef;
+    }
+
+    .position-container.expanded .hidden-position {
+        display: inline-flex;
+    }
+
+    .position-container.expanded .more-tag {
+        display: none;
+    }
+</style>
+
+<!-- Add this script at the bottom of the file -->
+<script>
+    // Department data object
+    const departmentData = {
+        'IT': {
+            name: 'Information Technology',
+            code: 'IT',
+            positions: ['Software Engineer', 'System Analyst', 'QA Engineer', 'DevOps Engineer', 'UI/UX Designer', 'Frontend Developer', 'Backend Developer', 'Mobile Developer'],
+            locations: ['Jakarta', 'Semarang', 'Bali'],
+            employmentTypes: ['Full Time', 'Internship'],
+            status: true
+        },
+        'HR': {
+            name: 'Human Resources',
+            code: 'HR',
+            positions: ['HR Manager', 'Recruiter', 'HR Specialist'],
+            locations: ['Jakarta', 'Semarang'],
+            employmentTypes: ['Full Time'],
+            status: false
+        }
+    };
+
+    // Update edit modal when shown
+    document.getElementById('editDepartmentModal').addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget;
+        const departmentCode = button.getAttribute('data-department');
+        const department = departmentData[departmentCode];
+
+        // Update basic department info
+        document.getElementById('editDepartmentName').value = department.name;
+        document.getElementById('editDepartmentCode').value = department.code;
+        
+        // Update status toggle and label
+        const statusCheckbox = document.getElementById('editDepartmentStatus');
+        const statusLabel = statusCheckbox.parentElement.querySelector('.status-text');
+        
+        statusCheckbox.checked = department.status;
+        if (department.status) {
+            statusLabel.textContent = 'Active';
+            statusLabel.classList.remove('text-danger');
+            statusLabel.classList.add('text-success');
+        } else {
+            statusLabel.textContent = 'Inactive';
+            statusLabel.classList.remove('text-success');
+            statusLabel.classList.add('text-danger');
+        }
+
+        // Update positions
+        const positionTags = document.querySelector('.position-tags');
+        positionTags.innerHTML = department.positions.map(position => `
+            <div class="category-tag">
+                ${position}
+                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+            </div>
+        `).join('');
+
+        // Update locations
+        const locationContainer = document.querySelector('#editDepartmentForm .mb-4:nth-of-type(3) .d-flex.flex-wrap');
+        locationContainer.innerHTML = department.locations.map(location => `
+            <div class="category-tag">
+                ${location}
+                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+            </div>
+        `).join('');
+
+        // Update employment types
+        const employmentContainer = document.querySelector('#editDepartmentForm .mb-4:nth-of-type(4) .d-flex.flex-wrap');
+        employmentContainer.innerHTML = department.employmentTypes.map(type => `
+            <div class="category-tag">
+                ${type}
+                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+            </div>
+        `).join('');
+    });
+
+    // Handle removing tags
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('btn-close-sm')) {
+            event.target.closest('.category-tag').remove();
+        }
+    });
+
+    // Handle adding new items
+    document.querySelectorAll('#editDepartmentForm .d-flex.gap-2').forEach(container => {
+        const addButton = container.querySelector('.btn-primary');
+        const select = container.querySelector('.form-select');
+        
+        addButton.addEventListener('click', function() {
+            const value = select.value;
+            if (value) {
+                const tagContainer = container.previousElementSibling;
+                const newTag = document.createElement('div');
+                newTag.className = 'category-tag';
+                newTag.innerHTML = `
+                    ${value}
+                    <button class="btn-close btn-close-sm ms-2" type="button"></button>
+                `;
+                tagContainer.appendChild(newTag);
+                select.value = '';
+            }
+        });
+    });
+
+    // Add status toggle handler
+    document.getElementById('editDepartmentStatus').addEventListener('change', function() {
+        const statusText = this.parentElement.querySelector('.status-text');
+        if (this.checked) {
+            statusText.textContent = 'Active';
+            statusText.classList.remove('text-danger');
+            statusText.classList.add('text-success');
+        } else {
+            statusText.textContent = 'Inactive';
+            statusText.classList.remove('text-success');
+            statusText.classList.add('text-danger');
+        }
+    });
+
+    // Function to handle status updates
+    function updateStatus(checkbox, type, id) {
+        const statusText = checkbox.nextElementSibling;
+        if (checkbox.checked) {
+            statusText.textContent = 'Active';
+            statusText.classList.remove('text-danger');
+            statusText.classList.add('text-success');
+        } else {
+            statusText.textContent = 'Inactive';
+            statusText.classList.remove('text-success');
+            statusText.classList.add('text-danger');
+        }
+
+        // Here you would typically make an API call to update the status
+        console.log(`Updating ${type} ${id} status to ${checkbox.checked ? 'active' : 'inactive'}`);
+    }
+
+    // Function to handle item editing
+    function editItem(type, id) {
+        let modalId;
+        switch(type) {
+            case 'department':
+                modalId = '#editCategoryDepartmentModal';
+                // Set department data
+                if (id === 'IT') {
+                    document.getElementById('editCatDepartmentName').value = 'Information Technology';
+                    document.getElementById('editCatDepartmentCode').value = 'IT';
+                } else if (id === 'HR') {
+                    document.getElementById('editCatDepartmentName').value = 'Human Resources';
+                    document.getElementById('editCatDepartmentCode').value = 'HR';
+                }
+                break;
+            case 'position':
+                modalId = '#editCategoryPositionModal';
+                // Set position data based on the table data
+                switch(id) {
+                    case 'SE':
+                        document.getElementById('editCatPositionName').value = 'Software Engineer';
+                        document.getElementById('editCatPositionCode').value = 'SE';
+                        document.getElementById('editCatPositionDepartment').value = 'IT';
+                        break;
+                    case 'SA':
+                        document.getElementById('editCatPositionName').value = 'System Analyst';
+                        document.getElementById('editCatPositionCode').value = 'SA';
+                        document.getElementById('editCatPositionDepartment').value = 'IT';
+                        break;
+                    case 'HRM':
+                        document.getElementById('editCatPositionName').value = 'HR Manager';
+                        document.getElementById('editCatPositionCode').value = 'HRM';
+                        document.getElementById('editCatPositionDepartment').value = 'HR';
+                        break;
+                    case 'REC':
+                        document.getElementById('editCatPositionName').value = 'Recruiter';
+                        document.getElementById('editCatPositionCode').value = 'REC';
+                        document.getElementById('editCatPositionDepartment').value = 'HR';
+                        break;
+                }
+                break;
+            case 'location':
+                modalId = '#editCategoryLocationModal';
+                // Set location data based on the table data
+                switch(id) {
+                    case 'JKT':
+                        document.getElementById('editCatLocationName').value = 'Jakarta';
+                        break;
+                    case 'SMG':
+                        document.getElementById('editCatLocationName').value = 'Semarang';
+                        break;
+                    case 'BAL':
+                        document.getElementById('editCatLocationName').value = 'Bali';
+                        break;
+                }
+                break;
+            case 'employment':
+                modalId = '#editCategoryEmploymentModal';
+                // Set employment type data based on the table data
+                switch(id) {
+                    case 'FT':
+                        document.getElementById('editCatEmploymentName').value = 'Full Time';
+                        break;
+                    case 'INT':
+                        document.getElementById('editCatEmploymentName').value = 'Internship';
+                        break;
+                }
+                break;
+        }
+
+        // Get the edit modal element
+        const editModal = document.querySelector(modalId);
+        
+        // Add modal-child class
+        editModal.classList.add('modal-child');
+        
+        // Show the modal
+        const modal = new bootstrap.Modal(editModal);
+        modal.show();
+    }
+
+    // Add event listeners for modal events to handle backdrop
+    document.querySelectorAll('.modal-child').forEach(modal => {
+        modal.addEventListener('show.bs.modal', function () {
+            const parentModal = document.querySelector('#categoryManagementModal');
+            if (parentModal) {
+                parentModal.style.overflow = 'hidden';
+            }
+        });
+
+        modal.addEventListener('hidden.bs.modal', function () {
+            const parentModal = document.querySelector('#categoryManagementModal');
+            if (parentModal) {
+                parentModal.style.overflow = '';
+            }
+        });
+    });
+
+    // Add event listeners for status changes in edit modals
+    document.querySelectorAll('.modal .form-check-input').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const statusText = this.closest('.form-check').querySelector('.status-text');
+            if (this.checked) {
+                statusText.textContent = 'Active';
+                statusText.classList.remove('text-danger');
+                statusText.classList.add('text-success');
+            } else {
+                statusText.textContent = 'Inactive';
+                statusText.classList.remove('text-success');
+                statusText.classList.add('text-danger');
+            }
+        });
+    });
+
+    // Add form submission handlers
+    ['Department', 'Position', 'Location', 'Employment'].forEach(type => {
+        document.getElementById(`editCategory${type}Form`).addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically save the changes to your backend
+            const modal = bootstrap.Modal.getInstance(document.getElementById(`editCategory${type}Modal`));
+            modal.hide();
+        });
+    });
+
+    // Function to handle item deletion
+    function deleteItem(type, id) {
+        if (confirm(`Are you sure you want to delete this ${type}?`)) {
+            // Handle delete action
+            console.log(`Deleting ${type} with ID: ${id}`);
+        }
+    }
+
+    function togglePositions(element) {
+        const container = element.closest('.position-container');
+        container.classList.toggle('expanded');
+    }
+
+    // Function to initialize position displays
+    function initializePositionDisplays() {
+        document.querySelectorAll('.position-container').forEach(container => {
+            const positions = container.querySelectorAll('.category-tag:not(.more-tag)');
+            const maxVisible = 5;
+            
+            if (positions.length > maxVisible) {
+                // Hide positions beyond the limit
+                positions.forEach((pos, index) => {
+                    if (index >= maxVisible) {
+                        pos.classList.add('hidden-position');
+                    }
+                });
+                
+                // Update or add the more tag
+                let moreTag = container.querySelector('.more-tag');
+                if (!moreTag) {
+                    moreTag = document.createElement('span');
+                    moreTag.className = 'category-tag more-tag';
+                    moreTag.setAttribute('role', 'button');
+                    moreTag.onclick = function() { togglePositions(this); };
+                    container.appendChild(moreTag);
+                }
+                moreTag.textContent = `+${positions.length - maxVisible} more`;
+            } else {
+                // Remove more tag if not needed
+                const moreTag = container.querySelector('.more-tag');
+                if (moreTag) moreTag.remove();
+            }
+        });
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', initializePositionDisplays);
+</script>
