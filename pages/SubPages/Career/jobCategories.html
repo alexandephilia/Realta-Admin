@@ -5,7 +5,7 @@
     <div class="card mb-4">
         <div class="card-header bg-light">
             <div class="d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">Departments & Positions</h5>
+                <h5 class="mb-0">Categories</h5>
                 <div>
                     <button class="btn btn-primary btn-sm me-2" data-bs-toggle="modal"
                         data-bs-target="#createDepartmentModal">
@@ -86,6 +86,231 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+        <div class="card-footer bg-light py-2">
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-falcon-default" data-bs-toggle="modal" data-bs-target="#categoryManagementModal">
+                    <span class="fas fa-cog me-2"></span>Category Management
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Replace all separate management sections with this single modal -->
+    <div class="modal fade" id="categoryManagementModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Category Management</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Tab navigation -->
+                    <ul class="nav nav-tabs nav-tabs-custom justify-content-center border-bottom-0 mb-3" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active px-3" data-bs-toggle="tab" href="#departmentTab">
+                                Departments
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3" data-bs-toggle="tab" href="#positionTab">
+                                Positions
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3" data-bs-toggle="tab" href="#locationTab">
+                                Locations
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3" data-bs-toggle="tab" href="#employmentTab">
+                                Employment Types
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab content -->
+                    <div class="tab-content">
+                        <!-- Departments Tab -->
+                        <div class="tab-pane fade show active" id="departmentTab">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Department Name</th>
+                                            <th class="text-center">Code</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center">Information Technology</td>
+                                            <td class="text-center">IT</td>
+                                            <td class="text-center">
+                                                <span
+                                                    class="badge badge-phoenix fs-10 badge-phoenix-success">Active</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button class="btn btn-sm btn-falcon-default text-danger"
+                                                    data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
+                                                    <span class="fas fa-trash"></span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Positions Tab -->
+                        <div class="tab-pane fade" id="positionTab">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Position Name</th>
+                                            <th class="text-center">Department</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center">Software Engineer</td>
+                                            <td class="text-center">Information Technology</td>
+                                            <td class="text-center">
+                                                <span
+                                                    class="badge badge-phoenix fs-10 badge-phoenix-success">Active</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button class="btn btn-sm btn-falcon-default text-danger"
+                                                    data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
+                                                    <span class="fas fa-trash"></span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">System Analyst</td>
+                                            <td class="text-center">Information Technology</td>
+                                            <td class="text-center">
+                                                <span
+                                                    class="badge badge-phoenix fs-10 badge-phoenix-success">Active</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button class="btn btn-sm btn-falcon-default text-danger"
+                                                    data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
+                                                    <span class="fas fa-trash"></span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <!-- Add other positions -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Locations Tab -->
+                        <div class="tab-pane fade" id="locationTab">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Location Name</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center">Jakarta</td>
+                                            <td class="text-center">
+                                                <span
+                                                    class="badge badge-phoenix fs-10 badge-phoenix-success">Active</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button class="btn btn-sm btn-falcon-default text-danger"
+                                                    data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
+                                                    <span class="fas fa-trash"></span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">Semarang</td>
+                                            <td class="text-center">
+                                                <span
+                                                    class="badge badge-phoenix fs-10 badge-phoenix-success">Active</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button class="btn btn-sm btn-falcon-default text-danger"
+                                                    data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
+                                                    <span class="fas fa-trash"></span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">Bali</td>
+                                            <td class="text-center">
+                                                <span
+                                                    class="badge badge-phoenix fs-10 badge-phoenix-success">Active</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button class="btn btn-sm btn-falcon-default text-danger"
+                                                    data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
+                                                    <span class="fas fa-trash"></span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Employment Types Tab -->
+                        <div class="tab-pane fade" id="employmentTab">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Employment Type</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center">Full Time</td>
+                                            <td class="text-center">
+                                                <span
+                                                    class="badge badge-phoenix fs-10 badge-phoenix-success">Active</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button class="btn btn-sm btn-falcon-default text-danger"
+                                                    data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
+                                                    <span class="fas fa-trash"></span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">Internship</td>
+                                            <td class="text-center">
+                                                <span
+                                                    class="badge badge-phoenix fs-10 badge-phoenix-success">Active</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <button class="btn btn-sm btn-falcon-default text-danger"
+                                                    data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
+                                                    <span class="fas fa-trash"></span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -473,5 +698,57 @@
     .position-tags {
         max-width: 100%;
         min-height: fit-content;
+    }
+
+    /* Add some style for the floating button */
+    .btn-lg.rounded-circle {
+        width: 60px;
+        height: 60px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-lg.rounded-circle .fas {
+        font-size: 1.5rem;
+    }
+
+    .nav-tabs-custom {
+        border-bottom: 1px solid #e9ecef;
+        margin-bottom: 1.5rem !important;
+        gap: 0.5rem;
+    }
+
+    .nav-tabs-custom .nav-item {
+        position: relative;
+        min-width: fit-content;
+    }
+
+    .nav-tabs-custom .nav-link {
+        border: none;
+        color: #6c757d;
+        font-weight: 500;
+        white-space: nowrap;
+        padding: 0.5rem 1rem;
+    }
+
+    .nav-tabs-custom .nav-link.active {
+        color: #6f42c1;
+        background: transparent;
+    }
+
+    .nav-tabs-custom .nav-link.active::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: #6f42c1;
+    }
+
+    .nav-tabs-custom .nav-link:hover {
+        color: #6f42c1;
     }
 </style>
