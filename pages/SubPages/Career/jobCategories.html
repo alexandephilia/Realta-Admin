@@ -17,7 +17,7 @@
                     </button>
                     <button class="btn btn-primary btn-sm me-2" data-bs-toggle="modal"
                         data-bs-target="#createEmploymentTypeModal">
-                        <span class="fas fa-plus me-2"></span>Add Employment Type
+                        <span class="fas fa-plus me-2"></span>Add Opportunity
                     </button>
                     <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#createLocationModal">
                         <span class="fas fa-plus me-2"></span>Add Location
@@ -33,7 +33,7 @@
                             <th class="text-center">Department</th>
                             <th>Positions</th>
                             <th class="text-center">Locations</th>
-                            <th class="text-center">Employment Types</th>
+                            <th class="text-center">Opportunity</th>
                             <th class="text-center">Status</th>
                             <th class="text-center">Action</th>
                         </tr>
@@ -165,7 +165,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link px-3" data-bs-toggle="tab" href="#employmentTab">
-                                Employment Types
+                                Opportunity
                             </a>
                         </li>
                     </ul>
@@ -434,13 +434,13 @@
                             </div>
                         </div>
 
-                        <!-- Employment Types Tab -->
+                        <!-- Opportunity Tab -->
                         <div class="tab-pane fade" id="employmentTab">
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">Employment Type</th>
+                                            <th class="text-center">Opportunity</th>
                                             <th class="text-center">Status</th>
                                             <th class="text-center">Action</th>
                                         </tr>
@@ -651,20 +651,20 @@
     </div>
 </div>
 
-<!-- Employment Type Modal -->
+<!-- Opportunity Modal -->
 <div class="modal fade" id="createEmploymentTypeModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add Employment Type</h5>
+                <h5 class="modal-title">Add Opportunity</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
                 <form id="employmentTypeForm">
                     <div class="mb-3">
-                        <label class="form-label" for="employmentTypeName">Employment Type</label>
+                        <label class="form-label" for="employmentTypeName">Opportunity</label>
                         <select class="form-select" id="employmentTypeName" required>
-                            <option value="">Select Type</option>
+                            <option value="">Select Opportunity</option>
                             <option value="Full Time">Full Time</option>
                             <option value="Internship">Internship</option>
                         </select>
@@ -788,9 +788,9 @@
                         </div>
                     </div>
 
-                    <!-- Employment Types Section -->
+                    <!-- Opportunity Section -->
                     <div class="mb-4">
-                        <label class="form-label text-uppercase small">Employment Types</label>
+                        <label class="form-label text-uppercase small">Opportunity</label>
                         <div class="d-flex flex-wrap gap-2 mb-2">
                             <div class="category-tag">
                                 Full Time
@@ -803,7 +803,7 @@
                         </div>
                         <div class="d-flex gap-2">
                             <select class="form-select">
-                                <option value="">Select Employment Type</option>
+                                <option value="">Select Opportunity</option>
                                 <option value="Full Time">Full Time</option>
                                 <option value="Internship">Internship</option>
                             </select>
@@ -883,6 +883,7 @@
                     <div class="mb-3">
                         <label class="form-label" for="editCatPositionDepartment">Department</label>
                         <select class="form-select" id="editCatPositionDepartment" required>
+                            <option value="">Select Department</option>
                             <option value="IT">Information Technology</option>
                             <option value="HR">Human Resources</option>
                         </select>
@@ -921,18 +922,18 @@
     </div>
 </div>
 
-<!-- Edit Employment Type Modal in Category Management -->
+<!-- Edit Opportunity Modal in Category Management -->
 <div class="modal fade" id="editCategoryEmploymentModal" data-bs-backdrop="static" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit Employment Type</h5>
+                <h5 class="modal-title">Edit Opportunity</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
                 <form id="editCategoryEmploymentForm">
                     <div class="mb-3">
-                        <label class="form-label" for="editCatEmploymentName">Employment Type Name</label>
+                        <label class="form-label" for="editCatEmploymentName">Opportunity Name</label>
                         <input class="form-control" id="editCatEmploymentName" type="text" required>
                     </div>
                 </form>
@@ -1171,8 +1172,8 @@
     #locationTab .table th:nth-child(2) { width: 35%; } /* Status */
     #locationTab .table th:nth-child(3) { width: 25%; } /* Action */
 
-    /* Employment tab specific column widths */
-    #employmentTab .table th:nth-child(1) { width: 40%; } /* Employment Type */
+    /* Opportunity tab specific column widths */
+    #employmentTab .table th:nth-child(1) { width: 40%; } /* Opportunity */
     #employmentTab .table th:nth-child(2) { width: 35%; } /* Status */
     #employmentTab .table th:nth-child(3) { width: 25%; } /* Action */
 </style>
