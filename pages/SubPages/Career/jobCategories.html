@@ -5,10 +5,21 @@
     <div class="card mb-4">
         <div class="card-header bg-light">
             <div class="d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">Departments</h5>
-                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#createDepartmentModal">
-                    <span class="fas fa-plus me-2"></span>Add Department
-                </button>
+                <h5 class="mb-0">Departments & Positions</h5>
+                <div>
+                    <button class="btn btn-primary btn-sm me-2" data-bs-toggle="modal"
+                        data-bs-target="#createLocationModal">
+                        <span class="fas fa-plus me-2"></span>Add Location
+                    </button>
+                    <button class="btn btn-primary btn-sm me-2" data-bs-toggle="modal"
+                        data-bs-target="#createPositionModal">
+                        <span class="fas fa-plus me-2"></span>Add Position
+                    </button>
+                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                        data-bs-target="#createDepartmentModal">
+                        <span class="fas fa-plus me-2"></span>Add Department
+                    </button>
+                </div>
             </div>
         </div>
         <div class="card-body">
@@ -16,8 +27,10 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th class="text-center">Department Name</th>
-                            <th class="text-center">Code</th>
+                            <th class="text-center">Department</th>
+                            <th>Positions</th>
+                            <th>Locations</th>
+                            <th>Employment Types</th>
                             <th class="text-center">Status</th>
                             <th class="text-center">Action</th>
                         </tr>
@@ -25,108 +38,42 @@
                     <tbody>
                         <tr>
                             <td class="text-center">Information Technology</td>
-                            <td class="text-center">IT</td>
+                            <td>
+                                <div class="position-relative">
+                                    <div class="d-flex flex-wrap gap-1">
+                                        <span class="category-tag">Software Engineer</span>
+                                        <span class="category-tag">System Analyst</span>
+                                        <span class="category-tag">QA Engineer</span>
+                                        <span class="category-tag">DevOps Engineer</span>
+                                        <span class="category-tag">UI/UX Designer</span>
+                                        <span class="category-tag more-tag" data-bs-toggle="tooltip"
+                                            data-bs-placement="top"
+                                            title="Frontend Developer, Backend Developer, Mobile Developer">
+                                            +3 more
+                                        </span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-wrap gap-1">
+                                    <span class="category-tag">Jakarta</span>
+                                    <span class="category-tag">Semarang</span>
+                                    <span class="category-tag">Bali</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-wrap gap-1">
+                                    <span class="category-tag">Full Time</span>
+                                    <span class="category-tag">Internship</span>
+                                </div>
+                            </td>
                             <td class="text-center">
                                 <span class="badge badge-phoenix fs-10 badge-phoenix-success">Active</span>
                             </td>
                             <td class="text-center">
-                                <button class="btn btn-sm btn-falcon-default text-warning" data-bs-toggle="modal"
+                                <button class="btn btn-sm btn-falcon-default text-warning me-1" data-bs-toggle="modal"
                                     data-bs-target="#editDepartmentModal">
-                                    <span class="fas fa-edit me-2"></span>Edit
-                                </button>
-                                <button class="btn btn-sm btn-falcon-default text-danger" data-bs-toggle="modal"
-                                    data-bs-target="#deleteConfirmModal">
-                                    <span class="fas fa-trash"></span>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <!-- Position Section -->
-    <div class="card mb-4">
-        <div class="card-header bg-light">
-            <div class="d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">Positions</h5>
-                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#createPositionModal">
-                    <span class="fas fa-plus me-2"></span>Add Position
-                </button>
-            </div>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th class="text-center">Position Name</th>
-                            <th class="text-center">Department</th>
-                            <th class="text-center">Code</th>
-                            <th class="text-center">Status</th>
-                            <th class="text-center">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="text-center">Software Engineer</td>
-                            <td class="text-center">Information Technology</td>
-                            <td class="text-center">SE</td>
-                            <td class="text-center">
-                                <span class="badge badge-phoenix fs-10 badge-phoenix-success">Active</span>
-                            </td>
-                            <td class="text-center">
-                                <button class="btn btn-sm btn-falcon-default text-warning" data-bs-toggle="modal"
-                                    data-bs-target="#editPositionModal">
-                                    <span class="fas fa-edit me-2"></span>Edit
-                                </button>
-                                <button class="btn btn-sm btn-falcon-default text-danger" data-bs-toggle="modal"
-                                    data-bs-target="#deleteConfirmModal">
-                                    <span class="fas fa-trash"></span>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <!-- Location Section -->
-    <div class="card">
-        <div class="card-header bg-light">
-            <div class="d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">Locations</h5>
-                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#createLocationModal">
-                    <span class="fas fa-plus me-2"></span>Add Location
-                </button>
-            </div>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th class="text-center">Location</th>
-                            <th class="text-center">Department</th>
-                            <th class="text-center">Position</th>
-                            <th class="text-center">Status</th>
-                            <th class="text-center">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="text-center">Jakarta</td>
-                            <td class="text-center">Information Technology</td>
-                            <td class="text-center">Software Engineer</td>
-                            <td class="text-center">
-                                <span class="badge badge-phoenix fs-10 badge-phoenix-success">Active</span>
-                            </td>
-                            <td class="text-center">
-                                <button class="btn btn-sm btn-falcon-default text-warning" data-bs-toggle="modal"
-                                    data-bs-target="#editLocationModal">
-                                    <span class="fas fa-edit me-2"></span>Edit
+                                    <span class="fas fa-edit"></span>
                                 </button>
                                 <button class="btn btn-sm btn-falcon-default text-danger" data-bs-toggle="modal"
                                     data-bs-target="#deleteConfirmModal">
@@ -193,16 +140,16 @@
                         <input class="form-control" id="positionName" type="text" required>
                     </div>
                     <div class="mb-3">
+                        <label class="form-label" for="positionCode">Position Code</label>
+                        <input class="form-control" id="positionCode" type="text" required>
+                    </div>
+                    <div class="mb-3">
                         <label class="form-label" for="positionDepartment">Department</label>
                         <select class="form-select" id="positionDepartment" required>
                             <option value="">Select Department</option>
                             <option value="IT">Information Technology</option>
                             <option value="HR">Human Resources</option>
                         </select>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="positionCode">Position Code</label>
-                        <input class="form-control" id="positionCode" type="text" required>
                     </div>
                     <div class="mb-3">
                         <div class="form-check form-switch">
@@ -218,55 +165,6 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
                 <button type="submit" form="positionForm" class="btn btn-primary">Save</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Location Modal -->
-<div class="modal fade" id="createLocationModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Add Location</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <form id="locationForm">
-                    <div class="mb-3">
-                        <label class="form-label" for="locationName">Location</label>
-                        <input class="form-control" id="locationName" type="text" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="locationDepartment">Department</label>
-                        <select class="form-select" id="locationDepartment" required>
-                            <option value="">Select Department</option>
-                            <option value="IT">Information Technology</option>
-                            <option value="HR">Human Resources</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="locationPosition">Position</label>
-                        <select class="form-select" id="locationPosition" required>
-                            <option value="">Select Position</option>
-                            <option value="SE">Software Engineer</option>
-                            <option value="PM">Project Manager</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" id="locationStatus" type="checkbox" checked>
-                            <label class="form-check-label fw-bold" for="locationStatus">
-                                Location Status
-                                <span class="ms-1 text-success status-text">Active</span>
-                            </label>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" form="locationForm" class="btn btn-primary">Save</button>
             </div>
         </div>
     </div>
@@ -332,39 +230,39 @@
     </div>
 </div>
 
-<!-- Edit Position Modal -->
-<div class="modal fade" id="editPositionModal" tabindex="-1">
+<!-- Location Modal -->
+<div class="modal fade" id="createLocationModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit Position</h5>
+                <h5 class="modal-title">Add Location</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <form id="editPositionForm">
+                <form id="locationForm">
                     <div class="mb-3">
-                        <label class="form-label" for="editPositionName">Position Name</label>
-                        <input class="form-control" id="editPositionName" type="text" value="Software Engineer"
-                            required>
+                        <label class="form-label" for="locationName">Location Name</label>
+                        <select class="form-select" id="locationName" required>
+                            <option value="">Select Location</option>
+                            <option value="Jakarta">Jakarta</option>
+                            <option value="Semarang">Semarang</option>
+                            <option value="Bali">Bali</option>
+                        </select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" for="editPositionDepartment">Department</label>
-                        <select class="form-select" id="editPositionDepartment" required>
+                        <label class="form-label" for="locationDepartment">Department</label>
+                        <select class="form-select" id="locationDepartment" required>
                             <option value="">Select Department</option>
-                            <option value="IT" selected>Information Technology</option>
+                            <option value="IT">Information Technology</option>
                             <option value="HR">Human Resources</option>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" for="editPositionCode">Position Code</label>
-                        <input class="form-control" id="editPositionCode" type="text" value="SE" required>
-                    </div>
-                    <div class="mb-3">
                         <div class="form-check form-switch">
-                            <input class="form-check-input" id="editPositionStatus" type="checkbox" checked>
-                            <label class="form-check-label fw-bold" for="editPositionStatus">
-                                Position Status
-                                <span class="ms-1 text-success edit-status-text">Active</span>
+                            <input class="form-check-input" id="locationStatus" type="checkbox" checked>
+                            <label class="form-check-label fw-bold" for="locationStatus">
+                                Location Status
+                                <span class="ms-1 text-success status-text">Active</span>
                             </label>
                         </div>
                     </div>
@@ -372,7 +270,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" form="editPositionForm" class="btn btn-primary">Save Changes</button>
+                <button type="submit" form="locationForm" class="btn btn-primary">Save</button>
             </div>
         </div>
     </div>
@@ -389,23 +287,20 @@
             <div class="modal-body">
                 <form id="editLocationForm">
                     <div class="mb-3">
-                        <label class="form-label" for="editLocationName">Location</label>
-                        <input class="form-control" id="editLocationName" type="text" value="Jakarta" required>
+                        <label class="form-label" for="editLocationName">Location Name</label>
+                        <select class="form-select" id="editLocationName" required>
+                            <option value="">Select Location</option>
+                            <option value="Jakarta">Jakarta</option>
+                            <option value="Semarang">Semarang</option>
+                            <option value="Bali">Bali</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="editLocationDepartment">Department</label>
                         <select class="form-select" id="editLocationDepartment" required>
                             <option value="">Select Department</option>
-                            <option value="IT" selected>Information Technology</option>
+                            <option value="IT">Information Technology</option>
                             <option value="HR">Human Resources</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="editLocationPosition">Position</label>
-                        <select class="form-select" id="editLocationPosition" required>
-                            <option value="">Select Position</option>
-                            <option value="SE" selected>Software Engineer</option>
-                            <option value="PM">Project Manager</option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -487,7 +382,64 @@
             document.getElementById('editLocationName').value = 'Jakarta';
             document.getElementById('editLocationDepartment').value = 'IT';
             document.getElementById('editLocationPosition').value = 'SE';
+            document.getElementById('editLocationType').value = 'FT';
             document.getElementById('editLocationStatus').checked = true;
         }
+
+        if (e.target.closest('[data-bs-target="#editOpportunityModal"]')) {
+            // Populate opportunity data
+            document.getElementById('editOpportunityPosition').value = 'SE';
+            document.getElementById('editOpportunityDepartment').value = 'IT';
+            document.getElementById('editOpportunityType').value = 'FT';
+            document.getElementById('editOpportunityStatus').checked = true;
+        }
+    });
+
+    // Handle form submissions for create forms
+    document.getElementById('opportunityForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        // Add your form submission logic here
+        const modal = bootstrap.Modal.getInstance(this.closest('.modal'));
+        modal.hide();
+    });
+
+    document.getElementById('editOpportunityForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        // Add your form submission logic here
+        const modal = bootstrap.Modal.getInstance(this.closest('.modal'));
+        modal.hide();
+    });
+
+    // Initialize tooltips
+    document.addEventListener('DOMContentLoaded', function () {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
     });
 </script>
+
+<style>
+    .category-tag {
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        line-height: 1;
+        color: #495057;
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 0.25rem;
+    }
+
+    .more-tag {
+        cursor: pointer;
+        background-color: #e9ecef;
+        color: #6c757d;
+    }
+
+    .tooltip-inner {
+        max-width: 300px;
+        text-align: left;
+    }
+</style>

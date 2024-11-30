@@ -42,36 +42,22 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label" for="position">Position</label>
-                                                <select class="form-select" id="position" name="position" required>
+                                                <select class="form-select" id="position" name="position" required
+                                                    disabled>
                                                     <option value="">Select Position</option>
-                                                    <option value="SE">Software Engineer</option>
-                                                    <option value="PM">Project Manager</option>
-                                                    <option value="BA">Business Analyst</option>
-                                                    <option value="QAE">QA Engineer</option>
-                                                    <option value="UI">UI/UX Designer</option>
-                                                    <option value="DBA">Database Administrator</option>
-                                                    <option value="DEV">Developer</option>
-                                                    <option value="SA">System Analyst</option>
-                                                    <option value="NET">Network Engineer</option>
-                                                    <option value="SEC">Security Specialist</option>
-                                                    <option value="HR">HR Specialist</option>
-                                                    <option value="ACC">Accountant</option>
-                                                    <option value="MKT">Marketing Specialist</option>
-                                                    <option value="SALES">Sales Executive</option>
                                                 </select>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label" for="opportunity">Employment Type</label>
-                                                <select class="form-select" id="opportunity" required>
+                                                <select class="form-select" id="opportunity" required disabled>
                                                     <option value="">Select Type</option>
-                                                    <option value="fulltime">Full Time</option>
-                                                    <option value="internship">Internship</option>
                                                 </select>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label" for="location">Location</label>
-                                                <input class="form-control" id="location" type="text"
-                                                    placeholder="Enter location" required>
+                                                <select class="form-select" id="location" required disabled>
+                                                    <option value="">Select Location</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -189,7 +175,7 @@
                         <td class="text-center">Research & Development</td>
                         <td class="text-center">Business Analyst</td>
                         <td class="text-center">Internship</td>
-                        <td class="text-center">Bandung</td>
+                        <td class="text-center">Semarang</td>
                         <td class="text-center">Fresh Graduate</td>
                         <td class="text-center">
                             <span class="badge badge-phoenix fs-10 badge-phoenix-success">
@@ -262,36 +248,22 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label" for="editPosition">Position</label>
-                                                <select class="form-select" id="editPosition" name="position" required>
+                                                <select class="form-select" id="editPosition" name="position" required
+                                                    disabled>
                                                     <option value="">Select Position</option>
-                                                    <option value="SE">Software Engineer</option>
-                                                    <option value="PM">Project Manager</option>
-                                                    <option value="BA">Business Analyst</option>
-                                                    <option value="QAE">QA Engineer</option>
-                                                    <option value="UI">UI/UX Designer</option>
-                                                    <option value="DBA">Database Administrator</option>
-                                                    <option value="DEV">Developer</option>
-                                                    <option value="SA">System Analyst</option>
-                                                    <option value="NET">Network Engineer</option>
-                                                    <option value="SEC">Security Specialist</option>
-                                                    <option value="HR">HR Specialist</option>
-                                                    <option value="ACC">Accountant</option>
-                                                    <option value="MKT">Marketing Specialist</option>
-                                                    <option value="SALES">Sales Executive</option>
                                                 </select>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label" for="editOpportunity">Employment Type</label>
-                                                <select class="form-select" id="editOpportunity" required>
+                                                <select class="form-select" id="editOpportunity" required disabled>
                                                     <option value="">Select Type</option>
-                                                    <option value="fulltime">Full Time</option>
-                                                    <option value="internship">Internship</option>
                                                 </select>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label" for="editLocation">Location</label>
-                                                <input class="form-control" id="editLocation" type="text"
-                                                    placeholder="Enter location" required>
+                                                <select class="form-select" id="editLocation" required disabled>
+                                                    <option value="">Select Location</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -383,6 +355,91 @@
 
 <!-- Add this script at the bottom of the file -->
 <script>
+    // Sample data structure (in real app, this would come from your backend)
+    const departmentData = {
+        'IT': {
+            positions: [{
+                    code: 'SE',
+                    name: 'Software Engineer'
+                },
+                {
+                    code: 'PM',
+                    name: 'Project Manager'
+                },
+                {
+                    code: 'BA',
+                    name: 'Business Analyst'
+                }
+            ],
+            locations: ['Jakarta', 'Semarang', 'Bali'],
+            types: ['Full Time', 'Internship']
+        },
+        'HR': {
+            positions: [{
+                    code: 'HR',
+                    name: 'HR Specialist'
+                },
+                {
+                    code: 'RC',
+                    name: 'Recruiter'
+                }
+            ],
+            locations: ['Jakarta', 'Semarang', 'Bali'],
+            types: ['Full Time']
+        }
+    };
+
+    // Function to populate dependent dropdowns
+    function populateDependentDropdowns(departmentId, positionId, locationId, typeId) {
+        const departmentSelect = document.getElementById(departmentId);
+        const positionSelect = document.getElementById(positionId);
+        const locationSelect = document.getElementById(locationId);
+        const typeSelect = document.getElementById(typeId);
+
+        departmentSelect.addEventListener('change', function () {
+            const department = this.value;
+            const departmentInfo = departmentData[department];
+
+            // Clear and disable dropdowns if no department selected
+            if (!department) {
+                positionSelect.innerHTML = '<option value="">Select Position</option>';
+                locationSelect.innerHTML = '<option value="">Select Location</option>';
+                typeSelect.innerHTML = '<option value="">Select Type</option>';
+                positionSelect.disabled = true;
+                locationSelect.disabled = true;
+                typeSelect.disabled = true;
+                return;
+            }
+
+            // Populate positions
+            positionSelect.innerHTML = '<option value="">Select Position</option>';
+            departmentInfo.positions.forEach(position => {
+                positionSelect.add(new Option(position.name, position.code));
+            });
+            positionSelect.disabled = false;
+
+            // Populate locations
+            locationSelect.innerHTML = '<option value="">Select Location</option>';
+            departmentInfo.locations.forEach(location => {
+                locationSelect.add(new Option(location, location));
+            });
+            locationSelect.disabled = false;
+
+            // Populate types
+            typeSelect.innerHTML = '<option value="">Select Type</option>';
+            departmentInfo.types.forEach(type => {
+                typeSelect.add(new Option(type, type.toLowerCase().replace(' ', '')));
+            });
+            typeSelect.disabled = false;
+        });
+    }
+
+    // Initialize dropdowns for create form
+    populateDependentDropdowns('department', 'position', 'location', 'opportunity');
+
+    // Initialize dropdowns for edit form
+    populateDependentDropdowns('editDepartment', 'editPosition', 'editLocation', 'editOpportunity');
+
     // Handle status toggle for both create and edit modals
     ['jobStatus', 'editJobStatus'].forEach(id => {
         document.getElementById(id).addEventListener('change', function () {
