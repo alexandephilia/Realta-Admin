@@ -43,15 +43,16 @@
                             <td class="text-center">Information Technology</td>
                             <td>
                                 <div class="position-relative">
-                                    <div class="d-flex flex-wrap gap-1">
+                                    <div class="d-flex flex-wrap gap-1 position-container">
                                         <span class="category-tag">Software Engineer</span>
                                         <span class="category-tag">System Analyst</span>
                                         <span class="category-tag">QA Engineer</span>
                                         <span class="category-tag">DevOps Engineer</span>
                                         <span class="category-tag">UI/UX Designer</span>
-                                        <span class="category-tag more-tag" data-bs-toggle="tooltip"
-                                            data-bs-placement="top"
-                                            title="Frontend Developer, Backend Developer, Mobile Developer">
+                                        <span class="category-tag hidden-position">Frontend Developer</span>
+                                        <span class="category-tag hidden-position">Backend Developer</span>
+                                        <span class="category-tag hidden-position">Mobile Developer</span>
+                                        <span class="category-tag more-tag" role="button" onclick="togglePositions(this)">
                                             +3 more
                                         </span>
                                     </div>
@@ -1176,6 +1177,27 @@
     #employmentTab .table th:nth-child(1) { width: 40%; } /* Opportunity */
     #employmentTab .table th:nth-child(2) { width: 35%; } /* Status */
     #employmentTab .table th:nth-child(3) { width: 25%; } /* Action */
+
+    .hidden-position {
+        display: none;
+    }
+
+    .more-tag {
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    .more-tag:hover {
+        background-color: #e9ecef;
+    }
+
+    .position-container.expanded .hidden-position {
+        display: inline-flex;
+    }
+
+    .position-container.expanded .more-tag {
+        display: none;
+    }
 </style>
 
 <!-- Add this script at the bottom of the file -->
@@ -1443,4 +1465,44 @@
             console.log(`Deleting ${type} with ID: ${id}`);
         }
     }
+
+    function togglePositions(element) {
+        const container = element.closest('.position-container');
+        container.classList.toggle('expanded');
+    }
+
+    // Function to initialize position displays
+    function initializePositionDisplays() {
+        document.querySelectorAll('.position-container').forEach(container => {
+            const positions = container.querySelectorAll('.category-tag:not(.more-tag)');
+            const maxVisible = 5;
+            
+            if (positions.length > maxVisible) {
+                // Hide positions beyond the limit
+                positions.forEach((pos, index) => {
+                    if (index >= maxVisible) {
+                        pos.classList.add('hidden-position');
+                    }
+                });
+                
+                // Update or add the more tag
+                let moreTag = container.querySelector('.more-tag');
+                if (!moreTag) {
+                    moreTag = document.createElement('span');
+                    moreTag.className = 'category-tag more-tag';
+                    moreTag.setAttribute('role', 'button');
+                    moreTag.onclick = function() { togglePositions(this); };
+                    container.appendChild(moreTag);
+                }
+                moreTag.textContent = `+${positions.length - maxVisible} more`;
+            } else {
+                // Remove more tag if not needed
+                const moreTag = container.querySelector('.more-tag');
+                if (moreTag) moreTag.remove();
+            }
+        });
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', initializePositionDisplays);
 </script>
