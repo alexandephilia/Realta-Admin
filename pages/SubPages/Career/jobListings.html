@@ -536,6 +536,8 @@
             menubar: false,
             branding: false,
             statusbar: false,
+            elementpath: false,
+            resize: false,
             plugins: [
                 'lists', 'link', 'image', 'code', 'table', 'help'
             ],
@@ -543,7 +545,11 @@
             content_style: `
                 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 14px; }
                 p { margin: 0 0 1em; }
+                /* Hide any remaining status indicators */
+                .tox-statusbar { display: none !important; }
             `,
+            hidden_input: false,
+            inline: false,
             setup: function (editor) {
                 editor.on('init', function () {
                     const editorContainer = editor.getContainer();
@@ -560,6 +566,13 @@
                         .tox-tbtn__select-label {
                             width: auto !important;
                             flex-grow: 1 !important;
+                        }
+                        /* Hide any remaining status elements */
+                        .tox-statusbar,
+                        .tox-statusbar__path,
+                        .tox-statusbar__text-container,
+                        .tox-statusbar__branding {
+                            display: none !important;
                         }
                     `;
                     editorContainer.appendChild(customStyles);
