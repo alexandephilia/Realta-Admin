@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<h4 class="mb-3 text-body mb-0">Job Applications</h4>
+<h4 class="mb-3 text-body mb-0">Job Submissions</h4>
 <div class="card">
     <div class="card-body">
         <div class="table-responsive mt-4">
@@ -21,7 +21,7 @@
                         <td class="text-center">Software Engineer</td>
                         <td class="text-center">
                             <button class="btn btn-sm btn-falcon-default text-primary" data-bs-toggle="modal"
-                                data-bs-target="#viewDetailsModal">
+                                data-bs-target="#viewDetailsModalJohn">
                                 <span class="fas fa-eye me-2"></span>Details
                             </button>
                         </td>
@@ -33,7 +33,7 @@
                         <td class="text-center">UI/UX Designer</td>
                         <td class="text-center">
                             <button class="btn btn-sm btn-falcon-default text-primary" data-bs-toggle="modal"
-                                data-bs-target="#viewDetailsModal">
+                                data-bs-target="#viewDetailsModalJane">
                                 <span class="fas fa-eye me-2"></span>Details
                             </button>
                         </td>
@@ -65,8 +65,8 @@
     </div>
 </div>
 
-<!-- View Details Modal -->
-<div class="modal fade" id="viewDetailsModal" tabindex="-1" aria-hidden="true">
+<!-- John's Modal -->
+<div class="modal fade" id="viewDetailsModalJohn" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -117,10 +117,10 @@
                                             <div class="col-md-4 text-center">
                                                 <label class="form-label text-uppercase fw-bold mb-3 d-block">COVER
                                                     LETTER</label>
-                                                <a href="#" class="text-decoration-none" id="coverLetterLink">
+                                                <a href="#" class="text-decoration-none">
                                                     <span class="text-primary">
                                                         <i class="fas fa-file-pdf me-1"></i>
-                                                        <span class="coverletter-filename">cover-letter.pdf</span>
+                                                        <span>cover_letter.pdf</span>
                                                     </span>
                                                 </a>
                                             </div>
@@ -168,66 +168,107 @@
     </div>
 </div>
 
+<!-- Jane's Modal -->
+<div class="modal fade" id="viewDetailsModalJane" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Application Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-3">
+                    <!-- Personal Information -->
+                    <div class="col-12">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h6 class="mb-4 text-center">Personal Information</h6>
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <label class="form-label text-uppercase fw-bold mb-3">FULL NAME</label>
+                                        <p class="form-control-plaintext text-center border-bottom pb-3">Jane Smith</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label text-uppercase fw-bold mb-3">EMAIL ADDRESS</label>
+                                        <p class="form-control-plaintext text-center border-bottom pb-3">
+                                            jane.smith@email.com</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label text-uppercase fw-bold mb-3">PHONE NUMBER</label>
+                                        <p class="form-control-plaintext text-center border-bottom pb-3">+62
+                                            812-9876-5432</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label text-uppercase fw-bold mb-3">APPLIED POSITION</label>
+                                        <p class="form-control-plaintext text-center border-bottom pb-3">UI/UX Designer
+                                        </p>
+                                    </div>
+                                    <!-- Attachments Section -->
+                                    <div class="col-12">
+                                        <label class="form-label text-uppercase fw-bold mb-3">ATTACHMENTS</label>
+                                        <div class="row g-3">
+                                            <div class="col-md-4 text-center">
+                                                <label
+                                                    class="form-label text-uppercase fw-bold mb-3 d-block">RESUME</label>
+                                                <a href="#" class="text-decoration-none" id="resumeLink">
+                                                    <span class="text-primary">
+                                                        <i class="fas fa-file-pdf me-1"></i>
+                                                        <span class="resume-filename">resume.pdf</span>
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-4 text-center">
+                                                <label class="form-label text-uppercase fw-bold mb-3 d-block">COVER
+                                                    LETTER</label>
+                                                <span class="text-muted">None</span>
+                                            </div>
+                                            <div class="col-md-4 text-center">
+                                                <label class="form-label text-uppercase fw-bold mb-3 d-block">PORTFOLIO
+                                                    URL</label>
+                                                <a href="#" target="_blank" class="text-decoration-none"
+                                                    id="portfolioLink">
+                                                    <span class="text-primary portfolio-url">portfolio.com</span>
+                                                    <i class="fas fa-external-link-alt ms-1"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Applied Date Section -->
+                    <div class="col-12">
+                        <div class="card mb-4">
+                            <div class="card-body py-3">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-6">
+                                        <div class="d-flex flex-column align-items-center">
+                                            <div class="text-muted small text-uppercase mb-1">Application Submitted On
+                                            </div>
+                                            <div class="fs-5 fw-bold text-primary" id="appliedDate">January 1, 2024
+                                            </div>
+                                            <div class="border-bottom my-2 w-75"></div>
+                                            <div class="small text-muted" id="appliedTimeAgo">(2 months ago)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
-    // Handle row click to populate modal
-    document.querySelectorAll('[data-bs-target="#viewDetailsModal"]').forEach(button => {
-        button.addEventListener('click', function () {
-            const row = this.closest('tr');
-            const name = row.cells[0].textContent;
-            const email = row.cells[1].textContent;
-            const phone = row.cells[2].textContent;
-            const position = row.cells[3].textContent;
-
-            // Update modal content with proper selectors
-            const modalBody = document.querySelector('#viewDetailsModal .modal-body');
-            modalBody.querySelector('.form-control-plaintext:nth-of-type(1)').textContent = name;
-            modalBody.querySelector('.form-control-plaintext:nth-of-type(2)').textContent = email;
-            modalBody.querySelector('.form-control-plaintext:nth-of-type(3)').textContent = phone;
-            modalBody.querySelector('.form-control-plaintext:nth-of-type(4)').textContent = position;
-
-            // Update document filenames
-            modalBody.querySelector('.resume-filename').textContent =
-                `${name.toLowerCase().replace(' ', '_')}_resume.pdf`;
-            modalBody.querySelector('.coverletter-filename').textContent =
-                `${name.toLowerCase().replace(' ', '_')}_cover_letter.pdf`;
-            modalBody.querySelector('.portfolio-url').textContent = 'https://portfolio.example.com/' +
-                name.toLowerCase().replace(' ', '');
-
-            // Update applied date with formatted date and relative time
-            const applicationDate = new Date(); // Replace with actual application date
-            const formattedDate = applicationDate.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-            document.getElementById('appliedDate').textContent = formattedDate;
-
-            // Calculate and display relative time
-            const now = new Date();
-            const diffTime = Math.abs(now - applicationDate);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            let timeAgo;
-
-            if (diffDays < 1) {
-                timeAgo = 'Today';
-            } else if (diffDays === 1) {
-                timeAgo = 'Yesterday';
-            } else if (diffDays < 7) {
-                timeAgo = `${diffDays} days ago`;
-            } else if (diffDays < 30) {
-                const weeks = Math.floor(diffDays / 7);
-                timeAgo = `${weeks} ${weeks === 1 ? 'week' : 'weeks'} ago`;
-            } else if (diffDays < 365) {
-                const months = Math.floor(diffDays / 30);
-                timeAgo = `${months} ${months === 1 ? 'month' : 'months'} ago`;
-            } else {
-                const years = Math.floor(diffDays / 365);
-                timeAgo = `${years} ${years === 1 ? 'year' : 'years'} ago`;
-            }
-
-            document.getElementById('appliedTimeAgo').textContent = `(${timeAgo})`;
-        });
-    });
+    // No need for complex logic anymore, each modal has its own hardcoded content
+    // Just keep the date formatting logic if needed
 </script>
 
 <style>

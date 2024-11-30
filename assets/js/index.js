@@ -344,4 +344,10 @@ $(function () {
       $('#contentPages').load('pages/SubPages/Career/jobSubmission.html');
     });
 
+    $("#jobCategories").click(function () {
+        $("#contentPages").load("pages/SubPages/Career/jobCategories.html", function() {
+            // Initialize any necessary plugins after loading
+        });
+    });
+
 });
