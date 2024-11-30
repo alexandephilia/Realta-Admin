@@ -128,16 +128,31 @@
 
                                 <!-- SEO Tags - Full Width -->
                                 <div class="col-12">
-                                    <label class="form-label" for="hashtagInput">SEO Keywords/Tags</label>
+                                    <label class="form-label" for="hashtagInput">SEO Keywords</label>
                                     <div class="input-group mb-2">
-                                        <span class="input-group-text bg-soft-primary text-primary">
-                                            <span class="fas fa-hashtag"></span>
-                                        </span>
                                         <input type="text" class="form-control" id="hashtagInput"
                                             placeholder="Enter keyword and press Enter">
                                     </div>
+                                    <small class="text-muted mb-3 d-block">Separate multiple keywords with Enter
+                                        key</small>
                                     <div class="hashtag-container d-flex flex-wrap gap-2">
                                         <!-- Tags will be dynamically added here -->
+                                    </div>
+                                </div>
+
+                                <!-- META Description -->
+                                <div class="col-12 mt-3">
+                                    <label class="form-label" for="metaDescription">META Description</label>
+                                    <textarea class="form-control" id="metaDescription" rows="3"
+                                        placeholder="Enter META description for SEO" maxlength="1600"></textarea>
+                                    <div class="d-flex justify-content-between align-items-center mt-1">
+                                        <small class="text-muted">
+                                            Characters: <span id="charCount">0</span>/1600
+                                        </small>
+                                        <button type="button" class="btn btn-falcon-default btn-sm"
+                                            onclick="showSourceCode(this.closest('.col-12').querySelector('#metaDescription').value)">
+                                            <span class="fas fa-code me-1"></span>Copy source code
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -387,7 +402,7 @@
 
                                 <!-- SEO Tags - Full Width -->
                                 <div class="col-12">
-                                    <label class="form-label" for="hashtagInput">SEO Keywords/Tags</label>
+                                    <label class="form-label" for="hashtagInput">SEO Keyword</label>
                                     <div class="input-group mb-2">
                                         <span class="input-group-text bg-soft-primary text-primary">
                                             <span class="fas fa-hashtag"></span>
@@ -397,6 +412,22 @@
                                     </div>
                                     <div class="hashtag-container d-flex flex-wrap gap-2">
                                         <!-- Tags will be dynamically added here -->
+                                    </div>
+                                </div>
+
+                                <!-- META Description -->
+                                <div class="col-12 mt-3">
+                                    <label class="form-label" for="metaDescription">META Description</label>
+                                    <textarea class="form-control" id="metaDescription" rows="3"
+                                        placeholder="Enter META description for SEO" maxlength="1600"></textarea>
+                                    <div class="d-flex justify-content-between align-items-center mt-1">
+                                        <small class="text-muted">
+                                            Characters: <span id="charCount">0</span>/1600
+                                        </small>
+                                        <button type="button" class="btn btn-falcon-default btn-sm"
+                                            onclick="showSourceCode(this.closest('.col-12').querySelector('#metaDescription').value)">
+                                            <span class="fas fa-code me-1"></span>Copy source code
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -429,6 +460,43 @@
                 </li>
             </ul>
         </nav>
+    </div>
+</div>
+
+<!-- Update the source code modal -->
+<div class="modal fade" id="sourceCodeModal" tabindex="-1" aria-labelledby="sourceCodeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="sourceCodeModalLabel">Meta Tags Source Code</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group mb-3">
+                    <label class="form-label">HTML Meta Tags</label>
+                    <textarea class="form-control font-monospace" id="sourceCodeText" rows="6" readonly></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Open Graph Meta Tags</label>
+                    <textarea class="form-control font-monospace" id="ogSourceCodeText" rows="4" readonly></textarea>
+                </div>
+                <div class="text-end mt-3">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-falcon-default btn-sm"
+                            onclick="copySourceCode('sourceCodeText')">
+                            <span class="fas fa-copy me-1"></span>Copy HTML Tags
+                        </button>
+                        <button type="button" class="btn btn-falcon-default btn-sm"
+                            onclick="copySourceCode('ogSourceCodeText')">
+                            <span class="fas fa-copy me-1"></span>Copy OG Tags
+                        </button>
+                        <button type="button" class="btn btn-falcon-default btn-sm" onclick="copyAllSourceCode()">
+                            <span class="fas fa-copy me-1"></span>Copy All
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -479,7 +547,7 @@
         }
     });
 
-    // Handle hashtag input
+    // Modified hashtag input handler
     document.getElementById('hashtagInput').addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
             e.preventDefault();
@@ -489,12 +557,25 @@
                 const tag = document.createElement('div');
                 tag.className = 'badge badge-phoenix badge-phoenix-primary d-flex align-items-center gap-1';
                 tag.innerHTML = `
-                    #${value}
+                    ${value}
                     <span class="fas fa-times cursor-pointer" onclick="this.parentElement.remove()"></span>
                 `;
                 container.appendChild(tag);
                 this.value = '';
             }
+        }
+    });
+
+    // Update character counter for META description
+    document.getElementById('metaDescription').addEventListener('input', function () {
+        const charCount = this.value.length;
+        document.getElementById('charCount').textContent = charCount;
+
+        // Add visual feedback when approaching limit
+        if (charCount > 1500) {
+            document.getElementById('charCount').classList.add('text-warning');
+        } else {
+            document.getElementById('charCount').classList.remove('text-warning');
         }
     });
 
@@ -564,4 +645,75 @@
             statusText.className = `ms-1 status-text ${isActive ? 'text-success' : 'text-danger'}`;
         });
     });
+
+    // Function to show source code modal with enhanced meta tags
+    function showSourceCode(text) {
+        const title = document.getElementById('blogTitle') ? .value || '';
+        const keywords = Array.from(document.querySelectorAll('.hashtag-container .badge'))
+            .map(tag => tag.textContent.trim())
+            .join(', ');
+
+        // Generate HTML meta tags
+        const htmlMetaTags = `<!-- Primary Meta Tags -->
+<title>${title}</title>
+<meta name="title" content="${title}">
+<meta name="description" content="${text}">
+<meta name="keywords" content="${keywords}">`;
+
+        // Generate Open Graph meta tags
+        const ogMetaTags = `<!-- Open Graph / Facebook -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="${title}">
+<meta property="og:description" content="${text}">`;
+
+        // Show modal with both sets of tags
+        const sourceCodeModal = new bootstrap.Modal(document.getElementById('sourceCodeModal'));
+        document.getElementById('sourceCodeText').value = htmlMetaTags;
+        document.getElementById('ogSourceCodeText').value = ogMetaTags;
+        sourceCodeModal.show();
+    }
+
+    // Function to copy specific source code to clipboard
+    function copySourceCode(elementId) {
+        const sourceCodeText = document.getElementById(elementId);
+        sourceCodeText.select();
+        document.execCommand('copy');
+
+        // Show feedback on the specific button clicked
+        const copyBtn = event.currentTarget;
+        const originalText = copyBtn.innerHTML;
+        copyBtn.innerHTML = '<span class="fas fa-check me-1"></span>Copied!';
+        copyBtn.classList.add('btn-success');
+
+        setTimeout(() => {
+            copyBtn.innerHTML = originalText;
+            copyBtn.classList.remove('btn-success');
+        }, 2000);
+    }
+
+    // Function to copy all source code
+    function copyAllSourceCode() {
+        const htmlTags = document.getElementById('sourceCodeText').value;
+        const ogTags = document.getElementById('ogSourceCodeText').value;
+        const allTags = `${htmlTags}\n\n${ogTags}`;
+
+        // Create temporary textarea to copy all content
+        const tempTextarea = document.createElement('textarea');
+        tempTextarea.value = allTags;
+        document.body.appendChild(tempTextarea);
+        tempTextarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempTextarea);
+
+        // Show feedback
+        const copyBtn = event.currentTarget;
+        const originalText = copyBtn.innerHTML;
+        copyBtn.innerHTML = '<span class="fas fa-check me-1"></span>All Copied!';
+        copyBtn.classList.add('btn-success');
+
+        setTimeout(() => {
+            copyBtn.innerHTML = originalText;
+            copyBtn.classList.remove('btn-success');
+        }, 2000);
+    }
 </script>
