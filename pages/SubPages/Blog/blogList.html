@@ -907,8 +907,46 @@
         const formattedCode = formatHTML(sourceCode);
         document.getElementById('tinyMCESourceCode').value = formattedCode;
 
-        const sourceModal = new bootstrap.Modal(document.getElementById('tinyMCESourceModal'));
-        sourceModal.show();
+        // Get the current active modal (edit/create modal)
+        const currentModal = document.querySelector('.modal.show');
+        const sourceCodeModal = document.getElementById('tinyMCESourceModal');
+        
+        if (currentModal) {
+            // Get the current z-index of the active modal
+            const currentZIndex = parseInt(getComputedStyle(currentModal).zIndex);
+            
+            // Set higher z-index for the source code modal
+            sourceCodeModal.style.zIndex = currentZIndex + 2;
+            
+            // Initialize modal with static backdrop
+            const modal = new bootstrap.Modal(sourceCodeModal, {
+                backdrop: 'static',
+                keyboard: false
+            });
+            modal.show();
+            
+            // Adjust backdrop z-index after modal is shown
+            setTimeout(() => {
+                const backdrop = document.querySelector('.modal-backdrop:last-child');
+                if (backdrop) {
+                    backdrop.style.zIndex = currentZIndex + 1;
+                    backdrop.style.opacity = '0.5';
+                }
+            }, 0);
+            
+            // Reset z-index when modal is hidden
+            sourceCodeModal.addEventListener('hidden.bs.modal', function handler() {
+                sourceCodeModal.style.zIndex = '';
+                this.removeEventListener('hidden.bs.modal', handler);
+            });
+        } else {
+            // If no other modal is active, show normally with static backdrop
+            const modal = new bootstrap.Modal(sourceCodeModal, {
+                backdrop: 'static',
+                keyboard: false
+            });
+            modal.show();
+        }
     }
 
     // Function to format HTML with proper indentation
