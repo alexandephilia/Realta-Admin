@@ -648,7 +648,7 @@
 
     // Function to show source code modal with enhanced meta tags
     function showSourceCode(text) {
-        const title = document.querySelector('#blogTitle') ? .value || '';
+        const title = document.querySelector('#blogTitle') ?.value || '';
         const keywords = Array.from(document.querySelectorAll('.hashtag-container .badge'))
             .map(tag => tag.textContent.trim())
             .join(', ');
