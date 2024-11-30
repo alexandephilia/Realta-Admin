@@ -727,6 +727,7 @@
 
 <style>
     .category-tag {
+        margin: 0.25rem;
         display: inline-flex;
         align-items: center;
         padding: 0.25rem 0.5rem;
@@ -835,19 +836,35 @@
         text-align: center;
     }
 
-    /* Update the position-relative container styling */
-    .position-relative .d-flex {
-        justify-content: center;
+    /* Table-specific styles */
+    .table .position-relative .d-flex {
+        justify-content: flex-start;
     }
 
-    /* Center the category tags container */
-    .d-flex.flex-wrap {
-        justify-content: center;
+    .table .d-flex.flex-wrap {
+        justify-content: flex-start;
     }
 
-    /* Add some spacing between category tags */
+    /* Modal-specific styles */
+    .modal .d-flex.flex-wrap {
+        justify-content: flex-start;
+    }
+
+    .modal .position-relative .d-flex {
+        justify-content: flex-start;
+    }
+
+    /* Category tag styling */
     .category-tag {
         margin: 0.25rem;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        color: #495057;
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 0.25rem;
     }
 </style>
 
