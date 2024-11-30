@@ -75,7 +75,43 @@
                             </td>
                             <td class="text-center">
                                 <button class="btn btn-sm btn-falcon-default text-warning me-1" data-bs-toggle="modal"
-                                    data-bs-target="#editDepartmentModal">
+                                    data-bs-target="#editDepartmentModal" data-department="IT">
+                                    <span class="fas fa-edit"></span>
+                                </button>
+                                <button class="btn btn-sm btn-falcon-default text-danger" data-bs-toggle="modal"
+                                    data-bs-target="#deleteConfirmModal">
+                                    <span class="fas fa-trash"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">Human Resources</td>
+                            <td>
+                                <div class="position-relative">
+                                    <div class="d-flex flex-wrap gap-1">
+                                        <span class="category-tag">HR Manager</span>
+                                        <span class="category-tag">Recruiter</span>
+                                        <span class="category-tag">HR Specialist</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-wrap gap-1">
+                                    <span class="category-tag">Jakarta</span>
+                                    <span class="category-tag">Semarang</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-wrap gap-1">
+                                    <span class="category-tag">Full Time</span>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <span class="badge badge-phoenix fs-10 badge-phoenix-success">Active</span>
+                            </td>
+                            <td class="text-center">
+                                <button class="btn btn-sm btn-falcon-default text-warning me-1" data-bs-toggle="modal"
+                                    data-bs-target="#editDepartmentModal" data-department="HR">
                                     <span class="fas fa-edit"></span>
                                 </button>
                                 <button class="btn btn-sm btn-falcon-default text-danger" data-bs-toggle="modal"
@@ -752,3 +788,93 @@
         color: #6f42c1;
     }
 </style>
+
+<!-- Add this script at the bottom of the file -->
+<script>
+    // Department data object
+    const departmentData = {
+        'IT': {
+            name: 'Information Technology',
+            code: 'IT',
+            positions: ['Software Engineer', 'System Analyst', 'QA Engineer', 'DevOps Engineer', 'UI/UX Designer', 'Frontend Developer', 'Backend Developer', 'Mobile Developer'],
+            locations: ['Jakarta', 'Semarang', 'Bali'],
+            employmentTypes: ['Full Time', 'Internship'],
+            status: true
+        },
+        'HR': {
+            name: 'Human Resources',
+            code: 'HR',
+            positions: ['HR Manager', 'Recruiter', 'HR Specialist'],
+            locations: ['Jakarta', 'Semarang'],
+            employmentTypes: ['Full Time'],
+            status: true
+        }
+    };
+
+    // Update edit modal when shown
+    document.getElementById('editDepartmentModal').addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget;
+        const departmentCode = button.getAttribute('data-department');
+        const department = departmentData[departmentCode];
+
+        // Update basic department info
+        document.getElementById('editDepartmentName').value = department.name;
+        document.getElementById('editDepartmentCode').value = department.code;
+        document.getElementById('editDepartmentStatus').checked = department.status;
+
+        // Update positions
+        const positionTags = document.querySelector('.position-tags');
+        positionTags.innerHTML = department.positions.map(position => `
+            <div class="category-tag">
+                ${position}
+                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+            </div>
+        `).join('');
+
+        // Update locations
+        const locationContainer = document.querySelector('#editDepartmentForm .mb-4:nth-of-type(3) .d-flex.flex-wrap');
+        locationContainer.innerHTML = department.locations.map(location => `
+            <div class="category-tag">
+                ${location}
+                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+            </div>
+        `).join('');
+
+        // Update employment types
+        const employmentContainer = document.querySelector('#editDepartmentForm .mb-4:nth-of-type(4) .d-flex.flex-wrap');
+        employmentContainer.innerHTML = department.employmentTypes.map(type => `
+            <div class="category-tag">
+                ${type}
+                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+            </div>
+        `).join('');
+    });
+
+    // Handle removing tags
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('btn-close-sm')) {
+            event.target.closest('.category-tag').remove();
+        }
+    });
+
+    // Handle adding new items
+    document.querySelectorAll('#editDepartmentForm .d-flex.gap-2').forEach(container => {
+        const addButton = container.querySelector('.btn-primary');
+        const select = container.querySelector('.form-select');
+        
+        addButton.addEventListener('click', function() {
+            const value = select.value;
+            if (value) {
+                const tagContainer = container.previousElementSibling;
+                const newTag = document.createElement('div');
+                newTag.className = 'category-tag';
+                newTag.innerHTML = `
+                    ${value}
+                    <button class="btn-close btn-close-sm ms-2" type="button"></button>
+                `;
+                tagContainer.appendChild(newTag);
+                select.value = '';
+            }
+        });
+    });
+</script>
