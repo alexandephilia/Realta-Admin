@@ -74,14 +74,16 @@
                                 <span class="badge badge-phoenix fs-10 badge-phoenix-success">Active</span>
                             </td>
                             <td class="text-center">
-                                <button class="btn btn-sm btn-falcon-default text-warning me-1" data-bs-toggle="modal"
-                                    data-bs-target="#editDepartmentModal" data-department="IT">
-                                    <span class="fas fa-edit"></span>
-                                </button>
-                                <button class="btn btn-sm btn-falcon-default text-danger" data-bs-toggle="modal"
-                                    data-bs-target="#deleteConfirmModal">
-                                    <span class="fas fa-trash"></span>
-                                </button>
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" data-bs-toggle="modal"
+                                        data-bs-target="#editDepartmentModal" data-department="IT">
+                                        <span class="fas fa-edit"></span>
+                                    </button>
+                                    <button class="btn btn-sm btn-falcon-default text-danger" data-bs-toggle="modal"
+                                        data-bs-target="#deleteConfirmModal">
+                                        <span class="fas fa-trash"></span>
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -110,14 +112,16 @@
                                 <span class="badge badge-phoenix fs-10 badge-phoenix-danger">Inactive</span>
                             </td>
                             <td class="text-center">
-                                <button class="btn btn-sm btn-falcon-default text-warning me-1" data-bs-toggle="modal"
-                                    data-bs-target="#editDepartmentModal" data-department="HR">
-                                    <span class="fas fa-edit"></span>
-                                </button>
-                                <button class="btn btn-sm btn-falcon-default text-danger" data-bs-toggle="modal"
-                                    data-bs-target="#deleteConfirmModal">
-                                    <span class="fas fa-trash"></span>
-                                </button>
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" data-bs-toggle="modal"
+                                        data-bs-target="#editDepartmentModal" data-department="HR">
+                                        <span class="fas fa-edit"></span>
+                                    </button>
+                                    <button class="btn btn-sm btn-falcon-default text-danger" data-bs-toggle="modal"
+                                        data-bs-target="#deleteConfirmModal">
+                                        <span class="fas fa-trash"></span>
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
@@ -185,28 +189,46 @@
                                             <td class="text-center">Information Technology</td>
                                             <td class="text-center">IT</td>
                                             <td class="text-center">
-                                                <span
-                                                    class="badge badge-phoenix fs-10 badge-phoenix-success">Active</span>
+                                                <div class="form-check form-switch d-flex justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" checked 
+                                                        onchange="updateStatus(this, 'department', 'IT')">
+                                                    <span class="ms-2 status-text text-success">Active</span>
+                                                </div>
                                             </td>
                                             <td class="text-center">
-                                                <button class="btn btn-sm btn-falcon-default text-danger"
-                                                    data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
-                                                    <span class="fas fa-trash"></span>
-                                                </button>
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                        onclick="editItem('department', 'IT')">
+                                                        <span class="fas fa-edit"></span>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                        onclick="deleteItem('department', 'IT')">
+                                                        <span class="fas fa-trash"></span>
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">Human Resources</td>
                                             <td class="text-center">HR</td>
                                             <td class="text-center">
-                                                <span
-                                                    class="badge badge-phoenix fs-10 badge-phoenix-danger">Inactive</span>
+                                                <div class="form-check form-switch d-flex justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" 
+                                                        onchange="updateStatus(this, 'department', 'HR')">
+                                                    <span class="ms-2 status-text text-danger">Inactive</span>
+                                                </div>
                                             </td>
                                             <td class="text-center">
-                                                <button class="btn btn-sm btn-falcon-default text-danger"
-                                                    data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
-                                                    <span class="fas fa-trash"></span>
-                                                </button>
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                        onclick="editItem('department', 'HR')">
+                                                        <span class="fas fa-edit"></span>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                        onclick="deleteItem('department', 'HR')">
+                                                        <span class="fas fa-trash"></span>
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -221,6 +243,7 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center">Position Name</th>
+                                            <th class="text-center">Position Code</th>
                                             <th class="text-center">Department</th>
                                             <th class="text-center">Status</th>
                                             <th class="text-center">Action</th>
@@ -229,58 +252,98 @@
                                     <tbody>
                                         <tr>
                                             <td class="text-center">Software Engineer</td>
+                                            <td class="text-center">SE</td>
                                             <td class="text-center">Information Technology</td>
                                             <td class="text-center">
-                                                <span
-                                                    class="badge badge-phoenix fs-10 badge-phoenix-success">Active</span>
+                                                <div class="form-check form-switch d-flex justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" checked 
+                                                        onchange="updateStatus(this, 'position', 'SE')">
+                                                    <span class="ms-2 status-text text-success">Active</span>
+                                                </div>
                                             </td>
                                             <td class="text-center">
-                                                <button class="btn btn-sm btn-falcon-default text-danger"
-                                                    data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
-                                                    <span class="fas fa-trash"></span>
-                                                </button>
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                        onclick="editItem('position', 'SE')">
+                                                        <span class="fas fa-edit"></span>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                        onclick="deleteItem('position', 'SE')">
+                                                        <span class="fas fa-trash"></span>
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">System Analyst</td>
+                                            <td class="text-center">SA</td>
                                             <td class="text-center">Information Technology</td>
                                             <td class="text-center">
-                                                <span
-                                                    class="badge badge-phoenix fs-10 badge-phoenix-success">Active</span>
+                                                <div class="form-check form-switch d-flex justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" checked 
+                                                        onchange="updateStatus(this, 'position', 'SA')">
+                                                    <span class="ms-2 status-text text-success">Active</span>
+                                                </div>
                                             </td>
                                             <td class="text-center">
-                                                <button class="btn btn-sm btn-falcon-default text-danger"
-                                                    data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
-                                                    <span class="fas fa-trash"></span>
-                                                </button>
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                        onclick="editItem('position', 'SA')">
+                                                        <span class="fas fa-edit"></span>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                        onclick="deleteItem('position', 'SA')">
+                                                        <span class="fas fa-trash"></span>
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">HR Manager</td>
+                                            <td class="text-center">HRM</td>
                                             <td class="text-center">Human Resources</td>
                                             <td class="text-center">
-                                                <span
-                                                    class="badge badge-phoenix fs-10 badge-phoenix-danger">Inactive</span>
+                                                <div class="form-check form-switch d-flex justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" 
+                                                        onchange="updateStatus(this, 'position', 'HRM')">
+                                                    <span class="ms-2 status-text text-danger">Inactive</span>
+                                                </div>
                                             </td>
                                             <td class="text-center">
-                                                <button class="btn btn-sm btn-falcon-default text-danger"
-                                                    data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
-                                                    <span class="fas fa-trash"></span>
-                                                </button>
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                        onclick="editItem('position', 'HRM')">
+                                                        <span class="fas fa-edit"></span>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                        onclick="deleteItem('position', 'HRM')">
+                                                        <span class="fas fa-trash"></span>
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">Recruiter</td>
+                                            <td class="text-center">REC</td>
                                             <td class="text-center">Human Resources</td>
                                             <td class="text-center">
-                                                <span
-                                                    class="badge badge-phoenix fs-10 badge-phoenix-danger">Inactive</span>
+                                                <div class="form-check form-switch d-flex justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" 
+                                                        onchange="updateStatus(this, 'position', 'REC')">
+                                                    <span class="ms-2 status-text text-danger">Inactive</span>
+                                                </div>
                                             </td>
                                             <td class="text-center">
-                                                <button class="btn btn-sm btn-falcon-default text-danger"
-                                                    data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
-                                                    <span class="fas fa-trash"></span>
-                                                </button>
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                        onclick="editItem('position', 'REC')">
+                                                        <span class="fas fa-edit"></span>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                        onclick="deleteItem('position', 'REC')">
+                                                        <span class="fas fa-trash"></span>
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -303,40 +366,67 @@
                                         <tr>
                                             <td class="text-center">Jakarta</td>
                                             <td class="text-center">
-                                                <span
-                                                    class="badge badge-phoenix fs-10 badge-phoenix-success">Active</span>
+                                                <div class="form-check form-switch d-flex justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" checked 
+                                                        onchange="updateStatus(this, 'location', 'JKT')">
+                                                    <span class="ms-2 status-text text-success">Active</span>
+                                                </div>
                                             </td>
                                             <td class="text-center">
-                                                <button class="btn btn-sm btn-falcon-default text-danger"
-                                                    data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
-                                                    <span class="fas fa-trash"></span>
-                                                </button>
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                        onclick="editItem('location', 'JKT')">
+                                                        <span class="fas fa-edit"></span>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                        onclick="deleteItem('location', 'JKT')">
+                                                        <span class="fas fa-trash"></span>
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">Semarang</td>
                                             <td class="text-center">
-                                                <span
-                                                    class="badge badge-phoenix fs-10 badge-phoenix-success">Active</span>
+                                                <div class="form-check form-switch d-flex justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" checked 
+                                                        onchange="updateStatus(this, 'location', 'SMG')">
+                                                    <span class="ms-2 status-text text-success">Active</span>
+                                                </div>
                                             </td>
                                             <td class="text-center">
-                                                <button class="btn btn-sm btn-falcon-default text-danger"
-                                                    data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
-                                                    <span class="fas fa-trash"></span>
-                                                </button>
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                        onclick="editItem('location', 'SMG')">
+                                                        <span class="fas fa-edit"></span>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                        onclick="deleteItem('location', 'SMG')">
+                                                        <span class="fas fa-trash"></span>
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">Bali</td>
                                             <td class="text-center">
-                                                <span
-                                                    class="badge badge-phoenix fs-10 badge-phoenix-success">Active</span>
+                                                <div class="form-check form-switch d-flex justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" checked 
+                                                        onchange="updateStatus(this, 'location', 'BAL')">
+                                                    <span class="ms-2 status-text text-success">Active</span>
+                                                </div>
                                             </td>
                                             <td class="text-center">
-                                                <button class="btn btn-sm btn-falcon-default text-danger"
-                                                    data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
-                                                    <span class="fas fa-trash"></span>
-                                                </button>
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                        onclick="editItem('location', 'BAL')">
+                                                        <span class="fas fa-edit"></span>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                        onclick="deleteItem('location', 'BAL')">
+                                                        <span class="fas fa-trash"></span>
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -359,27 +449,45 @@
                                         <tr>
                                             <td class="text-center">Full Time</td>
                                             <td class="text-center">
-                                                <span
-                                                    class="badge badge-phoenix fs-10 badge-phoenix-success">Active</span>
+                                                <div class="form-check form-switch d-flex justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" checked 
+                                                        onchange="updateStatus(this, 'employment', 'FT')">
+                                                    <span class="ms-2 status-text text-success">Active</span>
+                                                </div>
                                             </td>
                                             <td class="text-center">
-                                                <button class="btn btn-sm btn-falcon-default text-danger"
-                                                    data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
-                                                    <span class="fas fa-trash"></span>
-                                                </button>
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                        onclick="editItem('employment', 'FT')">
+                                                        <span class="fas fa-edit"></span>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                        onclick="deleteItem('employment', 'FT')">
+                                                        <span class="fas fa-trash"></span>
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">Internship</td>
                                             <td class="text-center">
-                                                <span
-                                                    class="badge badge-phoenix fs-10 badge-phoenix-success">Active</span>
+                                                <div class="form-check form-switch d-flex justify-content-center">
+                                                    <input class="form-check-input" type="checkbox" checked 
+                                                        onchange="updateStatus(this, 'employment', 'INT')">
+                                                    <span class="ms-2 status-text text-success">Active</span>
+                                                </div>
                                             </td>
                                             <td class="text-center">
-                                                <button class="btn btn-sm btn-falcon-default text-danger"
-                                                    data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
-                                                    <span class="fas fa-trash"></span>
-                                                </button>
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                        onclick="editItem('employment', 'INT')">
+                                                        <span class="fas fa-edit"></span>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                        onclick="deleteItem('employment', 'INT')">
+                                                        <span class="fas fa-trash"></span>
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -725,6 +833,118 @@
     </div>
 </div>
 
+<!-- Edit Modals for Category Management -->
+<!-- Edit Department Modal in Category Management -->
+<div class="modal fade" id="editCategoryDepartmentModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Department</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editCategoryDepartmentForm">
+                    <div class="mb-3">
+                        <label class="form-label" for="editCatDepartmentName">Department Name</label>
+                        <input class="form-control" id="editCatDepartmentName" type="text" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="editCatDepartmentCode">Department Code</label>
+                        <input class="form-control" id="editCatDepartmentCode" type="text" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" form="editCategoryDepartmentForm" class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Position Modal in Category Management -->
+<div class="modal fade" id="editCategoryPositionModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Position</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editCategoryPositionForm">
+                    <div class="mb-3">
+                        <label class="form-label" for="editCatPositionName">Position Name</label>
+                        <input class="form-control" id="editCatPositionName" type="text" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="editCatPositionCode">Position Code</label>
+                        <input class="form-control" id="editCatPositionCode" type="text" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="editCatPositionDepartment">Department</label>
+                        <select class="form-select" id="editCatPositionDepartment" required>
+                            <option value="IT">Information Technology</option>
+                            <option value="HR">Human Resources</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" form="editCategoryPositionForm" class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Location Modal in Category Management -->
+<div class="modal fade" id="editCategoryLocationModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Location</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editCategoryLocationForm">
+                    <div class="mb-3">
+                        <label class="form-label" for="editCatLocationName">Location Name</label>
+                        <input class="form-control" id="editCatLocationName" type="text" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" form="editCategoryLocationForm" class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Employment Type Modal in Category Management -->
+<div class="modal fade" id="editCategoryEmploymentModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Employment Type</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editCategoryEmploymentForm">
+                    <div class="mb-3">
+                        <label class="form-label" for="editCatEmploymentName">Employment Type Name</label>
+                        <input class="form-control" id="editCatEmploymentName" type="text" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" form="editCategoryEmploymentForm" class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <style>
     .category-tag {
         margin: 0.25rem;
@@ -866,6 +1086,95 @@
         border: 1px solid #dee2e6;
         border-radius: 0.25rem;
     }
+
+    .form-switch {
+        padding-left: 2.5em;
+    }
+
+    .form-switch .form-check-input {
+        cursor: pointer;
+    }
+
+    .status-text {
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    /* Update modal width */
+    .modal-xl {
+        max-width: 1120px; /* Increased from default */
+    }
+
+    /* Improve toggle switch layout */
+    .form-check.form-switch {
+        padding-left: 0; /* Remove default padding */
+        min-width: 110px; /* Ensure minimum width for the toggle container */
+        margin: 0 auto; /* Center the switch */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px; /* Reduce space between switch and text */
+    }
+
+    .form-check.form-switch .form-check-input {
+        float: none; /* Remove float */
+        margin: 0; /* Remove all margins */
+        width: 2.5em; /* Standardize switch width */
+    }
+
+    .form-check.form-switch .status-text {
+        display: inline-block;
+        min-width: 45px; /* Slightly reduce min-width */
+        text-align: left;
+        margin: 0; /* Remove any margins */
+        line-height: 1; /* Align text vertically */
+    }
+
+    /* Optional: Adjust switch size if needed */
+    .form-check-input {
+        height: 1.25em; /* Standardize height */
+    }
+
+    /* Adjust table column widths */
+    .table th:nth-child(1) { width: 30%; } /* Name column */
+    .table th:nth-child(2) { width: 25%; } /* Department/Code column */
+    .table th:nth-child(3) { width: 25%; } /* Status column */
+    .table th:nth-child(4) { width: 20%; } /* Action column */
+
+    .modal-child {
+        background: rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-child .modal-dialog {
+        margin: 2rem auto;
+    }
+
+    .modal-backdrop + .modal-backdrop {
+        opacity: 0.1;
+    }
+
+    /* Position tab specific column widths */
+    #positionTab .table th:nth-child(1) { width: 30%; } /* Position Name */
+    #positionTab .table th:nth-child(2) { width: 15%; } /* Position Code */
+    #positionTab .table th:nth-child(3) { width: 25%; } /* Department */
+    #positionTab .table th:nth-child(4) { width: 15%; } /* Status */
+    #positionTab .table th:nth-child(5) { width: 15%; } /* Action */
+
+    /* Department tab specific column widths */
+    #departmentTab .table th:nth-child(1) { width: 30%; } /* Department Name */
+    #departmentTab .table th:nth-child(2) { width: 25%; } /* Code */
+    #departmentTab .table th:nth-child(3) { width: 25%; } /* Status */
+    #departmentTab .table th:nth-child(4) { width: 20%; } /* Action */
+
+    /* Location tab specific column widths */
+    #locationTab .table th:nth-child(1) { width: 40%; } /* Location Name */
+    #locationTab .table th:nth-child(2) { width: 35%; } /* Status */
+    #locationTab .table th:nth-child(3) { width: 25%; } /* Action */
+
+    /* Employment tab specific column widths */
+    #employmentTab .table th:nth-child(1) { width: 40%; } /* Employment Type */
+    #employmentTab .table th:nth-child(2) { width: 35%; } /* Status */
+    #employmentTab .table th:nth-child(3) { width: 25%; } /* Action */
 </style>
 
 <!-- Add this script at the bottom of the file -->
@@ -984,4 +1293,153 @@
             statusText.classList.add('text-danger');
         }
     });
+
+    // Function to handle status updates
+    function updateStatus(checkbox, type, id) {
+        const statusText = checkbox.nextElementSibling;
+        if (checkbox.checked) {
+            statusText.textContent = 'Active';
+            statusText.classList.remove('text-danger');
+            statusText.classList.add('text-success');
+        } else {
+            statusText.textContent = 'Inactive';
+            statusText.classList.remove('text-success');
+            statusText.classList.add('text-danger');
+        }
+
+        // Here you would typically make an API call to update the status
+        console.log(`Updating ${type} ${id} status to ${checkbox.checked ? 'active' : 'inactive'}`);
+    }
+
+    // Function to handle item editing
+    function editItem(type, id) {
+        let modalId;
+        switch(type) {
+            case 'department':
+                modalId = '#editCategoryDepartmentModal';
+                // Set department data
+                if (id === 'IT') {
+                    document.getElementById('editCatDepartmentName').value = 'Information Technology';
+                    document.getElementById('editCatDepartmentCode').value = 'IT';
+                } else if (id === 'HR') {
+                    document.getElementById('editCatDepartmentName').value = 'Human Resources';
+                    document.getElementById('editCatDepartmentCode').value = 'HR';
+                }
+                break;
+            case 'position':
+                modalId = '#editCategoryPositionModal';
+                // Set position data based on the table data
+                switch(id) {
+                    case 'SE':
+                        document.getElementById('editCatPositionName').value = 'Software Engineer';
+                        document.getElementById('editCatPositionCode').value = 'SE';
+                        document.getElementById('editCatPositionDepartment').value = 'IT';
+                        break;
+                    case 'SA':
+                        document.getElementById('editCatPositionName').value = 'System Analyst';
+                        document.getElementById('editCatPositionCode').value = 'SA';
+                        document.getElementById('editCatPositionDepartment').value = 'IT';
+                        break;
+                    case 'HRM':
+                        document.getElementById('editCatPositionName').value = 'HR Manager';
+                        document.getElementById('editCatPositionCode').value = 'HRM';
+                        document.getElementById('editCatPositionDepartment').value = 'HR';
+                        break;
+                    case 'REC':
+                        document.getElementById('editCatPositionName').value = 'Recruiter';
+                        document.getElementById('editCatPositionCode').value = 'REC';
+                        document.getElementById('editCatPositionDepartment').value = 'HR';
+                        break;
+                }
+                break;
+            case 'location':
+                modalId = '#editCategoryLocationModal';
+                // Set location data based on the table data
+                switch(id) {
+                    case 'JKT':
+                        document.getElementById('editCatLocationName').value = 'Jakarta';
+                        break;
+                    case 'SMG':
+                        document.getElementById('editCatLocationName').value = 'Semarang';
+                        break;
+                    case 'BAL':
+                        document.getElementById('editCatLocationName').value = 'Bali';
+                        break;
+                }
+                break;
+            case 'employment':
+                modalId = '#editCategoryEmploymentModal';
+                // Set employment type data based on the table data
+                switch(id) {
+                    case 'FT':
+                        document.getElementById('editCatEmploymentName').value = 'Full Time';
+                        break;
+                    case 'INT':
+                        document.getElementById('editCatEmploymentName').value = 'Internship';
+                        break;
+                }
+                break;
+        }
+
+        // Get the edit modal element
+        const editModal = document.querySelector(modalId);
+        
+        // Add modal-child class
+        editModal.classList.add('modal-child');
+        
+        // Show the modal
+        const modal = new bootstrap.Modal(editModal);
+        modal.show();
+    }
+
+    // Add event listeners for modal events to handle backdrop
+    document.querySelectorAll('.modal-child').forEach(modal => {
+        modal.addEventListener('show.bs.modal', function () {
+            const parentModal = document.querySelector('#categoryManagementModal');
+            if (parentModal) {
+                parentModal.style.overflow = 'hidden';
+            }
+        });
+
+        modal.addEventListener('hidden.bs.modal', function () {
+            const parentModal = document.querySelector('#categoryManagementModal');
+            if (parentModal) {
+                parentModal.style.overflow = '';
+            }
+        });
+    });
+
+    // Add event listeners for status changes in edit modals
+    document.querySelectorAll('.modal .form-check-input').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const statusText = this.closest('.form-check').querySelector('.status-text');
+            if (this.checked) {
+                statusText.textContent = 'Active';
+                statusText.classList.remove('text-danger');
+                statusText.classList.add('text-success');
+            } else {
+                statusText.textContent = 'Inactive';
+                statusText.classList.remove('text-success');
+                statusText.classList.add('text-danger');
+            }
+        });
+    });
+
+    // Add form submission handlers
+    ['Department', 'Position', 'Location', 'Employment'].forEach(type => {
+        document.getElementById(`editCategory${type}Form`).addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically save the changes to your backend
+            const modal = bootstrap.Modal.getInstance(document.getElementById(`editCategory${type}Modal`));
+            modal.hide();
+        });
+    });
+
+    // Function to handle item deletion
+    function deleteItem(type, id) {
+        if (confirm(`Are you sure you want to delete this ${type}?`)) {
+            // Handle delete action
+            console.log(`Deleting ${type} with ID: ${id}`);
+        }
+    }
 </script>
