@@ -722,20 +722,38 @@
 
     // Function to copy specific source code to clipboard
     function copySourceCode(elementId) {
-        const sourceCodeText = document.getElementById(elementId);
-        sourceCodeText.select();
-        document.execCommand('copy');
+        const textArea = document.getElementById(elementId);
+        textArea.select();
+        
+        try {
+            // First try the modern way
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(textArea.value);
+            } else {
+                // Fallback for older browsers
+                document.execCommand('copy');
+            }
+            
+            // Show feedback on the specific button clicked
+            const copyBtn = event.currentTarget;
+            const originalText = copyBtn.innerHTML;
+            copyBtn.innerHTML = '<span class="fas fa-check me-1"></span>Copied!';
+            copyBtn.classList.add('btn-success');
 
-        // Show feedback on the specific button clicked
-        const copyBtn = event.currentTarget;
-        const originalText = copyBtn.innerHTML;
-        copyBtn.innerHTML = '<span class="fas fa-check me-1"></span>Copied!';
-        copyBtn.classList.add('btn-success');
-
-        setTimeout(() => {
-            copyBtn.innerHTML = originalText;
-            copyBtn.classList.remove('btn-success');
-        }, 2000);
+            setTimeout(() => {
+                copyBtn.innerHTML = originalText;
+                copyBtn.classList.remove('btn-success');
+            }, 2000);
+        } catch (err) {
+            console.error('Failed to copy text: ', err);
+            // Create a temporary textarea as ultimate fallback
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = textArea.value;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+        }
     }
 
     // Function to copy all source code
@@ -743,25 +761,41 @@
         const htmlTags = document.getElementById('sourceCodeText').value;
         const ogTags = document.getElementById('ogSourceCodeText').value;
         const allTags = `${htmlTags}\n\n${ogTags}`;
+        
+        try {
+            // First try the modern way
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(allTags);
+            } else {
+                // Fallback for older browsers
+                const tempTextArea = document.createElement('textarea');
+                tempTextArea.value = allTags;
+                document.body.appendChild(tempTextArea);
+                tempTextArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempTextArea);
+            }
+            
+            // Show feedback
+            const copyBtn = event.currentTarget;
+            const originalText = copyBtn.innerHTML;
+            copyBtn.innerHTML = '<span class="fas fa-check me-1"></span>All Copied!';
+            copyBtn.classList.add('btn-success');
 
-        // Create temporary textarea to copy all content
-        const tempTextarea = document.createElement('textarea');
-        tempTextarea.value = allTags;
-        document.body.appendChild(tempTextarea);
-        tempTextarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(tempTextarea);
-
-        // Show feedback
-        const copyBtn = event.currentTarget;
-        const originalText = copyBtn.innerHTML;
-        copyBtn.innerHTML = '<span class="fas fa-check me-1"></span>All Copied!';
-        copyBtn.classList.add('btn-success');
-
-        setTimeout(() => {
-            copyBtn.innerHTML = originalText;
-            copyBtn.classList.remove('btn-success');
-        }, 2000);
+            setTimeout(() => {
+                copyBtn.innerHTML = originalText;
+                copyBtn.classList.remove('btn-success');
+            }, 2000);
+        } catch (err) {
+            console.error('Failed to copy text: ', err);
+            // Create a temporary textarea as ultimate fallback
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = allTags;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+        }
     }
 
     // Update the CSS styles for modal stacking
