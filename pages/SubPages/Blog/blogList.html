@@ -646,10 +646,26 @@
         });
     });
 
-    // Function to show source code modal with enhanced meta tags
+    // Update the showSourceCode function
     function showSourceCode(text) {
-        const title = document.querySelector('#blogTitle') ?.value || '';
-        const keywords = Array.from(document.querySelectorAll('.hashtag-container .badge'))
+        // Get the current active modal
+        const currentModal = document.querySelector('.modal.show');
+        
+        // Determine which form we're working with
+        let titleElement, keywordsContainer;
+        if (currentModal && currentModal.id === 'editBlogModal') {
+            // If in edit modal, use edit form elements
+            titleElement = document.querySelector('#editTitle');
+            keywordsContainer = currentModal.querySelector('.hashtag-container');
+        } else {
+            // Otherwise use create form elements
+            titleElement = document.querySelector('#blogTitle');
+            keywordsContainer = document.querySelector('#createBlogForm .hashtag-container');
+        }
+
+        // Get values
+        const title = titleElement?.value || '';
+        const keywords = Array.from(keywordsContainer?.querySelectorAll('.badge') || [])
             .map(tag => tag.textContent.trim())
             .join(', ');
 
@@ -666,11 +682,42 @@
 <meta property="og:title" content="${title}">
 <meta property="og:description" content="${text}">`;
 
-        // Show modal with both sets of tags
-        const sourceCodeModal = new bootstrap.Modal(document.getElementById('sourceCodeModal'));
+        // Update modal content
         document.getElementById('sourceCodeText').value = htmlMetaTags;
         document.getElementById('ogSourceCodeText').value = ogMetaTags;
-        sourceCodeModal.show();
+
+        const sourceCodeModal = document.getElementById('sourceCodeModal');
+        
+        if (currentModal) {
+            // Rest of the modal stacking code remains the same
+            const currentZIndex = parseInt(getComputedStyle(currentModal).zIndex);
+            sourceCodeModal.style.zIndex = currentZIndex + 2;
+            
+            const modal = new bootstrap.Modal(sourceCodeModal, {
+                backdrop: 'static',
+                keyboard: false
+            });
+            modal.show();
+            
+            setTimeout(() => {
+                const backdrop = document.querySelector('.modal-backdrop:last-child');
+                if (backdrop) {
+                    backdrop.style.zIndex = currentZIndex + 1;
+                    backdrop.style.opacity = '0.5';
+                }
+            }, 0);
+            
+            sourceCodeModal.addEventListener('hidden.bs.modal', function handler() {
+                sourceCodeModal.style.zIndex = '';
+                this.removeEventListener('hidden.bs.modal', handler);
+            });
+        } else {
+            const modal = new bootstrap.Modal(sourceCodeModal, {
+                backdrop: 'static',
+                keyboard: false
+            });
+            modal.show();
+        }
     }
 
     // Function to copy specific source code to clipboard
@@ -716,4 +763,19 @@
             copyBtn.classList.remove('btn-success');
         }, 2000);
     }
+
+    // Update the CSS styles for modal stacking
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = `
+        .modal-backdrop {
+            transition: opacity 0.15s linear;
+        }
+        .modal-backdrop + .modal-backdrop {
+            opacity: 0.5 !important;
+        }
+        .modal-dialog {
+            transition: transform 0.15s ease-out;
+        }
+    `;
+    document.head.appendChild(styleSheet);
 </script>
