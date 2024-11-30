@@ -195,44 +195,6 @@
     </div>
 </div>
 
-<!-- Edit Department Modal -->
-<div class="modal fade" id="editDepartmentModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Edit Department</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <form id="editDepartmentForm">
-                    <div class="mb-3">
-                        <label class="form-label" for="editDepartmentName">Department Name</label>
-                        <input class="form-control" id="editDepartmentName" type="text" value="Information Technology"
-                            required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="editDepartmentCode">Department Code</label>
-                        <input class="form-control" id="editDepartmentCode" type="text" value="IT" required>
-                    </div>
-                    <div class="mb-3">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" id="editDepartmentStatus" type="checkbox" checked>
-                            <label class="form-check-label fw-bold" for="editDepartmentStatus">
-                                Department Status
-                                <span class="ms-1 text-success edit-status-text">Active</span>
-                            </label>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" form="editDepartmentForm" class="btn btn-primary">Save Changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Location Modal -->
 <div class="modal fade" id="createLocationModal" tabindex="-1">
     <div class="modal-dialog">
@@ -274,52 +236,6 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
                 <button type="submit" form="locationForm" class="btn btn-primary">Save</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Edit Location Modal -->
-<div class="modal fade" id="editLocationModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Edit Location</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <form id="editLocationForm">
-                    <div class="mb-3">
-                        <label class="form-label" for="editLocationName">Location Name</label>
-                        <select class="form-select" id="editLocationName" required>
-                            <option value="">Select Location</option>
-                            <option value="Jakarta">Jakarta</option>
-                            <option value="Semarang">Semarang</option>
-                            <option value="Bali">Bali</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="editLocationDepartment">Department</label>
-                        <select class="form-select" id="editLocationDepartment" required>
-                            <option value="">Select Department</option>
-                            <option value="IT">Information Technology</option>
-                            <option value="HR">Human Resources</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" id="editLocationStatus" type="checkbox" checked>
-                            <label class="form-check-label fw-bold" for="editLocationStatus">
-                                Location Status
-                                <span class="ms-1 text-success edit-status-text">Active</span>
-                            </label>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" form="editLocationForm" class="btn btn-primary">Save Changes</button>
             </div>
         </div>
     </div>
@@ -370,169 +286,192 @@
     </div>
 </div>
 
-<!-- Edit Employment Type Modal -->
-<div class="modal fade" id="editEmploymentTypeModal" tabindex="-1">
+<!-- Edit Department Modal -->
+<div class="modal fade" id="editDepartmentModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit Employment Type</h5>
+                <h5 class="modal-title">Edit Department</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <form id="editEmploymentTypeForm">
-                    <div class="mb-3">
-                        <label class="form-label" for="editEmploymentTypeName">Employment Type</label>
-                        <select class="form-select" id="editEmploymentTypeName" required>
-                            <option value="">Select Type</option>
-                            <option value="Full Time">Full Time</option>
-                            <option value="Internship">Internship</option>
-                        </select>
+                <form id="editDepartmentForm">
+                    <!-- Basic Department Info -->
+                    <div class="mb-4">
+                        <div class="mb-3">
+                            <label class="form-label text-uppercase small">Department Name</label>
+                            <input class="form-control" id="editDepartmentName" type="text"
+                                value="Information Technology" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-uppercase small">Department Code</label>
+                            <input class="form-control" id="editDepartmentCode" type="text" value="IT" required>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="editEmploymentTypeDepartment">Department</label>
-                        <select class="form-select" id="editEmploymentTypeDepartment" required>
-                            <option value="">Select Department</option>
-                            <option value="IT">Information Technology</option>
-                            <option value="HR">Human Resources</option>
-                        </select>
+
+                    <!-- Positions Section -->
+                    <div class="mb-4">
+                        <label class="form-label text-uppercase small">Positions</label>
+                        <div class="d-flex flex-wrap gap-2 mb-2 position-tags">
+                            <div class="category-tag">
+                                Software Engineer
+                                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+                            </div>
+                            <div class="category-tag">
+                                System Analyst
+                                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+                            </div>
+                            <div class="category-tag">
+                                QA Engineer
+                                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+                            </div>
+                            <div class="category-tag">
+                                DevOps Engineer
+                                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+                            </div>
+                            <div class="category-tag">
+                                UI/UX Designer
+                                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <select class="form-select">
+                                <option value="">Select Position</option>
+                                <option value="Software Engineer">Software Engineer</option>
+                                <option value="System Analyst">System Analyst</option>
+                                <option value="QA Engineer">QA Engineer</option>
+                                <option value="DevOps Engineer">DevOps Engineer</option>
+                                <option value="UI/UX Designer">UI/UX Designer</option>
+                                <option value="Frontend Developer">Frontend Developer</option>
+                                <option value="Backend Developer">Backend Developer</option>
+                                <option value="Mobile Developer">Mobile Developer</option>
+                            </select>
+                            <button class="btn btn-primary px-3" type="button">Add</button>
+                        </div>
                     </div>
+
+                    <!-- Locations Section -->
+                    <div class="mb-4">
+                        <label class="form-label text-uppercase small">Locations</label>
+                        <div class="d-flex flex-wrap gap-2 mb-2">
+                            <div class="category-tag">
+                                Jakarta
+                                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+                            </div>
+                            <div class="category-tag">
+                                Semarang
+                                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+                            </div>
+                            <div class="category-tag">
+                                Bali
+                                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <select class="form-select">
+                                <option value="">Select Location</option>
+                                <option value="Jakarta">Jakarta</option>
+                                <option value="Semarang">Semarang</option>
+                                <option value="Bali">Bali</option>
+                            </select>
+                            <button class="btn btn-primary px-3" type="button">Add</button>
+                        </div>
+                    </div>
+
+                    <!-- Employment Types Section -->
+                    <div class="mb-4">
+                        <label class="form-label text-uppercase small">Employment Types</label>
+                        <div class="d-flex flex-wrap gap-2 mb-2">
+                            <div class="category-tag">
+                                Full Time
+                                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+                            </div>
+                            <div class="category-tag">
+                                Internship
+                                <button class="btn-close btn-close-sm ms-2" type="button"></button>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <select class="form-select">
+                                <option value="">Select Employment Type</option>
+                                <option value="Full Time">Full Time</option>
+                                <option value="Internship">Internship</option>
+                            </select>
+                            <button class="btn btn-primary px-3" type="button">Add</button>
+                        </div>
+                    </div>
+
+                    <!-- Status Toggle -->
                     <div class="mb-3">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" id="editEmploymentTypeStatus" type="checkbox" checked>
-                            <label class="form-check-label fw-bold" for="editEmploymentTypeStatus">
-                                Status
-                                <span class="ms-1 text-success edit-status-text">Active</span>
-                            </label>
+                        <div class="col-12 d-flex">
+                            <div class="form-check form-switch ms-2">
+                                <input class="form-check-input" type="checkbox" id="editDepartmentStatus" checked>
+                                <label class="form-check-label" for="editDepartmentStatus">
+                                    Department Status
+                                    <span class="ms-1 text-success status-text">Active</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" form="editEmploymentTypeForm" class="btn btn-primary">Save Changes</button>
+                <button type="submit" form="editDepartmentForm" class="btn btn-primary">Save Changes</button>
             </div>
         </div>
     </div>
 </div>
 
-<script>
-    // Handle status toggles
-    document.querySelectorAll('.form-check-input').forEach(toggle => {
-        toggle.addEventListener('change', function () {
-            const statusText = this.parentElement.querySelector('.status-text, .edit-status-text');
-            if (this.checked) {
-                statusText.textContent = 'Active';
-                statusText.classList.remove('text-danger');
-                statusText.classList.add('text-success');
-            } else {
-                statusText.textContent = 'Inactive';
-                statusText.classList.remove('text-success');
-                statusText.classList.add('text-danger');
-            }
-        });
-    });
-
-    // Form submissions
-    ['departmentForm', 'positionForm', 'locationForm', 'employmentTypeForm'].forEach(formId => {
-        document.getElementById(formId).addEventListener('submit', function (e) {
-            e.preventDefault();
-            // Add your form submission logic here
-            const modal = bootstrap.Modal.getInstance(this.closest('.modal'));
-            modal.hide();
-        });
-    });
-
-    // Handle form submissions for edit forms
-    ['editDepartmentForm', 'editPositionForm', 'editLocationForm', 'editEmploymentTypeForm'].forEach(formId => {
-        document.getElementById(formId).addEventListener('submit', function (e) {
-            e.preventDefault();
-            // Add your form submission logic here
-            const modal = bootstrap.Modal.getInstance(this.closest('.modal'));
-            modal.hide();
-        });
-    });
-
-    // Handle edit button clicks to populate data
-    document.addEventListener('click', function (e) {
-        if (e.target.closest('[data-bs-target="#editDepartmentModal"]')) {
-            // Populate department data
-            // You can fetch the actual data from your backend here
-            document.getElementById('editDepartmentName').value = 'Information Technology';
-            document.getElementById('editDepartmentCode').value = 'IT';
-            document.getElementById('editDepartmentStatus').checked = true;
-        }
-
-        if (e.target.closest('[data-bs-target="#editPositionModal"]')) {
-            // Populate position data
-            document.getElementById('editPositionName').value = 'Software Engineer';
-            document.getElementById('editPositionDepartment').value = 'IT';
-            document.getElementById('editPositionCode').value = 'SE';
-            document.getElementById('editPositionStatus').checked = true;
-        }
-
-        if (e.target.closest('[data-bs-target="#editLocationModal"]')) {
-            // Populate location data
-            document.getElementById('editLocationName').value = 'Jakarta';
-            document.getElementById('editLocationDepartment').value = 'IT';
-            document.getElementById('editLocationPosition').value = 'SE';
-            document.getElementById('editLocationType').value = 'FT';
-            document.getElementById('editLocationStatus').checked = true;
-        }
-
-        if (e.target.closest('[data-bs-target="#editOpportunityModal"]')) {
-            // Populate opportunity data
-            document.getElementById('editOpportunityPosition').value = 'SE';
-            document.getElementById('editOpportunityDepartment').value = 'IT';
-            document.getElementById('editOpportunityType').value = 'FT';
-            document.getElementById('editOpportunityStatus').checked = true;
-        }
-    });
-
-    // Handle form submissions for create forms
-    document.getElementById('opportunityForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        // Add your form submission logic here
-        const modal = bootstrap.Modal.getInstance(this.closest('.modal'));
-        modal.hide();
-    });
-
-    document.getElementById('editOpportunityForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        // Add your form submission logic here
-        const modal = bootstrap.Modal.getInstance(this.closest('.modal'));
-        modal.hide();
-    });
-
-    // Initialize tooltips
-    document.addEventListener('DOMContentLoaded', function () {
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl)
-        });
-    });
-</script>
-
 <style>
     .category-tag {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
         padding: 0.25rem 0.5rem;
         font-size: 0.875rem;
-        font-weight: 500;
-        line-height: 1;
         color: #495057;
         background-color: #f8f9fa;
         border: 1px solid #dee2e6;
         border-radius: 0.25rem;
     }
 
-    .more-tag {
-        cursor: pointer;
-        background-color: #e9ecef;
+    .btn-close-sm {
+        font-size: 0.5rem;
+        padding: 0.25rem;
+    }
+
+    .form-select {
+        min-width: 200px;
+    }
+
+    .modal-dialog {
+        max-width: 500px;
+    }
+
+    /* Override Bootstrap's default button styles */
+    .btn-primary {
+        background-color: #6f42c1;
+        border-color: #6f42c1;
+    }
+
+    .btn-outline-primary {
+        color: #6f42c1;
+        border-color: #6f42c1;
+    }
+
+    .btn-outline-primary:hover {
+        background-color: #6f42c1;
+        border-color: #6f42c1;
+    }
+
+    /* Consistent label styling */
+    .form-label {
+        margin-bottom: 0.5rem;
         color: #6c757d;
     }
 
-    .tooltip-inner {
-        max-width: 300px;
-        text-align: left;
+    .position-tags {
+        max-width: 100%;
+        min-height: fit-content;
     }
 </style>
