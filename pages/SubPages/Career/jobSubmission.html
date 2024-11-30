@@ -149,10 +149,9 @@
                                         <div class="d-flex flex-column align-items-center">
                                             <div class="text-muted small text-uppercase mb-1">Application Submitted On
                                             </div>
-                                            <div class="fs-5 fw-bold text-primary" id="appliedDate">January 1, 2024
-                                            </div>
+                                            <div class="fs-5 fw-bold text-primary" id="appliedDateJohn">November 22, 2024</div>
                                             <div class="border-bottom my-2 w-75"></div>
-                                            <div class="small text-muted" id="appliedTimeAgo">(2 months ago)</div>
+                                            <div class="small text-muted" id="appliedTimeAgoJohn"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -247,10 +246,9 @@
                                         <div class="d-flex flex-column align-items-center">
                                             <div class="text-muted small text-uppercase mb-1">Application Submitted On
                                             </div>
-                                            <div class="fs-5 fw-bold text-primary" id="appliedDate">January 1, 2024
-                                            </div>
+                                            <div class="fs-5 fw-bold text-primary" id="appliedDateJane">November 25, 2024</div>
                                             <div class="border-bottom my-2 w-75"></div>
-                                            <div class="small text-muted" id="appliedTimeAgo">(2 months ago)</div>
+                                            <div class="small text-muted" id="appliedTimeAgoJane"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -267,8 +265,65 @@
 </div>
 
 <script>
-    // No need for complex logic anymore, each modal has its own hardcoded content
-    // Just keep the date formatting logic if needed
+    function getTimeAgo(date) {
+        const now = new Date();
+        const diff = date - now;
+        
+        // Convert milliseconds to days/months/years
+        const days = Math.floor(Math.abs(diff) / (1000 * 60 * 60 * 24));
+        const months = Math.floor(days / 30);
+        const years = Math.floor(months / 12);
+        
+        if (diff < 0) {
+            // Past dates
+            if (years > 0) return `${years} ${years === 1 ? 'year' : 'years'} ago`;
+            if (months > 0) return `${months} ${months === 1 ? 'month' : 'months'} ago`;
+            if (days > 0) return `${days} ${days === 1 ? 'day' : 'days'} ago`;
+            return 'today';
+        } else {
+            // Future dates
+            if (years > 0) return `in ${years} ${years === 1 ? 'year' : 'years'}`;
+            if (months > 0) return `in ${months} ${months === 1 ? 'month' : 'months'}`;
+            if (days > 0) return `in ${days} ${days === 1 ? 'day' : 'days'}`;
+            return 'today';
+        }
+    }
+
+    // Function to update time ago that we can call repeatedly
+    function updateTimeAgo() {
+        const applicants = [
+            { modal: '#viewDetailsModalJohn', dateId: 'appliedDateJohn', timeAgoId: 'appliedTimeAgoJohn' },
+            { modal: '#viewDetailsModalJane', dateId: 'appliedDateJane', timeAgoId: 'appliedTimeAgoJane' }
+        ];
+        
+        applicants.forEach(({ modal, dateId, timeAgoId }) => {
+            const dateEl = document.getElementById(dateId);
+            const timeAgoEl = document.getElementById(timeAgoId);
+            
+            if (dateEl && timeAgoEl) {
+                const dateStr = dateEl.textContent.trim();
+                const date = new Date(dateStr);
+                
+                // Update the time ago text
+                timeAgoEl.textContent = getTimeAgo(date);
+            }
+        });
+    }
+
+    // Update on page load
+    document.addEventListener('DOMContentLoaded', updateTimeAgo);
+
+    // Update when modals are shown
+    const modals = ['viewDetailsModalJohn', 'viewDetailsModalJane'];
+    modals.forEach(modalId => {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.addEventListener('shown.bs.modal', updateTimeAgo);
+        }
+    });
+
+    // Update every minute to keep the time fresh
+    setInterval(updateTimeAgo, 60000);
 </script>
 
 <style>
