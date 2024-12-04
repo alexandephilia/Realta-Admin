@@ -88,14 +88,17 @@
 
                                                 <!-- Experience -->
                                                 <div class="col-md-6">
-                                                    <label class="form-label" for="experience">Experience
-                                                        Required</label>
+                                                    <label class="form-label" for="experience">Job Level</label>
                                                     <select class="form-select" id="experience" required>
-                                                        <option value="">Select Experience</option>
-                                                        <option value="fresh">Fresh Graduate</option>
-                                                        <option value="1-3">1-3 Years</option>
-                                                        <option value="3-5">3-5 Years</option>
-                                                        <option value="5+">5+ Years</option>
+                                                        <option value="">Select Job Level</option>
+                                                        <option value="entry">Entry Level</option>
+                                                        <option value="junior">Junior Level</option>
+                                                        <option value="mid">Mid Level</option>
+                                                        <option value="senior">Senior Level</option>
+                                                        <option value="lead">Team Lead</option>
+                                                        <option value="manager">Manager Level</option>
+                                                        <option value="director">Director Level</option>
+                                                        <option value="executive">Executive Level</option>
                                                     </select>
                                                 </div>
 
@@ -141,7 +144,7 @@
                         <th class="text-center">Position</th>
                         <th class="text-center">Opportunity</th>
                         <th class="text-center">Location</th>
-                        <th class="text-center">Experience</th>
+                        <th class="text-center">Job Level</th>
                         <th class="text-center">Status</th>
                         <th class="text-center">Action</th>
                     </tr>
@@ -153,7 +156,7 @@
                         <td class="text-center">Software Engineer</td>
                         <td class="text-center">Full Time</td>
                         <td class="text-center">Jakarta</td>
-                        <td class="text-center">3-5 Years</td>
+                        <td class="text-center">Senior Level</td>
                         <td class="text-center">
                             <span class="badge badge-phoenix fs-10 badge-phoenix-success">
                                 <span class="fa fa-check"></span>
@@ -176,7 +179,7 @@
                         <td class="text-center">Business Analyst</td>
                         <td class="text-center">Internship</td>
                         <td class="text-center">Semarang</td>
-                        <td class="text-center">Fresh Graduate</td>
+                        <td class="text-center">Entry Level</td>
                         <td class="text-center">
                             <span class="badge badge-phoenix fs-10 badge-phoenix-success">
                                 <span class="fa fa-check"></span>
@@ -289,14 +292,17 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label class="form-label" for="editExperience">Experience
-                                                        Required</label>
+                                                    <label class="form-label" for="editExperience">Job Level</label>
                                                     <select class="form-select" id="editExperience" required>
-                                                        <option value="">Select Experience</option>
-                                                        <option value="fresh">Fresh Graduate</option>
-                                                        <option value="1-3">1-3 Years</option>
-                                                        <option value="3-5">3-5 Years</option>
-                                                        <option value="5+">5+ Years</option>
+                                                        <option value="">Select Job Level</option>
+                                                        <option value="entry">Entry Level</option>
+                                                        <option value="junior">Junior Level</option>
+                                                        <option value="mid">Mid Level</option>
+                                                        <option value="senior">Senior Level</option>
+                                                        <option value="lead">Team Lead</option>
+                                                        <option value="manager">Manager Level</option>
+                                                        <option value="director">Director Level</option>
+                                                        <option value="executive">Executive Level</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-12 d-flex justify-content-end">
@@ -493,7 +499,7 @@
             const position = row.cells[2].textContent.trim();
             const type = row.cells[3].textContent.trim();
             const location = row.cells[4].textContent.trim();
-            const experience = row.cells[5].textContent.trim();
+            const jobLevel = row.cells[5].textContent.trim();
             const isActive = row.cells[6].querySelector('.badge-phoenix-success') !== null;
 
             // Populate the edit modal
@@ -535,7 +541,16 @@
             document.getElementById('editOpportunity').value = type === 'Full Time' ? 'fulltime' :
                 'internship';
             document.getElementById('editLocation').value = location;
-            document.getElementById('editExperience').value = experience.toLowerCase().replace(' ', '');
+            document.getElementById('editExperience').value = {
+                'Entry Level': 'entry',
+                'Junior Level': 'junior',
+                'Mid Level': 'mid',
+                'Senior Level': 'senior',
+                'Team Lead': 'lead',
+                'Manager Level': 'manager',
+                'Director Level': 'director',
+                'Executive Level': 'executive'
+            }[jobLevel] || '';
 
             // Set the status switch
             const statusSwitch = document.getElementById('editJobStatus');
