@@ -115,13 +115,12 @@
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <h6 class="mb-0">Menu</h6>
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="text-body fw-semibold fs-sm">List</span>
-                                            <div class="form-check form-switch mb-0">
-                                                <input class="form-check-input" type="checkbox" id="menuTypeSwitch" 
-                                                       style="width: 32px; height: 16px; cursor: pointer;">
-                                            </div>
-                                            <span class="text-body fw-semibold fs-sm">Text</span>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="menuTypeSwitch" checked>
+                                            <label class="form-check-label" for="menuTypeSwitch">
+                                                Type
+                                                <span class="ms-1 menu-type-text text-success">Text</span>
+                                            </label>
                                         </div>
                                     </div>
                                     <div class="row g-3">
@@ -277,29 +276,45 @@
         statusText.classList.remove('text-danger');
         statusText.classList.add('text-success');
         
-        // Reset menu type to default (List)
+        // Reset menu type switch to Text mode
         const menuTypeSwitch = document.getElementById('menuTypeSwitch');
-        menuTypeSwitch.checked = false;
-        
-        // Trigger the change event to update fields visibility
-        menuTypeSwitch.dispatchEvent(new Event('change'));
-    });
-
-    // Handle menu type toggle
-    document.getElementById('menuTypeSwitch').addEventListener('change', function() {
+        const menuTypeText = menuTypeSwitch.parentElement.querySelector('.menu-type-text');
         const descriptionField = document.getElementById('descriptionField');
         const listFields = document.getElementById('listFields');
         
-        if (!this.checked) {
+        menuTypeSwitch.checked = true;
+        menuTypeText.textContent = 'Text';
+        menuTypeText.classList.remove('text-primary');
+        menuTypeText.classList.add('text-success');
+        
+        // Show description field and hide list fields
+        descriptionField.classList.remove('d-none');
+        listFields.classList.add('d-none');
+        document.getElementById('menuDescription').required = true;
+    });
+
+    // Update menu type toggle handler
+    document.getElementById('menuTypeSwitch').addEventListener('change', function() {
+        const descriptionField = document.getElementById('descriptionField');
+        const listFields = document.getElementById('listFields');
+        const menuTypeText = this.parentElement.querySelector('.menu-type-text');
+        
+        if (this.checked) {
             // Text mode
             descriptionField.classList.remove('d-none');
             listFields.classList.add('d-none');
             document.getElementById('menuDescription').required = true;
+            menuTypeText.textContent = 'Text';
+            menuTypeText.classList.remove('text-primary');
+            menuTypeText.classList.add('text-success');
         } else {
             // List mode
             descriptionField.classList.add('d-none');
             listFields.classList.remove('d-none');
             document.getElementById('menuDescription').required = false;
+            menuTypeText.textContent = 'List';
+            menuTypeText.classList.remove('text-success');
+            menuTypeText.classList.add('text-primary');
         }
     });
 </script>
@@ -325,5 +340,17 @@
 
     .fs-sm {
         font-size: 0.875rem;
+    }
+
+    .menu-type-text {
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
+
+    .form-switch .form-check-input {
+        width: 32px;
+        height: 16px;
+        cursor: pointer;
+        margin-top: 6px;
     }
 </style>
