@@ -145,39 +145,87 @@
                                         <!-- List Fields (shown only in List mode) -->
                                         <div class="col-12 d-none" id="listFields">
                                             <div class="row g-3">
-                                                <!-- Column 1 -->
+                                                <!-- Left Column -->
                                                 <div class="col-md-4">
-                                                    <label class="form-label">Column 1</label>
-                                                    <div class="list-group-item p-3 mb-2">
-                                                        <input type="text" class="form-control mb-2" placeholder="Link Title 1">
-                                                        <input type="url" class="form-control mb-2" placeholder="URL 1">
-                                                        <button type="button" class="btn btn-falcon-default btn-sm w-100">
-                                                            <span class="fas fa-plus me-1"></span>Add Link
-                                                        </button>
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <h6 class="mb-0">Left Icon</h6>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="items-container mb-3">
+                                                                <!-- Dynamic items will be added here -->
+                                                            </div>
+                                                            <div class="input-section pt-3">
+                                                                <div class="mb-3">
+                                                                    <div class="input-group mb-2">
+                                                                        <span class="input-group-text">
+                                                                            <i class="fas fa-icons"></i>
+                                                                        </span>
+                                                                        <input type="text" class="form-control icon-input" placeholder="Icon Class (e.g. fas fa-home)">
+                                                                    </div>
+                                                                    <textarea class="form-control desc-input" rows="2" placeholder="Column Description"></textarea>
+                                                                </div>
+                                                                <button type="button" class="btn btn-falcon-default btn-sm w-100 add-item" data-max="6">
+                                                                    <span class="fas fa-plus me-1"></span>Add Item
+                                                                </button>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 
-                                                <!-- Column 2 -->
+                                                <!-- Middle Column -->
                                                 <div class="col-md-4">
-                                                    <label class="form-label">Column 2</label>
-                                                    <div class="list-group-item p-3 mb-2">
-                                                        <input type="text" class="form-control mb-2" placeholder="Link Title 2">
-                                                        <input type="url" class="form-control mb-2" placeholder="URL 2">
-                                                        <button type="button" class="btn btn-falcon-default btn-sm w-100">
-                                                            <span class="fas fa-plus me-1"></span>Add Link
-                                                        </button>
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <h6 class="mb-0">Middle Icon</h6>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="items-container mb-3">
+                                                                <!-- Dynamic items will be added here -->
+                                                            </div>
+                                                            <div class="input-section pt-3">
+                                                                <div class="mb-3">
+                                                                    <div class="input-group mb-2">
+                                                                        <span class="input-group-text">
+                                                                            <i class="fas fa-icons"></i>
+                                                                        </span>
+                                                                        <input type="text" class="form-control icon-input" placeholder="Icon Class (e.g. fas fa-cloud)">
+                                                                    </div>
+                                                                    <textarea class="form-control desc-input" rows="2" placeholder="Column Description"></textarea>
+                                                                </div>
+                                                                <button type="button" class="btn btn-falcon-default btn-sm w-100 add-item" data-max="6">
+                                                                    <span class="fas fa-plus me-1"></span>Add Item
+                                                                </button>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 
-                                                <!-- Column 3 -->
+                                                <!-- Right Column -->
                                                 <div class="col-md-4">
-                                                    <label class="form-label">Column 3</label>
-                                                    <div class="list-group-item p-3 mb-2">
-                                                        <input type="text" class="form-control mb-2" placeholder="Link Title 3">
-                                                        <input type="url" class="form-control mb-2" placeholder="URL 3">
-                                                        <button type="button" class="btn btn-falcon-default btn-sm w-100">
-                                                            <span class="fas fa-plus me-1"></span>Add Link
-                                                        </button>
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <h6 class="mb-0">Right Icon</h6>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="items-container mb-3">
+                                                                <!-- Dynamic items will be added here -->
+                                                            </div>
+                                                            <div class="input-section pt-3">
+                                                                <div class="mb-3">
+                                                                    <div class="input-group mb-2">
+                                                                        <span class="input-group-text">
+                                                                            <i class="fas fa-icons"></i>
+                                                                        </span>
+                                                                        <input type="text" class="form-control icon-input" placeholder="Icon Class (e.g. fas fa-code)">
+                                                                    </div>
+                                                                    <textarea class="form-control desc-input" rows="2" placeholder="Column Description"></textarea>
+                                                                </div>
+                                                                <button type="button" class="btn btn-falcon-default btn-sm w-100 add-item" data-max="6">
+                                                                    <span class="fas fa-plus me-1"></span>Add Item
+                                                                </button>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -191,11 +239,11 @@
 
                                         <!-- Status Switch -->
                                         <div class="col-12">
-                                            <div class="form-check form-switch" style="padding-left: 1.5em !important;">
+                                            <div class="form-check form-switch" ">
                                                 <input class="form-check-input" type="checkbox" id="menuStatus" checked>
                                                 <label class="form-check-label" for="menuStatus">
                                                     Menu Status
-                                                    <span class="ms-1 text-success status-text">Active</span>
+                                                    <span class="text-success status-text">Active</span>
                                                 </label>
                                             </div>
                                         </div>
@@ -311,6 +359,126 @@
             }
         });
     });
+
+    // Function to check and update button state
+    function updateAddButtonState(container, button) {
+        const maxItems = parseInt(button.dataset.max);
+        const currentItems = container.children.length;
+        button.disabled = currentItems >= maxItems;
+        if (currentItems >= maxItems) {
+            button.classList.add('disabled');
+        } else {
+            button.classList.remove('disabled');
+        }
+    }
+
+    // Handle enter key on inputs
+    document.querySelectorAll('.icon-input, .desc-input').forEach(input => {
+        input.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const cardBody = this.closest('.card-body');
+                const iconInput = cardBody.querySelector('.icon-input');
+                const descInput = cardBody.querySelector('.desc-input');
+                const container = cardBody.querySelector('.items-container');
+                const addButton = cardBody.querySelector('.add-item');
+                
+                // Only proceed if both fields have values
+                if (iconInput.value.trim() && descInput.value.trim()) {
+                    const maxItems = parseInt(addButton.dataset.max);
+                    
+                    if (container.children.length >= maxItems) {
+                        alert(`Maximum ${maxItems} items allowed!`);
+                        return;
+                    }
+
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'menu-item mb-2';
+                    itemDiv.innerHTML = `
+                        <div class="d-flex justify-content-between align-items-center border-bottom pb-2">
+                            <div class="d-flex align-items-center">
+                                <i class="${iconInput.value}" style="font-size: 1rem; margin-right: 10px;"></i>
+                                <span>${descInput.value}</span>
+                            </div>
+                            <button type="button" class="btn btn-sm delete-item">
+                                <span class="fas fa-times"></span>
+                            </button>
+                        </div>
+                    `;
+                    
+                    // Add to top of items container
+                    container.appendChild(itemDiv);
+
+                    // Clear inputs
+                    iconInput.value = '';
+                    descInput.value = '';
+                    iconInput.focus();
+                    
+                    // Add delete handler
+                    itemDiv.querySelector('.delete-item').addEventListener('click', function() {
+                        itemDiv.remove();
+                        // Update button state when item is removed
+                        updateAddButtonState(container, addButton);
+                    });
+
+                    // Update button state
+                    updateAddButtonState(container, addButton);
+                }
+            }
+        });
+    });
+
+    // Update the Add Item button handler
+    document.querySelectorAll('.add-item').forEach(button => {
+        button.addEventListener('click', function() {
+            const cardBody = this.closest('.card-body');
+            const iconInput = cardBody.querySelector('.icon-input');
+            const descInput = cardBody.querySelector('.desc-input');
+            const container = cardBody.querySelector('.items-container');
+            
+            // Only proceed if both fields have values
+            if (iconInput.value.trim() && descInput.value.trim()) {
+                const maxItems = parseInt(this.dataset.max);
+                
+                if (container.children.length >= maxItems) {
+                    alert(`Maximum ${maxItems} items allowed!`);
+                    return;
+                }
+
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'menu-item mb-2';
+                itemDiv.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-center border-bottom pb-2">
+                        <div class="d-flex align-items-center">
+                            <i class="${iconInput.value}" style="font-size: 1rem; margin-right: 10px;"></i>
+                            <span>${descInput.value}</span>
+                        </div>
+                        <button type="button" class="btn btn-sm delete-item">
+                            <span class="fas fa-times"></span>
+                        </button>
+                    </div>
+                `;
+                
+                // Add to top of items container
+                container.appendChild(itemDiv);
+
+                // Clear inputs
+                iconInput.value = '';
+                descInput.value = '';
+                iconInput.focus();
+                
+                // Add delete handler
+                itemDiv.querySelector('.delete-item').addEventListener('click', function() {
+                    itemDiv.remove();
+                    // Update button state when item is removed
+                    updateAddButtonState(container, button);
+                });
+
+                // Update button state
+                updateAddButtonState(container, button);
+            }
+        });
+    });
 </script>
 
 <!-- Add this CSS -->
@@ -345,6 +513,8 @@
         display: flex;
         align-items: center;
         gap: 0.3rem;
+        padding-left: 0 !important; /* Remove default padding */
+        margin-left: -5px; /* Move slightly to the left */
     }
 
     .form-switch .form-check-input {
@@ -352,7 +522,7 @@
         height: 16px;
         cursor: pointer;
         margin-top: 0;
-        margin-left: 0;
+        margin-left: 8px; /* Add small margin to prevent touching edge */
         flex-shrink: 0;
     }
 
@@ -361,6 +531,7 @@
         align-items: center;
         gap: 0.5rem;
         margin-bottom: 0;
+        padding-left: 8px; /* Add padding to label for spacing */
     }
 
     .menu-type-text {
@@ -405,5 +576,26 @@
 
     .view-toggle-wrapper .btn:hover:not(.btn-check:checked + .btn) {
         background: rgba(var(--phoenix-primary-rgb), 0.1);
+    }
+
+    /* Add these styles to your existing CSS */
+    .btn-falcon-default.disabled,
+    .btn-falcon-default:disabled {
+        background-color: #f8f9fa;
+        color: #95aac9;
+        cursor: not-allowed;
+        opacity: 0.65;
+        pointer-events: none;
+        border: none;
+    }
+
+    .btn-falcon-default.disabled .fas,
+    .btn-falcon-default:disabled .fas {
+        opacity: 0.65;
+    }
+
+    /* Optional: Add a subtle transition */
+    .btn-falcon-default {
+        transition: all 0.2s ease-in-out;
     }
 </style>
