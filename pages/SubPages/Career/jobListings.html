@@ -440,6 +440,32 @@
     // Initialize dropdowns for edit form
     populateDependentDropdowns('editDepartment', 'editPosition', 'editLocation', 'editOpportunity');
 
+    // Add reset functionality for edit modal
+    $('#editJobModal').on('hidden.bs.modal', function () {
+        // Reset the form
+        document.getElementById('editJobForm').reset();
+        
+        // Reset all select elements to disabled state except department
+        ['editPosition', 'editLocation', 'editOpportunity'].forEach(id => {
+            const select = document.getElementById(id);
+            select.innerHTML = '<option value="">Select</option>';
+            select.disabled = true;
+        });
+
+        // Reset status switch to default (active)
+        const statusSwitch = document.getElementById('editJobStatus');
+        const statusText = statusSwitch.parentElement.querySelector('.status-text');
+        statusSwitch.checked = true;
+        statusText.textContent = 'Active';
+        statusText.classList.remove('text-danger');
+        statusText.classList.add('text-success');
+
+        // Reset TinyMCE editor content
+        if (tinymce.get('editJobDescription')) {
+            tinymce.get('editJobDescription').setContent('');
+        }
+    });
+
     // Handle status toggle for both create and edit modals
     ['jobStatus', 'editJobStatus'].forEach(id => {
         document.getElementById(id).addEventListener('change', function () {
@@ -539,9 +565,10 @@
             elementpath: false,
             resize: false,
             plugins: [
-                'lists', 'link', 'image', 'code', 'table', 'help'
+                'lists', 'link', 'image', 'code', 'table', 'help', 'indent'
             ],
-            toolbar: 'styles | bold italic | alignleft aligncenter alignright | bullist numlist | link image | removeformat',
+            toolbar: 'styles | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | link image | removeformat',
+            indent_use_margin: false,
             content_style: `
                 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 14px; }
                 p { margin: 0 0 1em; }

@@ -500,6 +500,31 @@
     </div>
 </div>
 
+<!-- TinyMCE Source Code Modal -->
+<div class="modal fade" id="tinyMCESourceModal" tabindex="-1" aria-labelledby="tinyMCESourceModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tinyMCESourceModalLabel">HTML Source Code</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <textarea class="form-control font-monospace" id="tinyMCESourceCode" rows="20" style="tab-size: 2;"></textarea>
+                </div>
+                <div class="text-end mt-3">
+                    <button type="button" class="btn btn-falcon-default btn-sm" onclick="applySourceCode()">
+                        <span class="fas fa-check me-1"></span>Apply Changes
+                    </button>
+                    <button type="button" class="btn btn-falcon-default btn-sm ms-2" onclick="copyTinyMCESource()">
+                        <span class="fas fa-copy me-1"></span>Copy Code
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Add this script at the bottom of the file -->
 <script>
     // Initialize Flatpickr for both modals with consistent config
@@ -812,4 +837,248 @@
         }
     `;
     document.head.appendChild(styleSheet);
+
+    // Initialize TinyMCE for blog content
+    function initializeTinyMCE() {
+        tinymce.init({
+            selector: '.tinymce-editor',
+            height: 400,
+            menubar: false,
+            branding: false,
+            statusbar: false,
+            elementpath: false,
+            resize: false,
+            plugins: [
+                'lists', 'link', 'image', 'code', 'table', 'help', 'indent'
+            ],
+            toolbar: 'styles | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | link image | code removeformat',
+            indent_use_margin: false,
+            content_style: `
+                body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 14px; }
+                p { margin: 0 0 1em; }
+                /* Hide any remaining status indicators */
+                .tox-statusbar { display: none !important; }
+            `,
+            hidden_input: false,
+            inline: false,
+            setup: function (editor) {
+                // Override default source code button behavior
+                editor.ui.registry.addButton('code', {
+                    icon: 'sourcecode',
+                    tooltip: 'Source code',
+                    onAction: function () {
+                        showTinyMCESource(editor);
+                    }
+                });
+
+                editor.on('init', function () {
+                    const editorContainer = editor.getContainer();
+                    const customStyles = document.createElement('style');
+                    customStyles.textContent = `
+                        .tox-toolbar__group:has(.tox-tbtn--select) {
+                            width: auto !important;
+                            flex: 0 0 auto !important;
+                        }
+                        .tox-tbtn.tox-tbtn--select {
+                            width: 200px !important;
+                            min-width: 200px !important;
+                        }
+                        .tox-tbtn__select-label {
+                            width: auto !important;
+                            flex-grow: 1 !important;
+                        }
+                        /* Hide any remaining status elements */
+                        .tox-statusbar,
+                        .tox-statusbar__path,
+                        .tox-statusbar__text-container,
+                        .tox-statusbar__branding {
+                            display: none !important;
+                        }
+                    `;
+                    editorContainer.appendChild(customStyles);
+                });
+            }
+        });
+    }
+
+    // Function to show source code modal
+    function showTinyMCESource(editor) {
+        const sourceCode = editor.getContent();
+        const formattedCode = formatHTML(sourceCode);
+        document.getElementById('tinyMCESourceCode').value = formattedCode;
+
+        // Get the current active modal (edit/create modal)
+        const currentModal = document.querySelector('.modal.show');
+        const sourceCodeModal = document.getElementById('tinyMCESourceModal');
+        
+        if (currentModal) {
+            // Get the current z-index of the active modal
+            const currentZIndex = parseInt(getComputedStyle(currentModal).zIndex);
+            
+            // Set higher z-index for the source code modal
+            sourceCodeModal.style.zIndex = currentZIndex + 2;
+            
+            // Initialize modal with static backdrop
+            const modal = new bootstrap.Modal(sourceCodeModal, {
+                backdrop: 'static',
+                keyboard: false
+            });
+            modal.show();
+            
+            // Adjust backdrop z-index after modal is shown
+            setTimeout(() => {
+                const backdrop = document.querySelector('.modal-backdrop:last-child');
+                if (backdrop) {
+                    backdrop.style.zIndex = currentZIndex + 1;
+                    backdrop.style.opacity = '0.5';
+                }
+            }, 0);
+            
+            // Reset z-index when modal is hidden
+            sourceCodeModal.addEventListener('hidden.bs.modal', function handler() {
+                sourceCodeModal.style.zIndex = '';
+                this.removeEventListener('hidden.bs.modal', handler);
+            });
+        } else {
+            // If no other modal is active, show normally with static backdrop
+            const modal = new bootstrap.Modal(sourceCodeModal, {
+                backdrop: 'static',
+                keyboard: false
+            });
+            modal.show();
+        }
+    }
+
+    // Function to format HTML with proper indentation
+    function formatHTML(html) {
+        let formatted = '';
+        let indent = '';
+        const tab = '  '; // 2 spaces for indentation
+        
+        html.split(/>\s*</).forEach(function(element) {
+            if (element.match(/^\/\w/)) {
+                indent = indent.substring(tab.length);
+            }
+            
+            formatted += indent + '<' + element + '>\r\n';
+            
+            if (element.match(/^<?\w[^>]*[^\/]$/) && !element.startsWith("input") && !element.startsWith("img")) {
+                indent += tab;
+            }
+        });
+        
+        return formatted.substring(1, formatted.length - 3);
+    }
+
+    // Function to apply source code changes
+    function applySourceCode() {
+        const sourceCode = document.getElementById('tinyMCESourceCode').value;
+        const editor = tinymce.activeEditor;
+        if (editor) {
+            editor.setContent(sourceCode);
+            bootstrap.Modal.getInstance(document.getElementById('tinyMCESourceModal')).hide();
+        }
+    }
+
+    // Function to copy source code
+    function copyTinyMCESource() {
+        const sourceCode = document.getElementById('tinyMCESourceCode');
+        sourceCode.select();
+        
+        try {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(sourceCode.value);
+            } else {
+                document.execCommand('copy');
+            }
+            
+            const copyBtn = event.currentTarget;
+            const originalText = copyBtn.innerHTML;
+            copyBtn.innerHTML = '<span class="fas fa-check me-1"></span>Copied!';
+            copyBtn.classList.add('btn-success');
+
+            setTimeout(() => {
+                copyBtn.innerHTML = originalText;
+                copyBtn.classList.remove('btn-success');
+            }, 2000);
+        } catch (err) {
+            console.error('Failed to copy text: ', err);
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = sourceCode.value;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+        }
+    }
+
+    // Initialize TinyMCE when modals are shown
+    $('#createBlogModal').on('shown.bs.modal', function () {
+        tinymce.remove('.tinymce-editor'); // Remove existing instances first
+        initializeTinyMCE();
+    });
+
+    $('#editBlogModal').on('shown.bs.modal', function () {
+        tinymce.remove('.tinymce-editor'); // Remove existing instances first
+        initializeTinyMCE();
+    });
+
+    // Clean up TinyMCE instances when modals are hidden
+    $('#createBlogModal, #editBlogModal').on('hidden.bs.modal', function () {
+        tinymce.remove('.tinymce-editor');
+    });
+
+    // Add reset functionality for edit blog modal
+    $('#editBlogModal').on('hidden.bs.modal', function () {
+        // Reset the form
+        document.getElementById('editBlogForm').reset();
+        
+        // Reset image preview
+        const editImagePreview = document.getElementById('editImagePreview');
+        const editUploadText = document.getElementById('editUploadText');
+        editImagePreview.src = 'assets/img/generic/empty-image.png';
+        editUploadText.style.removeProperty('display');
+        document.getElementById('editRemoveImage').classList.add('d-none');
+        
+        // Reset all select elements
+        document.getElementById('editCategory').value = '';
+        
+        // Reset status switches
+        const statusSwitch = document.getElementById('editArticleStatus');
+        const statusText = statusSwitch.parentElement.querySelector('.status-text');
+        statusSwitch.checked = true;
+        statusText.textContent = 'Active';
+        statusText.classList.remove('text-danger');
+        statusText.classList.add('text-success');
+        
+        // Reset featured switch
+        const featuredSwitch = document.getElementById('editArticleFeatured');
+        const featuredText = featuredSwitch.parentElement.querySelector('.featured-text');
+        featuredSwitch.checked = false;
+        featuredText.textContent = 'No';
+        featuredText.classList.remove('text-success');
+        featuredText.classList.add('text-danger');
+        
+        // Reset hashtags container
+        const hashtagContainer = this.querySelector('.hashtag-container');
+        if (hashtagContainer) {
+            hashtagContainer.innerHTML = '';
+        }
+        
+        // Reset META description and character count
+        const metaDescription = document.getElementById('metaDescription');
+        if (metaDescription) {
+            metaDescription.value = '';
+            const charCount = this.querySelector('#charCount');
+            if (charCount) {
+                charCount.textContent = '0';
+                charCount.classList.remove('text-warning');
+            }
+        }
+        
+        // Reset TinyMCE editor content
+        if (tinymce.get('editContent')) {
+            tinymce.get('editContent').setContent('');
+        }
+    });
 </script>
