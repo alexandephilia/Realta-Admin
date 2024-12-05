@@ -52,7 +52,7 @@
                 </div>
 
                 <div class="text-center mb-4 iso-certification-section">
-                    <div class="iso-container p-4 bg-light rounded-3 border">
+                    <div class="iso-container p-4">
                         <div class="d-flex align-items-center justify-content-center gap-3">
                             <div class="iso-icon">
                                 <i class="fas fa-certificate fa-3x" style="background: linear-gradient(to right, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);"></i>
@@ -154,28 +154,12 @@
                                                 </div>
                                                 
                                                 <div id="isoCertDetails">
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="mb-3">
-                                                                <label class="form-label">Icon</label>
-                                                                <input type="text" class="form-control" id="isoIcon" value="fas fa-certificate" placeholder="Enter icon code">
-                                                                <div class="text-center mt-2 border rounded p-3" style="height: 60px; display: flex; align-items: center; justify-content: center; flex-direction: column; background-color: #f8f9fa;">
-                                                                    <div id="isoIconPreview">
-                                                                        <i class="fas fa-certificate fa-2x text-primary"></i>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        <div class="col-md-8">
-                                                            <div class="mb-3">
-                                                                <label class="form-label">Certification Text</label>
-                                                                <input type="text" class="form-control mb-2" id="isoText" 
-                                                                    value="for over 20 years, ensuring consistent quality in our services">
-                                                                <div class="form-text">
-                                                                    The text will appear after "ISO 9001 Certified"
-                                                                </div>
-                                                            </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Certification Text</label>
+                                                        <input type="text" class="form-control mb-2" id="isoText" 
+                                                            value="for over 20 years, ensuring consistent quality in our services">
+                                                        <div class="form-text">
+                                                            The text will appear after "ISO 9001 Certified"
                                                         </div>
                                                     </div>
                                                 </div>
@@ -326,20 +310,11 @@
 
         // Populate ISO certification
         const isoSection = document.querySelector('.iso-certification-section');
-        const isoIcon = isoSection?.querySelector('i');
-        const isoText = isoSection?.querySelector('p')?.textContent.trim();
+        const isoText = isoSection?.querySelector('.iso-content p')?.textContent;
         
-        if (isoSection && isoSection.style.display !== 'none' && isoText) {
+        if (isoSection && isoSection.style.display !== 'none') {
             document.getElementById('isoCertified').checked = true;
-            // Get icon classes
-            if (isoIcon) {
-                const iconClasses = Array.from(isoIcon.classList)
-                    .filter(cls => cls !== 'fa-2x' && cls !== 'me-2')
-                    .join(' ');
-                document.getElementById('isoIcon').value = iconClasses;
-                updateISOIconPreview(iconClasses);
-            }
-            document.getElementById('isoText').value = isoText.replace('ISO 9001 Certified', '').trim();
+            document.getElementById('isoText').value = isoText;
             document.getElementById('isoCertDetails').style.display = 'block';
         } else {
             document.getElementById('isoCertified').checked = false;
@@ -408,13 +383,8 @@
         
         if (isoCertified) {
             const isoText = document.getElementById('isoText').value;
-            const isoIcon = document.getElementById('isoIcon').value.trim();
-            isoSection.innerHTML = `
-                <div class="d-flex justify-content-center align-items-center mb-2 mt-2">
-                    <i class="${isoIcon} fa-2x me-2" style="background: linear-gradient(to right, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);"></i>
-                    <p class="mb-0 text-center" style="text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);"><strong>ISO 9001 Certified</strong> ${isoText}</p>
-                </div>`;
             isoSection.style.display = 'block';
+            isoSection.querySelector('.iso-content p').textContent = isoText;
         } else {
             isoSection.style.display = 'none';
         }
@@ -621,22 +591,11 @@
         animate();
     });
 
-    // Add real-time ISO icon preview
-    function updateISOIconPreview(iconCode) {
-        const preview = document.getElementById('isoIconPreview');
-        if (iconCode) {
-            preview.innerHTML = `<i class="${iconCode} fa-2x text-primary" style="background: linear-gradient(to right, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);"></i>`;
-        } else {
-            preview.innerHTML = `
-                <div class="text-danger text-center">
-                    <i class="fa-solid fa-triangle-exclamation fa-2x"></i>
-                    <div class="small mt-2">Please enter a valid icon code<br>(e.g., "fas fa-certificate")</div>
-                </div>`;
+    // Add real-time ISO text preview (optional)
+    document.getElementById('isoText').addEventListener('input', function() {
+        const previewText = document.querySelector('.iso-content p');
+        if (previewText) {
+            previewText.textContent = this.value;
         }
-    }
-
-    // Add icon preview listener
-    document.getElementById('isoIcon').addEventListener('input', function() {
-        updateISOIconPreview(this.value.trim());
     });
 </script>
