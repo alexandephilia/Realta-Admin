@@ -305,7 +305,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" form="exportForm" class="btn btn-primary">Export</button>
+                <button type="button" class="btn btn-primary" onclick="exportTableToExcel()">Export</button>
             </div>
         </div>
     </div>
@@ -408,6 +408,54 @@
 
     // Update every minute to keep the time fresh
     setInterval(updateTimeAgo, 60000);
+
+    function exportTableToExcel() {
+        // Step 1: Get table data
+        const table = document.querySelector('.table');
+        const rows = Array.from(table.querySelectorAll('tr'));
+        
+        // Step 2: Convert table data to worksheet format
+        const data = rows.map(row => {
+            return Array.from(row.querySelectorAll('th, td')).map(cell => {
+                // Skip the Action column and only get text content
+                if (cell.cellIndex === 4) return ''; // Action column
+                return cell.textContent.trim();
+            });
+        });
+
+        // Step 3: Create worksheet
+        const ws = XLSX.utils.aoa_to_sheet(data);
+
+        // Step 4: Set column widths
+        const colWidths = [
+            { wch: 20 }, // Full Name
+            { wch: 25 }, // Email Address
+            { wch: 15 }, // Phone Number
+            { wch: 20 }, // Applied Position
+        ];
+        ws['!cols'] = colWidths;
+
+        // Step 5: Create workbook
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'Job Applications');
+
+        // Step 6: Generate filename with current date
+        const date = new Date();
+        const filename = `job_applications_${date.getFullYear()}${String(date.getMonth() + 1).padStart(2, '0')}${String(date.getDate()).padStart(2, '0')}.xlsx`;
+
+        // Step 7: Trigger download
+        XLSX.writeFile(wb, filename);
+
+        // Step 8: Close the modal
+        const modal = bootstrap.Modal.getInstance(document.getElementById('exportModal'));
+        modal.hide();
+    }
+
+    // Add event listener for export form submission
+    document.getElementById('exportForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        exportTableToExcel();
+    });
 </script>
 
 <style>
@@ -482,3 +530,6 @@
         font-size: 12px;
     }
 </style>
+
+<!-- Add SheetJS library in the head section -->
+<script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
