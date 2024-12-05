@@ -7,13 +7,18 @@
         <div class="card-header bg-light">
             <div class="d-flex justify-content-between align-items-center">
                 <h5 class="mb-0">Applications</h5>
-                <div>
+                <div class="d-flex align-items-center">
                     <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#exportModal">
                         <span class="fas fa-file-export me-2"></span>Export
                     </button>
                     <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#filterModal">
                         <span class="fas fa-filter me-2"></span>Filter
                     </button>
+                    <div class="vertical-separator mx-3"></div>
+                    <div class="search-box">
+                        <input type="search" class="form-control form-control-sm search-input" placeholder="Search...">
+                        <span class="fas fa-search search-icon"></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -296,13 +301,6 @@
                             Excel (.xlsx)
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Date Range</label>
-                        <div class="d-flex gap-2">
-                            <input type="date" class="form-control" placeholder="Start Date">
-                            <input type="date" class="form-control" placeholder="End Date">
-                        </div>
-                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -339,13 +337,6 @@
                             <option value="UX">UI/UX Designer</option>
                             <option value="HR">HR Manager</option>
                         </select>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Date Range</label>
-                        <div class="d-flex gap-2">
-                            <input type="date" class="form-control" placeholder="Start Date">
-                            <input type="date" class="form-control" placeholder="End Date">
-                        </div>
                     </div>
                 </form>
             </div>
@@ -446,5 +437,48 @@
     .btn-success:active {
         background-color: #00a65f !important;
         border-color: #00a65f !important;
+    }
+
+    /* Vertical separator */
+    .vertical-separator {
+        height: 24px;
+        width: 1px;
+        background-color: #e3e6ed;
+    }
+
+    /* Search box styling */
+    .search-box {
+        position: relative;
+        width: 200px;
+    }
+
+    .search-input {
+        padding-right: 30px;
+        border-radius: 4px;
+    }
+
+    .search-box .search-input {
+        padding-left: 10px;
+    }
+
+    .search-icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #7d899b;
+        font-size: 12px;
+    }
+
+    /* Focus state for search input */
+    .search-input:focus {
+        border-color: #6f42c1;
+        box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.25);
+    }
+
+    /* Placeholder color */
+    .search-input::placeholder {
+        color: #95aac9;
+        font-size: 12px;
     }
 </style>
