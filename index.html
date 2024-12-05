@@ -143,12 +143,22 @@
               </div>
             </li>
             <li class="nav-item">
-              <div class="nav-item-wrapper"><a class="nav-link" href="#" id="megamenuSection">
+              <div class="nav-item-wrapper"><a class="nav-link dropdown-indicator label-1" href="#nv-megamenu" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-megamenu">
                   <div class="d-flex align-items-center">
+                    <div class="dropdown-indicator-icon"><span class="fas fa-caret-right"></span></div>
                     <span class="nav-link-icon"><span data-feather="grid"></span></span>
                     <span class="nav-link-text">Megamenu</span>
                   </div>
                 </a>
+                <div class="parent-wrapper label-1">
+                  <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-megamenu">
+                    <li class="collapsed-nav-item-title d-none">Megamenu</li>
+                    <li class="nav-item"><a class="nav-link" href="#" id="megamenuSection">
+                        <div class="d-flex align-items-center"><span class="nav-link-text">Menu Settings</span></div>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </li>
             <li class="nav-item">
@@ -168,7 +178,7 @@
                         <div class="d-flex align-items-center"><span class="nav-link-text">Solution</span></div>
                       </a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="#">
+                    <li class="nav-item"><a class="nav-link" href="#" id="listIndustries">
                         <div class="d-flex align-items-center"><span class="nav-link-text">Industries</span></div>
                       </a>
                     </li>

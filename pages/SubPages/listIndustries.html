@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<h4 class="mb-3 text-body mb-0">Industries</h4>
+<div class="card">
+  <div class="card-body">
+    <div class="text-end">
+      <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#createIndustryModal">
+        <span class="fas fa-plus me-2"></span>Add New Industry
+      </button>
+    </div>
+
+    <div class="table-responsive mt-4">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Ordering</th>
+            <th class="text-center">Image</th>
+            <th>Industry Name</th>
+            <th class="text-center">Description</th>
+            <th class="text-center">Active</th>
+            <th class="text-center">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-center">
+              <button class="btn px-1 btn-sm btn-falcon-default me-1">
+                <span class="fas fa-chevron-up"></span>
+              </button>
+              <button class="btn px-1 btn-sm btn-falcon-default">
+                <span class="fas fa-chevron-down"></span>
+              </button>
+            </td>
+            <td class="text-center">
+              <img src="assets/img/gallery/paris-1.png" alt="Hospitality" class="rounded" style="width: 50px; height: 50px; object-fit: cover;">
+            </td>
+            <td>Hospitality</td>
+            <td class="text-start">Comprehensive solutions for hotels, resorts, and hospitality businesses. Streamline operations, enhance guest experiences, and maximize revenue.</td>
+            <td class="text-center">
+              <span class="badge badge-phoenix fs-10 badge-phoenix-success">
+                <span class="fa fa-check"></span>
+              </span>
+            </td>
+            <td class="text-center">
+              <button class="btn btn-sm btn-falcon-default text-danger me-1">
+                <span class="fas fa-trash-alt"></span>
+              </button>
+              <button class="btn btn-sm btn-falcon-default text-warning">
+                <span class="fas fa-edit me-2"></span>Edit
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center">
+              <button class="btn px-1 btn-sm btn-falcon-default me-1">
+                <span class="fas fa-chevron-up"></span>
+              </button>
+              <button class="btn px-1 btn-sm btn-falcon-default">
+                <span class="fas fa-chevron-down"></span>
+              </button>
+            </td>
+            <td class="text-center">
+              <img src="assets/img/gallery/32.png" alt="Manufacturing" class="rounded" style="width: 50px; height: 50px; object-fit: cover;">
+            </td>
+            <td>Manufacturing</td>
+            <td class="text-start">End-to-end solutions for manufacturing enterprises. Optimize production, manage inventory, and improve supply chain efficiency.</td>
+            <td class="text-center">
+              <span class="badge badge-phoenix fs-10 badge-phoenix-success">
+                <span class="fa fa-check"></span>
+              </span>
+            </td>
+            <td class="text-center">
+              <button class="btn btn-sm btn-falcon-default text-danger me-1">
+                <span class="fas fa-trash-alt"></span>
+              </button>
+              <button class="btn btn-sm btn-falcon-default text-warning">
+                <span class="fas fa-edit me-2"></span>Edit
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center">
+              <button class="btn px-1 btn-sm btn-falcon-default me-1">
+                <span class="fas fa-chevron-up"></span>
+              </button>
+              <button class="btn px-1 btn-sm btn-falcon-default">
+                <span class="fas fa-chevron-down"></span>
+              </button>
+            </td>
+            <td class="text-center">
+              <img src="assets/img/gallery/sydney-2.png" alt="Property Management" class="rounded" style="width: 50px; height: 50px; object-fit: cover;">
+            </td>
+            <td>Property Management</td>
+            <td class="text-start">Innovative solutions for property managers and real estate businesses. Simplify tenant management, maintenance, and financial operations.</td>
+            <td class="text-center">
+              <span class="badge badge-phoenix fs-10 badge-phoenix-success">
+                <span class="fa fa-check"></span>
+              </span>
+            </td>
+            <td class="text-center">
+              <button class="btn btn-sm btn-falcon-default text-danger me-1">
+                <span class="fas fa-trash-alt"></span>
+              </button>
+              <button class="btn btn-sm btn-falcon-default text-warning">
+                <span class="fas fa-edit me-2"></span>Edit
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center">
+        <li class="page-item disabled">
+          <a class="page-link" href="#">Previous</a>
+        </li>
+        <li class="page-item active">
+          <a class="page-link" href="#">1</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">2</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">3</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<!-- Create Industry Modal -->
+<div class="modal fade" id="createIndustryModal" tabindex="-1" aria-labelledby="createIndustryModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createIndustryModalLabel">Create New Industry</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="createIndustryForm">
+          <div class="mb-3">
+            <div class="card">
+                <div class="card-body p-3">
+                    <h6 class="mb-3">Industry Image</h6>
+                    <div class="image-upload-container">
+                        <div class="preview-area" style="width: 100%; height: 200px; border: 2px dashed #dee2e6; border-radius: 8px; overflow: hidden; position: relative; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+                            <img id="industryImagePreview" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Preview" style="max-width: 100%; object-fit: cover; position: relative; z-index: 1;">
+                            <div id="uploadText" class="upload-text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 2; width: 100%;">
+                                <span class="fas fa-cloud-upload-alt fs-2"></span>
+                                <p class="mb-0 mt-2">Click or drag image here</p>
+                                <small class="text-muted d-block mt-1">Recommended: 50x50px</small>
+                            </div>
+                        </div>
+                        <input type="file" class="d-none" id="industryImage" accept="image/*" required>
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <small class="text-muted">JPG, PNG, SVG</small>
+                            <div>
+                                <button type="button" class="btn btn-falcon-default btn-sm" onclick="document.getElementById('industryImage').click()">
+                                    <span class="fas fa-upload me-1"></span>Choose
+                                </button>
+                                <button type="button" id="removeIndustryImage" class="btn btn-link btn-sm text-danger d-none">
+                                    <span class="fas fa-times me-1"></span>Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="industryName">Industry Name</label>
+            <input class="form-control" id="industryName" type="text" placeholder="Enter industry name" required />
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="industryDescription">Description</label>
+            <textarea class="form-control" id="industryDescription" rows="3" placeholder="Enter industry description" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="industryUrl">URL</label>
+            <input type="url" class="form-control" id="industryUrl" placeholder="https://">
+          </div>
+          <div class="mb-3">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="activeSwitch" checked>
+              <label class="form-check-label" for="activeSwitch">
+                Industry Status
+                <span class="menu-type-text text-success">Active</span>
+              </label>
+            </div>
+          </div>
+          <div class="text-end">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Create Industry</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<!-- Edit Industry Modal -->
+<div class="modal fade" id="editIndustryModal" tabindex="-1" aria-labelledby="editIndustryModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editIndustryModalLabel">Edit Industry</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="editIndustryForm">
+          <div class="mb-3">
+            <div class="card">
+                <div class="card-body p-3">
+                    <h6 class="mb-3">Industry Image</h6>
+                    <div class="image-upload-container">
+                        <div class="preview-area" style="width: 100%; height: 200px; border: 2px dashed #dee2e6; border-radius: 8px; overflow: hidden; position: relative; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+                            <img id="editIndustryImagePreview" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Preview" style="max-width: 100%; object-fit: cover; position: relative; z-index: 1;">
+                            <div id="editUploadText" class="upload-text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 2; width: 100%;">
+                                <span class="fas fa-cloud-upload-alt fs-2"></span>
+                                <p class="mb-0 mt-2">Click or drag image here</p>
+                                <small class="text-muted d-block mt-1">Recommended: 50x50px</small>
+                            </div>
+                        </div>
+                        <input type="file" class="d-none" id="editIndustryImage" accept="image/*">
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <small class="text-muted">JPG, PNG, SVG</small>
+                            <div>
+                                <button type="button" class="btn btn-falcon-default btn-sm" onclick="document.getElementById('editIndustryImage').click()">
+                                    <span class="fas fa-upload me-1"></span>Choose
+                                </button>
+                                <button type="button" id="editRemoveImage" class="btn btn-link btn-sm text-danger d-none">
+                                    <span class="fas fa-times me-1"></span>Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="editIndustryName">Industry Name</label>
+            <input class="form-control" id="editIndustryName" type="text" placeholder="Enter industry name" required />
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="editIndustryDescription">Description</label>
+            <textarea class="form-control" id="editIndustryDescription" rows="3" placeholder="Enter industry description" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="editIndustryUrl">URL</label>
+            <input type="url" class="form-control" id="editIndustryUrl" placeholder="https://">
+          </div>
+          <div class="mb-3">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="editActiveSwitch" checked>
+              <label class="form-check-label" for="editActiveSwitch">
+                Industry Status
+                <span class="menu-type-text text-success">Active</span>
+              </label>
+            </div>
+          </div>
+          <div class="text-end">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Update Industry</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add this CSS -->
+<style>
+    .form-check-input:checked {
+        background-color: var(--phoenix-primary) !important;
+        border-color: var(--phoenix-primary) !important;
+    }
+    
+    .form-check-input {
+        background-color: #ddd;
+        border-color: #ddd;
+    }
+    
+    .form-check-input:focus {
+        border-color: var(--phoenix-primary);
+        box-shadow: 0 0 0 0.25rem rgba(var(--phoenix-primary-rgb), 0.25);
+    }
+
+    .form-switch {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        padding-left: 0 !important;
+        margin-left: -5px;
+    }
+
+    .form-switch .form-check-input {
+        width: 32px;
+        height: 16px;
+        cursor: pointer;
+        margin-top: 0;
+        margin-left: 8px;
+        flex-shrink: 0;
+    }
+
+    .form-check-label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0;
+        padding-left: 8px;
+    }
+
+    .menu-type-text {
+        font-weight: 700;
+    }
+    
+    .menu-type-text.text-success {
+        color: var(--phoenix-success) !important;
+    }
+
+    .menu-type-text.text-danger {
+        color: var(--phoenix-danger) !important;
+    }
+</style>
+
+<!-- Add this script at the bottom of the file -->
+<script>
+    // Handle image upload preview
+    document.getElementById('industryImage').addEventListener('change', function(e) {
+        if (e.target.files && e.target.files[0]) {
+            const reader = new FileReader();
+            const preview = document.getElementById('industryImagePreview');
+            const uploadText = document.getElementById('uploadText');
+            const removeButton = document.getElementById('removeIndustryImage');
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                uploadText.style.display = 'none';
+                removeButton.classList.remove('d-none');
+            };
+
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    });
+
+    // Handle image removal
+    document.getElementById('removeIndustryImage').addEventListener('click', function() {
+        const preview = document.getElementById('industryImagePreview');
+        const uploadText = document.getElementById('uploadText');
+        const fileInput = document.getElementById('industryImage');
+        
+        preview.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+        uploadText.style.display = 'block';
+        this.classList.add('d-none');
+        fileInput.value = '';
+    });
+
+    // Handle status toggle
+    document.getElementById('activeSwitch').addEventListener('change', function() {
+        const statusText = this.parentElement.querySelector('.menu-type-text');
+        if (this.checked) {
+            statusText.textContent = 'Active';
+            statusText.classList.remove('text-danger');
+            statusText.classList.add('text-success');
+        } else {
+            statusText.textContent = 'Inactive';
+            statusText.classList.remove('text-success');
+            statusText.classList.add('text-danger');
+        }
+    });
+
+    // Reset form when modal is hidden
+    document.getElementById('createIndustryModal').addEventListener('hidden.bs.modal', function() {
+        // Reset the form
+        document.getElementById('createIndustryForm').reset();
+        
+        // Reset image preview
+        const preview = document.getElementById('industryImagePreview');
+        const uploadText = document.getElementById('uploadText');
+        const removeButton = document.getElementById('removeIndustryImage');
+        
+        preview.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+        uploadText.style.display = 'block';
+        removeButton.classList.add('d-none');
+
+        // Reset status switch
+        const statusSwitch = document.getElementById('activeSwitch');
+        const statusText = statusSwitch.parentElement.querySelector('.menu-type-text');
+        statusSwitch.checked = true;
+        statusText.textContent = 'Active';
+        statusText.classList.remove('text-danger');
+        statusText.classList.add('text-success');
+
+        // Reset URL field
+        document.getElementById('industryUrl').value = '';
+    });
+
+    // Handle edit button clicks
+    document.querySelectorAll('.btn-falcon-default.text-warning').forEach(button => {
+        button.addEventListener('click', function() {
+            const row = this.closest('tr');
+            const modal = document.getElementById('editIndustryModal');
+            
+            // Get data from the row
+            const image = row.querySelector('img');
+            const industryName = row.querySelector('td:nth-child(3)').textContent;
+            const description = row.querySelector('td:nth-child(4)').textContent;
+            const isActive = row.querySelector('.badge-phoenix-success') !== null;
+            
+            // Populate image preview
+            const preview = modal.querySelector('#editIndustryImagePreview');
+            const uploadText = modal.querySelector('#editUploadText');
+            const removeButton = modal.querySelector('#editRemoveImage');
+            
+            preview.src = image.src;
+            if (image.src) {
+                uploadText.style.display = 'none';
+                removeButton.classList.remove('d-none');
+            }
+            
+            // Populate other fields
+            modal.querySelector('#editIndustryName').value = industryName;
+            modal.querySelector('#editIndustryDescription').value = description;
+            modal.querySelector('#editIndustryUrl').value = `https://example.com/${industryName.toLowerCase().replace(/\s+/g, '-')}`;
+            
+            // Set active status
+            const statusSwitch = modal.querySelector('#editActiveSwitch');
+            const statusText = statusSwitch.parentElement.querySelector('.menu-type-text');
+            statusSwitch.checked = isActive;
+            statusText.textContent = isActive ? 'Active' : 'Inactive';
+            statusText.classList.toggle('text-success', isActive);
+            statusText.classList.toggle('text-danger', !isActive);
+            
+            // Show the modal
+            const bsModal = new bootstrap.Modal(modal);
+            bsModal.show();
+        });
+    });
+
+    // Handle image upload preview for edit modal
+    document.getElementById('editIndustryImage').addEventListener('change', function(e) {
+        if (e.target.files && e.target.files[0]) {
+            const reader = new FileReader();
+            const preview = document.getElementById('editIndustryImagePreview');
+            const uploadText = document.getElementById('editUploadText');
+            const removeButton = document.getElementById('editRemoveImage');
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                uploadText.style.display = 'none';
+                removeButton.classList.remove('d-none');
+            };
+
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    });
+
+    // Handle image removal for edit modal
+    document.getElementById('editRemoveImage').addEventListener('click', function() {
+        const preview = document.getElementById('editIndustryImagePreview');
+        const uploadText = document.getElementById('editUploadText');
+        const fileInput = document.getElementById('editIndustryImage');
+        
+        preview.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+        uploadText.style.display = 'block';
+        this.classList.add('d-none');
+        fileInput.value = '';
+    });
+
+    // Handle status toggle for edit modal
+    document.getElementById('editActiveSwitch').addEventListener('change', function() {
+        const statusText = this.parentElement.querySelector('.menu-type-text');
+        if (this.checked) {
+            statusText.textContent = 'Active';
+            statusText.classList.remove('text-danger');
+            statusText.classList.add('text-success');
+        } else {
+            statusText.textContent = 'Inactive';
+            statusText.classList.remove('text-success');
+            statusText.classList.add('text-danger');
+        }
+    });
+
+    // Reset edit form when modal is hidden
+    document.getElementById('editIndustryModal').addEventListener('hidden.bs.modal', function() {
+        // Reset the form
+        document.getElementById('editIndustryForm').reset();
+        
+        // Reset image preview
+        const preview = document.getElementById('editIndustryImagePreview');
+        const uploadText = document.getElementById('editUploadText');
+        const removeButton = document.getElementById('editRemoveImage');
+        
+        preview.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+        uploadText.style.display = 'block';
+        removeButton.classList.add('d-none');
+
+        // Reset status switch
+        const statusSwitch = document.getElementById('editActiveSwitch');
+        const statusText = statusSwitch.parentElement.querySelector('.menu-type-text');
+        statusSwitch.checked = true;
+        statusText.textContent = 'Active';
+        statusText.classList.remove('text-danger');
+        statusText.classList.add('text-success');
+
+        // Reset URL field
+        document.getElementById('editIndustryUrl').value = '';
+    });
+
+    // Handle edit form submission
+    document.getElementById('editIndustryForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Here you would typically send the form data to your backend
+        // After successful update, you would update the table row with new data
+        
+        // Close the modal
+        const modal = bootstrap.Modal.getInstance(document.getElementById('editIndustryModal'));
+        modal.hide();
+    });
+</script> 

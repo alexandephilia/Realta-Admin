@@ -162,6 +162,10 @@ $(function () {
 
     // SUBPAGES //
 
+    $("#listIndustries").click(function(){
+      $('#contentPages').load('pages/SubPages/listIndustries.html');
+    });
+
     $("#aboutRealta").click(function(){
       $('#contentPages').load('pages/aboutRealta.html',function(){
             $.getScript('assets/js/pages/aboutRealta.js');
