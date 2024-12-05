@@ -52,9 +52,16 @@
                 </div>
 
                 <div class="text-center mb-4 iso-certification-section">
-                    <div class="d-flex justify-content-center align-items-center mb-2 mt-2">
-                        <i class="fas fa-certificate fa-2x me-2" style="background: linear-gradient(to right, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);"></i>
-                        <p class="mb-0 text-center" style="text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);"><strong>ISO 9001 Certified</strong> for over 20 years, ensuring consistent quality in our services</p>
+                    <div class="iso-container p-4 bg-light rounded-3 border">
+                        <div class="d-flex align-items-center justify-content-center gap-3">
+                            <div class="iso-icon">
+                                <i class="fas fa-certificate fa-3x" style="background: linear-gradient(to right, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);"></i>
+                            </div>
+                            <div class="iso-content text-start">
+                                <h5 class="mb-1">ISO 9001 Certified</h5>
+                                <p class="mb-0 text-muted">for over 20 years, ensuring consistent quality in our services</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -138,29 +145,38 @@
                                     <div class="col-12">
                                         <div class="card">
                                             <div class="card-body">
-                                                <h6 class="mb-3">ISO Certification</h6>
-                                                <div class="form-check form-switch mb-3">
-                                                    <input class="form-check-input" type="checkbox" id="isoCertified" checked>
-                                                    <label class="form-check-label" for="isoCertified">
-                                                        Show ISO Certification
-                                                    </label>
+                                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                                    <h6 class="mb-0">ISO Certification</h6>
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" id="isoCertified" checked>
+                                                        <label class="form-check-label" for="isoCertified">Show Section</label>
+                                                    </div>
                                                 </div>
+                                                
                                                 <div id="isoCertDetails">
-                                                    <!-- Add icon input -->
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Icon Code</label>
-                                                        <input type="text" class="form-control" id="isoIcon" value="fas fa-certificate" placeholder="Enter complete icon code">
-                                                        <div class="text-center mt-2 border rounded p-3">
-                                                            <div id="isoIconPreview">
-                                                                <i class="fas fa-certificate fa-2x text-primary"></i>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Icon</label>
+                                                                <input type="text" class="form-control" id="isoIcon" value="fas fa-certificate" placeholder="Enter icon code">
+                                                                <div class="text-center mt-2 border rounded p-3" style="height: 60px; display: flex; align-items: center; justify-content: center; flex-direction: column; background-color: #f8f9fa;">
+                                                                    <div id="isoIconPreview">
+                                                                        <i class="fas fa-certificate fa-2x text-primary"></i>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <!-- Text input -->
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Certification Text</label>
-                                                        <input type="text" class="form-control" id="isoText" 
-                                                            value="for over 20 years, ensuring consistent quality in our services">
+                                                        
+                                                        <div class="col-md-8">
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Certification Text</label>
+                                                                <input type="text" class="form-control mb-2" id="isoText" 
+                                                                    value="for over 20 years, ensuring consistent quality in our services">
+                                                                <div class="form-text">
+                                                                    The text will appear after "ISO 9001 Certified"
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
