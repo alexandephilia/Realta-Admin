@@ -479,6 +479,179 @@
             }
         });
     });
+
+    // Update the edit button click handler
+    document.querySelectorAll('[data-bs-target="#editCategoryModal"]').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Get the row data
+            const row = this.closest('tr');
+            const imgSrc = row.querySelector('img').src;
+            const title = row.querySelector('td:nth-child(2)').textContent;
+            const isActive = row.querySelector('.badge-phoenix-success') !== null;
+            
+            // Get the modal
+            const modal = document.getElementById('editMegamenuModal');
+            modal.querySelector('.modal-title').textContent = 'Edit Megamenu';
+            
+            // Set image preview
+            const preview = modal.querySelector('#menuImagePreview');
+            const uploadText = modal.querySelector('#uploadText');
+            const removeButton = modal.querySelector('#removeImage');
+            
+            preview.src = imgSrc;
+            uploadText.style.display = 'none';
+            removeButton.classList.remove('d-none');
+            
+            // Set title
+            modal.querySelector('#menuTitle').value = title;
+            
+            // Set URL placeholder based on title
+            const urlInput = modal.querySelector('#menuUrl');
+            urlInput.value = `https://example.com/${title.toLowerCase()}`;
+            urlInput.placeholder = `Enter ${title} URL`;
+            
+            // If title is "Cloud", set it as list view with predefined data
+            if (title === 'Cloud') {
+                // Switch to list view
+                document.getElementById('listView').checked = true;
+                document.getElementById('textView').checked = false;
+                
+                // Show list fields and hide description
+                document.getElementById('descriptionField').classList.add('d-none');
+                document.getElementById('listFields').classList.remove('d-none');
+                
+                // Predefined list data for Cloud with 6 items per column
+                const listData = {
+                    columns: {
+                        left: [
+                            { icon: 'fas fa-cloud', text: 'Cloud Storage', url: 'https://example.com/cloud/storage' },
+                            { icon: 'fas fa-server', text: 'Cloud Servers', url: 'https://example.com/cloud/servers' },
+                            { icon: 'fas fa-database', text: 'Cloud Database', url: 'https://example.com/cloud/database' },
+                            { icon: 'fas fa-hdd', text: 'Block Storage', url: 'https://example.com/cloud/block-storage' },
+                            { icon: 'fas fa-network-wired', text: 'CDN', url: 'https://example.com/cloud/cdn' },
+                            { icon: 'fas fa-memory', text: 'Cache', url: 'https://example.com/cloud/cache' }
+                        ],
+                        middle: [
+                            { icon: 'fas fa-shield-alt', text: 'Cloud Security', url: 'https://example.com/cloud/security' },
+                            { icon: 'fas fa-sync', text: 'Auto Scaling', url: 'https://example.com/cloud/auto-scaling' },
+                            { icon: 'fas fa-balance-scale', text: 'Load Balancer', url: 'https://example.com/cloud/load-balancer' },
+                            { icon: 'fas fa-project-diagram', text: 'Kubernetes', url: 'https://example.com/cloud/kubernetes' },
+                            { icon: 'fas fa-cube', text: 'Docker Containers', url: 'https://example.com/cloud/containers' },
+                            { icon: 'fas fa-microchip', text: 'Serverless', url: 'https://example.com/cloud/serverless' }
+                        ],
+                        right: [
+                            { icon: 'fas fa-chart-line', text: 'Analytics', url: 'https://example.com/cloud/analytics' },
+                            { icon: 'fas fa-clock', text: 'Monitoring', url: 'https://example.com/cloud/monitoring' },
+                            { icon: 'fas fa-tools', text: 'Management', url: 'https://example.com/cloud/management' },
+                            { icon: 'fas fa-terminal', text: 'CLI Tools', url: 'https://example.com/cloud/cli-tools' },
+                            { icon: 'fas fa-code', text: 'API Gateway', url: 'https://example.com/cloud/api-gateway' },
+                            { icon: 'fas fa-key', text: 'IAM', url: 'https://example.com/cloud/iam' }
+                        ]
+                    }
+                };
+                
+                // Populate list items
+                ['left', 'middle', 'right'].forEach((position, index) => {
+                    const container = modal.querySelectorAll('.items-container')[index];
+                    container.innerHTML = ''; // Clear existing items
+                    
+                    listData.columns[position].forEach(item => {
+                        const itemDiv = document.createElement('div');
+                        itemDiv.className = 'menu-item mb-2';
+                        itemDiv.innerHTML = `
+                            <div class="d-flex justify-content-between align-items-center border-bottom pb-2">
+                                <div class="d-flex align-items-center">
+                                    <i class="${item.icon}" style="font-size: 1rem; margin-right: 10px;"></i>
+                                    <span>${item.text}</span>
+                                </div>
+                                <button type="button" class="btn btn-sm delete-item">
+                                    <span class="fas fa-times"></span>
+                                </button>
+                            </div>
+                        `;
+                        
+                        container.appendChild(itemDiv);
+                        
+                        // Add delete handler
+                        itemDiv.querySelector('.delete-item').addEventListener('click', function() {
+                            itemDiv.remove();
+                            updateAddButtonState(container, container.parentElement.querySelector('.add-item'));
+                        });
+                    });
+                    
+                    // Update add button states
+                    updateAddButtonState(container, container.parentElement.querySelector('.add-item'));
+                });
+            } else {
+                // Default to text view for other items
+                document.getElementById('textView').checked = true;
+                document.getElementById('listView').checked = false;
+                
+                // Show description field and hide list fields
+                document.getElementById('descriptionField').classList.remove('d-none');
+                document.getElementById('listFields').classList.add('d-none');
+                
+                // Set description
+                modal.querySelector('#menuDescription').value = row.querySelector('td:nth-child(3)').textContent;
+            }
+            
+            // Set status
+            modal.querySelector('#menuStatus').checked = isActive;
+            const statusText = modal.querySelector('.status-text');
+            statusText.textContent = isActive ? 'Active' : 'Inactive';
+            statusText.className = `status-text ${isActive ? 'text-success' : 'text-danger'}`;
+            
+            // Show the modal
+            const bsModal = new bootstrap.Modal(modal);
+            bsModal.show();
+        });
+    });
+
+    // Update form submission handler to handle both create and edit
+    document.getElementById('editMegamenuForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const modal = document.getElementById('editMegamenuModal');
+        const isEdit = modal.querySelector('.modal-title').textContent === 'Edit Megamenu';
+        
+        // Get form data
+        const formData = {
+            image: modal.querySelector('#menuImagePreview').src,
+            title: modal.querySelector('#menuTitle').value,
+            isActive: modal.querySelector('#menuStatus').checked,
+            type: modal.querySelector('#textView').checked ? 'text' : 'list'
+        };
+        
+        if (formData.type === 'text') {
+            formData.description = modal.querySelector('#menuDescription').value;
+        } else {
+            formData.columns = {
+                left: [],
+                middle: [],
+                right: []
+            };
+            
+            // Get list items for each column
+            modal.querySelectorAll('.items-container').forEach((container, index) => {
+                const position = ['left', 'middle', 'right'][index];
+                container.querySelectorAll('.menu-item').forEach(item => {
+                    formData.columns[position].push({
+                        icon: item.querySelector('i').className,
+                        text: item.querySelector('span').textContent
+                    });
+                });
+            });
+        }
+        
+        // Here you would typically send the formData to your backend
+        console.log('Form submitted:', formData);
+        
+        // Close the modal
+        const bsModal = bootstrap.Modal.getInstance(modal);
+        bsModal.hide();
+    });
 </script>
 
 <!-- Add this CSS -->
