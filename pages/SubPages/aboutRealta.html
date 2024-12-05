@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<div class="mb-5">
+    <h4 class="mb-3 text-body">About Us</h4>
+
+   
+
+    <!-- About Section -->
+    <div class="card mb-4">
+        <div class="card-header bg-light">
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Company Profile</h5>
+                <div>
+                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editAboutModal">
+                        <span class="fas fa-edit me-2"></span>Edit Content
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <!-- About Us Content -->
+            <div class="about-content">
+                <div class="text-center text-muted mb-5">
+                    <span class="fw-bold">Preview:</span>
+                    <hr>
+                </div>
+                <div class="text-center mb-4">
+                    <p class="lead">Since 1983, Realta Chakradarma has been a trusted IT Solution provider, forging strong partnerships with our clients.</p>
+                </div>
+
+                <div class="row text-center g-4 mb-6">
+                    <div class="col-md-4">
+                        <div class="p-4 h-100 rounded">
+                            <span class="fa-solid fa-handshake fs-2 text-primary mb-3"></span>
+                            <h3 class="counter mb-1">800+</h3>
+                            <p class="mb-0">Satisfied Customers</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-4 h-100 rounded">
+                            <span class="fa-solid fa-globe fs-2 text-primary mb-3"></span>
+                            <h3 class="counter mb-1">25+</h3>
+                            <p class="mb-0">Industries Served</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-4 h-100 rounded">
+                            <span class="fa-solid fa-calendar-check fs-2 text-primary mb-3"></span>
+                            <h3 class="counter mb-1">35+</h3>
+                            <p class="mb-0">Years of Experience</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mb-4">
+                    <div class="d-flex justify-content-center align-items-center mb-2 mt-2">
+                        <i class="fas fa-certificate fa-2x me-2" style="background: linear-gradient(to right, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);"></i>
+                        <p class="mb-0 text-center" style=" text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);"><strong>ISO 9001 Certified</strong> for over 20 years, ensuring consistent quality in our services</p>
+                    </div>
+                </div>
+
+                <div id="aboutDescription" class="mt-4 mx-auto container text-start">
+                    Our reach extends throughout South East Asia and Japan, serving diverse sectors with tailored IT solutions. At Realta, we continuously adapt to the ever-evolving landscape of technology, embracing the latest product features and staying at the forefront of digital transformation trends.
+                </div>
+            </div>
+
+            <!-- Edit Modal -->
+            <div class="modal fade" id="editAboutModal" tabindex="-1" aria-labelledby="editAboutModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editAboutModalLabel">Edit About Us Content</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="editAboutForm">
+                                <div class="row g-3">
+                                    <!-- Title Section -->
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h6 class="mb-3">Title</h6>
+                                                <textarea class="form-control" id="aboutTitle" rows="2">Since 1983, Realta Chakradarma has been a trusted IT Solution provider, forging strong partnerships with our clients</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Stats Section -->
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h6 class="mb-3">Icons</h6>
+                                                <div class="row g-3">
+                                                    <div class="col-md-4">
+                                                        <div class="mt-2">
+                                                            <label class="form-label">Icon Code</label>
+                                                            <input type="text" class="form-control" id="customersIcon" value="fa-solid fa-handshake" placeholder="Enter complete icon code">
+                                                        </div>
+                                                        <div class="text-center mt-2 border rounded p-3">
+                                                            <div id="customersIconPreview"><i class="fa-solid fa-handshake fs-2 text-primary"></i></div>
+                                                        </div>
+                                                        <div class="mt-2">
+                                                            <label class="form-label">Description</label>
+                                                            <input type="text" class="form-control" id="customersDesc" value="Satisfied Customers">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="mt-2">
+                                                            <label class="form-label">Icon Code</label>
+                                                            <input type="text" class="form-control" id="industriesIcon" value="fa-solid fa-globe" placeholder="Enter complete icon code">
+                                                        </div>
+                                                        <div class="text-center mt-2 border rounded p-3">
+                                                            <div id="industriesIconPreview"><i class="fa-solid fa-globe fs-2 text-primary"></i></div>
+                                                        </div>
+                                                        <div class="mt-2">
+                                                            <label class="form-label">Description</label>
+                                                            <input type="text" class="form-control" id="industriesDesc" value="Industries Served">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="mt-2">
+                                                            <label class="form-label">Icon Code</label>
+                                                            <input type="text" class="form-control" id="yearsIcon" value="fa-solid fa-calendar-check" placeholder="Enter complete icon code">
+                                                        </div>
+                                                        <div class="text-center mt-2 border rounded p-3">
+                                                            <div id="yearsIconPreview"><i class="fa-solid fa-calendar-check fs-2 text-primary"></i></div>
+                                                        </div>
+                                                        <div class="mt-2">
+                                                            <label class="form-label">Description</label>
+                                                            <input type="text" class="form-control" id="yearsDesc" value="Years of Experience">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- ISO Certification -->
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h6 class="mb-3">ISO Certification</h6>
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" id="isoCertified" checked>
+                                                    <label class="form-check-label" for="isoCertified">
+                                                        Show ISO Certification
+                                                    </label>
+                                                </div>
+                                                <div class="mt-2" id="isoCertDetails">
+                                                    <input type="text" class="form-control" id="isoText" 
+                                                        value="ISO 9001 Certified for over 20 years, ensuring consistent quality in our services">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Main Content Editor -->
+                                    <div class="col-12">
+                                        <label class="form-label">About Us Description</label>
+                                        <textarea id="aboutContent" class="tinymce-editor"></textarea>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" form="editAboutForm" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TinyMCE Source Code Modal -->
+<div class="modal fade" id="tinyMCESourceModal" tabindex="-1" aria-labelledby="tinyMCESourceModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tinyMCESourceModalLabel">HTML Source Code</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <textarea class="form-control font-monospace" id="tinyMCESourceCode" rows="20" style="tab-size: 2;"></textarea>
+                </div>
+                <div class="text-end mt-3">
+                    <button type="button" class="btn btn-falcon-default btn-sm" onclick="applySourceCode()">
+                        <span class="fas fa-check me-1"></span>Apply Changes
+                    </button>
+                    <button type="button" class="btn btn-falcon-default btn-sm ms-2" onclick="copyTinyMCESource()">
+                        <span class="fas fa-copy me-1"></span>Copy Code
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Initialize TinyMCE
+    function initializeTinyMCE() {
+        tinymce.init({
+            selector: '.tinymce-editor',
+            height: 400,
+            menubar: false,
+            branding: false,
+            statusbar: false,
+            elementpath: false,
+            resize: false,
+            plugins: [
+                'lists', 'link', 'image', 'code', 'table', 'help', 'indent'
+            ],
+            toolbar: 'styles | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | link image | code removeformat',
+            indent_use_margin: false,
+            content_style: `
+                body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 14px; }
+                p { margin: 0 0 1em; }
+                .tox-statusbar { display: none !important; }
+            `,
+            hidden_input: false,
+            inline: false,
+            setup: function(editor) {
+                editor.ui.registry.addButton('code', {
+                    icon: 'sourcecode',
+                    tooltip: 'Source code',
+                    onAction: function () {
+                        showTinyMCESource(editor);
+                    }
+                });
+
+                editor.on('init', function() {
+                    // Set initial content from aboutDescription
+                    const aboutContent = document.getElementById('aboutDescription').innerHTML.trim();
+                    editor.setContent(aboutContent);
+                });
+            }
+        });
+    }
+
+    // Function to populate modal with current content
+    function populateModalContent() {
+        // Populate title
+        const titleElement = document.querySelector('.about-content .lead');
+        document.getElementById('aboutTitle').value = titleElement.textContent.trim();
+
+        // Populate stats
+        const statsContainers = document.querySelectorAll('.col-md-4');
+        statsContainers.forEach((container, index) => {
+            const prefix = ['customers', 'industries', 'years'][index];
+            const iconElement = container.querySelector('.fa-solid');
+            const descElement = container.querySelector('p');
+            
+            if (iconElement) {
+                const iconClasses = Array.from(iconElement.classList)
+                    .filter(cls => cls !== 'fs-2' && cls !== 'text-primary' && cls !== 'mb-3')
+                    .join(' ');
+                document.getElementById(prefix + 'Icon').value = iconClasses;
+                document.getElementById(prefix + 'IconPreview').innerHTML = 
+                    `<i class="${iconClasses} fs-2 text-primary"></i>`;
+            }
+            
+            if (descElement) {
+                document.getElementById(prefix + 'Desc').value = descElement.textContent.trim();
+            }
+        });
+
+        // Populate ISO certification
+        const isoElement = document.querySelector('.d-flex.justify-content-center p');
+        if (isoElement) {
+            document.getElementById('isoCertified').checked = true;
+            document.getElementById('isoText').value = isoElement.textContent.trim();
+            document.getElementById('isoCertDetails').style.display = 'block';
+        } else {
+            document.getElementById('isoCertified').checked = false;
+            document.getElementById('isoCertDetails').style.display = 'none';
+        }
+
+        // TinyMCE content is handled in its initialization
+    }
+
+    // Initialize when modal is shown
+    document.getElementById('editAboutModal').addEventListener('show.bs.modal', function() {
+        populateModalContent();
+        tinymce.remove('.tinymce-editor'); // Remove existing instances first
+        initializeTinyMCE();
+    });
+
+    // Clean up when modal is hidden
+    document.getElementById('editAboutModal').addEventListener('hidden.bs.modal', function() {
+        tinymce.remove('.tinymce-editor');
+    });
+
+    // Handle ISO certification toggle
+    document.getElementById('isoCertified').addEventListener('change', function() {
+        document.getElementById('isoCertDetails').style.display = this.checked ? 'block' : 'none';
+    });
+
+    // Handle form submission
+    document.getElementById('editAboutForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Update title
+        const titleText = document.getElementById('aboutTitle').value;
+        document.querySelector('.about-content .lead').textContent = titleText;
+
+        // Update stats
+        ['customers', 'industries', 'years'].forEach(prefix => {
+            const iconInput = document.getElementById(prefix + 'Icon');
+            const descInput = document.getElementById(prefix + 'Desc');
+            const container = document.querySelector(`.col-md-4:nth-child(${['customers', 'industries', 'years'].indexOf(prefix) + 1})`);
+            
+            if (container) {
+                const iconElement = container.querySelector('.fs-2');
+                if (iconElement) {
+                    // Remove all existing classes first
+                    iconElement.className = '';
+                    // Add new classes one by one
+                    const newClasses = iconInput.value.trim().split(' ').concat(['fs-2', 'text-primary', 'mb-3']);
+                    iconElement.classList.add(...newClasses);
+                }
+                const descElement = container.querySelector('p');
+                if (descElement) {
+                    descElement.textContent = descInput.value;
+                }
+            }
+        });
+
+        // Update ISO certification
+        const isoCertified = document.getElementById('isoCertified').checked;
+        const isoContainer = document.querySelector('.d-flex.justify-content-center');
+        if (isoCertified) {
+            const isoText = document.getElementById('isoText').value;
+            isoContainer.style.display = '';
+            isoContainer.querySelector('p').textContent = isoText;
+        } else {
+            isoContainer.style.display = 'none';
+        }
+
+        // Update main content
+        const editor = tinymce.get('aboutContent');
+        if (editor) {
+            document.getElementById('aboutDescription').innerHTML = editor.getContent();
+        }
+
+        // Close modal
+        bootstrap.Modal.getInstance(document.getElementById('editAboutModal')).hide();
+    });
+
+    // Add real-time icon preview
+    ['customers', 'industries', 'years'].forEach(prefix => {
+        const input = document.getElementById(prefix + 'Icon');
+        const preview = document.getElementById(prefix + 'IconPreview');
+        
+        // Add consistent styling to preview container
+        preview.style.height = '130px';
+        preview.style.display = 'flex';
+        preview.style.alignItems = 'center';
+        preview.style.justifyContent = 'center';
+        preview.style.flexDirection = 'column';
+        preview.style.border = '1px solid #dee2e6';
+        preview.style.borderRadius = '0.375rem';
+        preview.style.padding = '1rem';
+        preview.style.backgroundColor = '#f8f9fa';
+        
+        input.addEventListener('input', function() {
+            const iconCode = this.value.trim();
+            if (iconCode) {
+                // Clear existing content
+                preview.innerHTML = '';
+                // Create new icon element
+                const iconElement = document.createElement('i');
+                // Add classes one by one
+                const classes = iconCode.split(' ').concat(['fs-2', 'text-primary']);
+                iconElement.classList.add(...classes);
+                preview.appendChild(iconElement);
+            } else {
+                preview.innerHTML = `
+                    <div class="text-danger text-center">
+                        <i class="fa-solid fa-triangle-exclamation fs-2"></i>
+                        <div class="small mt-2">Please enter a valid icon code<br>(e.g., "fa-solid fa-home")</div>
+                    </div>`;
+            }
+        });
+    });
+
+    // Add real-time description preview
+    ['customers', 'industries', 'years'].forEach(prefix => {
+        document.getElementById(prefix + 'Desc').addEventListener('input', function() {
+            const statItems = document.querySelectorAll('.counter');
+            const index = ['customers', 'industries', 'years'].indexOf(prefix);
+            const parentDiv = statItems[index].closest('.col-md-4');
+            parentDiv.querySelector('p').textContent = this.value;
+        });
+    });
+
+    // Function to show source code modal
+    function showTinyMCESource(editor) {
+        const sourceCode = editor.getContent();
+        const formattedCode = formatHTML(sourceCode);
+        document.getElementById('tinyMCESourceCode').value = formattedCode;
+
+        // Get the current active modal (edit modal)
+        const currentModal = document.querySelector('.modal.show');
+        const sourceCodeModal = document.getElementById('tinyMCESourceModal');
+        
+        if (currentModal) {
+            // Get the current z-index of the active modal
+            const currentZIndex = parseInt(getComputedStyle(currentModal).zIndex);
+            
+            // Set higher z-index for the source code modal
+            sourceCodeModal.style.zIndex = currentZIndex + 2;
+            
+            // Initialize modal with static backdrop
+            const modal = new bootstrap.Modal(sourceCodeModal, {
+                backdrop: 'static',
+                keyboard: false
+            });
+            modal.show();
+            
+            // Adjust backdrop z-index after modal is shown
+            setTimeout(() => {
+                const backdrop = document.querySelector('.modal-backdrop:last-child');
+                if (backdrop) {
+                    backdrop.style.zIndex = currentZIndex + 1;
+                    backdrop.style.opacity = '0.5';
+                }
+            }, 0);
+            
+            // Reset z-index when modal is hidden
+            sourceCodeModal.addEventListener('hidden.bs.modal', function handler() {
+                sourceCodeModal.style.zIndex = '';
+                this.removeEventListener('hidden.bs.modal', handler);
+            });
+        } else {
+            // If no other modal is active, show normally with static backdrop
+            const modal = new bootstrap.Modal(sourceCodeModal, {
+                backdrop: 'static',
+                keyboard: false
+            });
+            modal.show();
+        }
+    }
+
+    // Function to format HTML with proper indentation
+    function formatHTML(html) {
+        let formatted = '';
+        let indent = '';
+        const tab = '  '; // 2 spaces for indentation
+        
+        html.split(/>\s*</).forEach(function(element) {
+            if (element.match(/^\/\w/)) {
+                indent = indent.substring(tab.length);
+            }
+            
+            formatted += indent + '<' + element + '>\r\n';
+            
+            if (element.match(/^<?\w[^>]*[^\/]$/) && !element.startsWith("input") && !element.startsWith("img")) {
+                indent += tab;
+            }
+        });
+        
+        return formatted.substring(1, formatted.length - 3);
+    }
+
+    // Function to apply source code changes
+    function applySourceCode() {
+        const sourceCode = document.getElementById('tinyMCESourceCode').value;
+        const editor = tinymce.activeEditor;
+        if (editor) {
+            editor.setContent(sourceCode);
+            bootstrap.Modal.getInstance(document.getElementById('tinyMCESourceModal')).hide();
+        }
+    }
+
+    // Function to copy source code
+    function copyTinyMCESource() {
+        const sourceCode = document.getElementById('tinyMCESourceCode');
+        sourceCode.select();
+        
+        try {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(sourceCode.value);
+            } else {
+                document.execCommand('copy');
+            }
+            
+            const copyBtn = event.currentTarget;
+            const originalText = copyBtn.innerHTML;
+            copyBtn.innerHTML = '<span class="fas fa-check me-1"></span>Copied!';
+            copyBtn.classList.add('btn-success');
+
+            setTimeout(() => {
+                copyBtn.innerHTML = originalText;
+                copyBtn.classList.remove('btn-success');
+            }, 2000);
+        } catch (err) {
+            console.error('Failed to copy text: ', err);
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = sourceCode.value;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+        }
+    }
+
+    // Update the CSS styles for modal stacking
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = `
+        .modal-backdrop {
+            transition: opacity 0.15s linear;
+        }
+        .modal-backdrop + .modal-backdrop {
+            opacity: 0.5 !important;
+        }
+        .modal-dialog {
+            transition: transform 0.15s ease-out;
+        }
+    `;
+    document.head.appendChild(styleSheet);
+
+    // Initialize counters animation
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200;
+
+    counters.forEach(counter => {
+        const animate = () => {
+            const value = +counter.textContent.replace('+', '');
+            const data = +counter.innerText.replace('+', '');
+            const time = value / speed;
+            if (data < value) {
+                counter.innerText = Math.ceil(data + time) + '+';
+                setTimeout(animate, 1);
+            } else {
+                counter.innerText = value + '+';
+            }
+        }
+        animate();
+    });
+</script>

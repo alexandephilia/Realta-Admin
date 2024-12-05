@@ -167,7 +167,7 @@ $(function () {
     });
 
     $("#aboutRealta").click(function(){
-      $('#contentPages').load('pages/aboutRealta.html',function(){
+      $('#contentPages').load('pages/SubPages/aboutRealta.html',function(){
             $.getScript('assets/js/pages/aboutRealta.js');
          });
     });
