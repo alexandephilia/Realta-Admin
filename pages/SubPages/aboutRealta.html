@@ -51,10 +51,10 @@
                     </div>
                 </div>
 
-                <div class="text-center mb-4">
+                <div class="text-center mb-4 iso-certification-section">
                     <div class="d-flex justify-content-center align-items-center mb-2 mt-2">
                         <i class="fas fa-certificate fa-2x me-2" style="background: linear-gradient(to right, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);"></i>
-                        <p class="mb-0 text-center" style=" text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);"><strong>ISO 9001 Certified</strong> for over 20 years, ensuring consistent quality in our services</p>
+                        <p class="mb-0 text-center" style="text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);"><strong>ISO 9001 Certified</strong> for over 20 years, ensuring consistent quality in our services</p>
                     </div>
                 </div>
 
@@ -139,15 +139,29 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <h6 class="mb-3">ISO Certification</h6>
-                                                <div class="form-check form-switch">
+                                                <div class="form-check form-switch mb-3">
                                                     <input class="form-check-input" type="checkbox" id="isoCertified" checked>
                                                     <label class="form-check-label" for="isoCertified">
                                                         Show ISO Certification
                                                     </label>
                                                 </div>
-                                                <div class="mt-2" id="isoCertDetails">
-                                                    <input type="text" class="form-control" id="isoText" 
-                                                        value="ISO 9001 Certified for over 20 years, ensuring consistent quality in our services">
+                                                <div id="isoCertDetails">
+                                                    <!-- Add icon input -->
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Icon Code</label>
+                                                        <input type="text" class="form-control" id="isoIcon" value="fas fa-certificate" placeholder="Enter complete icon code">
+                                                        <div class="text-center mt-2 border rounded p-3">
+                                                            <div id="isoIconPreview">
+                                                                <i class="fas fa-certificate fa-2x text-primary"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Text input -->
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Certification Text</label>
+                                                        <input type="text" class="form-control" id="isoText" 
+                                                            value="for over 20 years, ensuring consistent quality in our services">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -216,23 +230,52 @@
             content_style: `
                 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 14px; }
                 p { margin: 0 0 1em; }
+                /* Hide any remaining status elements */
                 .tox-statusbar { display: none !important; }
             `,
             hidden_input: false,
             inline: false,
             setup: function(editor) {
+                // Override default source code button behavior
                 editor.ui.registry.addButton('code', {
                     icon: 'sourcecode',
                     tooltip: 'Source code',
-                    onAction: function () {
+                    onAction: function() {
                         showTinyMCESource(editor);
                     }
                 });
 
                 editor.on('init', function() {
-                    // Set initial content from aboutDescription
-                    const aboutContent = document.getElementById('aboutDescription').innerHTML.trim();
-                    editor.setContent(aboutContent);
+                    const editorContainer = editor.getContainer();
+                    const customStyles = document.createElement('style');
+                    customStyles.textContent = `
+                        .tox-toolbar__group:has(.tox-tbtn--select) {
+                            width: auto !important;
+                            flex: 0 0 auto !important;
+                        }
+                        .tox-tbtn.tox-tbtn--select {
+                            width: 200px !important;
+                            min-width: 200px !important;
+                        }
+                        .tox-tbtn__select-label {
+                            width: auto !important;
+                            flex-grow: 1 !important;
+                        }
+                        /* Hide any remaining status elements */
+                        .tox-statusbar,
+                        .tox-statusbar__path,
+                        .tox-statusbar__text-container,
+                        .tox-statusbar__branding {
+                            display: none !important;
+                        }
+                    `;
+                    editorContainer.appendChild(customStyles);
+
+                    // Set initial content from aboutDescription if needed
+                    const aboutContent = document.getElementById('aboutDescription')?.innerHTML.trim();
+                    if (aboutContent) {
+                        editor.setContent(aboutContent);
+                    }
                 });
             }
         });
@@ -266,10 +309,21 @@
         });
 
         // Populate ISO certification
-        const isoElement = document.querySelector('.d-flex.justify-content-center p');
-        if (isoElement) {
+        const isoSection = document.querySelector('.iso-certification-section');
+        const isoIcon = isoSection?.querySelector('i');
+        const isoText = isoSection?.querySelector('p')?.textContent.trim();
+        
+        if (isoSection && isoSection.style.display !== 'none' && isoText) {
             document.getElementById('isoCertified').checked = true;
-            document.getElementById('isoText').value = isoElement.textContent.trim();
+            // Get icon classes
+            if (isoIcon) {
+                const iconClasses = Array.from(isoIcon.classList)
+                    .filter(cls => cls !== 'fa-2x' && cls !== 'me-2')
+                    .join(' ');
+                document.getElementById('isoIcon').value = iconClasses;
+                updateISOIconPreview(iconClasses);
+            }
+            document.getElementById('isoText').value = isoText.replace('ISO 9001 Certified', '').trim();
             document.getElementById('isoCertDetails').style.display = 'block';
         } else {
             document.getElementById('isoCertified').checked = false;
@@ -293,7 +347,13 @@
 
     // Handle ISO certification toggle
     document.getElementById('isoCertified').addEventListener('change', function() {
-        document.getElementById('isoCertDetails').style.display = this.checked ? 'block' : 'none';
+        const isoCertDetails = document.getElementById('isoCertDetails');
+        const isoPreviewSection = document.querySelector('.iso-certification-section');
+        
+        isoCertDetails.style.display = this.checked ? 'block' : 'none';
+        if (isoPreviewSection) {
+            isoPreviewSection.style.display = this.checked ? 'block' : 'none';
+        }
     });
 
     // Handle form submission
@@ -328,13 +388,19 @@
 
         // Update ISO certification
         const isoCertified = document.getElementById('isoCertified').checked;
-        const isoContainer = document.querySelector('.d-flex.justify-content-center');
+        const isoSection = document.querySelector('.iso-certification-section');
+        
         if (isoCertified) {
             const isoText = document.getElementById('isoText').value;
-            isoContainer.style.display = '';
-            isoContainer.querySelector('p').textContent = isoText;
+            const isoIcon = document.getElementById('isoIcon').value.trim();
+            isoSection.innerHTML = `
+                <div class="d-flex justify-content-center align-items-center mb-2 mt-2">
+                    <i class="${isoIcon} fa-2x me-2" style="background: linear-gradient(to right, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);"></i>
+                    <p class="mb-0 text-center" style="text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);"><strong>ISO 9001 Certified</strong> ${isoText}</p>
+                </div>`;
+            isoSection.style.display = 'block';
         } else {
-            isoContainer.style.display = 'none';
+            isoSection.style.display = 'none';
         }
 
         // Update main content
@@ -537,5 +603,24 @@
             }
         }
         animate();
+    });
+
+    // Add real-time ISO icon preview
+    function updateISOIconPreview(iconCode) {
+        const preview = document.getElementById('isoIconPreview');
+        if (iconCode) {
+            preview.innerHTML = `<i class="${iconCode} fa-2x text-primary" style="background: linear-gradient(to right, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);"></i>`;
+        } else {
+            preview.innerHTML = `
+                <div class="text-danger text-center">
+                    <i class="fa-solid fa-triangle-exclamation fa-2x"></i>
+                    <div class="small mt-2">Please enter a valid icon code<br>(e.g., "fas fa-certificate")</div>
+                </div>`;
+        }
+    }
+
+    // Add icon preview listener
+    document.getElementById('isoIcon').addEventListener('input', function() {
+        updateISOIconPreview(this.value.trim());
     });
 </script>
