@@ -451,43 +451,68 @@
     setInterval(updateTimeAgo, 60000);
 
     function exportTableToExcel() {
-        // Step 1: Get table data
+        // Step 1: Get visible table data only
         const table = document.querySelector('.table');
-        const rows = Array.from(table.querySelectorAll('tr'));
+        const visibleRows = Array.from(table.querySelectorAll('tbody tr')).filter(row => 
+            row.style.display !== 'none'
+        );
         
-        // Step 2: Convert table data to worksheet format
-        const data = rows.map(row => {
-            return Array.from(row.querySelectorAll('th, td')).map(cell => {
-                // Skip the Action column and only get text content
-                if (cell.cellIndex === 4) return ''; // Action column
-                return cell.textContent.trim();
-            });
-        });
+        // Step 2: Get headers
+        const headers = Array.from(table.querySelectorAll('thead th')).map(th => 
+            th.querySelector('span')?.textContent.trim() || th.textContent.trim()
+        ).filter(header => header !== 'Action');
 
-        // Step 3: Create worksheet
+        // Step 3: Prepare data including headers
+        const data = [
+            headers, // Add headers as first row
+            ...visibleRows.map(row => {
+                return Array.from(row.cells)
+                    .slice(0, -1) // Exclude the Action column
+                    .map(cell => cell.textContent.trim());
+            })
+        ];
+
+        // Step 4: Create worksheet with styling
         const ws = XLSX.utils.aoa_to_sheet(data);
 
-        // Step 4: Set column widths
+        // Step 5: Apply styling to header row
+        const headerStyle = {
+            font: { bold: true },
+            alignment: { horizontal: 'center' },
+            fill: { fgColor: { rgb: "E9ECEF" } }
+        };
+
+        // Get the range of the worksheet
+        const range = XLSX.utils.decode_range(ws['!ref']);
+        
+        // Apply header styling to first row
+        for(let C = range.s.c; C <= range.e.c; ++C) {
+            const headerCell = XLSX.utils.encode_cell({r: 0, c: C});
+            if(!ws[headerCell]) continue;
+            ws[headerCell].s = headerStyle;
+        }
+
+        // Step 6: Set column widths
         const colWidths = [
-            { wch: 20 }, // Full Name
-            { wch: 25 }, // Email Address
-            { wch: 15 }, // Phone Number
-            { wch: 20 }, // Applied Position
+            { wch: 25 }, // Full Name
+            { wch: 30 }, // Email Address
+            { wch: 20 }, // Phone Number
+            { wch: 25 }, // Applied Position
         ];
         ws['!cols'] = colWidths;
 
-        // Step 5: Create workbook
+        // Step 7: Create workbook and append sheet
         const wb = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(wb, ws, 'Job Applications');
 
-        // Step 6: Generate filename with current date
+        // Step 8: Generate filename with current date
         const date = new Date();
         const filename = `job_applications_${date.getFullYear()}${String(date.getMonth() + 1).padStart(2, '0')}${String(date.getDate()).padStart(2, '0')}.xlsx`;
 
-        // Step 7: Trigger download
+        // Step 9: Trigger download
         XLSX.writeFile(wb, filename);
 
-        // Step 8: Close the modal
+        // Step 10: Close the modal
         const modal = bootstrap.Modal.getInstance(document.getElementById('exportModal'));
         modal.hide();
     }
@@ -559,6 +584,28 @@
     // Handle collapse events to prevent click propagation
     document.querySelectorAll('.collapse').forEach(collapse => {
         collapse.addEventListener('click', e => e.stopPropagation());
+    });
+
+    // Add document click handler to close filter dropdowns
+    document.addEventListener('click', function(event) {
+        const filterContainers = document.querySelectorAll('.filter-container.show');
+        const filterIcons = document.querySelectorAll('.filter-icon');
+        
+        filterContainers.forEach(container => {
+            // Check if click is outside the container and its associated filter icon
+            const icon = container.closest('th').querySelector('.filter-icon');
+            if (!container.contains(event.target) && event.target !== icon) {
+                // Use Bootstrap's collapse API to hide the dropdown
+                bootstrap.Collapse.getInstance(container).hide();
+            }
+        });
+    });
+
+    // Prevent filter icon clicks from being caught by the document click handler
+    document.querySelectorAll('.filter-icon').forEach(icon => {
+        icon.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
     });
 </script>
 
