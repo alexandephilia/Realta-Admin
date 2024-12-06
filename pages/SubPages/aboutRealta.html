@@ -211,6 +211,70 @@
 </div>
 
 <script>
+    // Store original values when modal opens
+    let originalValues = {};
+
+    document.getElementById('editAboutModal').addEventListener('show.bs.modal', function() {
+        // Save original values
+        originalValues = {
+            title: document.querySelector('.about-content .lead').textContent.trim(),
+            customers: {
+                icon: document.querySelector('.col-md-4:nth-child(1) .fs-2').className,
+                desc: document.querySelector('.col-md-4:nth-child(1) p').textContent
+            },
+            industries: {
+                icon: document.querySelector('.col-md-4:nth-child(2) .fs-2').className,
+                desc: document.querySelector('.col-md-4:nth-child(2) p').textContent
+            },
+            years: {
+                icon: document.querySelector('.col-md-4:nth-child(3) .fs-2').className,
+                desc: document.querySelector('.col-md-4:nth-child(3) p').textContent
+            },
+            isoText: document.querySelector('.iso-content p')?.textContent,
+            isoCertified: document.querySelector('.iso-certification-section').style.display !== 'none',
+            mainContent: document.getElementById('aboutDescription').innerHTML
+        };
+        
+        populateModalContent();
+        tinymce.remove('.tinymce-editor');
+        initializeTinyMCE();
+    });
+
+    // Restore original values when modal is cancelled
+    document.getElementById('editAboutModal').addEventListener('hidden.bs.modal', function(e) {
+        // Only restore if modal was cancelled (not submitted)
+        if (!e.target.getAttribute('data-submitted')) {
+            // Restore all original values
+            document.querySelector('.about-content .lead').textContent = originalValues.title;
+            
+            ['customers', 'industries', 'years'].forEach((prefix, index) => {
+                const container = document.querySelector(`.col-md-4:nth-child(${index + 1})`);
+                const iconElement = container.querySelector('.fs-2');
+                const descElement = container.querySelector('p');
+                
+                iconElement.className = originalValues[prefix].icon;
+                descElement.textContent = originalValues[prefix].desc;
+            });
+            
+            const isoSection = document.querySelector('.iso-certification-section');
+            isoSection.style.display = originalValues.isoCertified ? 'block' : 'none';
+            if (originalValues.isoText) {
+                document.querySelector('.iso-content p').textContent = originalValues.isoText;
+            }
+            
+            document.getElementById('aboutDescription').innerHTML = originalValues.mainContent;
+        }
+        
+        // Reset the submitted flag
+        e.target.removeAttribute('data-submitted');
+        tinymce.remove('.tinymce-editor');
+    });
+
+    // Mark modal as submitted when form is submitted
+    document.getElementById('editAboutForm').addEventListener('submit', function(e) {
+        document.getElementById('editAboutModal').setAttribute('data-submitted', 'true');
+    });
+
     // Initialize TinyMCE
     function initializeTinyMCE() {
         tinymce.init({
@@ -323,32 +387,26 @@
         // TinyMCE content is handled in its initialization
     }
 
-    // Initialize when modal is shown
-    document.getElementById('editAboutModal').addEventListener('show.bs.modal', function() {
-        populateModalContent();
-        tinymce.remove('.tinymce-editor'); // Remove existing instances first
-        initializeTinyMCE();
-    });
-
-    // Clean up when modal is hidden
-    document.getElementById('editAboutModal').addEventListener('hidden.bs.modal', function() {
-        tinymce.remove('.tinymce-editor');
-    });
-
     // Handle ISO certification toggle
+    let tempISOState = null;
+
     document.getElementById('isoCertified').addEventListener('change', function() {
         const isoCertDetails = document.getElementById('isoCertDetails');
-        const isoPreviewSection = document.querySelector('.iso-certification-section');
-        
+        // Only update the form fields visibility, not the preview
         isoCertDetails.style.display = this.checked ? 'block' : 'none';
-        if (isoPreviewSection) {
-            isoPreviewSection.style.display = this.checked ? 'block' : 'none';
-        }
+        // Store the state temporarily
+        tempISOState = this.checked;
     });
 
     // Handle form submission
     document.getElementById('editAboutForm').addEventListener('submit', function(e) {
         e.preventDefault();
+        
+        // Update ISO section visibility
+        const isoPreviewSection = document.querySelector('.iso-certification-section');
+        if (isoPreviewSection) {
+            isoPreviewSection.style.display = tempISOState ? 'block' : 'none';
+        }
         
         // Update title
         const titleText = document.getElementById('aboutTitle').value;
