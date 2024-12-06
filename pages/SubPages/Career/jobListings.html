@@ -359,6 +359,31 @@
     </div>
 </div>
 
+<!-- TinyMCE Source Code Modal -->
+<div class="modal fade" id="tinyMCESourceModal" tabindex="-1" aria-labelledby="tinyMCESourceModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tinyMCESourceModalLabel">HTML Source Code</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <textarea class="form-control font-monospace" id="tinyMCESourceCode" rows="20" style="tab-size: 2;"></textarea>
+                </div>
+                <div class="text-end mt-3">
+                    <button type="button" class="btn btn-falcon-default btn-sm" onclick="applySourceCode()">
+                        <span class="fas fa-check me-1"></span>Apply Changes
+                    </button>
+                    <button type="button" class="btn btn-falcon-default btn-sm ms-2" onclick="copyTinyMCESource()">
+                        <span class="fas fa-copy me-1"></span>Copy Code
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Add this script at the bottom of the file -->
 <script>
     // Sample data structure (in real app, this would come from your backend)
@@ -569,7 +594,7 @@
         });
     });
 
-    // Separate the TinyMCE initialization into its own function
+    // Function to initialize TinyMCE
     function initializeTinyMCE() {
         tinymce.init({
             selector: '.tinymce-editor',
@@ -582,17 +607,25 @@
             plugins: [
                 'lists', 'link', 'image', 'code', 'table', 'help', 'indent'
             ],
-            toolbar: 'styles | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | link image | removeformat',
+            toolbar: 'styles | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | link image | code removeformat',
             indent_use_margin: false,
             content_style: `
                 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 14px; }
                 p { margin: 0 0 1em; }
-                /* Hide any remaining status indicators */
                 .tox-statusbar { display: none !important; }
             `,
             hidden_input: false,
             inline: false,
             setup: function (editor) {
+                // Override default source code button behavior
+                editor.ui.registry.addButton('code', {
+                    icon: 'sourcecode',
+                    tooltip: 'Source code',
+                    onAction: function () {
+                        showTinyMCESource(editor);
+                    }
+                });
+
                 editor.on('init', function () {
                     const editorContainer = editor.getContainer();
                     const customStyles = document.createElement('style');
@@ -638,4 +671,104 @@
     $('#createJobModal, #editJobModal').on('hidden.bs.modal', function () {
         tinymce.remove('.tinymce-editor');
     });
+
+    // Add these supporting functions
+    function showTinyMCESource(editor) {
+        const sourceCode = editor.getContent();
+        const formattedCode = formatHTML(sourceCode);
+        document.getElementById('tinyMCESourceCode').value = formattedCode;
+
+        const currentModal = document.querySelector('.modal.show');
+        const sourceCodeModal = document.getElementById('tinyMCESourceModal');
+        
+        if (currentModal) {
+            const currentZIndex = parseInt(getComputedStyle(currentModal).zIndex);
+            sourceCodeModal.style.zIndex = currentZIndex + 2;
+            
+            const modal = new bootstrap.Modal(sourceCodeModal, {
+                backdrop: 'static',
+                keyboard: false
+            });
+            modal.show();
+            
+            setTimeout(() => {
+                const backdrop = document.querySelector('.modal-backdrop:last-child');
+                if (backdrop) {
+                    backdrop.style.zIndex = currentZIndex + 1;
+                    backdrop.style.opacity = '0.5';
+                }
+            }, 0);
+            
+            sourceCodeModal.addEventListener('hidden.bs.modal', function handler() {
+                sourceCodeModal.style.zIndex = '';
+                this.removeEventListener('hidden.bs.modal', handler);
+            });
+        } else {
+            const modal = new bootstrap.Modal(sourceCodeModal, {
+                backdrop: 'static',
+                keyboard: false
+            });
+            modal.show();
+        }
+    }
+
+    function formatHTML(html) {
+        let formatted = '';
+        let indent = '';
+        const tab = '  '; // 2 spaces for indentation
+        
+        html.split(/>\s*</).forEach(function(element) {
+            if (element.match(/^\/\w/)) {
+                indent = indent.substring(tab.length);
+            }
+            
+            formatted += indent + '<' + element + '>\r\n';
+            
+            if (element.match(/^<?\w[^>]*[^\/]$/) && !element.startsWith("input") && !element.startsWith("img")) {
+                indent += tab;
+            }
+        });
+        
+        return formatted.substring(1, formatted.length - 3);
+    }
+
+    function applySourceCode() {
+        const sourceCode = document.getElementById('tinyMCESourceCode').value;
+        const editor = tinymce.activeEditor;
+        if (editor) {
+            editor.setContent(sourceCode);
+            bootstrap.Modal.getInstance(document.getElementById('tinyMCESourceModal')).hide();
+        }
+    }
+
+    function copyTinyMCESource() {
+        const sourceCode = document.getElementById('tinyMCESourceCode');
+        sourceCode.select();
+        
+        try {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(sourceCode.value);
+            } else {
+                document.execCommand('copy');
+            }
+            
+            const copyBtn = event.currentTarget;
+            const originalText = copyBtn.innerHTML;
+            copyBtn.innerHTML = '<span class="fas fa-check me-1"></span>Copied!';
+            copyBtn.classList.add('btn-success');
+
+            setTimeout(() => {
+                copyBtn.innerHTML = originalText;
+                copyBtn.classList.remove('btn-success');
+            }, 2000);
+        } catch (err) {
+            console.error('Failed to copy text: ', err);
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = sourceCode.value;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+        }
+    }
 </script>
