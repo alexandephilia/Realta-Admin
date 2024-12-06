@@ -7,19 +7,9 @@
         <div class="card-header bg-light">
             <div class="d-flex justify-content-between align-items-center">
                 <h5 class="mb-0">Applications</h5>
-                <div class="d-flex align-items-center">
-                    <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#exportModal">
-                        <span class="fas fa-file-export me-2"></span>Export
-                    </button>
-                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#filterModal">
-                        <span class="fas fa-filter me-2"></span>Filter
-                    </button>
-                    <div class="vertical-separator mx-3"></div>
-                    <div class="search-box">
-                        <input type="search" class="form-control form-control-sm search-input" placeholder="Search...">
-                        <span class="fas fa-search search-icon"></span>
-                    </div>
-                </div>
+                <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#exportModal">
+                    <span class="fas fa-file-export me-2"></span>Export
+                </button>
             </div>
         </div>
         <div class="card-body">
@@ -27,10 +17,61 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th class="text-center">Full Name</th>
-                            <th class="text-center">Email Address</th>
-                            <th class="text-center">Phone Number</th>
-                            <th class="text-center">Applied Position</th>
+                            <th>
+                                <div class="filter-header">
+                                    <div class="header-content">
+                                        <span>Full Name</span>
+                                        <i class="fas fa-filter filter-icon" data-bs-toggle="collapse" 
+                                           data-bs-target="#nameFilterCollapse"></i>
+                                    </div>
+                                    <div class="collapse filter-container" id="nameFilterCollapse">
+                                        <input type="text" class="form-control form-control-sm header-filter" 
+                                               placeholder="Filter name..." id="nameFilter">
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="filter-header">
+                                    <div class="header-content">
+                                        <span>Email Address</span>
+                                        <i class="fas fa-filter filter-icon" data-bs-toggle="collapse" 
+                                           data-bs-target="#emailFilterCollapse"></i>
+                                    </div>
+                                    <div class="collapse filter-container" id="emailFilterCollapse">
+                                        <input type="text" class="form-control form-control-sm header-filter" 
+                                               placeholder="Filter email..." id="emailFilter">
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="filter-header">
+                                    <div class="header-content">
+                                        <span>Phone Number</span>
+                                        <i class="fas fa-filter filter-icon" data-bs-toggle="collapse" 
+                                           data-bs-target="#phoneFilterCollapse"></i>
+                                    </div>
+                                    <div class="collapse filter-container" id="phoneFilterCollapse">
+                                        <input type="text" class="form-control form-control-sm header-filter" 
+                                               placeholder="Filter phone..." id="phoneFilter">
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="filter-header">
+                                    <div class="header-content">
+                                        <span>Applied Position</span>
+                                        <i class="fas fa-filter filter-icon" data-bs-toggle="collapse" 
+                                           data-bs-target="#positionFilterCollapse"></i>
+                                    </div>
+                                    <div class="collapse filter-container" id="positionFilterCollapse">
+                                        <select class="form-select form-select-sm header-filter" id="positionFilter">
+                                            <option value="">All Positions</option>
+                                            <option value="Software Engineer">Software Engineer</option>
+                                            <option value="UI/UX Designer">UI/UX Designer</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -456,6 +497,69 @@
         e.preventDefault();
         exportTableToExcel();
     });
+
+    // Get all filter inputs
+    const filters = document.querySelectorAll('.header-filter');
+    
+    // Add event listeners to all filters
+    filters.forEach(filter => {
+        filter.addEventListener('input', filterTable);
+    });
+
+    function filterTable() {
+        const rows = document.querySelectorAll('tbody tr');
+        
+        rows.forEach(row => {
+            let shouldShow = true;
+            
+            // Check each filter
+            const name = row.cells[0].textContent.toLowerCase();
+            const email = row.cells[1].textContent.toLowerCase();
+            const phone = row.cells[2].textContent.toLowerCase();
+            const position = row.cells[3].textContent.toLowerCase();
+            
+            const nameFilter = document.getElementById('nameFilter').value.toLowerCase();
+            const emailFilter = document.getElementById('emailFilter').value.toLowerCase();
+            const phoneFilter = document.getElementById('phoneFilter').value.toLowerCase();
+            const positionFilter = document.getElementById('positionFilter').value.toLowerCase();
+            
+            if (nameFilter && !name.includes(nameFilter)) shouldShow = false;
+            if (emailFilter && !email.includes(emailFilter)) shouldShow = false;
+            if (phoneFilter && !phone.includes(phoneFilter)) shouldShow = false;
+            if (positionFilter && !position.includes(positionFilter)) shouldShow = false;
+            
+            row.style.display = shouldShow ? '' : 'none';
+        });
+    }
+
+    // Add this to your existing script section
+    function updateFilterIcons() {
+        const filters = document.querySelectorAll('.header-filter');
+        
+        filters.forEach(filter => {
+            const icon = filter.closest('th')
+                              .querySelector('.filter-icon');
+            
+            if (filter.value) {
+                icon.classList.add('active');
+            } else {
+                icon.classList.remove('active');
+            }
+        });
+    }
+
+    // Update the existing filter event listeners
+    filters.forEach(filter => {
+        filter.addEventListener('input', () => {
+            filterTable();
+            updateFilterIcons();
+        });
+    });
+
+    // Handle collapse events to prevent click propagation
+    document.querySelectorAll('.collapse').forEach(collapse => {
+        collapse.addEventListener('click', e => e.stopPropagation());
+    });
 </script>
 
 <style>
@@ -528,6 +632,117 @@
     .search-input::placeholder {
         color: #95aac9;
         font-size: 12px;
+    }
+
+    /* Update header filter styling */
+    .header-filter {
+        width: 160px !important;  /* Increased for better visibility */
+        font-size: 11px !important;
+        text-align: center !important;
+    }
+
+    .header-filter::placeholder {
+        text-align: center;
+    }
+
+    /* Update filter icon styling */
+    .filter-icon {
+        font-size: 10px;
+        color: #95aac9;
+        cursor: pointer;
+        transition: color 0.2s;
+        padding-top: 2px; /* Align with text */
+    }
+
+    /* Table header styling */
+    thead th {
+        padding: 12px 8px !important;
+        white-space: nowrap;
+        vertical-align: middle !important;
+    }
+
+    /* Center all table content */
+    .table td, 
+    .table th {
+        text-align: center !important;
+        vertical-align: middle !important;
+    }
+
+    /* Ensure consistent spacing in header */
+    thead .d-flex {
+        min-height: 24px;
+    }
+
+    /* Position the filter containers */
+    .filter-header {
+        position: relative;
+        padding: 8px 0;
+    }
+
+    .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    /* Position the filter dropdown absolutely */
+    .filter-container {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        width: auto;
+        min-width: 160px;
+        margin-top: 4px;
+        background: white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        border-radius: 4px;
+        padding: 8px;
+    }
+
+    /* Prevent table cell height changes */
+    .table th {
+        height: 50px;
+        position: relative;
+        vertical-align: middle;
+        white-space: nowrap;
+    }
+
+    /* Style filter inputs */
+    .header-filter {
+        width: 160px !important;
+        font-size: 11px !important;
+        border: 1px solid #dee2e6;
+    }
+
+    /* Add a subtle arrow */
+    .filter-container:before {
+        content: '';
+        position: absolute;
+        top: -4px;
+        left: 50%;
+        transform: translateX(-50%) rotate(45deg);
+        width: 8px;
+        height: 8px;
+        background: white;
+        border-left: 1px solid #dee2e6;
+        border-top: 1px solid #dee2e6;
+    }
+
+    /* Override Bootstrap collapse animations */
+    .collapse {
+        transition: none !important;
+    }
+
+    .collapsing {
+        transition: none !important;
+        display: none;
+    }
+
+    .collapse.show {
+        display: block !important;
     }
 </style>
 
