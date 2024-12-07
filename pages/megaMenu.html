@@ -310,6 +310,11 @@
 
     // Reset form when modal is hidden
     document.getElementById('editMegamenuModal').addEventListener('hidden.bs.modal', function() {
+        resetForm();
+    });
+
+    // Function to reset the form completely
+    function resetForm() {
         // Reset the form
         document.getElementById('editMegamenuForm').reset();
         
@@ -335,9 +340,48 @@
         document.getElementById('listView').checked = false;
         
         // Show description field and hide list fields
+        const descriptionField = document.getElementById('descriptionField');
+        const listFields = document.getElementById('listFields');
         descriptionField.classList.remove('d-none');
         listFields.classList.add('d-none');
         document.getElementById('menuDescription').required = true;
+
+        // Clear all icon inputs and descriptions
+        document.querySelectorAll('.icon-input').forEach(input => input.value = '');
+        document.querySelectorAll('.desc-input').forEach(input => input.value = '');
+        
+        // Clear URL field
+        document.getElementById('menuUrl').value = '';
+        document.getElementById('menuTitle').value = '';
+
+        // Add this new section to clear all items containers
+        document.querySelectorAll('.items-container').forEach(container => {
+            container.innerHTML = ''; // Clear all list items
+            
+            // Reset the add button state for this container
+            const addButton = container.parentElement.querySelector('.add-item');
+            if (addButton) {
+                addButton.disabled = false;
+                addButton.classList.remove('disabled');
+            }
+        });
+
+        // Reset modal title to "Add Megamenu"
+        document.querySelector('#editMegamenuModalLabel').textContent = 'Add Megamenu';
+    }
+
+    // Update the add button click handler to ensure proper reset
+    document.querySelector('[data-bs-target="#editMegamenuModal"]').addEventListener('click', function() {
+        // Reset the form before showing
+        resetForm();
+        
+        // Ensure modal title is set to "Add Megamenu"
+        document.querySelector('#editMegamenuModalLabel').textContent = 'Add Megamenu';
+    });
+
+    // Update the modal hidden event to ensure cleanup
+    document.getElementById('editMegamenuModal').addEventListener('hidden.bs.modal', function() {
+        resetForm();
     });
 
     // Update menu type toggle handler

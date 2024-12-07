@@ -52,7 +52,8 @@
                                         <span class="category-tag hidden-position">Frontend Developer</span>
                                         <span class="category-tag hidden-position">Backend Developer</span>
                                         <span class="category-tag hidden-position">Mobile Developer</span>
-                                        <span class="category-tag more-tag" role="button" onclick="togglePositions(this)">
+                                        <span class="category-tag more-tag" role="button"
+                                            onclick="togglePositions(this)">
                                             +3 more
                                         </span>
                                     </div>
@@ -76,8 +77,9 @@
                             </td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center align-items-center">
-                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" data-bs-toggle="modal"
-                                        data-bs-target="#editDepartmentModal" data-department="IT">
+                                    <button class="btn btn-sm btn-falcon-default text-warning me-2"
+                                        data-bs-toggle="modal" data-bs-target="#editDepartmentModal"
+                                        data-department="IT">
                                         <span class="fas fa-edit"></span>
                                     </button>
                                     <button class="btn btn-sm btn-falcon-default text-danger" data-bs-toggle="modal"
@@ -114,8 +116,9 @@
                             </td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center align-items-center">
-                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" data-bs-toggle="modal"
-                                        data-bs-target="#editDepartmentModal" data-department="HR">
+                                    <button class="btn btn-sm btn-falcon-default text-warning me-2"
+                                        data-bs-toggle="modal" data-bs-target="#editDepartmentModal"
+                                        data-department="HR">
                                         <span class="fas fa-edit"></span>
                                     </button>
                                     <button class="btn btn-sm btn-falcon-default text-danger" data-bs-toggle="modal"
@@ -191,18 +194,18 @@
                                             <td class="text-center">IT</td>
                                             <td class="text-center">
                                                 <div class="form-check form-switch d-flex justify-content-center">
-                                                    <input class="form-check-input" type="checkbox" checked 
+                                                    <input class="form-check-input" type="checkbox" checked
                                                         onchange="updateStatus(this, 'department', 'IT')">
                                                     <span class="ms-2 status-text text-success">Active</span>
                                                 </div>
                                             </td>
                                             <td class="text-center">
                                                 <div class="d-flex justify-content-center align-items-center">
-                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2"
                                                         onclick="editItem('department', 'IT')">
                                                         <span class="fas fa-edit"></span>
                                                     </button>
-                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                    <button class="btn btn-sm btn-falcon-default text-danger"
                                                         onclick="deleteItem('department', 'IT')">
                                                         <span class="fas fa-trash"></span>
                                                     </button>
@@ -214,18 +217,18 @@
                                             <td class="text-center">HR</td>
                                             <td class="text-center">
                                                 <div class="form-check form-switch d-flex justify-content-center">
-                                                    <input class="form-check-input" type="checkbox" 
+                                                    <input class="form-check-input" type="checkbox"
                                                         onchange="updateStatus(this, 'department', 'HR')">
                                                     <span class="ms-2 status-text text-danger">Inactive</span>
                                                 </div>
                                             </td>
                                             <td class="text-center">
                                                 <div class="d-flex justify-content-center align-items-center">
-                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2"
                                                         onclick="editItem('department', 'HR')">
                                                         <span class="fas fa-edit"></span>
                                                     </button>
-                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                    <button class="btn btn-sm btn-falcon-default text-danger"
                                                         onclick="deleteItem('department', 'HR')">
                                                         <span class="fas fa-trash"></span>
                                                     </button>
@@ -257,18 +260,18 @@
                                             <td class="text-center">Information Technology</td>
                                             <td class="text-center">
                                                 <div class="form-check form-switch d-flex justify-content-center">
-                                                    <input class="form-check-input" type="checkbox" checked 
+                                                    <input class="form-check-input" type="checkbox" checked
                                                         onchange="updateStatus(this, 'position', 'SE')">
                                                     <span class="ms-2 status-text text-success">Active</span>
                                                 </div>
                                             </td>
                                             <td class="text-center">
                                                 <div class="d-flex justify-content-center align-items-center">
-                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2"
                                                         onclick="editItem('position', 'SE')">
                                                         <span class="fas fa-edit"></span>
                                                     </button>
-                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                    <button class="btn btn-sm btn-falcon-default text-danger"
                                                         onclick="deleteItem('position', 'SE')">
                                                         <span class="fas fa-trash"></span>
                                                     </button>
@@ -281,18 +284,18 @@
                                             <td class="text-center">Information Technology</td>
                                             <td class="text-center">
                                                 <div class="form-check form-switch d-flex justify-content-center">
-                                                    <input class="form-check-input" type="checkbox" checked 
+                                                    <input class="form-check-input" type="checkbox" checked
                                                         onchange="updateStatus(this, 'position', 'SA')">
                                                     <span class="ms-2 status-text text-success">Active</span>
                                                 </div>
                                             </td>
                                             <td class="text-center">
                                                 <div class="d-flex justify-content-center align-items-center">
-                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2"
                                                         onclick="editItem('position', 'SA')">
                                                         <span class="fas fa-edit"></span>
                                                     </button>
-                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                    <button class="btn btn-sm btn-falcon-default text-danger"
                                                         onclick="deleteItem('position', 'SA')">
                                                         <span class="fas fa-trash"></span>
                                                     </button>
@@ -305,18 +308,18 @@
                                             <td class="text-center">Human Resources</td>
                                             <td class="text-center">
                                                 <div class="form-check form-switch d-flex justify-content-center">
-                                                    <input class="form-check-input" type="checkbox" 
+                                                    <input class="form-check-input" type="checkbox"
                                                         onchange="updateStatus(this, 'position', 'HRM')">
                                                     <span class="ms-2 status-text text-danger">Inactive</span>
                                                 </div>
                                             </td>
                                             <td class="text-center">
                                                 <div class="d-flex justify-content-center align-items-center">
-                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2"
                                                         onclick="editItem('position', 'HRM')">
                                                         <span class="fas fa-edit"></span>
                                                     </button>
-                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                    <button class="btn btn-sm btn-falcon-default text-danger"
                                                         onclick="deleteItem('position', 'HRM')">
                                                         <span class="fas fa-trash"></span>
                                                     </button>
@@ -329,18 +332,18 @@
                                             <td class="text-center">Human Resources</td>
                                             <td class="text-center">
                                                 <div class="form-check form-switch d-flex justify-content-center">
-                                                    <input class="form-check-input" type="checkbox" 
+                                                    <input class="form-check-input" type="checkbox"
                                                         onchange="updateStatus(this, 'position', 'REC')">
                                                     <span class="ms-2 status-text text-danger">Inactive</span>
                                                 </div>
                                             </td>
                                             <td class="text-center">
                                                 <div class="d-flex justify-content-center align-items-center">
-                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2"
                                                         onclick="editItem('position', 'REC')">
                                                         <span class="fas fa-edit"></span>
                                                     </button>
-                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                    <button class="btn btn-sm btn-falcon-default text-danger"
                                                         onclick="deleteItem('position', 'REC')">
                                                         <span class="fas fa-trash"></span>
                                                     </button>
@@ -368,18 +371,18 @@
                                             <td class="text-center">Jakarta</td>
                                             <td class="text-center">
                                                 <div class="form-check form-switch d-flex justify-content-center">
-                                                    <input class="form-check-input" type="checkbox" checked 
+                                                    <input class="form-check-input" type="checkbox" checked
                                                         onchange="updateStatus(this, 'location', 'JKT')">
                                                     <span class="ms-2 status-text text-success">Active</span>
                                                 </div>
                                             </td>
                                             <td class="text-center">
                                                 <div class="d-flex justify-content-center align-items-center">
-                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2"
                                                         onclick="editItem('location', 'JKT')">
                                                         <span class="fas fa-edit"></span>
                                                     </button>
-                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                    <button class="btn btn-sm btn-falcon-default text-danger"
                                                         onclick="deleteItem('location', 'JKT')">
                                                         <span class="fas fa-trash"></span>
                                                     </button>
@@ -390,18 +393,18 @@
                                             <td class="text-center">Semarang</td>
                                             <td class="text-center">
                                                 <div class="form-check form-switch d-flex justify-content-center">
-                                                    <input class="form-check-input" type="checkbox" checked 
+                                                    <input class="form-check-input" type="checkbox" checked
                                                         onchange="updateStatus(this, 'location', 'SMG')">
                                                     <span class="ms-2 status-text text-success">Active</span>
                                                 </div>
                                             </td>
                                             <td class="text-center">
                                                 <div class="d-flex justify-content-center align-items-center">
-                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2"
                                                         onclick="editItem('location', 'SMG')">
                                                         <span class="fas fa-edit"></span>
                                                     </button>
-                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                    <button class="btn btn-sm btn-falcon-default text-danger"
                                                         onclick="deleteItem('location', 'SMG')">
                                                         <span class="fas fa-trash"></span>
                                                     </button>
@@ -412,18 +415,18 @@
                                             <td class="text-center">Bali</td>
                                             <td class="text-center">
                                                 <div class="form-check form-switch d-flex justify-content-center">
-                                                    <input class="form-check-input" type="checkbox" checked 
+                                                    <input class="form-check-input" type="checkbox" checked
                                                         onchange="updateStatus(this, 'location', 'BAL')">
                                                     <span class="ms-2 status-text text-success">Active</span>
                                                 </div>
                                             </td>
                                             <td class="text-center">
                                                 <div class="d-flex justify-content-center align-items-center">
-                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2"
                                                         onclick="editItem('location', 'BAL')">
                                                         <span class="fas fa-edit"></span>
                                                     </button>
-                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                    <button class="btn btn-sm btn-falcon-default text-danger"
                                                         onclick="deleteItem('location', 'BAL')">
                                                         <span class="fas fa-trash"></span>
                                                     </button>
@@ -451,18 +454,18 @@
                                             <td class="text-center">Full Time</td>
                                             <td class="text-center">
                                                 <div class="form-check form-switch d-flex justify-content-center">
-                                                    <input class="form-check-input" type="checkbox" checked 
+                                                    <input class="form-check-input" type="checkbox" checked
                                                         onchange="updateStatus(this, 'employment', 'FT')">
                                                     <span class="ms-2 status-text text-success">Active</span>
                                                 </div>
                                             </td>
                                             <td class="text-center">
                                                 <div class="d-flex justify-content-center align-items-center">
-                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2"
                                                         onclick="editItem('employment', 'FT')">
                                                         <span class="fas fa-edit"></span>
                                                     </button>
-                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                    <button class="btn btn-sm btn-falcon-default text-danger"
                                                         onclick="deleteItem('employment', 'FT')">
                                                         <span class="fas fa-trash"></span>
                                                     </button>
@@ -473,18 +476,18 @@
                                             <td class="text-center">Internship</td>
                                             <td class="text-center">
                                                 <div class="form-check form-switch d-flex justify-content-center">
-                                                    <input class="form-check-input" type="checkbox" checked 
+                                                    <input class="form-check-input" type="checkbox" checked
                                                         onchange="updateStatus(this, 'employment', 'INT')">
                                                     <span class="ms-2 status-text text-success">Active</span>
                                                 </div>
                                             </td>
                                             <td class="text-center">
                                                 <div class="d-flex justify-content-center align-items-center">
-                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2" 
+                                                    <button class="btn btn-sm btn-falcon-default text-warning me-2"
                                                         onclick="editItem('employment', 'INT')">
                                                         <span class="fas fa-edit"></span>
                                                     </button>
-                                                    <button class="btn btn-sm btn-falcon-default text-danger" 
+                                                    <button class="btn btn-sm btn-falcon-default text-danger"
                                                         onclick="deleteItem('employment', 'INT')">
                                                         <span class="fas fa-trash"></span>
                                                     </button>
@@ -716,7 +719,8 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label text-uppercase small">Department Code</label>
-                            <input class="form-control bg-light" id="editDepartmentCode" type="text" value="IT" disabled>
+                            <input class="form-control bg-light" id="editDepartmentCode" type="text" value="IT"
+                                disabled>
                         </div>
                     </div>
 
@@ -973,8 +977,6 @@
         max-width: 500px;
     }
 
-   
-
     /* Consistent label styling */
     .form-label {
         margin-bottom: 0.5rem;
@@ -1090,44 +1092,72 @@
 
     /* Update modal width */
     .modal-xl {
-        max-width: 1120px; /* Increased from default */
+        max-width: 1120px;
+        /* Increased from default */
     }
 
     /* Improve toggle switch layout */
     .form-check.form-switch {
-        padding-left: 0; /* Remove default padding */
-        min-width: 110px; /* Ensure minimum width for the toggle container */
-        margin: 0 auto; /* Center the switch */
+        padding-left: 0;
+        /* Remove default padding */
+        min-width: 110px;
+        /* Ensure minimum width for the toggle container */
+        margin: 0 auto;
+        /* Center the switch */
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 4px; /* Reduce space between switch and text */
+        gap: 4px;
+        /* Reduce space between switch and text */
     }
 
     .form-check.form-switch .form-check-input {
-        float: none; /* Remove float */
-        margin: 0; /* Remove all margins */
-        width: 2.5em; /* Standardize switch width */
+        float: none;
+        /* Remove float */
+        margin: 0;
+        /* Remove all margins */
+        width: 2.5em;
+        /* Standardize switch width */
     }
 
     .form-check.form-switch .status-text {
         display: inline-block;
-        min-width: 45px; /* Slightly reduce min-width */
+        min-width: 45px;
+        /* Slightly reduce min-width */
         text-align: left;
-        margin: 0; /* Remove any margins */
-        line-height: 1; /* Align text vertically */
+        margin: 0;
+        /* Remove any margins */
+        line-height: 1;
+        /* Align text vertically */
     }
 
     /* Optional: Adjust switch size if needed */
     .form-check-input {
-        height: 1.25em; /* Standardize height */
+        height: 1.25em;
+        /* Standardize height */
     }
 
     /* Adjust table column widths */
-    .table th:nth-child(1) { width: 30%; } /* Name column */
-    .table th:nth-child(2) { width: 25%; } /* Department/Code column */
-    .table th:nth-child(3) { width: 25%; } /* Status column */
-    .table th:nth-child(4) { width: 20%; } /* Action column */
+    .table th:nth-child(1) {
+        width: 30%;
+    }
+
+    /* Name column */
+    .table th:nth-child(2) {
+        width: 25%;
+    }
+
+    /* Department/Code column */
+    .table th:nth-child(3) {
+        width: 25%;
+    }
+
+    /* Status column */
+    .table th:nth-child(4) {
+        width: 20%;
+    }
+
+    /* Action column */
 
     .modal-child {
         background: rgba(0, 0, 0, 0.1);
@@ -1137,32 +1167,92 @@
         margin: 2rem auto;
     }
 
-    .modal-backdrop + .modal-backdrop {
+    .modal-backdrop+.modal-backdrop {
         opacity: 0.1;
     }
 
     /* Position tab specific column widths */
-    #positionTab .table th:nth-child(1) { width: 30%; } /* Position Name */
-    #positionTab .table th:nth-child(2) { width: 15%; } /* Position Code */
-    #positionTab .table th:nth-child(3) { width: 25%; } /* Department */
-    #positionTab .table th:nth-child(4) { width: 15%; } /* Status */
-    #positionTab .table th:nth-child(5) { width: 15%; } /* Action */
+    #positionTab .table th:nth-child(1) {
+        width: 30%;
+    }
+
+    /* Position Name */
+    #positionTab .table th:nth-child(2) {
+        width: 15%;
+    }
+
+    /* Position Code */
+    #positionTab .table th:nth-child(3) {
+        width: 25%;
+    }
+
+    /* Department */
+    #positionTab .table th:nth-child(4) {
+        width: 15%;
+    }
+
+    /* Status */
+    #positionTab .table th:nth-child(5) {
+        width: 15%;
+    }
+
+    /* Action */
 
     /* Department tab specific column widths */
-    #departmentTab .table th:nth-child(1) { width: 30%; } /* Department Name */
-    #departmentTab .table th:nth-child(2) { width: 25%; } /* Code */
-    #departmentTab .table th:nth-child(3) { width: 25%; } /* Status */
-    #departmentTab .table th:nth-child(4) { width: 20%; } /* Action */
+    #departmentTab .table th:nth-child(1) {
+        width: 30%;
+    }
+
+    /* Department Name */
+    #departmentTab .table th:nth-child(2) {
+        width: 25%;
+    }
+
+    /* Code */
+    #departmentTab .table th:nth-child(3) {
+        width: 25%;
+    }
+
+    /* Status */
+    #departmentTab .table th:nth-child(4) {
+        width: 20%;
+    }
+
+    /* Action */
 
     /* Location tab specific column widths */
-    #locationTab .table th:nth-child(1) { width: 40%; } /* Location Name */
-    #locationTab .table th:nth-child(2) { width: 35%; } /* Status */
-    #locationTab .table th:nth-child(3) { width: 25%; } /* Action */
+    #locationTab .table th:nth-child(1) {
+        width: 40%;
+    }
+
+    /* Location Name */
+    #locationTab .table th:nth-child(2) {
+        width: 35%;
+    }
+
+    /* Status */
+    #locationTab .table th:nth-child(3) {
+        width: 25%;
+    }
+
+    /* Action */
 
     /* Opportunity tab specific column widths */
-    #employmentTab .table th:nth-child(1) { width: 40%; } /* Opportunity */
-    #employmentTab .table th:nth-child(2) { width: 35%; } /* Status */
-    #employmentTab .table th:nth-child(3) { width: 25%; } /* Action */
+    #employmentTab .table th:nth-child(1) {
+        width: 40%;
+    }
+
+    /* Opportunity */
+    #employmentTab .table th:nth-child(2) {
+        width: 35%;
+    }
+
+    /* Status */
+    #employmentTab .table th:nth-child(3) {
+        width: 25%;
+    }
+
+    /* Action */
 
     .hidden-position {
         display: none;
@@ -1184,6 +1274,51 @@
     .position-container.expanded .more-tag {
         display: none;
     }
+
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+        /* Adjust button group in header */
+        .card-header .d-flex {
+            flex-direction: row !important;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .card-header .d-flex > div {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: flex-start;
+        }
+
+        .card-header .btn {
+            flex: 1 1 calc(50% - 8px);
+            min-width: 140px;
+            margin: 0 !important;
+            white-space: nowrap;
+            padding: 8px;
+            font-size: 0.875rem;
+        }
+
+        .card-header .btn .fas {
+            margin-right: 4px;
+        }
+    }
+
+    /* Tablet Responsive Styles */
+    @media (min-width: 769px) and (max-width: 1024px) {
+        .card-header .btn {
+            padding: 8px 12px;
+            font-size: 0.875rem;
+            white-space: nowrap;
+        }
+        
+        .card-header .d-flex > div {
+            gap: 8px;
+        }
+    }
 </style>
 
 <!-- Add this script at the bottom of the file -->
@@ -1193,7 +1328,9 @@
         'IT': {
             name: 'Information Technology',
             code: 'IT',
-            positions: ['Software Engineer', 'System Analyst', 'QA Engineer', 'DevOps Engineer', 'UI/UX Designer', 'Frontend Developer', 'Backend Developer', 'Mobile Developer'],
+            positions: ['Software Engineer', 'System Analyst', 'QA Engineer', 'DevOps Engineer', 'UI/UX Designer',
+                'Frontend Developer', 'Backend Developer', 'Mobile Developer'
+            ],
             locations: ['Jakarta', 'Semarang', 'Bali'],
             employmentTypes: ['Full Time', 'Internship'],
             status: true
@@ -1217,11 +1354,11 @@
         // Update basic department info
         document.getElementById('editDepartmentName').value = department.name;
         document.getElementById('editDepartmentCode').value = department.code;
-        
+
         // Update status toggle and label
         const statusCheckbox = document.getElementById('editDepartmentStatus');
         const statusLabel = statusCheckbox.parentElement.querySelector('.status-text');
-        
+
         statusCheckbox.checked = department.status;
         if (department.status) {
             statusLabel.textContent = 'Active';
@@ -1243,7 +1380,8 @@
         `).join('');
 
         // Update locations
-        const locationContainer = document.querySelector('#editDepartmentForm .mb-4:nth-of-type(3) .d-flex.flex-wrap');
+        const locationContainer = document.querySelector(
+            '#editDepartmentForm .mb-4:nth-of-type(3) .d-flex.flex-wrap');
         locationContainer.innerHTML = department.locations.map(location => `
             <div class="category-tag">
                 ${location}
@@ -1252,7 +1390,8 @@
         `).join('');
 
         // Update employment types
-        const employmentContainer = document.querySelector('#editDepartmentForm .mb-4:nth-of-type(4) .d-flex.flex-wrap');
+        const employmentContainer = document.querySelector(
+            '#editDepartmentForm .mb-4:nth-of-type(4) .d-flex.flex-wrap');
         employmentContainer.innerHTML = department.employmentTypes.map(type => `
             <div class="category-tag">
                 ${type}
@@ -1262,7 +1401,7 @@
     });
 
     // Handle removing tags
-    document.addEventListener('click', function(event) {
+    document.addEventListener('click', function (event) {
         if (event.target.classList.contains('btn-close-sm')) {
             event.target.closest('.category-tag').remove();
         }
@@ -1272,8 +1411,8 @@
     document.querySelectorAll('#editDepartmentForm .d-flex.gap-2').forEach(container => {
         const addButton = container.querySelector('.btn-primary');
         const select = container.querySelector('.form-select');
-        
-        addButton.addEventListener('click', function() {
+
+        addButton.addEventListener('click', function () {
             const value = select.value;
             if (value) {
                 const tagContainer = container.previousElementSibling;
@@ -1290,7 +1429,7 @@
     });
 
     // Add status toggle handler
-    document.getElementById('editDepartmentStatus').addEventListener('change', function() {
+    document.getElementById('editDepartmentStatus').addEventListener('change', function () {
         const statusText = this.parentElement.querySelector('.status-text');
         if (this.checked) {
             statusText.textContent = 'Active';
@@ -1323,7 +1462,7 @@
     // Function to handle item editing
     function editItem(type, id) {
         let modalId;
-        switch(type) {
+        switch (type) {
             case 'department':
                 modalId = '#editCategoryDepartmentModal';
                 // Set department data
@@ -1338,7 +1477,7 @@
             case 'position':
                 modalId = '#editCategoryPositionModal';
                 // Set position data based on the table data
-                switch(id) {
+                switch (id) {
                     case 'SE':
                         document.getElementById('editCatPositionName').value = 'Software Engineer';
                         document.getElementById('editCatPositionCode').value = 'SE';
@@ -1364,7 +1503,7 @@
             case 'location':
                 modalId = '#editCategoryLocationModal';
                 // Set location data based on the table data
-                switch(id) {
+                switch (id) {
                     case 'JKT':
                         document.getElementById('editCatLocationName').value = 'Jakarta';
                         break;
@@ -1379,7 +1518,7 @@
             case 'employment':
                 modalId = '#editCategoryEmploymentModal';
                 // Set employment type data based on the table data
-                switch(id) {
+                switch (id) {
                     case 'FT':
                         document.getElementById('editCatEmploymentName').value = 'Full Time';
                         break;
@@ -1392,10 +1531,10 @@
 
         // Get the edit modal element
         const editModal = document.querySelector(modalId);
-        
+
         // Add modal-child class
         editModal.classList.add('modal-child');
-        
+
         // Show the modal
         const modal = new bootstrap.Modal(editModal);
         modal.show();
@@ -1420,7 +1559,7 @@
 
     // Add event listeners for status changes in edit modals
     document.querySelectorAll('.modal .form-check-input').forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
+        checkbox.addEventListener('change', function () {
             const statusText = this.closest('.form-check').querySelector('.status-text');
             if (this.checked) {
                 statusText.textContent = 'Active';
@@ -1436,10 +1575,11 @@
 
     // Add form submission handlers
     ['Department', 'Position', 'Location', 'Employment'].forEach(type => {
-        document.getElementById(`editCategory${type}Form`).addEventListener('submit', function(e) {
+        document.getElementById(`editCategory${type}Form`).addEventListener('submit', function (e) {
             e.preventDefault();
             // Here you would typically save the changes to your backend
-            const modal = bootstrap.Modal.getInstance(document.getElementById(`editCategory${type}Modal`));
+            const modal = bootstrap.Modal.getInstance(document.getElementById(
+                `editCategory${type}Modal`));
             modal.hide();
         });
     });
@@ -1462,7 +1602,7 @@
         document.querySelectorAll('.position-container').forEach(container => {
             const positions = container.querySelectorAll('.category-tag:not(.more-tag)');
             const maxVisible = 5;
-            
+
             if (positions.length > maxVisible) {
                 // Hide positions beyond the limit
                 positions.forEach((pos, index) => {
@@ -1470,14 +1610,16 @@
                         pos.classList.add('hidden-position');
                     }
                 });
-                
+
                 // Update or add the more tag
                 let moreTag = container.querySelector('.more-tag');
                 if (!moreTag) {
                     moreTag = document.createElement('span');
                     moreTag.className = 'category-tag more-tag';
                     moreTag.setAttribute('role', 'button');
-                    moreTag.onclick = function() { togglePositions(this); };
+                    moreTag.onclick = function () {
+                        togglePositions(this);
+                    };
                     container.appendChild(moreTag);
                 }
                 moreTag.textContent = `+${positions.length - maxVisible} more`;
