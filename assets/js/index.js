@@ -354,4 +354,10 @@ $(function () {
         });
     });
 
+    $("#microSection").click(function(){
+      $('#contentPages').load('pages/microSection.html',function(){
+            $.getScript('assets/js/pages/microSection.js');
+         });
+    });
+
 });
