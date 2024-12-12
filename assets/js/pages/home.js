@@ -42,6 +42,20 @@ const ActivityService = {
         );
     },
 
+    // Show skeleton loading
+    showLoading() {
+        const tbody = $('#activityTable tbody');
+        const skeletonTemplate = $('#skeleton-template').html();
+        
+        // Clear existing content
+        tbody.empty();
+        
+        // Create 5 skeleton rows - matching the number of actual rows
+        for (let i = 0; i < 5; i++) {
+            tbody.append(skeletonTemplate);
+        }
+    },
+
     // Format the activity data into HTML
     formatActivity(activity) {
         return `
@@ -78,14 +92,28 @@ $(document).ready(function() {
 
     // Refresh button functionality
     $('#refreshActivity').on('click', function() {
-        const $btn = $(this);
-        $btn.find('i').addClass('fa-spin');
+        const $button = $(this);
+        const $icon = $button.find('.refresh-icon');
         
-        // Simulate refresh delay
+        $button.prop('disabled', true);
+        
+        // Force a reflow to restart the animation
+        $icon.removeClass('spinning');
+        // This line forces the browser to reflow the element
+        void $icon[0].offsetWidth;
+        $icon.addClass('spinning');
+        
+        // Show skeleton loading
+        ActivityService.showLoading();
+        
+        // Simulate data refresh
         setTimeout(() => {
             ActivityService.renderActivities(ActivityService.activities);
-            $btn.find('i').removeClass('fa-spin');
             $('#lastUpdateTime').text('Just now');
+            
+            // Stop spinning and re-enable button
+            $icon.removeClass('spinning');
+            $button.prop('disabled', false);
         }, 1000);
     });
 

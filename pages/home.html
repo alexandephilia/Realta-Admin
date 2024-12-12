@@ -9,7 +9,7 @@
                 <input type="text" class="form-control form-control-sm" placeholder="Search activities..."
                     id="activitySearch">
                 <button class="btn btn-sm btn-primary" id="refreshActivity">
-                    <i class="fas fa-sync-alt"></i>
+                    <i class="fas fa-sync-alt refresh-icon"></i>
                 </button>
             </div>
         </div>
@@ -97,7 +97,99 @@
         transform: translateY(-1px);
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
+
+    .refresh-icon {
+        display: inline-block;
+        transition: none;
+    }
+
+    .refresh-icon.spinning {
+        animation: spin 1s linear;
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* Update skeleton styles to match content dimensions with shimmer */
+    .skeleton {
+        position: relative;
+        background: #f0f0f0;
+        border-radius: 4px;
+        overflow: hidden;
+        height: 16px; /* Match the content text height */
+    }
+
+    /* Add back the shimmer effect */
+    .skeleton::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transform: translateX(-100%);
+        background-image: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0) 0,
+            rgba(255, 255, 255, 0.2) 20%,
+            rgba(255, 255, 255, 0.5) 60%,
+            rgba(255, 255, 255, 0)
+        );
+        animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+        100% {
+            transform: translateX(100%);
+        }
+    }
+
+    .skeleton-row td {
+        padding: 12px 8px;
+        vertical-align: middle;
+    }
+
+    /* Specific widths for different columns */
+    .skeleton-user {
+        width: 80px; /* Approximate width for usernames */
+        margin: 0 auto; /* Center in td */
+    }
+
+    .skeleton-page {
+        width: 100px; /* Approximate width for page names */
+        margin: 0 auto;
+    }
+
+    .skeleton-time {
+        width: 140px; /* Approximate width for timestamps */
+        margin: 0 auto;
+    }
+
+    /* Hide skeleton by default */
+    .skeleton-template {
+        display: none;
+    }
 </style>
+
+<script id="skeleton-template" type="text/template">
+    <tr class="skeleton-row">
+        <td class="text-center">
+            <div class="skeleton skeleton-user"></div>
+        </td>
+        <td class="text-center">
+            <div class="skeleton skeleton-page"></div>
+        </td>
+        <td class="text-center">
+            <div class="skeleton skeleton-time"></div>
+        </td>
+    </tr>
+</script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -111,16 +203,6 @@
                 const text = row.textContent.toLowerCase();
                 row.style.display = text.includes(searchTerm) ? '' : 'none';
             });
-        });
-
-        // Refresh button functionality
-        const refreshBtn = document.getElementById('refreshActivity');
-        refreshBtn.addEventListener('click', function () {
-            this.classList.add('fa-spin');
-            setTimeout(() => {
-                this.classList.remove('fa-spin');
-                document.getElementById('lastUpdateTime').textContent = 'Just now';
-            }, 1000);
         });
 
         // Update last update time

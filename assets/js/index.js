@@ -44,6 +44,13 @@ $(function () {
          });
     });
 
+    // Microsite Section
+    $("#micrositeSection").click(function(){
+      $('#contentPages').load('pages/SubPages/Microsite/microSection.html',function(){
+            $.getScript('assets/js/pages/SubPages/Microsite/microSection.js');
+         });
+    });
+
     // Blog handlers
     // $('a[href="#nv-blog-home"]').click(function(){
     //   $('#contentPages').load('pages/blogList.html', function() {
