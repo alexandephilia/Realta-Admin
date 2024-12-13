@@ -6,7 +6,8 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
             <div class="d-flex align-items-center gap-2">
                 <h4 class="text-body mb-0">Last <span id="activityCount">5</span> Activity</h4>
-                <select class="form-select form-select-sm" id="activityLimit" style="width: auto;">
+                <div class="separator">|</div>
+                <select class="form-select form-select-sm custom-select-sm" id="activityLimit">
                     <option value="5">5</option>
                     <option value="10">10</option>
                 </select>
@@ -204,6 +205,27 @@
         background-color: #fff;
         border-color: #dee2e6;
         opacity: 0.5;
+    }
+
+    .custom-select-sm {
+        width: 45px;
+        height: 24px;
+        padding: 2px 16px 2px 4px;
+        font-size: 12px;
+        background-position: right 2px center;
+        background-size: 12px 8px;
+        display: flex;
+        align-items: center;
+        line-height: 1;
+        text-align-last: center;
+        text-align: center;
+        -moz-text-align-last: center;
+    }
+
+    .separator {
+        color: #8392ab;
+        font-weight: 300;
+        margin: 0 4px;
     }
 </style>
 
