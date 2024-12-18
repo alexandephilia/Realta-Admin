@@ -618,9 +618,9 @@
             // Function to populate edit modal with row data
             function populateEditModal(button) {
                 const row = button.closest('tr');
-                const sectionName = row.cells[1].textContent.trim();
-                const microsite = row.cells[2].textContent.trim();
-                const isActive = row.cells[3].querySelector('.badge-phoenix-success') !== null;
+                const sectionName = row.cells[0].textContent.trim();
+                const microsite = row.cells[1].textContent.trim();
+                const isActive = row.cells[2].querySelector('.badge-phoenix-success') !== null;
 
                 document.getElementById('editSectionName').value = sectionName;
                 
@@ -657,7 +657,7 @@
                 const tableRows = document.querySelectorAll('#contentTable tbody tr');
                 
                 tableRows.forEach(row => {
-                    const micrositeCell = row.cells[2].textContent.trim().toLowerCase();
+                    const micrositeCell = row.cells[1].textContent.trim().toLowerCase();
                     if (selectedMicrosite === '' || micrositeCell === selectedMicrosite) {
                         row.style.display = '';
                     } else {
