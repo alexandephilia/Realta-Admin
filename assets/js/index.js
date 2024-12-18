@@ -47,8 +47,12 @@ $(function () {
     // Microsite Section
     $("#micrositeSection").click(function(){
       $('#contentPages').load('pages/SubPages/Microsite/microSection.html',function(){
-            $.getScript('assets/js/pages/SubPages/Microsite/microSection.js');
+            $.getScript('assets/js/pages/microSection.js');
          });
+    });
+
+    $("#micropages").click(function(){
+      $('#contentPages').load('pages/SubPages/Microsite/Micropages.html');
     });
 
     // Blog handlers

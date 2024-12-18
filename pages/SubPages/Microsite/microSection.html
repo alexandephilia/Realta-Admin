@@ -2,7 +2,12 @@
 <h4 class="mb-3 text-body mb-0">Content Section</h4>
 <div class="card">
     <div class="card-body">
-        <div class="text-end">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <select class="form-select form-select-sm" id="micrositeFilter" style="width: auto;">
+                    <option value="">All Microsites</option>
+                </select>
+            </div>
             <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#createContentModal">
                 <span class="fas fa-plus me-2"></span>Add New Content
             </button>
@@ -46,8 +51,6 @@
                                                         for="micrositeName">Microsite</label>
                                                     <select class="form-select" id="micrositeName">
                                                         <option value="">Select Microsite</option>
-                                                        <option value="bimasakti">Bimasakti</option>
-                                                        <option value="rhapsody">Rhapsody</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -136,7 +139,6 @@
             <table class="table table-hover" id="contentTable">
                 <thead>
                     <tr>
-                        <th class="text-center">Ordering</th>
                         <th class="text-center">Section Name</th>
                         <th class="text-center">Microsite</th>
                         <th class="text-center">Status</th>
@@ -145,14 +147,6 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="text-center">
-                            <button class="btn px-1 btn-sm btn-falcon-default me-1">
-                                <span class="fas fa-chevron-up"></span>
-                            </button>
-                            <button class="btn px-1 btn-sm btn-falcon-default">
-                                <span class="fas fa-chevron-down"></span>
-                            </button>
-                        </td>
                         <td class="text-center">CTA</td>
                         <td class="text-center">Bimasakti</td>
                         <td class="text-center">
@@ -171,14 +165,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-center">
-                            <button class="btn px-1 btn-sm btn-falcon-default me-1">
-                                <span class="fas fa-chevron-up"></span>
-                            </button>
-                            <button class="btn px-1 btn-sm btn-falcon-default">
-                                <span class="fas fa-chevron-down"></span>
-                            </button>
-                        </td>
                         <td class="text-center">Header</td>
                         <td class="text-center">Rhapsody</td>
                         <td class="text-center">
@@ -583,6 +569,143 @@
             `;
                 }
             }
+
+            // Function to populate microsite dropdown from categories
+            function populateMicrositeDropdown() {
+                // Get all category names from the Micropages table
+                const micrositeSelects = ['micrositeName', 'editMicrositeName'];
+                
+                micrositeSelects.forEach(selectId => {
+                    const select = document.getElementById(selectId);
+                    if (!select) return;
+                    
+                    // Clear existing options except the first one
+                    while (select.options.length > 1) {
+                        select.remove(1);
+                    }
+                });
+
+                // Make an AJAX call to get the Micropages content
+                $.get('pages/SubPages/Microsite/Micropages.html', function(response) {
+                    // Create a temporary div to parse the HTML
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = response;
+                    
+                    // Find all category names from the table
+                    const categoryRows = tempDiv.querySelectorAll('#categoriesTable tbody tr');
+                    const options = Array.from(categoryRows).map(row => {
+                        const categoryName = row.cells[0].textContent.trim();
+                        return new Option(categoryName, categoryName.toLowerCase());
+                    });
+
+                    // Add options to both dropdowns
+                    micrositeSelects.forEach(selectId => {
+                        const select = document.getElementById(selectId);
+                        if (!select) return;
+                        
+                        options.forEach(option => {
+                            select.add(option.cloneNode(true));
+                        });
+                    });
+                });
+            }
+
+            // Call the function when the modal is shown
+            $('#createContentModal, #editContentModal').on('shown.bs.modal', function() {
+                populateMicrositeDropdown();
+            });
+
+            // Function to populate edit modal with row data
+            function populateEditModal(button) {
+                const row = button.closest('tr');
+                const sectionName = row.cells[1].textContent.trim();
+                const microsite = row.cells[2].textContent.trim();
+                const isActive = row.cells[3].querySelector('.badge-phoenix-success') !== null;
+
+                document.getElementById('editSectionName').value = sectionName;
+                
+                // Wait for the dropdown to be populated before setting the value
+                setTimeout(() => {
+                    const editMicrositeSelect = document.getElementById('editMicrositeName');
+                    if (editMicrositeSelect) {
+                        for(let i = 0; i < editMicrositeSelect.options.length; i++) {
+                            if (editMicrositeSelect.options[i].text === microsite) {
+                                editMicrositeSelect.selectedIndex = i;
+                                break;
+                            }
+                        }
+                    }
+                }, 100);
+                
+                const statusToggle = document.getElementById('editContentStatus');
+                statusToggle.checked = isActive;
+                const statusText = statusToggle.closest('.form-check').querySelector('.status-text');
+                if (isActive) {
+                    statusText.textContent = 'Active';
+                    statusText.classList.remove('text-danger');
+                    statusText.classList.add('text-success');
+                } else {
+                    statusText.textContent = 'Inactive';
+                    statusText.classList.remove('text-success');
+                    statusText.classList.add('text-danger');
+                }
+            }
+
+            // Function to filter table rows based on selected microsite
+            function filterTableByMicrosite() {
+                const selectedMicrosite = document.getElementById('micrositeFilter').value.toLowerCase();
+                const tableRows = document.querySelectorAll('#contentTable tbody tr');
+                
+                tableRows.forEach(row => {
+                    const micrositeCell = row.cells[2].textContent.trim().toLowerCase();
+                    if (selectedMicrosite === '' || micrositeCell === selectedMicrosite) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+
+            // Populate the filter dropdown with unique microsite names
+            function populateMicrositeFilter() {
+                const micrositeFilter = document.getElementById('micrositeFilter');
+                
+                // Clear existing options except the first one
+                while (micrositeFilter.options.length > 1) {
+                    micrositeFilter.remove(1);
+                }
+
+                // Make an AJAX call to get the Micropages content
+                $.get('pages/SubPages/Microsite/Micropages.html', function(response) {
+                    // Create a temporary div to parse the HTML
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = response;
+                    
+                    // Find all category names from the table
+                    const categoryRows = tempDiv.querySelectorAll('#categoriesTable tbody tr');
+                    const microsites = new Set();
+
+                    // Collect unique microsite names
+                    categoryRows.forEach(row => {
+                        const categoryName = row.cells[0].textContent.trim();
+                        microsites.add(categoryName);
+                    });
+
+                    // Add options for each unique microsite
+                    microsites.forEach(microsite => {
+                        const option = new Option(microsite, microsite.toLowerCase());
+                        micrositeFilter.add(option);
+                    });
+                });
+            }
+
+            // Add event listener to filter dropdown
+            document.getElementById('micrositeFilter').addEventListener('change', filterTableByMicrosite);
+
+            // Make sure to call populateMicrositeFilter when the page loads
+            $(document).ready(function() {
+                populateMicrositeFilter();
+            });
         </script>
 
         <!-- TinyMCE Source Code Modal -->
