@@ -1145,6 +1145,148 @@
             margin: 0 0.25rem;
         }
     }
+
+    /* Base gradient card style update */
+    .gradient-card {
+        border-radius: 12px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    /* Unique card gradients */
+    /* Total Activities Card */
+    .col-sm-6.col-lg-3:nth-child(1) .gradient-card {
+        background: linear-gradient(145deg, 
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(147, 51, 234, 0.05) 100%);
+        border: 1px solid rgba(147, 51, 234, 0.1);
+    }
+
+    /* Most Active Section Card */
+    .col-sm-6.col-lg-3:nth-child(2) .gradient-card {
+        background: linear-gradient(145deg, 
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(59, 130, 246, 0.05) 100%);
+        border: 1px solid rgba(59, 130, 246, 0.1);
+    }
+
+    /* Last Updated By Card */
+    .col-sm-6.col-lg-3:nth-child(3) .gradient-card {
+        background: linear-gradient(145deg, 
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(16, 185, 129, 0.05) 100%);
+        border: 1px solid rgba(16, 185, 129, 0.1);
+    }
+
+    /* Latest Update In Card */
+    .col-sm-6.col-lg-3:nth-child(4) .gradient-card {
+        background: linear-gradient(145deg, 
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(245, 158, 11, 0.05) 100%);
+        border: 1px solid rgba(245, 158, 11, 0.1);
+    }
+
+    /* Update icon colors to match gradients */
+    .col-sm-6.col-lg-3:nth-child(1) .text-purple {
+        color: rgb(147, 51, 234) !important;
+    }
+
+    .col-sm-6.col-lg-3:nth-child(2) .text-purple {
+        color: rgb(59, 130, 246) !important;
+    }
+
+    .col-sm-6.col-lg-3:nth-child(3) .text-purple {
+        color: rgb(16, 185, 129) !important;
+    }
+
+    .col-sm-6.col-lg-3:nth-child(4) .text-purple {
+        color: rgb(245, 158, 11) !important;
+    }
+
+    /* Dark mode adjustments */
+    [data-bs-theme="dark"] .col-sm-6.col-lg-3:nth-child(1) .gradient-card {
+        background: linear-gradient(145deg, 
+            rgba(147, 51, 234, 0.15) 0%,
+            var(--phoenix-body-highlight-bg) 100%);
+    }
+
+    [data-bs-theme="dark"] .col-sm-6.col-lg-3:nth-child(2) .gradient-card {
+        background: linear-gradient(145deg, 
+            rgba(59, 130, 246, 0.15) 0%,
+            var(--phoenix-body-highlight-bg) 100%);
+    }
+
+    [data-bs-theme="dark"] .col-sm-6.col-lg-3:nth-child(3) .gradient-card {
+        background: linear-gradient(145deg, 
+            rgba(16, 185, 129, 0.15) 0%,
+            var(--phoenix-body-highlight-bg) 100%);
+    }
+
+    [data-bs-theme="dark"] .col-sm-6.col-lg-3:nth-child(4) .gradient-card {
+        background: linear-gradient(145deg, 
+            rgba(245, 158, 11, 0.15) 0%,
+            var(--phoenix-body-highlight-bg) 100%);
+    }
+
+    /* Hover effects */
+    .gradient-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    [data-bs-theme="dark"] .gradient-card:hover {
+        box-shadow: 0 6px 15px -3px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Update the base gradient card style */
+    .gradient-card {
+        transition: transform 0.2s ease-in-out;
+    }
+
+    /* Left side cards (1st and 3rd) */
+    .col-sm-6.col-lg-3:nth-child(odd) .gradient-card {
+        border-radius: 12px 0 0 12px;
+    }
+
+    /* Right side cards (2nd and 4th) */
+    .col-sm-6.col-lg-3:nth-child(even) .gradient-card {
+        border-radius: 0 12px 12px 0;
+    }
+
+    /* Mobile adjustments - restore full border radius when stacked */
+    @media (max-width: 991.98px) {
+        .col-sm-6.col-lg-3 .gradient-card {
+            border-radius: 12px !important;
+        }
+    }
+
+    /* Update percentage text colors to match card themes */
+    /* Purple theme - Total Activities Card */
+    .col-sm-6.col-lg-3:nth-child(1) .text-success {
+        color: rgb(147, 51, 234) !important;
+    }
+
+    /* Blue theme - Most Active Section Card */
+    .col-sm-6.col-lg-3:nth-child(2) .text-muted {
+        color: rgb(59, 130, 246) !important;
+    }
+
+    /* Green theme - Last Updated By Card */
+    .col-sm-6.col-lg-3:nth-child(3) .text-muted {
+        color: rgb(16, 185, 129) !important;
+    }
+
+    /* Orange theme - Latest Update In Card */
+    .col-sm-6.col-lg-3:nth-child(4) .text-muted {
+        color: rgb(245, 158, 11) !important;
+    }
+
+    /* Dark mode adjustments */
+    [data-bs-theme="dark"] .col-sm-6.col-lg-3:nth-child(1) .text-success,
+    [data-bs-theme="dark"] .col-sm-6.col-lg-3:nth-child(2) .text-muted,
+    [data-bs-theme="dark"] .col-sm-6.col-lg-3:nth-child(3) .text-muted,
+    [data-bs-theme="dark"] .col-sm-6.col-lg-3:nth-child(4) .text-muted {
+        opacity: 0.9;
+    }
 </style>
 
 <script id="skeleton-template" type="text/template">
