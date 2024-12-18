@@ -1299,6 +1299,26 @@
             justify-content: center;
         }
     }
+
+    /* Update the border radius styles for specific cards */
+    @media (min-width: 992px) {
+        /* Most Active Section Card - remove all border radius */
+        .col-sm-6.col-lg-3:nth-child(2) .gradient-card {
+            border-radius: 0;
+        }
+
+        /* Last Updated By Card - remove border radius on both sides */
+        .col-sm-6.col-lg-3:nth-child(3) .gradient-card {
+            border-radius: 0;
+        }
+    }
+
+    /* Keep existing mobile styles */
+    @media (max-width: 991.98px) {
+        .col-sm-6.col-lg-3 .gradient-card {
+            border-radius: 12px !important;
+        }
+    }
 </style>
 
 <script id="skeleton-template" type="text/template">
