@@ -224,6 +224,8 @@
         --purple-light: #8B5CF6;
         --purple-dark: #6D28D9;
         --purple-gradient: linear-gradient(135deg, var(--purple-light) 0%, var(--purple-dark) 100%);
+        --page-gradient-start: rgba(255, 255, 255, 1);
+        --page-gradient-end: rgba(139, 92, 246, 0.08);
     }
 
     /* Light mode styles */
@@ -236,7 +238,7 @@
     /* Dark mode styles */
     [data-bs-theme="dark"] {
         --page-gradient-start: #0f111a;  /* Dark blue background */
-        --page-gradient-end: #0f111a;    /* Keep it consistent */
+        --page-gradient-end: rgba(139, 92, 246, 0.03);
         --phoenix-body-bg: #0f111a;      /* Override default dark background */
         --phoenix-body-highlight-bg: #141824;  /* Slightly lighter for cards */
         --phoenix-text-muted: rgba(255, 255, 255, 0.6);
@@ -248,8 +250,9 @@
     [data-bs-theme="light"] body {
         background: linear-gradient(180deg, 
             var(--page-gradient-start) 0%, 
-            var(--page-gradient-start) 15%,
+            var(--page-gradient-start) 25%,
             var(--page-gradient-end) 100%);
+        background-attachment: fixed;
         min-height: 100vh;
     }
 
@@ -1086,7 +1089,7 @@
     /* Update dark mode styles */
     [data-bs-theme="dark"] {
         --page-gradient-start: #0f111a;  /* Dark blue background */
-        --page-gradient-end: #0f111a;    /* Keep it consistent */
+        --page-gradient-end: rgba(139, 92, 246, 0.03);
         --phoenix-body-bg: #0f111a;      /* Override default dark background */
         --phoenix-body-highlight-bg: #141824;  /* Slightly lighter for cards */
         --phoenix-text-muted: rgba(255, 255, 255, 0.6);
