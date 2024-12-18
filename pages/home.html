@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="welcome-image-container">
-                    <img src="https://cdni.iconscout.com/illustration/premium/thumb/business-planning-illustration-download-in-svg-png-gif-file-formats--admin-dashboard-manager-user-management-monitor-people-illustrations-3356780.png" 
+                    <img src="/assets/img/gallery/tokyo-1.png" 
                          class="welcome-image" 
                          alt="Welcome illustration">
                 </div>
@@ -37,7 +37,7 @@
                         <div class="d-flex justify-content-between align-items-start">
                             <div>
                                 <h6 class="text-purple mb-2">Total Activities</h6>
-                                <h3 class="mb-2 fs-2 fw-bold text-dark" id="totalActivities">125</h3>
+                                <h3 class="mb-2 fs-3 fw-bold text-dark" id="totalActivities">125</h3>
                                 <div class="d-flex align-items-center">
                                     <small class="text-success fw-semibold">↑ 12% this week</small>
                                 </div>
@@ -55,7 +55,7 @@
                         <div class="d-flex justify-content-between align-items-start">
                             <div>
                                 <h6 class="text-purple mb-2">Most Active Section</h6>
-                                <h3 class="mb-2 fs-2 fw-bold text-dark" id="mostActiveSection">Blog</h3>
+                                <h3 class="mb-2 fs-3 fw-bold text-dark" id="mostActiveSection">Blog</h3>
                                 <div class="d-flex align-items-center">
                                     <small class="text-muted fw-semibold">Last 7 days</small>
                                 </div>
@@ -73,7 +73,7 @@
                         <div class="d-flex justify-content-between align-items-start">
                             <div>
                                 <h6 class="text-purple mb-2">Last Updated By</h6>
-                                <h3 class="mb-2 fs-2 fw-bold text-dark">Khailal</h3>
+                                <h3 class="mb-2 fs-3 fw-bold text-dark">Khailal</h3>
                                 <div class="d-flex align-items-center">
                                     <small class="text-muted fw-semibold">Master Site</small>
                                 </div>
@@ -91,12 +91,12 @@
                         <div class="d-flex justify-content-between align-items-start">
                             <div>
                                 <h6 class="text-purple mb-2">Latest Update In</h6>
-                                <h3 class="mb-2 fs-2 fw-bold text-dark">Blog</h3>
+                                <h3 class="mb-2 fs-3 fw-bold text-dark">Master Site</h3>
                                 <div class="d-flex align-items-center">
                                     <small class="text-muted fw-semibold">5 mins ago</small>
                                 </div>
                             </div>
-                            <i class="fas fa-history text-purple opacity-75 fs-3"></i>
+                            <i class="fas fa-cloud-upload-alt text-purple opacity-75 fs-3"></i>
                         </div>
                     </div>
                 </div>
@@ -1029,6 +1029,18 @@
         
         .badge-text {
             font-size: 10px;
+        }
+    }
+
+    /* Update card value styles */
+    .card h3.fs-3 {
+        font-size: 1.5rem !important; /* Slightly smaller than the default fs-2 */
+    }
+
+    /* Mobile optimization for card values */
+    @media (max-width: 767px) {
+        .card h3.fs-3 {
+            font-size: 1.25rem !important;
         }
     }
 </style>
