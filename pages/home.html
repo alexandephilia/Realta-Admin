@@ -239,8 +239,12 @@
 
     /* Dark mode styles */
     [data-bs-theme="dark"] {
-        --page-gradient-start: var(--phoenix-body-bg);
-        --page-gradient-end: var(--phoenix-body-bg);
+        --page-gradient-start: #0f111a;  /* Dark blue background */
+        --page-gradient-end: #0f111a;    /* Keep it consistent */
+        --phoenix-body-bg: #0f111a;      /* Override default dark background */
+        --phoenix-body-highlight-bg: #141824;  /* Slightly lighter for cards */
+        --phoenix-text-muted: rgba(255, 255, 255, 0.6);
+        --phoenix-body-color: rgba(255, 255, 255, 0.87);
     }
 
     /* Apply gradient only in light mode */
@@ -266,13 +270,9 @@
     }
 
     [data-bs-theme="dark"] .gradient-card {
-        background: linear-gradient(145deg,
-            rgba(34, 40, 52, 0.95) 0%,
-            rgba(31, 35, 47, 1) 100%);
+        background: var(--phoenix-body-highlight-bg);
         border: 1px solid rgba(139, 92, 246, 0.15);
-        box-shadow: 
-            0 4px 12px -2px rgba(0, 0, 0, 0.2),
-            0 8px 24px -4px rgba(0, 0, 0, 0.15);
+        box-shadow: none;
     }
 
     .text-purple {
@@ -522,6 +522,9 @@
 
     /* Add these new responsive styles */
     @media (max-width: 767px) {
+        .welcome-image-container{
+            width: 352px !important;
+        }
         .welcome-text {
             text-align: center;
             width: 100%;
@@ -534,7 +537,7 @@
         }
         
         .welcome-image {
-            max-height: 150px !important;
+            max-height: 350px !important;
         }
         
         .d-flex.align-items-center.gap-3.mt-2 {
@@ -770,13 +773,9 @@
     }
 
     [data-bs-theme="dark"] .gradient-card {
-        background: linear-gradient(145deg,
-            rgba(34, 40, 52, 0.95) 0%,
-            rgba(31, 35, 47, 1) 100%);
+        background: var(--phoenix-body-highlight-bg);
         border: 1px solid rgba(139, 92, 246, 0.15);
-        box-shadow: 
-            0 4px 12px -2px rgba(0, 0, 0, 0.2),
-            0 8px 24px -4px rgba(0, 0, 0, 0.15);
+        box-shadow: none;
     }
 
     /* Remove icon wrapper styles and update icon appearance */
@@ -1041,6 +1040,109 @@
     @media (max-width: 767px) {
         .card h3.fs-3 {
             font-size: 1.25rem !important;
+        }
+    }
+
+    /* Fix text colors for dark mode */
+    [data-bs-theme="dark"] .text-body {
+        color: var(--phoenix-body-color) !important;
+    }
+
+    [data-bs-theme="dark"] .text-dark {
+        color: var(--phoenix-body-color) !important;
+    }
+
+    [data-bs-theme="dark"] .text-muted {
+        color: var(--phoenix-text-muted) !important;
+    }
+
+    /* Update table styles for dark mode */
+    [data-bs-theme="dark"] .table {
+        color: var(--phoenix-body-color);
+    }
+
+    [data-bs-theme="dark"] .table th {
+        background: rgba(139, 92, 246, 0.1);
+        color: var(--phoenix-body-color);
+    }
+
+    /* Update hover styles for dark mode */
+    [data-bs-theme="dark"] .activity-row:hover {
+        background: var(--phoenix-body-highlight-bg);
+        transform: translateY(-1px);
+    }
+
+    /* Update skeleton loader for dark mode */
+    [data-bs-theme="dark"] .skeleton {
+        background: var(--phoenix-body-highlight-bg);
+    }
+
+    [data-bs-theme="dark"] .skeleton::after {
+        background-image: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0) 0,
+            rgba(255, 255, 255, 0.05) 20%,
+            rgba(255, 255, 255, 0.1) 60%,
+            rgba(255, 255, 255, 0)
+        );
+    }
+
+    /* Update dark mode styles */
+    [data-bs-theme="dark"] {
+        --page-gradient-start: #0f111a;  /* Dark blue background */
+        --page-gradient-end: #0f111a;    /* Keep it consistent */
+        --phoenix-body-bg: #0f111a;      /* Override default dark background */
+        --phoenix-body-highlight-bg: #141824;  /* Slightly lighter for cards */
+        --phoenix-text-muted: rgba(255, 255, 255, 0.6);
+        --phoenix-body-color: rgba(255, 255, 255, 0.87);
+    }
+
+    /* Update gradient card styles for dark mode */
+    [data-bs-theme="dark"] .gradient-card {
+        background: var(--phoenix-body-highlight-bg);
+        border: 1px solid rgba(139, 92, 246, 0.15);
+        box-shadow: none;
+    }
+
+    /* Ensure table header has proper contrast */
+    [data-bs-theme="dark"] .table th {
+        background: rgba(139, 92, 246, 0.08);
+        color: var(--phoenix-body-color);
+    }
+
+    /* Update hover effect for dark mode */
+    [data-bs-theme="dark"] .activity-row:hover {
+        background: var(--phoenix-body-highlight-bg);
+    }
+
+    /* Fix any remaining light backgrounds */
+    [data-bs-theme="dark"] .card {
+        background: var(--phoenix-body-highlight-bg);
+    }
+
+    [data-bs-theme="dark"] body {
+        background: var(--phoenix-body-bg);
+    }
+
+    /* Update badge container styles */
+    .d-flex.align-items-center.gap-2.mt-2 {
+        gap: 0.5rem !important;
+    }
+
+    /* Mobile optimization for badges */
+    @media (max-width: 767px) {
+        .d-flex.align-items-center.gap-2.mt-2 {
+            justify-content: center !important;
+            width: 100%;
+        }
+        
+        .welcome-text .d-flex.align-items-center.gap-2.mt-2 {
+            justify-content: center !important;
+        }
+        
+        /* Ensure badges maintain proper spacing when centered */
+        .small-badge {
+            margin: 0 0.25rem;
         }
     }
 </style>
