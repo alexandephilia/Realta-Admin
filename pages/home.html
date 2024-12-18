@@ -1,144 +1,320 @@
-<div class="card mb-3">
-    <img src="assets\img\gallery\tokyo-2.png" class="rounded">
+<!-- Update the welcome section -->
+<div class="row justify-content-center">
+    <div class="col-12 col-md-11 col-lg-10">
+        <div class="card mb-4 bg-transparent border-0 px-0">
+            <div class="d-flex align-items-center gap-4" style="max-width: 900px; margin: 0 auto;">
+                <div class="welcome-text">
+                    <h2 class="text-dark mb-1">Welcome back!</h2>
+                    <p class="text-muted mb-0">Here's what's happening with your projects today.</p>
+                    <div class="d-flex align-items-center gap-3 mt-2 flex-wrap">
+                        <span class="badge-soft-purple px-2 py-1 rounded-pill">
+                            <i class="fas fa-calendar-alt me-1"></i>
+                            <small>Today: <span class="current-date"></span></small>
+                        </span>
+                        <span class="badge-soft-success px-2 py-1 rounded-pill">
+                            <i class="fas fa-check-circle me-1"></i>
+                            <small>System Status: Operational</small>
+                        </span>
+                    </div>
+                </div>
+                <div class="welcome-image-container">
+                    <img src="https://cdni.iconscout.com/illustration/premium/thumb/business-planning-illustration-download-in-svg-png-gif-file-formats--admin-dashboard-manager-user-management-monitor-people-illustrations-3356780.png" 
+                         class="welcome-image" 
+                         alt="Welcome illustration">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- Statistics Cards -->
-<div class="row mb-3">
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <h6 class="text-muted mb-2">Total Activities</h6>
-                <h3 class="mb-0" id="totalActivities">125</h3>
-                <small class="text-success">↑ 12% this week</small>
+<div class="row mb-4 justify-content-center">
+    <div class="col-12 col-md-11 col-lg-10">
+        <div class="row g-3">
+            <!-- Total Activities Card -->
+            <div class="col-sm-6 col-lg-3">
+                <div class="card gradient-card h-100">
+                    <div class="card-body p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="text-purple mb-2">Total Activities</h6>
+                                <h3 class="mb-2 fs-2 fw-bold text-dark" id="totalActivities">125</h3>
+                                <div class="d-flex align-items-center">
+                                    <small class="text-success fw-semibold">↑ 12% this week</small>
+                                </div>
+                            </div>
+                            <i class="fas fa-signal text-purple opacity-75 fs-3"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <h6 class="text-muted mb-2">Most Active Section</h6>
-                <h3 class="mb-0" id="mostActiveSection">Blog</h3>
-                <small class="text-muted">Last 7 days</small>
+            
+            <!-- Most Active Section Card -->
+            <div class="col-sm-6 col-lg-3">
+                <div class="card gradient-card h-100">
+                    <div class="card-body p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="text-purple mb-2">Most Active Section</h6>
+                                <h3 class="mb-2 fs-2 fw-bold text-dark" id="mostActiveSection">Blog</h3>
+                                <div class="d-flex align-items-center">
+                                    <small class="text-muted fw-semibold">Last 7 days</small>
+                                </div>
+                            </div>
+                            <i class="fas fa-clock-rotate-left text-purple opacity-75 fs-3"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Users Card -->
+            <div class="col-sm-6 col-lg-3">
+                <div class="card gradient-card h-100">
+                    <div class="card-body p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="text-purple mb-2">Active Users</h6>
+                                <h3 class="mb-2 fs-2 fw-bold text-dark">12</h3>
+                                <div class="d-flex align-items-center">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span class="badge rounded-pill bg-success"></span>
+                                        <small class="text-success fw-semibold">Online now</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <i class="fas fa-users text-purple opacity-75 fs-3"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- System Performance Card -->
+            <div class="col-sm-6 col-lg-3">
+                <div class="card gradient-card h-100">
+                    <div class="card-body p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="text-purple mb-2">System Load</h6>
+                                <h3 class="mb-2 fs-2 fw-bold text-dark">28%</h3>
+                                <div class="progress mt-2" style="height: 4px; width: 100px;">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 28%"></div>
+                                </div>
+                                <small class="text-success fw-semibold mt-1 d-block">Optimal</small>
+                            </div>
+                            <i class="fas fa-server text-purple opacity-75 fs-3"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<div class="card">
-    <div class="card-body p-3">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <div class="d-flex align-items-center gap-2">
-                <h4 class="text-body mb-0">Last <span id="activityCount">5</span> Activity</h4>
-                <div class="separator">|</div>
-                <select class="form-select form-select-sm custom-select-sm" id="activityLimit">
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                </select>
+
+<!-- Activity Table Section -->
+<div class="row mb-3 justify-content-center">
+    <div class="col-12 col-md-11 col-lg-10">
+        <div class="card gradient-card">
+            <div class="card-body p-3">
+                <!-- Header section -->
+                <div class="d-flex justify-content-between align-items-center mb-3 flex-column flex-sm-row gap-2">
+                    <div class="d-flex align-items-center gap-2 flex-wrap">
+                        <h4 class="text-body mb-0">Last <span id="activityCount">5</span> Activity</h4>
+                        <div class="separator">|</div>
+                        <select class="form-select form-select-sm custom-select-sm" id="activityLimit">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <input type="text" class="form-control form-control-sm" placeholder="Search activities..." id="activitySearch">
+                        <button class="btn btn-sm btn-primary" id="refreshActivity">
+                            <i class="fas fa-sync-alt refresh-icon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Updated table section -->
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle w-100" id="activityTable">
+                        <thead>
+                            <tr>
+                                <th class="text-center" width="25%">User</th>
+                                <th class="text-center" width="35%">Last Activity</th>
+                                <th class="text-center" width="40%">Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="activity-row cursor-pointer transition-all hover:bg-light">
+                                <td class="mb-0 fs-9 text-body text-center" style="width: 25%;">
+                                    <span class="fw-semibold">Khailal</span>
+                                </td>
+                                <td class="mb-0 fs-9 text-body text-center" style="width: 35%;">
+                                    <span class="text-primary">Master site</span>
+                                </td>
+                                <td class="mb-0 fs-9 text-body text-center" style="width: 40%;">
+                                    <span class="text-muted">09 August 2024, 13:25</span>
+                                </td>
+                            </tr>
+                            <tr class="activity-row cursor-pointer transition-all hover:bg-light">
+                                <td class="mb-0 fs-9 text-body text-center" style="width: 25%;">
+                                    <span class="fw-semibold">Ratna</span>
+                                </td>
+                                <td class="mb-0 fs-9 text-body text-center" style="width: 35%;">
+                                    <span class="text-primary">Solution</span>
+                                </td>
+                                <td class="mb-0 fs-9 text-body text-center" style="width: 40%;">
+                                    <span class="text-muted">11 Agustus 2024, 12:00</span>
+                                </td>
+                            </tr>
+                            <tr class="activity-row cursor-pointer transition-all hover:bg-light">
+                                <td class="mb-0 fs-9 text-body text-center" style="width: 25%;">
+                                    <span class="fw-semibold">Mefa</span>
+                                </td>
+                                <td class="mb-0 fs-9 text-body text-center" style="width: 35%;">
+                                    <span class="text-primary">Industri</span>
+                                </td>
+                                <td class="mb-0 fs-9 text-body text-center" style="width: 40%;">
+                                    <span class="text-muted">21 April 2024, 11:00</span>
+                                </td>
+                            </tr>
+                            <tr class="activity-row cursor-pointer transition-all hover:bg-light">
+                                <td class="mb-0 fs-9 text-body text-center" style="width: 25%;">
+                                    <span class="fw-semibold">Tamrin</span>
+                                </td>
+                                <td class="mb-0 fs-9 text-body text-center" style="width: 35%;">
+                                    <span class="text-primary">Logo Section</span>
+                                </td>
+                                <td class="mb-0 fs-9 text-body text-center" style="width: 40%;">
+                                    <span class="text-muted">24 Juli 2024, 10:00</span>
+                                </td>
+                            </tr>
+                            <tr class="activity-row cursor-pointer transition-all hover:bg-light">
+                                <td class="mb-0 fs-9 text-body text-center" style="width: 25%;">
+                                    <span class="fw-semibold">Harry</span>
+                                </td>
+                                <td class="mb-0 fs-9 text-body text-center" style="width: 35%;">
+                                    <span class="text-primary">Blog</span>
+                                </td>
+                                <td class="mb-0 fs-9 text-body text-center" style="width: 40%;">
+                                    <span class="text-muted">11 Juli 2024, 10:00</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Add back the pagination -->
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <span class="text-muted fs-9">Last updated: <span id="lastUpdateTime">Just now</span></span>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination pagination-sm mb-0">
+                            <li class="page-item" id="prevPage">
+                                <a class="page-link" href="#">Previous</a>
+                            </li>
+                            <li class="page-item active">
+                                <a class="page-link" href="#">1</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">2</a>
+                            </li>
+                            <li class="page-item" id="nextPage">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
-            <div class="d-flex gap-2">
-                <input type="text" class="form-control form-control-sm" placeholder="Search activities..."
-                    id="activitySearch">
-                <button class="btn btn-sm btn-primary" id="refreshActivity">
-                    <i class="fas fa-sync-alt refresh-icon"></i>
-                </button>
-            </div>
-        </div>
-        <div class="table-responsive">
-            <table class="table table-hover mt-3" id="activityTable">
-                <thead>
-                    <tr class="bg-light">
-                        <th scope="col" class="text-center" style="width: 33%;">User</th>
-                        <th scope="col" class="text-center" style="width: 33%;">Last Activity</th>
-                        <th scope="col" class="text-center" style="width: 34%;">Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="activity-row cursor-pointer transition-all hover:bg-light">
-                        <td class="mb-0 fs-9 text-body text-center">
-                            <span class="fw-semibold">Khailal</span>
-                        </td>
-                        <td class="mb-0 fs-9 text-body text-center">
-                            <span class="text-primary">Master site</span>
-                        </td>
-                        <td class="mb-0 fs-9 text-body text-center">
-                            <span class="text-muted">09 August 2024, 13:25</span>
-                        </td>
-                    </tr>
-                    <tr class="activity-row cursor-pointer transition-all hover:bg-light">
-                        <td class="mb-0 fs-9 text-body text-center">
-                            <span class="fw-semibold">Ratna</span>
-                        </td>
-                        <td class="mb-0 fs-9 text-body text-center">
-                            <span class="text-primary">Solution</span>
-                        </td>
-                        <td class="mb-0 fs-9 text-body text-center">
-                            <span class="text-muted">11 Agustus 2024, 12:00</span>
-                        </td>
-                    </tr>
-                    <tr class="activity-row cursor-pointer transition-all hover:bg-light">
-                        <td class="mb-0 fs-9 text-body text-center">
-                            <span class="fw-semibold">Mefa</span>
-                        </td>
-                        <td class="mb-0 fs-9 text-body text-center">
-                            <span class="text-primary">Industri</span>
-                        </td>
-                        <td class="mb-0 fs-9 text-body text-center">
-                            <span class="text-muted">21 April 2024, 11:00</span>
-                        </td>
-                    </tr>
-                    <tr class="activity-row cursor-pointer transition-all hover:bg-light">
-                        <td class="mb-0 fs-9 text-body text-center">
-                            <span class="fw-semibold">Tamrin</span>
-                        </td>
-                        <td class="mb-0 fs-9 text-body text-center">
-                            <span class="text-primary">Logo Section</span>
-                        </td>
-                        <td class="mb-0 fs-9 text-body text-center">
-                            <span class="text-muted">24 Juli 2024, 10:00</span>
-                        </td>
-                    </tr>
-                    <tr class="activity-row cursor-pointer transition-all hover:bg-light">
-                        <td class="mb-0 fs-9 text-body text-center">
-                            <span class="fw-semibold">Harry</span>
-                        </td>
-                        <td class="mb-0 fs-9 text-body text-center">
-                            <span class="text-primary">Blog</span>
-                        </td>
-                        <td class="mb-0 fs-9 text-body text-center">
-                            <span class="text-muted">11 Juli 2024, 10:00</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="d-flex justify-content-between align-items-center mt-3">
-            <span class="text-muted fs-9">Last updated: <span id="lastUpdateTime">Just now</span></span>
-            <nav aria-label="Page navigation">
-                <ul class="pagination pagination-sm mb-0">
-                    <li class="page-item" id="prevPage">
-                        <a class="page-link" href="#">Previous</a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item" id="nextPage">
-                        <a class="page-link" href="#">Next</a>
-                    </li>
-                </ul>
-            </nav>
         </div>
     </div>
 </div>
 
 <style>
+    :root {
+        --purple-light: #8B5CF6;
+        --purple-dark: #6D28D9;
+        --purple-gradient: linear-gradient(135deg, var(--purple-light) 0%, var(--purple-dark) 100%);
+    }
+
+    /* Light mode styles */
+    :root,
+    [data-bs-theme="light"] {
+        --page-gradient-start: rgba(255, 255, 255, 1);
+        --page-gradient-end: rgba(139, 92, 246, 0.08);
+    }
+
+    /* Dark mode styles */
+    [data-bs-theme="dark"] {
+        --page-gradient-start: var(--phoenix-body-bg);
+        --page-gradient-end: var(--phoenix-body-bg);
+    }
+
+    /* Apply gradient only in light mode */
+    :root:not([data-bs-theme="dark"]) body,
+    [data-bs-theme="light"] body {
+        background: linear-gradient(180deg, 
+            var(--page-gradient-start) 0%, 
+            var(--page-gradient-start) 15%,
+            var(--page-gradient-end) 100%);
+        min-height: 100vh;
+    }
+
+    .gradient-card {
+        background: linear-gradient(145deg, 
+            rgba(255, 255, 255, 1) 0%,
+            rgba(249, 245, 255, 0.95) 50%,
+            rgba(243, 232, 255, 0.9) 100%);
+        border: 1px solid rgba(139, 92, 246, 0.1);
+        box-shadow: 
+            0 4px 12px -2px rgba(139, 92, 246, 0.08),
+            0 8px 24px -4px rgba(139, 92, 246, 0.06);
+        border-radius: 12px;
+    }
+
+    [data-bs-theme="dark"] .gradient-card {
+        background: linear-gradient(145deg,
+            rgba(34, 40, 52, 0.95) 0%,
+            rgba(31, 35, 47, 1) 100%);
+        border: 1px solid rgba(139, 92, 246, 0.15);
+        box-shadow: 
+            0 4px 12px -2px rgba(0, 0, 0, 0.2),
+            0 8px 24px -4px rgba(0, 0, 0, 0.15);
+    }
+
+    .text-purple {
+        color: var(--purple-light);
+    }
+
+    [data-bs-theme="dark"] .text-purple {
+        color: var(--realta-link-color, #a261eb);
+    }
+
+    .btn-primary {
+        background: var(--purple-gradient);
+        border: none;
+        box-shadow: 0 2px 4px rgba(139, 92, 246, 0.1);
+    }
+
+    .btn-primary:hover {
+        background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple-light) 100%);
+        transform: translateY(-1px);
+    }
+
+    .page-item.active .page-link {
+        background: var(--purple-gradient);
+        border-color: var(--purple-light);
+    }
+
+    .text-primary {
+        color: var(--purple-light) !important;
+    }
+
     .activity-row {
         transition: all 0.2s ease;
+        border-radius: 8px;
     }
 
     .activity-row:hover {
         transform: translateY(-1px);
-        /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+        background: linear-gradient(135deg, #ffffff 0%, #F9F5FF 100%);
     }
 
     .refresh-icon {
@@ -150,6 +326,11 @@
         animation: spin 1s linear;
     }
 
+    .form-control:focus {
+        border-color: var(--purple-light);
+        box-shadow: 0 0 0 0.2rem rgba(139, 92, 246, 0.25);
+    }
+
     @keyframes spin {
         from {
             transform: rotate(0deg);
@@ -159,16 +340,14 @@
         }
     }
 
-    /* Update skeleton styles to match content dimensions with shimmer */
     .skeleton {
         position: relative;
-        background: #f0f0f0;
+        background: linear-gradient(135deg, #F3E8FF 0%, #F9F5FF 100%);
         border-radius: 4px;
         overflow: hidden;
-        height: 16px; /* Match the content text height */
+        height: 16px;
     }
 
-    /* Add back the shimmer effect */
     .skeleton::after {
         content: "";
         position: absolute;
@@ -185,12 +364,6 @@
             rgba(255, 255, 255, 0)
         );
         animation: shimmer 2s infinite;
-    }
-
-    @keyframes shimmer {
-        100% {
-            transform: translateX(100%);
-        }
     }
 
     .skeleton-row td {
@@ -248,6 +421,570 @@
         font-weight: 300;
         margin: 0 4px;
     }
+
+    .bg-purple {
+        background-color: var(--purple-light) !important;
+    }
+
+    .mini-stat {
+        text-align: center;
+        padding: 0 8px;
+    }
+
+    .mini-stat:not(:last-child) {
+        border-right: 1px solid rgba(131, 146, 171, 0.2);
+    }
+
+    /* Dark mode specific styles */
+    [data-bs-theme="dark"] .activity-icon-wrapper {
+        display: none;
+    }
+
+    [data-bs-theme="dark"] .mini-stat:not(:last-child) {
+        border-right-color: rgba(131, 146, 171, 0.1);
+    }
+
+    .progress {
+        background-color: rgba(139, 92, 246, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .progress-bar {
+        transition: width 0.6s ease;
+    }
+
+    .badge {
+        width: 8px;
+        height: 8px;
+        padding: 0;
+        border-radius: 50%;
+    }
+
+    [data-bs-theme="dark"] .progress {
+        background-color: rgba(139, 92, 246, 0.05);
+    }
+
+    .mini-stat h4 {
+        font-weight: 600;
+        color: var(--phoenix-heading-color);
+    }
+
+    .mini-stat h6 {
+        color: var(--phoenix-heading-color);
+        font-size: 0.875rem;
+    }
+
+    .badge-soft-purple {
+        background-color: rgba(139, 92, 246, 0.1);
+        color: var(--purple-light);
+    }
+
+    .badge-soft-success {
+        background-color: rgba(16, 185, 129, 0.1);
+        color: #10B981;
+    }
+
+    [data-bs-theme="dark"] .badge-soft-purple {
+        background-color: rgba(139, 92, 246, 0.15);
+    }
+
+    [data-bs-theme="dark"] .badge-soft-success {
+        background-color: rgba(16, 185, 129, 0.15);
+    }
+
+    /* Enhance existing table styles */
+    .table > :not(caption) > * > * {
+        padding: 1rem 0.75rem;
+    }
+
+    .activity-row td {
+        vertical-align: middle;
+    }
+
+    /* Add subtle divider between stats */
+    .mini-stat:not(:last-child) {
+        position: relative;
+    }
+
+    .mini-stat:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        right: -1px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 70%;
+        width: 1px;
+        background: linear-gradient(
+            to bottom,
+            transparent,
+            rgba(139, 92, 246, 0.1) 20%,
+            rgba(139, 92, 246, 0.1) 80%,
+            transparent
+        );
+    }
+
+    /* Add these new responsive styles */
+    @media (max-width: 767px) {
+        .welcome-text {
+            text-align: center;
+            width: 100%;
+            max-width: 100% !important;
+        }
+        
+        .welcome-image-wrapper {
+            min-width: auto !important;
+            margin-top: 1rem;
+        }
+        
+        .welcome-image {
+            max-height: 150px !important;
+        }
+        
+        .d-flex.align-items-center.gap-3.mt-2 {
+            justify-content: center;
+        }
+        
+        .table-responsive {
+            margin: 0 -1rem;
+            padding: 0 1rem;
+            width: calc(100% + 2rem);
+        }
+        
+        .fs-9 {
+            font-size: 0.75rem !important;
+        }
+        
+        .card-body {
+            padding: 1rem !important;
+        }
+        
+        .pagination {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .pagination .page-link {
+            padding: 0.25rem 0.5rem;
+        }
+    }
+    
+    @media (max-width: 575px) {
+        .custom-select-sm {
+            width: 60px;
+        }
+        
+        #activitySearch {
+            min-width: 0;
+            width: 100%;
+        }
+        
+        .d-flex.justify-content-between.align-items-center.mt-3 {
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .text-muted.fs-9 {
+            text-align: center;
+            width: 100%;
+        }
+    }
+
+    /* Update existing card styles */
+    .gradient-card {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    /* Make table more responsive */
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Adjust badge styles for better mobile display */
+    .badge-soft-purple,
+    .badge-soft-success {
+        white-space: nowrap;
+        display: inline-flex;
+        align-items: center;
+    }
+    
+    /* Ensure buttons and inputs are touch-friendly */
+    .btn-sm,
+    .form-control-sm {
+        min-height: 32px;
+    }
+    
+    /* Add these to your existing styles */
+    .welcome-image {
+        object-fit: contain;
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .custom-select-sm {
+        min-height: 32px;
+    }
+
+    /* Update the welcome section styles */
+    .welcome-text {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .welcome-image-container {
+        flex: 0 0 280px;
+    }
+
+    .welcome-image {
+        width: 100%;
+        height: auto;
+        max-height: 220px;
+        object-fit: contain;
+    }
+
+    /* Update container styles */
+    .row > [class*='col-'] {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    .card-body {
+        max-width: 900px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    /* Mobile styles */
+    @media (max-width: 767px) {
+        .d-flex.align-items-center.gap-4 {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .welcome-text {
+            width: 100%;
+            text-align: center;
+        }
+
+        .welcome-image-container {
+            width: 220px;
+            margin: 1rem auto 0;
+        }
+
+        .d-flex.align-items-center.gap-3.mt-2 {
+            justify-content: center;
+        }
+    }
+
+    /* Add to existing styles */
+    .progress {
+        background-color: rgba(139, 92, 246, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .progress-bar {
+        transition: width 0.6s ease;
+    }
+
+    .badge {
+        width: 8px;
+        height: 8px;
+        padding: 0;
+        border-radius: 50%;
+    }
+
+    /* Responsive fixes for the new cards */
+    @media (max-width: 991.98px) {
+        .col-md-6.col-lg-3 {
+            margin-bottom: 1rem !important;
+        }
+        
+        .col-md-6.col-lg-3:last-child {
+            margin-bottom: 0 !important;
+        }
+    }
+
+    /* Add to existing styles */
+    .row.g-3 {
+        --bs-gutter-y: 1rem;
+        --bs-gutter-x: 1rem;
+    }
+
+    .gradient-card {
+        height: 100%;
+        transition: transform 0.2s ease-in-out;
+    }
+
+
+    .icon-wrapper {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        background: rgba(139, 92, 246, 0.1);
+    }
+
+    [data-bs-theme="dark"] .icon-wrapper {
+        background: rgba(139, 92, 246, 0.15);
+    }
+
+    /* Update existing card styles */
+    .card-body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .d-flex.justify-content-between {
+        height: 100%;
+    }
+
+    /* Ensure consistent spacing */
+    .mb-2 {
+        margin-bottom: 0.5rem !important;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 991.98px) {
+        .col-sm-6 {
+            margin-bottom: 0 !important;
+        }
+    }
+
+    /* Update card styles */
+    .gradient-card {
+        background: linear-gradient(145deg, 
+            rgba(255, 255, 255, 1) 0%,
+            rgba(249, 245, 255, 0.95) 50%,
+            rgba(243, 232, 255, 0.9) 100%);
+        border: 1px solid rgba(139, 92, 246, 0.1);
+        box-shadow: 
+            0 4px 12px -2px rgba(139, 92, 246, 0.08),
+            0 8px 24px -4px rgba(139, 92, 246, 0.06);
+        border-radius: 12px;
+    }
+
+    [data-bs-theme="dark"] .gradient-card {
+        background: linear-gradient(145deg,
+            rgba(34, 40, 52, 0.95) 0%,
+            rgba(31, 35, 47, 1) 100%);
+        border: 1px solid rgba(139, 92, 246, 0.15);
+        box-shadow: 
+            0 4px 12px -2px rgba(0, 0, 0, 0.2),
+            0 8px 24px -4px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Remove icon wrapper styles and update icon appearance */
+    .text-purple {
+        color: var(--purple-light);
+    }
+
+    [data-bs-theme="dark"] .text-purple {
+        color: var(--realta-link-color, #a261eb);
+    }
+
+    /* Enhance text styles */
+    .fw-bold {
+        font-weight: 600 !important;
+    }
+
+    .fw-semibold {
+        font-weight: 500 !important;
+    }
+
+    .fs-2 {
+        font-size: 1.75rem !important;
+    }
+
+    .fs-3 {
+        font-size: 1.5rem !important;
+    }
+
+    /* Update progress bar styles */
+    .progress {
+        background-color: rgba(139, 92, 246, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .progress-bar {
+        transition: width 0.6s ease;
+    }
+
+    /* Update badge styles */
+    .badge {
+        width: 8px;
+        height: 8px;
+        padding: 0;
+        border-radius: 50%;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 991.98px) {
+        .col-sm-6 {
+            margin-bottom: 1rem;
+        }
+        .col-sm-6:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    /* Update table styles */
+    .table-container {
+        margin: 0 -1rem;
+        padding: 0 1rem;
+    }
+
+    .table {
+        margin-bottom: 0;
+    }
+
+    .table th {
+        border-top: none;
+        background: rgba(139, 92, 246, 0.05);
+        padding: 0.75rem;
+        font-weight: 600;
+        color: var(--phoenix-heading-color);
+    }
+
+    .table td {
+        padding: 1rem 0.75rem;
+        vertical-align: middle;
+    }
+
+    /* Remove table scroll */
+    .table-responsive {
+        overflow-x: visible;
+    }
+
+    /* Mobile optimizations */
+    @media (max-width: 767px) {
+        .table-container {
+            margin: 0 -0.5rem;
+            padding: 0 0.5rem;
+        }
+
+        .table th, 
+        .table td {
+            padding: 0.75rem 0.5rem;
+        }
+
+        .table {
+            font-size: 0.875rem;
+        }
+    }
+
+    /* Ensure search input doesn't overflow */
+    .form-control-sm {
+        min-width: 200px;
+    }
+
+    @media (max-width: 575px) {
+        .form-control-sm {
+            min-width: 0;
+            width: 100%;
+        }
+        
+        .d-flex.gap-2 {
+            width: 100%;
+        }
+    }
+
+    /* Update table styles */
+    .table-responsive {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    .table {
+        margin-bottom: 0;
+        width: 100%;
+    }
+
+    .card-body {
+        padding: 1.5rem;
+        width: 100%;
+        max-width: none;
+    }
+
+    .table th {
+        border-top: none;
+        background: rgba(139, 92, 246, 0.05);
+        padding: 1rem;
+        font-weight: 600;
+        color: var(--phoenix-heading-color);
+        white-space: nowrap;
+    }
+
+    .table td {
+        padding: 1rem;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    /* Mobile optimizations */
+    @media (max-width: 767px) {
+        .card-body {
+            padding: 1rem;
+        }
+
+        .table th, 
+        .table td {
+            padding: 0.75rem;
+        }
+
+        .table {
+            font-size: 0.875rem;
+        }
+    }
+
+    /* Add to existing styles */
+    .pagination {
+        margin-bottom: 0;
+    }
+
+    .pagination .page-link {
+        color: var(--purple-light);
+        border-color: rgba(139, 92, 246, 0.15);
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    .pagination .page-item.active .page-link {
+        background: var(--purple-gradient);
+        border-color: var(--purple-light);
+        color: white;
+    }
+
+    .pagination .page-item:not(.active) .page-link:hover {
+        background: rgba(139, 92, 246, 0.05);
+    }
+
+    /* Mobile responsive pagination */
+    @media (max-width: 575px) {
+        .d-flex.justify-content-between.align-items-center.mt-3 {
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .text-muted.fs-9 {
+            order: 2;
+        }
+        
+        nav[aria-label="Page navigation"] {
+            order: 1;
+        }
+    }
 </style>
 
 <script id="skeleton-template" type="text/template">
@@ -265,7 +1002,29 @@
 </script>
 
 <script>
+    // Define the update function outside DOMContentLoaded to make it available immediately
+    function updateCurrentDate() {
+        const dateElements = document.querySelectorAll('.current-date');
+        const now = new Date();
+        const options = { 
+            month: 'short', 
+            day: 'numeric', 
+            year: 'numeric' 
+        };
+        const formattedDate = now.toLocaleDateString('en-US', options);
+        
+        dateElements.forEach(element => {
+            element.textContent = formattedDate;
+        });
+    }
+    
+    // Run immediately
+    updateCurrentDate();
+    
     document.addEventListener('DOMContentLoaded', function () {
+        // Update date every second
+        setInterval(updateCurrentDate, 1000);
+
         // Search functionality
         const searchInput = document.getElementById('activitySearch');
         searchInput.addEventListener('input', function () {
@@ -284,5 +1043,30 @@
             const time = new Date();
             lastUpdate.textContent = time.toLocaleTimeString();
         }, 60000);
+
+        // Update system load randomly every 30 seconds
+        setInterval(() => {
+            const loadElement = document.querySelector('.card:last-child h3');
+            const progressBar = document.querySelector('.progress-bar');
+            const loadText = document.querySelector('.card:last-child small');
+            
+            const newLoad = Math.floor(Math.random() * 100);
+            loadElement.textContent = `${newLoad}%`;
+            progressBar.style.width = `${newLoad}%`;
+            
+            if (newLoad < 50) {
+                progressBar.className = 'progress-bar bg-success';
+                loadText.className = 'text-success mt-1 d-block';
+                loadText.textContent = 'Optimal';
+            } else if (newLoad < 80) {
+                progressBar.className = 'progress-bar bg-warning';
+                loadText.className = 'text-warning mt-1 d-block';
+                loadText.textContent = 'Moderate';
+            } else {
+                progressBar.className = 'progress-bar bg-danger';
+                loadText.className = 'text-danger mt-1 d-block';
+                loadText.textContent = 'High Load';
+            }
+        }, 30000);
     });
 </script>
