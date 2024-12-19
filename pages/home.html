@@ -1392,6 +1392,59 @@
             font-size: 4.2rem;
         }
     }
+
+    /* Card title styles with cut-off radius */
+    .gradient-card .text-purple {
+        position: relative;
+        display: inline-block;
+        padding: 4px 12px;
+        margin: -8px 0 8px -8px;
+        border-radius: 0 0 12px 0;
+        background: rgba(139, 92, 246, 0.1);
+    }
+
+    /* Unique background colors for each card title */
+    .col-sm-6.col-lg-3:nth-child(1) .text-purple {
+        background: rgba(147, 51, 234, 0.1);
+    }
+
+    .col-sm-6.col-lg-3:nth-child(2) .text-purple {
+        background: rgba(59, 130, 246, 0.1);
+    }
+
+    .col-sm-6.col-lg-3:nth-child(3) .text-purple {
+        background: rgba(16, 185, 129, 0.1);
+    }
+
+    .col-sm-6.col-lg-3:nth-child(4) .text-purple {
+        background: rgba(245, 158, 11, 0.1);
+    }
+
+    /* Dark mode adjustments */
+    [data-bs-theme="dark"] .gradient-card .text-purple {
+        background: rgba(139, 92, 246, 0.15);
+    }
+
+    [data-bs-theme="dark"] .col-sm-6.col-lg-3:nth-child(1) .text-purple {
+        background: rgba(147, 51, 234, 0.15);
+    }
+
+    [data-bs-theme="dark"] .col-sm-6.col-lg-3:nth-child(2) .text-purple {
+        background: rgba(59, 130, 246, 0.15);
+    }
+
+    [data-bs-theme="dark"] .col-sm-6.col-lg-3:nth-child(3) .text-purple {
+        background: rgba(16, 185, 129, 0.15);
+    }
+
+    [data-bs-theme="dark"] .col-sm-6.col-lg-3:nth-child(4) .text-purple {
+        background: rgba(245, 158, 11, 0.15);
+    }
+
+    /* Update card body padding to accommodate the new title style */
+    .gradient-card .card-body {
+        padding-top: 8px !important;
+    }
 </style>
 
 <script id="skeleton-template" type="text/template">
