@@ -1,15 +1,15 @@
 <!-- Update the welcome section -->
 <div class="row justify-content-center">
     <div class="col-12 col-md-11 col-lg-10">
-        <div class="card mb-4 bg-transparent border-0 px-0">
-            <div class="d-flex align-items-center gap-4" style="max-width: 900px; margin: 0 auto;">
+        <div class="card welcome-card mb-4 bg-transparent border-0 px-0">
+            <div class="welcome-container">
                 <div class="welcome-text">
-                    <h2 class="text-dark mb-1">Welcome back!</h2>
-                    <p class="text-muted mb-0">Here's what's happening with your projects today.</p>
-                    <div class="last-checked mt-2">
+                    <h1 class="welcome-title">Welcome back!</h1>
+                    <p class="welcome-subtitle">Here's what's happening with the update today.</p>
+                    <div class="last-checked">
                         <div class="d-flex align-items-center gap-2">
-                            <i class="fas fa-clock text-primary fs-9"></i>
-                            <span class="text-body-secondary fs-9">Last checked: <span class="current-date"></span></span>
+                            <i class="fas fa-clock text-primary"></i>
+                            <span class="text-body-secondary">Last checked: <span class="current-date"></span></span>
                         </div>
                     </div>
                 </div>
@@ -1444,6 +1444,161 @@
     /* Update card body padding to accommodate the new title style */
     .gradient-card .card-body {
         padding-top: 8px !important;
+    }
+
+    /* Welcome Card Styles */
+    .welcome-card {
+        margin-bottom: 2rem !important;
+        overflow: hidden;
+    }
+
+    .welcome-container {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .welcome-text {
+        flex: 1;
+        min-width: 0;
+        position: relative;
+        z-index: 1;
+    }
+
+
+    .welcome-subtitle {
+        font-size: 1.1rem;
+        color: var(--phoenix-text-muted);
+        margin-bottom: 1rem;
+        line-height: 1.5;
+    }
+
+    .welcome-image-container {
+        flex: 0 0 400px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .welcome-image {
+        width: 100%;
+        height: auto;
+        max-height: 300px;
+        object-fit: contain;
+        transform: scale(1.1);
+    }
+
+    .last-checked {
+        font-size: 0.9rem;
+        margin-top: 1rem;
+    }
+
+    .last-checked i {
+        font-size: 0.9rem;
+    }
+
+    /* Welcome section dark mode adjustments */
+   
+
+    /* Responsive adjustments */
+    @media (max-width: 1200px) {
+        .welcome-title {
+            font-size: 2.25rem;
+        }
+
+        .welcome-image-container {
+            flex: 0 0 350px;
+        }
+    }
+
+    @media (max-width: 991px) {
+        .welcome-container {
+            padding: 1.5rem;
+        }
+
+        .welcome-title {
+            font-size: 2rem;
+        }
+
+        .welcome-image-container {
+            flex: 0 0 300px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .welcome-container {
+            flex-direction: column;
+            text-align: center;
+            gap: 1.5rem;
+            padding: 1.5rem 1rem;
+        }
+
+        .welcome-title {
+            font-size: 1.75rem;
+        }
+
+        .welcome-subtitle {
+            font-size: 1rem;
+        }
+
+        .welcome-image-container {
+            flex: 0 0 auto;
+            width: 100%;
+            max-width: 280px;
+            margin: 0 auto;
+        }
+
+        .welcome-image {
+            max-height: 250px;
+        }
+
+        .last-checked .d-flex {
+            justify-content: center;
+        }
+    }
+
+    /* Remove the float animation */
+    .welcome-image {
+        width: 100%;
+        height: auto;
+        max-height: 300px;
+        object-fit: contain;
+        transform: scale(1.1);
+    }
+
+    /* Update welcome title with gradient fade */
+    .welcome-title {
+        font-size: 2.3rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+        line-height: 1.2;
+        background: linear-gradient(135deg, 
+            #c05cf6 0%,
+            #cc96f5 50%,
+            #f1d6fe 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: inline-block;
+    }
+
+    /* Dark mode adjustment for welcome title */
+    [data-bs-theme="dark"] .welcome-title {
+        background: linear-gradient(135deg,
+            #A78BFA 0%,
+            #8B5CF6 50%,
+            #7C3AED 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Remove the float keyframes and animation */
+    .welcome-image {
+        animation: none;
     }
 </style>
 
