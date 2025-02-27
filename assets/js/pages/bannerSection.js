@@ -1,13 +1,39 @@
 $(document).ready(function() {
     // Sample data - replace with actual data from your backend
     const predefinedSystems = [
-        { value: 'golf', label: 'Golf Course System' },
-        { value: 'hotel', label: 'Hotel System' },
-        { value: 'hr', label: 'HR System' },
-        { value: 'itsm', label: 'ITSM, ITAM & Unified Endpoint Management' },
-        { value: 'network', label: 'Network & System Integration' },
-        { value: 'property', label: 'Property & Tenancy System' }
+        { value: 'main', label: 'Main Site', badgeClass: 'info' },
+        { value: 'golf', label: 'Golf Course System', badgeClass: 'info' },
+        { value: 'hotel', label: 'Hotel System', badgeClass: 'success' },
+        { value: 'hr', label: 'HR System', badgeClass: 'warning' },
+        { value: 'itsm', label: 'ITSM, ITAM & Unified Endpoint Management', badgeClass: 'primary' },
+        { value: 'network', label: 'Network & System Integration', badgeClass: 'danger' },
+        { value: 'property', label: 'Property & Tenancy System', badgeClass: 'secondary' }
     ];
+
+    // Function to populate system dropdowns
+    function populateSystemDropdowns() {
+        const dropdowns = ['addAssignedSystem', 'editAssignedSystem'];
+        
+        dropdowns.forEach(dropdownId => {
+            const select = document.getElementById(dropdownId);
+            if (!select) return;
+            
+            // Clear existing options
+            select.innerHTML = '';
+            
+            // Add options from predefinedSystems
+            predefinedSystems.forEach(system => {
+                const option = new Option(system.label, system.value);
+                select.add(option);
+            });
+            
+            // Set default value to 'golf'
+            select.value = 'golf';
+        });
+    }
+
+    // Call populate function on document ready
+    populateSystemDropdowns();
 
     let banners = [
         {
@@ -197,6 +223,15 @@ $(document).ready(function() {
         }
     };
 
+    // Helper function to get system badge HTML
+    function getSystemBadgeHtml(systemValue) {
+        const system = predefinedSystems.find(s => s.value === systemValue);
+        if (system) {
+            return `<span class="badge badge-phoenix badge-phoenix-${system.badgeClass}">${system.label}</span>`;
+        }
+        return systemValue; // Fallback to plain text if system not found
+    }
+
     // Table Handler
     const TableHandler = {
         render: function() {
@@ -224,12 +259,7 @@ $(document).ready(function() {
                                 <small class="text-primary">Button 2: ${banner.button2Text}</small>
                             </div>` : ''}
                             <div class="mt-2">
-                                <small class="text-secondary">
-                                    ${banner.assignedSystem === 'golf' ? 
-                                        '<span class="badge badge-phoenix badge-phoenix-info">Golf Course System</span>' :
-                                        banner.assignedSystem
-                                    }
-                                </small>
+                                ${getSystemBadgeHtml(banner.assignedSystem)}
                             </div>
                         </td>
                         <td class="text-center">
