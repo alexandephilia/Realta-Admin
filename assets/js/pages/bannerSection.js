@@ -1,5 +1,14 @@
 $(document).ready(function() {
     // Sample data - replace with actual data from your backend
+    const predefinedSystems = [
+        { value: 'golf', label: 'Golf Course System' },
+        { value: 'hotel', label: 'Hotel System' },
+        { value: 'hr', label: 'HR System' },
+        { value: 'itsm', label: 'ITSM, ITAM & Unified Endpoint Management' },
+        { value: 'network', label: 'Network & System Integration' },
+        { value: 'property', label: 'Property & Tenancy System' }
+    ];
+
     let banners = [
         {
             id: 1,
@@ -14,7 +23,8 @@ $(document).ready(function() {
             button1Text: "Learn More",
             button1Link: "https://example.com",
             button2Text: "",
-            button2Link: ""
+            button2Link: "",
+            assignedSystem: 'golf' // Default to first system
         }
     ];
 
@@ -152,7 +162,8 @@ $(document).ready(function() {
                 button1Text: $(`#${prefix}Button1Text`).val(),
                 button1Link: $(`#${prefix}Button1Link`).val(),
                 button2Text: $(`#${prefix}Button2Text`).val(),
-                button2Link: $(`#${prefix}Button2Link`).val()
+                button2Link: $(`#${prefix}Button2Link`).val(),
+                assignedSystem: $(`#${prefix}AssignedSystem`).val()
             };
         },
 
@@ -165,6 +176,7 @@ $(document).ready(function() {
             $(`#${prefix}Button1Link`).val('');
             $(`#${prefix}Button2Text`).val('');
             $(`#${prefix}Button2Link`).val('');
+            $(`#${prefix}AssignedSystem`).val('golf');
         },
 
         populateForm: function(prefix, data) {
@@ -181,6 +193,7 @@ $(document).ready(function() {
             $(`#${prefix}Button1Link`).val(data.button1Link || '');
             $(`#${prefix}Button2Text`).val(data.button2Text || '');
             $(`#${prefix}Button2Link`).val(data.button2Link || '');
+            $(`#${prefix}AssignedSystem`).val(data.assignedSystem || 'golf');
         }
     };
 
@@ -210,6 +223,14 @@ $(document).ready(function() {
                             <div class="mt-1">
                                 <small class="text-primary">Button 2: ${banner.button2Text}</small>
                             </div>` : ''}
+                            <div class="mt-2">
+                                <small class="text-secondary">
+                                    ${banner.assignedSystem === 'golf' ? 
+                                        '<span class="badge badge-phoenix badge-phoenix-info">Golf Course System</span>' :
+                                        banner.assignedSystem
+                                    }
+                                </small>
+                            </div>
                         </td>
                         <td class="text-center">
                             <i class="${banner.icon}" style="font-size: 1rem; color: ${banner.iconColor};"></i>
@@ -364,4 +385,20 @@ $(document).ready(function() {
             $('[id$="IconSuggestions"]').hide();
         }
     });
+
+    // Add page assignment handler
+    function handlePageAssignment(selectElement) {
+        $(selectElement).on('change', function() {
+            const selectedValues = $(this).val();
+            if (selectedValues.includes('golf')) {
+                $(this).val(['golf']);
+            } else if (selectedValues.length === 0) {
+                $(this).val(['golf']);
+            }
+        });
+    }
+
+    // Initialize page assignment handlers
+    handlePageAssignment('#addAssignedSystem');
+    handlePageAssignment('#editAssignedSystem');
 });

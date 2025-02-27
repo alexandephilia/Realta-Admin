@@ -44,24 +44,24 @@
             <!-- Banner Content -->
             <div class="col-md-6">
               <div class="card h-100">
-                <div class="card-body">
-                  <h6 class="mb-3">Banner Content</h6>
-                  <div class="mb-3">
-                    <label class="form-label" for="addTitle">Title</label>
-                    <input class="form-control" type="text" id="addTitle" required>
-                  </div>
+            <div class="card-body">
+              <h6 class="mb-3">Banner Content</h6>
+              <div class="mb-3">
+                <label class="form-label" for="addTitle">Title</label>
+                <input class="form-control" type="text" id="addTitle" required>
+              </div>
                   <div class="mb-0">
-                    <label class="form-label" for="addDescription">Description</label>
-                    <textarea class="form-control" id="addDescription" rows="3" required></textarea>
+                <label class="form-label" for="addDescription">Description</label>
+                <textarea class="form-control" id="addDescription" rows="3" required></textarea>
                   </div>
-                </div>
               </div>
             </div>
+          </div>
 
             <!-- Status and Date -->
             <div class="col-md-6">
               <div class="card h-100">
-                <div class="card-body">
+            <div class="card-body">
                   <div class="d-flex justify-content-between align-items-start mb-3">
                     <h6 class="mb-0">Status & Schedule</h6>
                     <div class="d-flex flex-column align-items-center">
@@ -100,26 +100,37 @@
                       <small class="text-muted fs-10 mt-1">Visibility</small>
                     </div>
                   </div>
-                  <div class="mb-3">
-                    <label class="form-label" for="addStatus">Status</label>
-                    <select class="form-select" id="addStatus" required>
-                      <option value="active">Active</option>
-                      <option value="inactive">Inactive</option>
-                      <option value="draft">Draft</option>
-                    </select>
+              <div class="mb-3">
+                <label class="form-label" for="addStatus">Status</label>
+                <select class="form-select" id="addStatus" required>
+                  <option value="active">Active</option>
+                  <option value="inactive">Inactive</option>
+                  <option value="draft">Draft</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="addPeriodDate">Period Date</label>
+                <input class="form-control" type="date" id="addPeriodDate" required>
                   </div>
                   <div class="mb-0">
-                    <label class="form-label" for="addPeriodDate">Period Date</label>
-                    <input class="form-control" type="date" id="addPeriodDate" required>
+                    <label class="form-label" for="addAssignedSystem">Assign to Page</label>
+                    <select class="form-select" id="addAssignedSystem">
+                      <option value="golf">Golf Course System</option>
+                      <option value="hotel">Hotel System</option>
+                      <option value="hr">HR System</option>
+                      <option value="itsm">ITSM, ITAM & Unified Endpoint Management</option>
+                      <option value="network">Network & System Integration</option>
+                      <option value="property">Property & Tenancy System</option>
+                    </select>
                   </div>
                 </div>
-              </div>
             </div>
+          </div>
 
             <!-- Icon Settings -->
             <div class="col-md-6">
               <div class="card h-100">
-                <div class="card-body">
+            <div class="card-body">
                   <h6 class="mb-3">Icon Settings</h6>
                   <div class="row h-100">
                     <div class="col-md-8">
@@ -215,15 +226,15 @@
             <!-- Banner Content -->
             <div class="col-md-6">
               <div class="card h-100">
-                <div class="card-body">
-                  <h6 class="mb-3">Banner Content</h6>
-                  <div class="mb-3">
-                    <label class="form-label" for="editTitle">Title</label>
-                    <input class="form-control" type="text" id="editTitle" required>
-                  </div>
+            <div class="card-body">
+              <h6 class="mb-3">Banner Content</h6>
+              <div class="mb-3">
+                <label class="form-label" for="editTitle">Title</label>
+                <input class="form-control" type="text" id="editTitle" required>
+              </div>
                   <div class="mb-0">
-                    <label class="form-label" for="editDescription">Description</label>
-                    <textarea class="form-control" id="editDescription" rows="3" required></textarea>
+                <label class="form-label" for="editDescription">Description</label>
+                <textarea class="form-control" id="editDescription" rows="3" required></textarea>
                   </div>
                 </div>
               </div>
@@ -279,67 +290,78 @@
                       <option value="draft">Draft</option>
                     </select>
                   </div>
-                  <div class="mb-0">
+                  <div class="mb-3">
                     <label class="form-label" for="editPeriodDate">Period Date</label>
                     <input class="form-control" type="date" id="editPeriodDate" required>
                   </div>
-                </div>
+                  <div class="mb-0">
+                    <label class="form-label" for="editAssignedSystem">Assign to Page</label>
+                    <select class="form-select" id="editAssignedSystem">
+                      <option value="golf">Golf Course System</option>
+                      <option value="hotel">Hotel System</option>
+                      <option value="hr">HR System</option>
+                      <option value="itsm">ITSM, ITAM & Unified Endpoint Management</option>
+                      <option value="network">Network & System Integration</option>
+                      <option value="property">Property & Tenancy System</option>
+                    </select>
+                  </div>
               </div>
             </div>
+          </div>
 
             <!-- Icon Settings -->
             <div class="col-md-6">
               <div class="card h-100">
-                <div class="card-body">
-                  <h6 class="mb-3">Icon Settings</h6>
+            <div class="card-body">
+              <h6 class="mb-3">Icon Settings</h6>
                   <div class="row h-100">
-                    <div class="col-md-8">
-                      <div class="mb-3">
-                        <label class="form-label" for="editIcon">Icon Name</label>
-                        <div class="input-group">
-                          <input class="form-control" type="text" id="editIcon" placeholder="e.g., home" required>
-                          <div id="editIconSuggestions" class="dropdown-menu w-100" style="max-height: 200px; overflow-y: auto;">
-                          </div>
-                        </div>
-                        <small class="text-muted">Type icon name without 'fas fa-' prefix</small>
-                      </div>
-                      <div class="mb-0">
-                        <label class="form-label" for="editIconColor">Icon Color</label>
-                        <input type="color" class="form-control form-control-color w-100" id="editIconColor" value="#000000">
+                <div class="col-md-8">
+                  <div class="mb-3">
+                    <label class="form-label" for="editIcon">Icon Name</label>
+                    <div class="input-group">
+                      <input class="form-control" type="text" id="editIcon" placeholder="e.g., home" required>
+                      <div id="editIconSuggestions" class="dropdown-menu w-100" style="max-height: 200px; overflow-y: auto;">
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <small class="text-muted">Type icon name without 'fas fa-' prefix</small>
+                  </div>
+                      <div class="mb-0">
+                    <label class="form-label" for="editIconColor">Icon Color</label>
+                    <input type="color" class="form-control form-control-color w-100" id="editIconColor" value="#000000">
+                  </div>
+                </div>
+                <div class="col-md-4">
                       <div class="text-center d-flex flex-column" style="min-height: 120px;">
                         <label class="form-label mb-2">Preview</label>
                         <div class="preview-box border rounded p-3 flex-grow-1 d-flex align-items-center justify-content-center" 
                              style="min-height: 80px; max-height: 100px;">
-                          <i id="editIconPreview"></i>
+                      <i id="editIconPreview"></i>
                         </div>
                       </div>
-                    </div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
 
             <!-- Button Settings -->
             <div class="col-md-6">
               <div class="card h-100">
-                <div class="card-body">
+            <div class="card-body">
                   <h6 class="mb-3">Button Settings</h6>
                   <!-- Button 1 -->
-                  <div class="mb-3">
+              <div class="mb-3">
                     <h6 class="text-muted fs-sm mb-2">Button 1</h6>
                     <div class="row g-2">
                       <div class="col-md-6">
                         <label class="form-label" for="editButton1Text">Text</label>
                         <input class="form-control" type="text" id="editButton1Text" placeholder="Button text">
-                      </div>
+              </div>
                       <div class="col-md-6">
                         <label class="form-label" for="editButton1Link">Link</label>
                         <input class="form-control" type="url" id="editButton1Link" placeholder="https://">
-                      </div>
-                    </div>
+            </div>
+          </div>
                   </div>
                   <!-- Button 2 -->
                   <div class="mb-0">
@@ -352,8 +374,8 @@
                       <div class="col-md-6">
                         <label class="form-label" for="editButton2Link">Link</label>
                         <input class="form-control" type="url" id="editButton2Link" placeholder="https://">
-                      </div>
-                    </div>
+                  </div>
+                </div>
                   </div>
                 </div>
               </div>
