@@ -21,24 +21,54 @@
                         <form id="createBlogForm">
                             <div class="row g-3">
                                 <!-- Left Column -->
-                                <div class="col-12 col-lg-4">
+                                <div class="col-12">
+                                    <div class="row g-3">
+                                        <!-- First Image Upload -->
+                                        <div class="col-12 col-lg-6">
                                     <!-- Image Upload -->
                                     <div class="card">
                                         <div class="card-body p-3">
                                             <h6 class="mb-3">Thumbnail Image</h6>
                                             <div class="image-upload-container">
-                                                <div class="preview-area"
-                                                    style="width: 100%; height: 200px; border: 2px dashed #dee2e6; border-radius: 8px; overflow: hidden; position: relative; background: #f8f9fa;">
+                                                <div class="preview-area image-dropzone"
+                                                    style="width: 100%; height: 200px; border: 2px dashed #dee2e6; border-radius: 8px; overflow: hidden; position: relative; background: #f8f9fa; cursor: pointer;">
                                                     <img id="imagePreview"
                                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                                                         alt="Preview"
                                                         style="width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1;">
                                                     <div id="uploadText" class="upload-text"
                                                         style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 2; width: 100%;">
-                                                        <span class="fas fa-cloud-upload-alt fs-2"></span>
-                                                        <p class="mb-0 mt-2">Click or drag image here</p>
-                                                        <small class="text-muted d-block mt-1">Recommended: 800x600px
-                                                            (Max 2MB)</small>
+                                                        <div class="upload-icon-group">
+                                                            <span class="fas fa-cloud-upload-alt main-icon"></span>
+                                                                  
+                                                        </div>
+                                                        <div class="upload-text-group">
+                                                            <p class="mb-0 mt-2 upload-primary">Drop image here or click to upload</p>
+                                                            <p class="upload-secondary">
+                                                                <span class="fas fa-image me-1"></span>Select your best shot
+                                                            </p>
+                                                            <div class="upload-supports">
+                                                                <span class="support-item">
+                                                                    <span class="fas fa-check-circle text-success me-1"></span>
+                                                                    800x600px
+                                                                </span>
+                                                                <span class="support-item">
+                                                                    <span class="fas fa-check-circle text-success me-1"></span>
+                                                                    Max 2MB
+                                                                </span>
+                                                            </div>
+                                                            <div class="file-types mt-2">
+                                                                <span class="file-type">
+                                                                    <span class="fas fa-file-image text-primary"></span> JPG
+                                                                </span>
+                                                                <span class="file-type">
+                                                                    <span class="fas fa-file-image text-primary"></span> PNG
+                                                                </span>
+                                                                <span class="file-type">
+                                                                    <span class="fas fa-file-image text-primary"></span> GIF
+                                                                </span>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <input type="file" class="d-none" id="imageUpload" accept="image/*">
@@ -60,11 +90,74 @@
                                     </div>
                                 </div>
 
-                                <!-- Right Column -->
-                                <div class="col-12 col-lg-8">
-                                    <div class="card h-100">
-                                        <div class="card-body d-flex align-items-center">
-                                            <div class="w-100">
+                                        <!-- Second Image Upload -->
+                                        <div class="col-12 col-lg-6">
+                                            <!-- Image Upload -->
+                                            <div class="card">
+                                                <div class="card-body p-3">
+                                                    <h6 class="mb-3">Featured Image</h6>
+                                                    <div class="image-upload-container">
+                                                        <div class="preview-area image-dropzone"
+                                                            style="width: 100%; height: 200px; border: 2px dashed #dee2e6; border-radius: 8px; overflow: hidden; position: relative; background: #f8f9fa; cursor: pointer;">
+                                                            <img id="imagePreview2"
+                                                                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                                                                alt="Preview"
+                                                                style="width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1;">
+                                                            <div id="uploadText2" class="upload-text"
+                                                                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 2; width: 100%;">
+                                                                <div class="upload-icon-group">
+                                                                    <span class="fas fa-cloud-upload-alt main-icon"></span>
+                                                                 
+                                                                </div>
+                                                                <div class="upload-text-group">
+                                                                    <p class="mb-0 mt-2 upload-primary">Drop image here or click to upload</p>
+                                                                    <p class="upload-secondary">
+                                                                        <span class="fas fa-image me-1"></span>Select your best shot
+                                                                    </p>
+                                                                    <div class="upload-supports">
+                                                                        <span class="support-item">
+                                                                            <span class="fas fa-check-circle text-success me-1"></span>
+                                                                            1200x800px
+                                                                        </span>
+                                                                        <span class="support-item">
+                                                                            <span class="fas fa-check-circle text-success me-1"></span>
+                                                                            Max 5MB
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="file-types mt-2">
+                                                                        <span class="file-type">
+                                                                            <span class="fas fa-file-image text-primary"></span> JPG
+                                                                        </span>
+                                                                        <span class="file-type">
+                                                                            <span class="fas fa-file-image text-primary"></span> PNG
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <input type="file" class="d-none" id="imageUpload2" accept="image/*">
+                                                        <div class="d-flex justify-content-between align-items-center mt-2">
+                                                            <small class="text-muted">JPG, PNG only</small>
+                                                            <div>
+                                                                <button type="button" class="btn btn-falcon-default btn-sm"
+                                                                    onclick="document.getElementById('imageUpload2').click()">
+                                                                    <span class="fas fa-upload me-1"></span>Choose
+                                                                </button>
+                                                                <button type="button" id="removeImage2"
+                                                                    class="btn btn-link btn-sm text-danger d-none">
+                                                                    <span class="fas fa-times me-1"></span>Remove
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Form Content (Centered and Full Width) -->
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-body">
                                                 <div class="row g-3">
                                                     <!-- Title -->
                                                     <div class="col-12">
@@ -111,6 +204,7 @@
                                                                     <span
                                                                         class="ms-1 text-success status-text">Active</span>
                                                                 </label>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -294,97 +388,185 @@
                         <form id="editBlogForm">
                             <div class="row g-3">
                                 <!-- Left Column -->
-                                <div class="col-12 col-lg-4">
-                                    <!-- Image Upload -->
-                                    <div class="card">
-                                        <div class="card-body p-3">
-                                            <h6 class="mb-3">Thumbnail Image</h6>
-                                            <div class="image-upload-container">
-                                                <div class="preview-area"
-                                                    style="width: 100%; height: 200px; border: 2px dashed #dee2e6; border-radius: 8px; overflow: hidden; position: relative; background: #f8f9fa;">
-                                                    <img id="editImagePreview" src="assets/img/generic/empty-image.png"
-                                                        alt="Preview"
-                                                        style="width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1;">
-                                                    <div id="editUploadText" class="upload-text">
-                                                        <span class="fas fa-cloud-upload-alt fs-2"></span>
-                                                        <p class="mb-0 mt-2">Click or drag image here</p>
-                                                        <small class="text-muted d-block mt-1">Recommended: 800x600px
-                                                            (Max 2MB)</small>
-                                                    </div>
-                                                </div>
-                                                <input type="file" class="d-none" id="editImageUpload" accept="image/*">
-                                                <div class="d-flex justify-content-between align-items-center mt-2">
-                                                    <small class="text-muted">JPG, PNG, GIF</small>
-                                                    <div>
-                                                        <button type="button" class="btn btn-falcon-default btn-sm"
-                                                            onclick="document.getElementById('editImageUpload').click()">
-                                                            <span class="fas fa-upload me-1"></span>Choose
-                                                        </button>
-                                                        <button type="button"
-                                                            class="btn btn-link btn-sm text-danger d-none"
-                                                            id="editRemoveImage">
-                                                            <span class="fas fa-times me-1"></span>Remove
-                                                        </button>
+                                <div class="col-12">
+                                    <div class="row g-3">
+                                        <!-- First Image Upload -->
+                                        <div class="col-12 col-lg-6">
+                                            <!-- Image Upload -->
+                                            <div class="card">
+                                                <div class="card-body p-3">
+                                                    <h6 class="mb-3">Thumbnail Image</h6>
+                                                    <div class="image-upload-container">
+                                                        <div class="preview-area image-dropzone"
+                                                            style="width: 100%; height: 200px; border: 2px dashed #dee2e6; border-radius: 8px; overflow: hidden; position: relative; background: #f8f9fa; cursor: pointer;">
+                                                            <img id="editImagePreview"
+                                                                src="assets/img/generic/empty-image.png"
+                                                                alt="Preview"
+                                                                style="width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1;">
+                                                            <div id="editUploadText" class="upload-text"
+                                                                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 2; width: 100%;">
+                                                                <div class="upload-icon-group">
+                                                                    <span class="fas fa-cloud-upload-alt main-icon"></span>
+                                                                </div>
+                                                                <div class="upload-text-group">
+                                                                    <p class="mb-0 mt-2 upload-primary">Drop image here or click to upload</p>
+                                                                    <p class="upload-secondary">
+                                                                        <span class="fas fa-image me-1"></span>Select your best shot
+                                                                    </p>
+                                                                    <div class="upload-supports">
+                                                                        <span class="support-item">
+                                                                            <span class="fas fa-check-circle text-success me-1"></span>
+                                                                            800x600px
+                                                                        </span>
+                                                                        <span class="support-item">
+                                                                            <span class="fas fa-check-circle text-success me-1"></span>
+                                                                            Max 2MB
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="file-types mt-2">
+                                                                        <span class="file-type">
+                                                                            <span class="fas fa-file-image text-primary"></span> JPG
+                                                                        </span>
+                                                                        <span class="file-type">
+                                                                            <span class="fas fa-file-image text-primary"></span> PNG
+                                                                        </span>
+                                                                        <span class="file-type">
+                                                                            <span class="fas fa-file-image text-primary"></span> GIF
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <input type="file" class="d-none" id="editImageUpload" accept="image/*">
+                                                        <div class="d-flex justify-content-between align-items-center mt-2">
+                                                            <small class="text-muted">JPG, PNG, GIF</small>
+                                                            <div>
+                                                                <button type="button" class="btn btn-falcon-default btn-sm"
+                                                                    onclick="document.getElementById('editImageUpload').click()">
+                                                                    <span class="fas fa-upload me-1"></span>Choose
+                                                                </button>
+                                                                <button type="button" id="editRemoveImage"
+                                                                    class="btn btn-link btn-sm text-danger d-none">
+                                                                    <span class="fas fa-times me-1"></span>Remove
+                                                                </button>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
 
-                                <!-- Right Column -->
-                                <div class="col-12 col-lg-8">
-                                    <div class="card h-100">
-                                        <div class="card-body d-flex align-items-center">
-                                            <div class="w-100">
-                                                <div class="row g-3">
-                                                    <!-- Title -->
-                                                    <div class="col-12">
-                                                        <label class="form-label" for="editTitle">Title</label>
-                                                        <input type="text" class="form-control" id="editTitle" required>
-                                                    </div>
-
-                                                    <!-- Category & Date -->
-                                                    <div class="col-md-6">
-                                                        <label class="form-label" for="editCategory">Category</label>
-                                                        <select class="form-select" id="editCategory" required>
-                                                            <option value="">Select category</option>
-                                                            <option value="Technology">Technology</option>
-                                                            <option value="Cloud">Cloud</option>
-                                                            <option value="Security">Security</option>
-                                                            <option value="Development">Development</option>
-                                                        </select>
-                                                        <div class="mt-3 ps-3">
-                                                            <div class="form-check form-switch">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                    id="editArticleFeatured">
-                                                                <label class="form-check-label"
-                                                                    for="editArticleFeatured">
-                                                                    Featured Article
-                                                                    <span
-                                                                        class="ms-1 featured-text text-danger">No</span>
-                                                                </label>
+                                        <!-- Second Image Upload -->
+                                        <div class="col-12 col-lg-6">
+                                            <!-- Image Upload -->
+                                            <div class="card">
+                                                <div class="card-body p-3">
+                                                    <h6 class="mb-3">Featured Image</h6>
+                                                    <div class="image-upload-container">
+                                                        <div class="preview-area image-dropzone"
+                                                            style="width: 100%; height: 200px; border: 2px dashed #dee2e6; border-radius: 8px; overflow: hidden; position: relative; background: #f8f9fa; cursor: pointer;">
+                                                            <img id="editImagePreview2"
+                                                                src="assets/img/generic/empty-image.png"
+                                                                alt="Preview"
+                                                                style="width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1;">
+                                                            <div id="editUploadText2" class="upload-text"
+                                                                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 2; width: 100%;">
+                                                                <div class="upload-icon-group">
+                                                                    <span class="fas fa-cloud-upload-alt main-icon"></span>
+                                                                </div>
+                                                                <div class="upload-text-group">
+                                                                    <p class="mb-0 mt-2 upload-primary">Drop image here or click to upload</p>
+                                                                    <p class="upload-secondary">
+                                                                        <span class="fas fa-image me-1"></span>Select your best shot
+                                                                    </p>
+                                                                    <div class="upload-supports">
+                                                                        <span class="support-item">
+                                                                            <span class="fas fa-check-circle text-success me-1"></span>
+                                                                            1200x800px
+                                                                        </span>
+                                                                        <span class="support-item">
+                                                                            <span class="fas fa-check-circle text-success me-1"></span>
+                                                                            Max 5MB
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="file-types mt-2">
+                                                                        <span class="file-type">
+                                                                            <span class="fas fa-file-image text-primary"></span> JPG
+                                                                        </span>
+                                                                        <span class="file-type">
+                                                                            <span class="fas fa-file-image text-primary"></span> PNG
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <input type="file" class="d-none" id="editImageUpload2" accept="image/*">
+                                                        <div class="d-flex justify-content-between align-items-center mt-2">
+                                                            <small class="text-muted">JPG, PNG only</small>
+                                                            <div>
+                                                                <button type="button" class="btn btn-falcon-default btn-sm"
+                                                                    onclick="document.getElementById('editImageUpload2').click()">
+                                                                    <span class="fas fa-upload me-1"></span>Choose
+                                                                </button>
+                                                                <button type="button" id="editRemoveImage2"
+                                                                    class="btn btn-link btn-sm text-danger d-none">
+                                                                    <span class="fas fa-times me-1"></span>Remove
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <label class="form-label" for="editBlogDate">Publish
-                                                            Date</label>
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control" id="editBlogDate"
-                                                                placeholder="Select date" required readonly>
-                                                            <span class="input-group-text"><i
-                                                                    class="fas fa-calendar"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Form Content (Centered and Full Width) -->
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row g-3">
+                                                        <!-- Title -->
+                                                        <div class="col-12">
+                                                            <label class="form-label" for="editTitle">Title</label>
+                                                            <input type="text" class="form-control" id="editTitle" required>
                                                         </div>
-                                                        <div class="mt-3 ps-3">
-                                                            <div class="form-check form-switch">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                    id="editArticleStatus" checked>
-                                                                <label class="form-check-label" for="editArticleStatus">
-                                                                    Article Status
-                                                                    <span
-                                                                        class="ms-1 text-success status-text">Active</span>
-                                                                </label>
+
+                                                        <!-- Category & Date -->
+                                                        <div class="col-md-6">
+                                                            <label class="form-label" for="editCategory">Category</label>
+                                                            <select class="form-select" id="editCategory" required>
+                                                                <option value="">Select category</option>
+                                                                <option value="Technology">Technology</option>
+                                                                <option value="Cloud">Cloud</option>
+                                                                <option value="Security">Security</option>
+                                                                <option value="Development">Development</option>
+                                                            </select>
+                                                            <div class="mt-3 ps-3">
+                                                                <div class="form-check form-switch">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        id="editArticleFeatured">
+                                                                    <label class="form-check-label" for="editArticleFeatured">
+                                                                        Featured Article
+                                                                        <span class="ms-1 featured-text text-danger">No</span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label class="form-label" for="editBlogDate">Publish Date</label>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" id="editBlogDate"
+                                                                    placeholder="Select date" required readonly>
+                                                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                                            </div>
+                                                            <div class="mt-3 ps-3">
+                                                                <div class="form-check form-switch">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        id="editArticleStatus" checked>
+                                                                    <label class="form-check-label" for="editArticleStatus">
+                                                                        Article Status
+                                                                        <span class="ms-1 text-success status-text">Active</span>
+                                                                    </label>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -402,14 +584,12 @@
 
                                 <!-- SEO Tags - Full Width -->
                                 <div class="col-12">
-                                    <label class="form-label" for="hashtagInput">SEO Keyword</label>
+                                    <label class="form-label" for="editHashtagInput">SEO Keywords</label>
                                     <div class="input-group mb-2">
-                                        <span class="input-group-text bg-soft-primary text-primary">
-                                            <span class="fas fa-hashtag"></span>
-                                        </span>
-                                        <input type="text" class="form-control" id="hashtagInput"
+                                        <input type="text" class="form-control" id="editHashtagInput"
                                             placeholder="Enter keyword and press Enter">
                                     </div>
+                                    <small class="text-muted mb-3 d-block">Separate multiple keywords with Enter key</small>
                                     <div class="hashtag-container d-flex flex-wrap gap-2">
                                         <!-- Tags will be dynamically added here -->
                                     </div>
@@ -604,17 +784,79 @@
         }
     });
 
-    // Basic image upload handling for both modals
-    ['imageUpload', 'editImageUpload'].forEach(id => {
-        document.getElementById(id).addEventListener('change', function (e) {
-            if (e.target.files && e.target.files[0]) {
-                const reader = new FileReader();
-                const previewId = id === 'imageUpload' ? 'imagePreview' : 'editImagePreview';
-                reader.onload = function (e) {
-                    document.getElementById(previewId).src = e.target.result;
-                };
-                reader.readAsDataURL(e.target.files[0]);
+    // Enhanced image upload handling for both modals
+    ['imageUpload', 'imageUpload2', 'editImageUpload', 'editImageUpload2'].forEach(id => {
+        const input = document.getElementById(id);
+        const isEdit = id.startsWith('edit');
+        const isSecond = id.endsWith('2');
+        const dropzone = input.closest('.image-upload-container').querySelector('.image-dropzone');
+        const previewId = isEdit ? (isSecond ? 'editImagePreview2' : 'editImagePreview') : (isSecond ? 'imagePreview2' : 'imagePreview');
+        const uploadTextId = isEdit ? (isSecond ? 'editUploadText2' : 'editUploadText') : (isSecond ? 'uploadText2' : 'uploadText');
+        const removeButtonId = isEdit ? (isSecond ? 'editRemoveImage2' : 'editRemoveImage') : (isSecond ? 'removeImage2' : 'removeImage');
+
+        // Handle file selection
+        function handleFile(file) {
+            if (!file.type.startsWith('image/')) {
+                alert('Please upload an image file');
+                return;
             }
+
+            const maxSize = isSecond ? 5 * 1024 * 1024 : 2 * 1024 * 1024; // 5MB for featured, 2MB for thumbnail
+            if (file.size > maxSize) {
+                alert(`File size should not exceed ${maxSize / (1024 * 1024)}MB`);
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.getElementById(previewId);
+                preview.src = e.target.result;
+                document.getElementById(uploadTextId).style.display = 'none';
+                document.getElementById(removeButtonId).classList.remove('d-none');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Click anywhere to upload
+        dropzone.addEventListener('click', () => input.click());
+
+        // File input change
+        input.addEventListener('change', function(e) {
+            if (e.target.files && e.target.files[0]) {
+                handleFile(e.target.files[0]);
+            }
+        });
+
+        // Drag and drop events
+        dropzone.addEventListener('dragenter', (e) => {
+            e.preventDefault();
+            dropzone.classList.add('dragover');
+        });
+
+        dropzone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropzone.classList.add('dragover');
+        });
+
+        dropzone.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            dropzone.classList.remove('dragover');
+        });
+
+        dropzone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropzone.classList.remove('dragover');
+            if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                handleFile(e.dataTransfer.files[0]);
+            }
+        });
+
+        // Remove image functionality
+        document.getElementById(removeButtonId)?.addEventListener('click', function() {
+            document.getElementById(previewId).src = 'assets/img/generic/empty-image.png';
+            document.getElementById(uploadTextId).style.display = 'block';
+            this.classList.add('d-none');
+            input.value = '';
         });
     });
 
@@ -628,23 +870,29 @@
             const imgSrc = imgElement ? imgElement.src : 'assets/img/generic/empty-image.png';
 
             // Populate the edit modal fields
-            document.getElementById('editTitle').value = row.querySelector('td:nth-child(3)')
-                .textContent.trim();
-            document.getElementById('editCategory').value = row.querySelector('td:nth-child(5)')
-                .textContent.trim();
+            document.getElementById('editTitle').value = row.querySelector('td:nth-child(3)').textContent.trim();
+            document.getElementById('editCategory').value = row.querySelector('td:nth-child(5)').textContent.trim();
 
-            // Update image preview
+            // Update both image previews
             const editImagePreview = document.getElementById('editImagePreview');
+            const editImagePreview2 = document.getElementById('editImagePreview2');
             const editUploadText = document.getElementById('editUploadText');
+            const editUploadText2 = document.getElementById('editUploadText2');
+            
             editImagePreview.src = imgSrc;
+            editImagePreview2.src = imgSrc; // For now, use same image for both. In real implementation, you'd get the featured image from your data
 
             // Show/hide upload text based on whether there's an image
             if (imgSrc !== 'assets/img/generic/empty-image.png') {
                 editUploadText.style.display = 'none';
+                editUploadText2.style.display = 'none';
                 document.getElementById('editRemoveImage').classList.remove('d-none');
+                document.getElementById('editRemoveImage2').classList.remove('d-none');
             } else {
                 editUploadText.style.removeProperty('display');
+                editUploadText2.style.removeProperty('display');
                 document.getElementById('editRemoveImage').classList.add('d-none');
+                document.getElementById('editRemoveImage2').classList.add('d-none');
             }
 
             // Set date from table
@@ -652,8 +900,8 @@
             document.getElementById('editBlogDate').value = dateText;
 
             // Set featured and status toggles
-            const isFeatured = row.querySelector('td:nth-child(6) .badge-phoenix-success') !== null;
-            const isActive = row.querySelector('td:nth-child(7) .badge-phoenix-success') !== null;
+            const isFeatured = row.querySelector('td:nth-child(7) .badge-phoenix-success') !== null;
+            const isActive = row.querySelector('td:nth-child(6) .badge-phoenix-success') !== null;
 
             document.getElementById('editArticleFeatured').checked = isFeatured;
             document.getElementById('editArticleStatus').checked = isActive;
@@ -663,12 +911,79 @@
             const statusText = document.querySelector('#editArticleStatus + label .status-text');
 
             featuredText.textContent = isFeatured ? 'Yes' : 'No';
-            featuredText.className =
-                `ms-1 featured-text ${isFeatured ? 'text-success' : 'text-danger'}`;
+            featuredText.className = `ms-1 featured-text ${isFeatured ? 'text-success' : 'text-danger'}`;
 
             statusText.textContent = isActive ? 'Active' : 'Inactive';
             statusText.className = `ms-1 status-text ${isActive ? 'text-success' : 'text-danger'}`;
         });
+    });
+
+    // Add reset functionality for edit blog modal
+    $('#editBlogModal').on('hidden.bs.modal', function () {
+        // Reset the form
+        document.getElementById('editBlogForm').reset();
+        
+        // Reset both image previews
+        const editImagePreview = document.getElementById('editImagePreview');
+        const editImagePreview2 = document.getElementById('editImagePreview2');
+        const editUploadText = document.getElementById('editUploadText');
+        const editUploadText2 = document.getElementById('editUploadText2');
+        
+        editImagePreview.src = 'assets/img/generic/empty-image.png';
+        editImagePreview2.src = 'assets/img/generic/empty-image.png';
+        editUploadText.style.removeProperty('display');
+        editUploadText2.style.removeProperty('display');
+        document.getElementById('editRemoveImage').classList.add('d-none');
+        document.getElementById('editRemoveImage2').classList.add('d-none');
+        
+        // Reset all select elements
+        document.getElementById('editCategory').value = '';
+        
+        // Reset status switches
+        const statusSwitch = document.getElementById('editArticleStatus');
+        const statusText = statusSwitch.parentElement.querySelector('.status-text');
+        statusSwitch.checked = true;
+        statusText.textContent = 'Active';
+        statusText.classList.remove('text-danger');
+        statusText.classList.add('text-success');
+        
+        // Reset featured switch
+        const featuredSwitch = document.getElementById('editArticleFeatured');
+        const featuredText = featuredSwitch.parentElement.querySelector('.featured-text');
+        featuredSwitch.checked = false;
+        featuredText.textContent = 'No';
+        featuredText.classList.remove('text-success');
+        featuredText.classList.add('text-danger');
+        
+        // Reset hashtags container
+        const hashtagContainer = this.querySelector('.hashtag-container');
+        if (hashtagContainer) {
+            hashtagContainer.innerHTML = '';
+        }
+        
+        // Reset TinyMCE editor content
+        if (tinymce.get('editContent')) {
+            tinymce.get('editContent').setContent('');
+        }
+    });
+
+    // Modified hashtag input handler for edit modal
+    document.getElementById('editHashtagInput').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const value = this.value.trim();
+            if (value) {
+                const container = this.closest('.col-12').querySelector('.hashtag-container');
+                const tag = document.createElement('div');
+                tag.className = 'badge badge-phoenix badge-phoenix-primary d-flex align-items-center gap-1';
+                tag.innerHTML = `
+                    ${value}
+                    <span class="fas fa-times cursor-pointer" onclick="this.parentElement.remove()"></span>
+                `;
+                container.appendChild(tag);
+                this.value = '';
+            }
+        }
     });
 
     // Update the showSourceCode function
@@ -834,6 +1149,158 @@
         }
         .modal-dialog {
             transition: transform 0.15s ease-out;
+        }
+        .image-dropzone {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .image-dropzone::before {
+            content: 'Click to Upload or Drag here';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            opacity: 0;
+            z-index: 10;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            white-space: nowrap;
+            letter-spacing: 0.05em;
+        }
+     
+        .image-dropzone .overlay-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, calc(-50% + 3rem));
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            opacity: 1;
+            z-index: 12;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            white-space: nowrap;
+            pointer-events: none;
+        }
+        .image-dropzone:hover::before,
+        .image-dropzone.dragover::before {
+            opacity: 1;
+            background: rgba(0, 0, 0, 0.75);
+            box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.2);
+        }
+        .image-dropzone:hover::after,
+        .image-dropzone.dragover::after,
+        .image-dropzone:hover .overlay-text,
+        .image-dropzone.dragover .overlay-text {
+            opacity: 1;
+        }
+        .image-dropzone:hover::after {
+            animation: floatIcon 2s ease-in-out infinite;
+        }
+        .image-dropzone.dragover::after {
+            content: '\f358';
+            animation: bounceIcon 0.6s cubic-bezier(0.36, 0, 0.66, -0.56) infinite alternate;
+        }
+        @keyframes floatIcon {
+            0%, 100% { transform: translate(-50%, -50%); }
+            50% { transform: translate(-50%, -60%); }
+        }
+        @keyframes bounceIcon {
+            from { transform: translate(-50%, -70%); }
+            to { transform: translate(-50%, -30%); }
+        }
+        .image-dropzone img {
+            transition: transform 0.3s ease;
+        }
+        .image-dropzone:hover img,
+        .image-dropzone.dragover img {
+            transform: scale(1.05);
+        }
+        .upload-text {
+            opacity: 1;
+            transform: translateY(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .image-dropzone:hover .upload-text {
+            transform: translateY(0);
+        }
+        .image-dropzone.dragover .upload-text {
+            transform: translate(-50%, -50%) scale(1.05) !important;
+        }
+        .upload-icon-group {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .upload-icon-group .main-icon {
+            font-size: 3rem;
+            opacity: 0.9;
+            transition: transform 0.3s ease;
+        }
+        .upload-icon-group .secondary-icon {
+            position: absolute;
+            bottom: 0;
+            right: -0.5rem;
+            font-size: 1rem;
+            background: #fff;
+            color: #0d6efd;
+            border-radius: 50%;
+            padding: 0.2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .image-dropzone.dragover .upload-icon-group .main-icon {
+            transform: scale(1.1);
+        }
+        .upload-text-group {
+            text-align: center;
+        }
+        .upload-primary {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        .upload-secondary {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+        .upload-supports {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .support-item {
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+        }
+        .file-types {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .file-type {
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: rgba(255,255,255,0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+        .image-dropzone.dragover .file-type {
+            background: rgba(255,255,255,0.2);
         }
     `;
     document.head.appendChild(styleSheet);
@@ -1026,59 +1493,5 @@
     // Clean up TinyMCE instances when modals are hidden
     $('#createBlogModal, #editBlogModal').on('hidden.bs.modal', function () {
         tinymce.remove('.tinymce-editor');
-    });
-
-    // Add reset functionality for edit blog modal
-    $('#editBlogModal').on('hidden.bs.modal', function () {
-        // Reset the form
-        document.getElementById('editBlogForm').reset();
-        
-        // Reset image preview
-        const editImagePreview = document.getElementById('editImagePreview');
-        const editUploadText = document.getElementById('editUploadText');
-        editImagePreview.src = 'assets/img/generic/empty-image.png';
-        editUploadText.style.removeProperty('display');
-        document.getElementById('editRemoveImage').classList.add('d-none');
-        
-        // Reset all select elements
-        document.getElementById('editCategory').value = '';
-        
-        // Reset status switches
-        const statusSwitch = document.getElementById('editArticleStatus');
-        const statusText = statusSwitch.parentElement.querySelector('.status-text');
-        statusSwitch.checked = true;
-        statusText.textContent = 'Active';
-        statusText.classList.remove('text-danger');
-        statusText.classList.add('text-success');
-        
-        // Reset featured switch
-        const featuredSwitch = document.getElementById('editArticleFeatured');
-        const featuredText = featuredSwitch.parentElement.querySelector('.featured-text');
-        featuredSwitch.checked = false;
-        featuredText.textContent = 'No';
-        featuredText.classList.remove('text-success');
-        featuredText.classList.add('text-danger');
-        
-        // Reset hashtags container
-        const hashtagContainer = this.querySelector('.hashtag-container');
-        if (hashtagContainer) {
-            hashtagContainer.innerHTML = '';
-        }
-        
-        // Reset META description and character count
-        const metaDescription = document.getElementById('metaDescription');
-        if (metaDescription) {
-            metaDescription.value = '';
-            const charCount = this.querySelector('#charCount');
-            if (charCount) {
-                charCount.textContent = '0';
-                charCount.classList.remove('text-warning');
-            }
-        }
-        
-        // Reset TinyMCE editor content
-        if (tinymce.get('editContent')) {
-            tinymce.get('editContent').setContent('');
-        }
     });
 </script>

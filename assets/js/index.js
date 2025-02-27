@@ -17,6 +17,11 @@ $(function () {
          });
     });
 
+    $("#bannerSection").click(function(){
+      $('#contentPages').load('pages/bannerSection.html',function(){
+            $.getScript('assets/js/pages/bannerSection.js');
+         });
+    });
 
     // HOMEPAGE //
 

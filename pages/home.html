@@ -14,9 +14,7 @@
                     </div>
                 </div>
                 <div class="welcome-image-container">
-                    <img src="/assets/img/gallery/tokyo-1.png" 
-                         class="welcome-image" 
-                         alt="Welcome illustration">
+                    <img src="/assets/img/gallery/tokyo-1.png" class="welcome-image" alt="Welcome illustration">
                 </div>
             </div>
         </div>
@@ -45,7 +43,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Most Active Section Card -->
             <div class="col-sm-6 col-lg-3">
                 <div class="gradient-card card-with-icon h-100 animate-in">
@@ -125,7 +123,8 @@
                         </select>
                     </div>
                     <div class="d-flex gap-2">
-                        <input type="text" class="form-control form-control-sm" placeholder="Search activities..." id="activitySearch">
+                        <input type="text" class="form-control form-control-sm" placeholder="Search activities..."
+                            id="activitySearch">
                         <button class="btn btn-sm btn-primary" id="refreshActivity">
                             <i class="fas fa-sync-alt refresh-icon"></i>
                         </button>
@@ -243,10 +242,14 @@
 
     /* Dark mode styles */
     [data-bs-theme="dark"] {
-        --page-gradient-start: #0f111a;  /* Dark blue background */
-        --page-gradient-end: #0f111a;    /* Keep it consistent */
-        --phoenix-body-bg: #0f111a;      /* Override default dark background */
-        --phoenix-body-highlight-bg: #141824;  /* Slightly lighter for cards */
+        --page-gradient-start: #0f111a;
+        /* Dark blue background */
+        --page-gradient-end: #0f111a;
+        /* Keep it consistent */
+        --phoenix-body-bg: #0f111a;
+        /* Override default dark background */
+        --phoenix-body-highlight-bg: #141824;
+        /* Slightly lighter for cards */
         --phoenix-text-muted: rgba(255, 255, 255, 0.6);
         --phoenix-body-color: rgba(255, 255, 255, 0.87);
     }
@@ -254,20 +257,20 @@
     /* Apply gradient only in light mode */
     :root:not([data-bs-theme="dark"]) body,
     [data-bs-theme="light"] body {
-        background: linear-gradient(180deg, 
-            var(--page-gradient-start) 0%, 
-            var(--page-gradient-start) 15%,
-            var(--page-gradient-end) 100%);
+        background: linear-gradient(180deg,
+                var(--page-gradient-start) 0%,
+                var(--page-gradient-start) 15%,
+                var(--page-gradient-end) 100%);
         min-height: 100vh;
     }
 
     .gradient-card {
-        background: linear-gradient(145deg, 
-            rgba(255, 255, 255, 1) 0%,
-            rgba(249, 245, 255, 0.95) 50%,
-            rgba(243, 232, 255, 0.9) 100%);
+        background: linear-gradient(145deg,
+                rgba(255, 255, 255, 1) 0%,
+                rgba(249, 245, 255, 0.95) 50%,
+                rgba(243, 232, 255, 0.9) 100%);
         border: 1px solid rgba(139, 92, 246, 0.1);
-        box-shadow: 
+        box-shadow:
             0 4px 12px -2px rgba(139, 92, 246, 0.08),
             0 8px 24px -4px rgba(139, 92, 246, 0.06);
         border-radius: 12px;
@@ -335,6 +338,7 @@
         from {
             transform: rotate(0deg);
         }
+
         to {
             transform: rotate(360deg);
         }
@@ -356,13 +360,11 @@
         bottom: 0;
         left: 0;
         transform: translateX(-100%);
-        background-image: linear-gradient(
-            90deg,
-            rgba(255, 255, 255, 0) 0,
-            rgba(255, 255, 255, 0.2) 20%,
-            rgba(255, 255, 255, 0.5) 60%,
-            rgba(255, 255, 255, 0)
-        );
+        background-image: linear-gradient(90deg,
+                rgba(255, 255, 255, 0) 0,
+                rgba(255, 255, 255, 0.2) 20%,
+                rgba(255, 255, 255, 0.5) 60%,
+                rgba(255, 255, 255, 0));
         animation: shimmer 2s infinite;
     }
 
@@ -373,17 +375,21 @@
 
     /* Specific widths for different columns */
     .skeleton-user {
-        width: 80px; /* Approximate width for usernames */
-        margin: 0 auto; /* Center in td */
+        width: 80px;
+        /* Approximate width for usernames */
+        margin: 0 auto;
+        /* Center in td */
     }
 
     .skeleton-page {
-        width: 100px; /* Approximate width for page names */
+        width: 100px;
+        /* Approximate width for page names */
         margin: 0 auto;
     }
 
     .skeleton-time {
-        width: 140px; /* Approximate width for timestamps */
+        width: 140px;
+        /* Approximate width for timestamps */
         margin: 0 auto;
     }
 
@@ -494,7 +500,7 @@
     }
 
     /* Enhance existing table styles */
-    .table > :not(caption) > * > * {
+    .table> :not(caption)>*>* {
         padding: 1rem 0.75rem;
     }
 
@@ -515,78 +521,77 @@
         transform: translateY(-50%);
         height: 70%;
         width: 1px;
-        background: linear-gradient(
-            to bottom,
-            transparent,
-            rgba(139, 92, 246, 0.1) 20%,
-            rgba(139, 92, 246, 0.1) 80%,
-            transparent
-        );
+        background: linear-gradient(to bottom,
+                transparent,
+                rgba(139, 92, 246, 0.1) 20%,
+                rgba(139, 92, 246, 0.1) 80%,
+                transparent);
     }
 
     /* Add these new responsive styles */
     @media (max-width: 767px) {
-        .welcome-image-container{
+        .welcome-image-container {
             width: 352px !important;
         }
+
         .welcome-text {
             text-align: center;
             width: 100%;
             max-width: 100% !important;
         }
-        
+
         .welcome-image-wrapper {
             min-width: auto !important;
             margin-top: 1rem;
         }
-        
+
         .welcome-image {
             max-height: 350px !important;
         }
-        
+
         .d-flex.align-items-center.gap-3.mt-2 {
             justify-content: center;
         }
-        
+
         .table-responsive {
             margin: 0 -1rem;
             padding: 0 1rem;
             width: calc(100% + 2rem);
         }
-        
+
         .fs-9 {
             font-size: 0.75rem !important;
         }
-        
+
         .card-body {
             padding: 1rem !important;
         }
-        
+
         .pagination {
             flex-wrap: wrap;
             justify-content: center;
         }
-        
+
         .pagination .page-link {
             padding: 0.25rem 0.5rem;
         }
     }
-    
+
     @media (max-width: 575px) {
         .custom-select-sm {
             width: 60px;
         }
-        
+
         #activitySearch {
             min-width: 0;
             width: 100%;
         }
-        
+
         .d-flex.justify-content-between.align-items-center.mt-3 {
             flex-direction: column;
             gap: 1rem;
         }
-        
+
         .text-muted.fs-9 {
             text-align: center;
             width: 100%;
@@ -599,13 +604,13 @@
         width: 100%;
         max-width: 100%;
     }
-    
+
     /* Make table more responsive */
     .table-responsive {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
     }
-    
+
     /* Adjust badge styles for better mobile display */
     .badge-soft-purple,
     .badge-soft-success {
@@ -613,20 +618,20 @@
         display: inline-flex;
         align-items: center;
     }
-    
+
     /* Ensure buttons and inputs are touch-friendly */
     .btn-sm,
     .form-control-sm {
         min-height: 32px;
     }
-    
+
     /* Add these to your existing styles */
     .welcome-image {
         object-fit: contain;
         max-width: 100%;
         height: auto;
     }
-    
+
     .custom-select-sm {
         min-height: 32px;
     }
@@ -649,7 +654,7 @@
     }
 
     /* Update container styles */
-    .row > [class*='col-'] {
+    .row>[class*='col-'] {
         display: flex;
         flex-direction: column;
     }
@@ -709,7 +714,7 @@
         .col-md-6.col-lg-3 {
             margin-bottom: 1rem !important;
         }
-        
+
         .col-md-6.col-lg-3:last-child {
             margin-bottom: 0 !important;
         }
@@ -765,12 +770,12 @@
 
     /* Update card styles */
     .gradient-card {
-        background: linear-gradient(145deg, 
-            rgba(255, 255, 255, 1) 0%,
-            rgba(249, 245, 255, 0.95) 50%,
-            rgba(243, 232, 255, 0.9) 100%);
+        background: linear-gradient(145deg,
+                rgba(255, 255, 255, 1) 0%,
+                rgba(249, 245, 255, 0.95) 50%,
+                rgba(243, 232, 255, 0.9) 100%);
         border: 1px solid rgba(139, 92, 246, 0.1);
-        box-shadow: 
+        box-shadow:
             0 4px 12px -2px rgba(139, 92, 246, 0.08),
             0 8px 24px -4px rgba(139, 92, 246, 0.06);
         border-radius: 12px;
@@ -832,6 +837,7 @@
         .col-sm-6 {
             margin-bottom: 1rem;
         }
+
         .col-sm-6:last-child {
             margin-bottom: 0;
         }
@@ -872,7 +878,7 @@
             padding: 0 0.5rem;
         }
 
-        .table th, 
+        .table th,
         .table td {
             padding: 0.75rem 0.5rem;
         }
@@ -892,7 +898,7 @@
             min-width: 0;
             width: 100%;
         }
-        
+
         .d-flex.gap-2 {
             width: 100%;
         }
@@ -937,7 +943,7 @@
             padding: 1rem;
         }
 
-        .table th, 
+        .table th,
         .table td {
             padding: 0.75rem;
         }
@@ -975,11 +981,11 @@
             flex-direction: column;
             gap: 1rem;
         }
-        
+
         .text-muted.fs-9 {
             order: 2;
         }
-        
+
         nav[aria-label="Page navigation"] {
             order: 1;
         }
@@ -1025,11 +1031,11 @@
         .small-badge {
             font-size: 10px;
         }
-        
+
         .small-icon {
             font-size: 9px;
         }
-        
+
         .badge-text {
             font-size: 10px;
         }
@@ -1037,7 +1043,8 @@
 
     /* Update card value styles */
     .card h3.fs-3 {
-        font-size: 1.5rem !important; /* Slightly smaller than the default fs-2 */
+        font-size: 1.5rem !important;
+        /* Slightly smaller than the default fs-2 */
     }
 
     /* Mobile optimization for card values */
@@ -1082,21 +1089,23 @@
     }
 
     [data-bs-theme="dark"] .skeleton::after {
-        background-image: linear-gradient(
-            90deg,
-            rgba(255, 255, 255, 0) 0,
-            rgba(255, 255, 255, 0.05) 20%,
-            rgba(255, 255, 255, 0.1) 60%,
-            rgba(255, 255, 255, 0)
-        );
+        background-image: linear-gradient(90deg,
+                rgba(255, 255, 255, 0) 0,
+                rgba(255, 255, 255, 0.05) 20%,
+                rgba(255, 255, 255, 0.1) 60%,
+                rgba(255, 255, 255, 0));
     }
 
     /* Update dark mode styles */
     [data-bs-theme="dark"] {
-        --page-gradient-start: #0f111a;  /* Dark blue background */
-        --page-gradient-end: #0f111a;    /* Keep it consistent */
-        --phoenix-body-bg: #0f111a;      /* Override default dark background */
-        --phoenix-body-highlight-bg: #141824;  /* Slightly lighter for cards */
+        --page-gradient-start: #0f111a;
+        /* Dark blue background */
+        --page-gradient-end: #0f111a;
+        /* Keep it consistent */
+        --phoenix-body-bg: #0f111a;
+        /* Override default dark background */
+        --phoenix-body-highlight-bg: #141824;
+        /* Slightly lighter for cards */
         --phoenix-text-muted: rgba(255, 255, 255, 0.6);
         --phoenix-body-color: rgba(255, 255, 255, 0.87);
     }
@@ -1139,11 +1148,11 @@
             justify-content: center !important;
             width: 100%;
         }
-        
+
         .welcome-text .d-flex.align-items-center.gap-2.mt-2 {
             justify-content: center !important;
         }
-        
+
         /* Ensure badges maintain proper spacing when centered */
         .small-badge {
             margin: 0 0.25rem;
@@ -1159,33 +1168,33 @@
     /* Unique card gradients */
     /* Total Activities Card */
     .col-sm-6.col-lg-3:nth-child(1) .gradient-card {
-        background: linear-gradient(145deg, 
-            rgba(255, 255, 255, 0.95) 0%,
-            rgba(147, 51, 234, 0.05) 100%);
+        background: linear-gradient(145deg,
+                rgba(255, 255, 255, 0.95) 0%,
+                rgba(147, 51, 234, 0.05) 100%);
         border: 1px solid rgba(147, 51, 234, 0.1);
     }
 
     /* Most Active Section Card */
     .col-sm-6.col-lg-3:nth-child(2) .gradient-card {
-        background: linear-gradient(145deg, 
-            rgba(255, 255, 255, 0.95) 0%,
-            rgba(59, 130, 246, 0.05) 100%);
+        background: linear-gradient(145deg,
+                rgba(255, 255, 255, 0.95) 0%,
+                rgba(59, 130, 246, 0.05) 100%);
         border: 1px solid rgba(59, 130, 246, 0.1);
     }
 
     /* Last Updated By Card */
     .col-sm-6.col-lg-3:nth-child(3) .gradient-card {
-        background: linear-gradient(145deg, 
-            rgba(255, 255, 255, 0.95) 0%,
-            rgba(16, 185, 129, 0.05) 100%);
+        background: linear-gradient(145deg,
+                rgba(255, 255, 255, 0.95) 0%,
+                rgba(16, 185, 129, 0.05) 100%);
         border: 1px solid rgba(16, 185, 129, 0.1);
     }
 
     /* Latest Update In Card */
     .col-sm-6.col-lg-3:nth-child(4) .gradient-card {
-        background: linear-gradient(145deg, 
-            rgba(255, 255, 255, 0.95) 0%,
-            rgba(245, 158, 11, 0.05) 100%);
+        background: linear-gradient(145deg,
+                rgba(255, 255, 255, 0.95) 0%,
+                rgba(245, 158, 11, 0.05) 100%);
         border: 1px solid rgba(245, 158, 11, 0.1);
     }
 
@@ -1208,30 +1217,30 @@
 
     /* Dark mode adjustments */
     [data-bs-theme="dark"] .col-sm-6.col-lg-3:nth-child(1) .gradient-card {
-        background: linear-gradient(145deg, 
-            rgba(147, 51, 234, 0.15) 0%,
-            var(--phoenix-body-highlight-bg) 100%);
+        background: linear-gradient(145deg,
+                rgba(147, 51, 234, 0.15) 0%,
+                var(--phoenix-body-highlight-bg) 100%);
     }
 
     [data-bs-theme="dark"] .col-sm-6.col-lg-3:nth-child(2) .gradient-card {
-        background: linear-gradient(145deg, 
-            rgba(59, 130, 246, 0.15) 0%,
-            var(--phoenix-body-highlight-bg) 100%);
+        background: linear-gradient(145deg,
+                rgba(59, 130, 246, 0.15) 0%,
+                var(--phoenix-body-highlight-bg) 100%);
     }
 
     [data-bs-theme="dark"] .col-sm-6.col-lg-3:nth-child(3) .gradient-card {
-        background: linear-gradient(145deg, 
-            rgba(16, 185, 129, 0.15) 0%,
-            var(--phoenix-body-highlight-bg) 100%);
+        background: linear-gradient(145deg,
+                rgba(16, 185, 129, 0.15) 0%,
+                var(--phoenix-body-highlight-bg) 100%);
     }
 
     [data-bs-theme="dark"] .col-sm-6.col-lg-3:nth-child(4) .gradient-card {
-        background: linear-gradient(145deg, 
-            rgba(245, 158, 11, 0.15) 0%,
-            var(--phoenix-body-highlight-bg) 100%);
+        background: linear-gradient(145deg,
+                rgba(245, 158, 11, 0.15) 0%,
+                var(--phoenix-body-highlight-bg) 100%);
     }
 
-  
+
 
     [data-bs-theme="dark"] .gradient-card:hover {
         box-shadow: 0 6px 15px -3px rgba(0, 0, 0, 0.2);
@@ -1254,11 +1263,12 @@
 
     /* Desktop specific adjustments */
     @media (min-width: 992px) {
+
         /* Most Active Section - remove right border radius */
         .col-sm-6.col-lg-3:nth-child(2) .gradient-card {
             border-radius: 0 0 0 0;
         }
-        
+
         /* Last Updated By - remove left border radius */
         .col-sm-6.col-lg-3:nth-child(3) .gradient-card {
             border-radius: 0 0 0 0;
@@ -1312,7 +1322,7 @@
             margin: 0.75rem auto 0;
             text-align: center;
         }
-        
+
         .last-checked .d-flex {
             justify-content: center;
         }
@@ -1501,7 +1511,7 @@
     }
 
     /* Welcome section dark mode adjustments */
-   
+
 
     /* Responsive adjustments */
     @media (max-width: 1200px) {
@@ -1575,11 +1585,10 @@
         font-weight: 800;
         margin-bottom: 0.5rem;
         line-height: 1.2;
-        background: linear-gradient(135deg, 
-            #c05cf6 0%,
-            #cc96f5 50%,
-            #f1d6fe 100%
-        );
+        background: linear-gradient(135deg,
+                #c05cf6 0%,
+                #cc96f5 50%,
+                #f1d6fe 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         display: inline-block;
@@ -1588,10 +1597,9 @@
     /* Dark mode adjustment for welcome title */
     [data-bs-theme="dark"] .welcome-title {
         background: linear-gradient(135deg,
-            #A78BFA 0%,
-            #8B5CF6 50%,
-            #7C3AED 100%
-        );
+                #A78BFA 0%,
+                #8B5CF6 50%,
+                #7C3AED 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
@@ -1608,6 +1616,7 @@
             transform: translateY(10px);
             filter: blur(10px);
         }
+
         100% {
             opacity: 1;
             transform: translateY(0);
@@ -1674,21 +1683,21 @@
     function updateCurrentDate() {
         const dateElements = document.querySelectorAll('.current-date');
         const now = new Date();
-        const options = { 
-            month: 'short', 
-            day: 'numeric', 
-            year: 'numeric' 
+        const options = {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric'
         };
         const formattedDate = now.toLocaleDateString('en-US', options);
-        
+
         dateElements.forEach(element => {
             element.textContent = formattedDate;
         });
     }
-    
+
     // Run immediately
     updateCurrentDate();
-    
+
     document.addEventListener('DOMContentLoaded', function () {
         // Update date every second
         setInterval(updateCurrentDate, 1000);
@@ -1717,11 +1726,11 @@
             const loadElement = document.querySelector('.card:last-child h3');
             const progressBar = document.querySelector('.progress-bar');
             const loadText = document.querySelector('.card:last-child small');
-            
+
             const newLoad = Math.floor(Math.random() * 100);
             loadElement.textContent = `${newLoad}%`;
             progressBar.style.width = `${newLoad}%`;
-            
+
             if (newLoad < 50) {
                 progressBar.className = 'progress-bar bg-success';
                 loadText.className = 'text-success mt-1 d-block';
@@ -1738,7 +1747,7 @@
         }, 30000);
 
         // Add this at the start of your existing script
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Trigger animations when page loads
             const animatedElements = document.querySelectorAll('.animate-in');
             animatedElements.forEach(element => {
