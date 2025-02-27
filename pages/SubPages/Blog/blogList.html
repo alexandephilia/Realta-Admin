@@ -851,13 +851,35 @@
             }
         });
 
-        // Remove image functionality
-        document.getElementById(removeButtonId)?.addEventListener('click', function() {
-            document.getElementById(previewId).src = 'assets/img/generic/empty-image.png';
-            document.getElementById(uploadTextId).style.display = 'block';
-            this.classList.add('d-none');
-            input.value = '';
-        });
+        // Enhanced remove image functionality
+        const removeButton = document.getElementById(removeButtonId);
+        if (removeButton) {
+            removeButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const preview = document.getElementById(previewId);
+                const uploadText = document.getElementById(uploadTextId);
+                
+                // Reset image to transparent placeholder
+                preview.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+                
+                // Show upload text
+                uploadText.style.removeProperty('display');
+                
+                // Hide remove button
+                this.classList.add('d-none');
+                
+                // Clear file input
+                input.value = '';
+                
+                // Reset dropzone state
+                dropzone.classList.remove('dragover');
+                
+                // Dispatch change event to trigger any listeners
+                input.dispatchEvent(new Event('change', { bubbles: true }));
+            });
+        }
     });
 
     // Update the edit button handler
@@ -918,52 +940,146 @@
         });
     });
 
-    // Add reset functionality for edit blog modal
-    $('#editBlogModal').on('hidden.bs.modal', function () {
+    // Initialize TinyMCE when modals are shown
+    $('#createBlogModal').on('shown.bs.modal', function () {
+        tinymce.remove('.tinymce-editor'); // Remove existing instances first
+        initializeTinyMCE();
+    });
+
+    $('#editBlogModal').on('shown.bs.modal', function () {
+        tinymce.remove('.tinymce-editor'); // Remove existing instances first
+        initializeTinyMCE();
+    });
+
+    // Enhanced cleanup for create blog modal
+    $('#createBlogModal').on('hidden.bs.modal', function () {
+        // Remove TinyMCE instances
+        tinymce.remove('.tinymce-editor');
+        
         // Reset the form
-        document.getElementById('editBlogForm').reset();
+        document.getElementById('createBlogForm').reset();
         
-        // Reset both image previews
-        const editImagePreview = document.getElementById('editImagePreview');
-        const editImagePreview2 = document.getElementById('editImagePreview2');
-        const editUploadText = document.getElementById('editUploadText');
-        const editUploadText2 = document.getElementById('editUploadText2');
+        // Reset image previews and states for both images
+        ['imagePreview', 'imagePreview2'].forEach(previewId => {
+            const preview = document.getElementById(previewId);
+            const uploadText = document.getElementById(previewId === 'imagePreview' ? 'uploadText' : 'uploadText2');
+            const removeButton = document.getElementById(previewId === 'imagePreview' ? 'removeImage' : 'removeImage2');
+            const fileInput = document.getElementById(previewId === 'imagePreview' ? 'imageUpload' : 'imageUpload2');
+            
+            // Reset image preview
+            preview.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+            
+            // Show upload text
+            uploadText.style.removeProperty('display');
+            
+            // Hide remove button
+            removeButton.classList.add('d-none');
+            
+            // Clear file input
+            fileInput.value = '';
+        });
         
-        editImagePreview.src = 'assets/img/generic/empty-image.png';
-        editImagePreview2.src = 'assets/img/generic/empty-image.png';
-        editUploadText.style.removeProperty('display');
-        editUploadText2.style.removeProperty('display');
-        document.getElementById('editRemoveImage').classList.add('d-none');
-        document.getElementById('editRemoveImage2').classList.add('d-none');
-        
-        // Reset all select elements
-        document.getElementById('editCategory').value = '';
-        
-        // Reset status switches
-        const statusSwitch = document.getElementById('editArticleStatus');
-        const statusText = statusSwitch.parentElement.querySelector('.status-text');
-        statusSwitch.checked = true;
-        statusText.textContent = 'Active';
-        statusText.classList.remove('text-danger');
-        statusText.classList.add('text-success');
-        
-        // Reset featured switch
-        const featuredSwitch = document.getElementById('editArticleFeatured');
-        const featuredText = featuredSwitch.parentElement.querySelector('.featured-text');
-        featuredSwitch.checked = false;
-        featuredText.textContent = 'No';
-        featuredText.classList.remove('text-success');
-        featuredText.classList.add('text-danger');
-        
-        // Reset hashtags container
+        // Reset hashtags
         const hashtagContainer = this.querySelector('.hashtag-container');
         if (hashtagContainer) {
             hashtagContainer.innerHTML = '';
         }
         
-        // Reset TinyMCE editor content
-        if (tinymce.get('editContent')) {
-            tinymce.get('editContent').setContent('');
+        // Reset switches
+        const featuredSwitch = document.getElementById('articleFeatured');
+        const statusSwitch = document.getElementById('articleStatus');
+        
+        if (featuredSwitch) {
+            featuredSwitch.checked = false;
+            const featuredText = featuredSwitch.parentElement.querySelector('.featured-text');
+            if (featuredText) {
+                featuredText.textContent = 'No';
+                featuredText.classList.remove('text-success');
+                featuredText.classList.add('text-danger');
+            }
+        }
+        
+        if (statusSwitch) {
+            statusSwitch.checked = true;
+            const statusText = statusSwitch.parentElement.querySelector('.status-text');
+            if (statusText) {
+                statusText.textContent = 'Active';
+                statusText.classList.remove('text-danger');
+                statusText.classList.add('text-success');
+            }
+        }
+        
+        // Reset character counter
+        const charCount = document.getElementById('charCount');
+        if (charCount) {
+            charCount.textContent = '0';
+            charCount.classList.remove('text-warning');
+        }
+    });
+
+    // Enhanced cleanup for edit blog modal
+    $('#editBlogModal').on('hidden.bs.modal', function () {
+        // Remove TinyMCE instances
+        tinymce.remove('.tinymce-editor');
+        
+        // Reset the form
+        document.getElementById('editBlogForm').reset();
+        
+        // Reset image previews and states for both images
+        ['editImagePreview', 'editImagePreview2'].forEach(previewId => {
+            const preview = document.getElementById(previewId);
+            const uploadText = document.getElementById(previewId === 'editImagePreview' ? 'editUploadText' : 'editUploadText2');
+            const removeButton = document.getElementById(previewId === 'editImagePreview' ? 'editRemoveImage' : 'editRemoveImage2');
+            const fileInput = document.getElementById(previewId === 'editImagePreview' ? 'editImageUpload' : 'editImageUpload2');
+            
+            // Reset image preview
+            preview.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+            
+            // Show upload text
+            uploadText.style.removeProperty('display');
+            
+            // Hide remove button
+            removeButton.classList.add('d-none');
+            
+            // Clear file input
+            fileInput.value = '';
+        });
+        
+        // Reset hashtags
+        const hashtagContainer = this.querySelector('.hashtag-container');
+        if (hashtagContainer) {
+            hashtagContainer.innerHTML = '';
+        }
+        
+        // Reset switches
+        const featuredSwitch = document.getElementById('editArticleFeatured');
+        const statusSwitch = document.getElementById('editArticleStatus');
+        
+        if (featuredSwitch) {
+            featuredSwitch.checked = false;
+            const featuredText = featuredSwitch.parentElement.querySelector('.featured-text');
+            if (featuredText) {
+                featuredText.textContent = 'No';
+                featuredText.classList.remove('text-success');
+                featuredText.classList.add('text-danger');
+            }
+        }
+        
+        if (statusSwitch) {
+            statusSwitch.checked = true;
+            const statusText = statusSwitch.parentElement.querySelector('.status-text');
+            if (statusText) {
+                statusText.textContent = 'Active';
+                statusText.classList.remove('text-danger');
+                statusText.classList.add('text-success');
+            }
+        }
+        
+        // Reset character counter
+        const charCount = document.getElementById('charCount');
+        if (charCount) {
+            charCount.textContent = '0';
+            charCount.classList.remove('text-warning');
         }
     });
 
@@ -1478,20 +1594,4 @@
             document.body.removeChild(tempTextArea);
         }
     }
-
-    // Initialize TinyMCE when modals are shown
-    $('#createBlogModal').on('shown.bs.modal', function () {
-        tinymce.remove('.tinymce-editor'); // Remove existing instances first
-        initializeTinyMCE();
-    });
-
-    $('#editBlogModal').on('shown.bs.modal', function () {
-        tinymce.remove('.tinymce-editor'); // Remove existing instances first
-        initializeTinyMCE();
-    });
-
-    // Clean up TinyMCE instances when modals are hidden
-    $('#createBlogModal, #editBlogModal').on('hidden.bs.modal', function () {
-        tinymce.remove('.tinymce-editor');
-    });
 </script>
