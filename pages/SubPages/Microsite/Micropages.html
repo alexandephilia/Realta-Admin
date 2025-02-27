@@ -25,8 +25,32 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="categorySlug">URL Slug</label>
-                                <input type="text" class="form-control" id="categorySlug" placeholder="enter-url-slug">
+                                <input type="text" class="form-control" id="categorySlug" placeholder="enter-url-slug" pattern="[a-z0-9-]+" title="Use lowercase letters, numbers, and hyphens">
+                                <small class="form-text text-muted">SEO-friendly URL structure (e.g., 'best-hotel-bali')</small>
                             </div>
+
+                            <div class="card mb-3">
+                                <div class="card-header bg-light">
+                                    <h6 class="mb-0">SEO Optimization</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="metaTitle">Meta Title</label>
+                                        <input type="text" class="form-control" id="metaTitle" placeholder="Optimized page title (50-60 chars)">
+                                        <small class="form-text text-muted">Include primary keywords at beginning</small>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="metaDescription">Meta Description</label>
+                                        <textarea class="form-control" id="metaDescription" rows="2" placeholder="Compelling summary (150-160 chars)"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="seoKeywords">Focus Keywords</label>
+                                        <input type="text" class="form-control" id="seoKeywords" placeholder="comma,separated,keywords">
+                                        <small class="form-text text-muted">Primary terms for search optimization</small>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="d-flex justify-content-end">
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" id="categoryStatus" checked>
@@ -45,14 +69,49 @@
             </div>
         </div>
 
+        <!-- Source Code Modal -->
+        <div class="modal fade" id="sourceCodeModal" tabindex="-1" aria-labelledby="sourceCodeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="sourceCodeModalLabel">Meta Tags Source Code</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group mb-3">
+                            <label class="form-label">HTML Meta Tags</label>
+                            <textarea class="form-control font-monospace" id="sourceCodeText" rows="6" readonly></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Open Graph Meta Tags</label>
+                            <textarea class="form-control font-monospace" id="ogSourceCodeText" rows="4" readonly></textarea>
+                        </div>
+                        <div class="text-end mt-3">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-falcon-default btn-sm" onclick="copySourceCode('sourceCodeText')">
+                                    <span class="fas fa-copy me-1"></span>Copy HTML Tags
+                                </button>
+                                <button type="button" class="btn btn-falcon-default btn-sm" onclick="copySourceCode('ogSourceCodeText')">
+                                    <span class="fas fa-copy me-1"></span>Copy OG Tags
+                                </button>
+                                <button type="button" class="btn btn-falcon-default btn-sm" onclick="copyAllSourceCode()">
+                                    <span class="fas fa-copy me-1"></span>Copy All
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Table Section -->
         <div class="table-responsive mt-4">
             <table class="table table-hover" id="categoriesTable">
                 <thead>
                     <tr>
-                        <th class="text-center">Category Name</th>
-                        <th class="text-center">URL Slug</th>
-                        <th class="text-center">Status</th>
+                        <th class="text-center sortable" data-sort="name">Category Name <span class="sort-icon"></span></th>
+                        <th class="text-center sortable" data-sort="slug">URL Slug <span class="sort-icon"></span></th>
+                        <th class="text-center sortable" data-sort="status">Status <span class="sort-icon"></span></th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -116,6 +175,21 @@
                     </tr>
                 </tbody>
             </table>
+            
+            <!-- Pagination -->
+            <nav aria-label="Page navigation" class="mt-4">
+                <ul class="pagination justify-content-center" id="tablePagination">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" data-page="prev">Previous</a>
+                    </li>
+                    <li class="page-item active">
+                        <a class="page-link" href="#" data-page="1">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" data-page="next">Next</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
 
         <!-- Delete Category Modal -->
@@ -156,8 +230,32 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="editCategorySlug">URL Slug</label>
-                                <input type="text" class="form-control" id="editCategorySlug" placeholder="enter-url-slug">
+                                <input type="text" class="form-control" id="editCategorySlug" placeholder="enter-url-slug" pattern="[a-z0-9-]+" title="Use lowercase letters, numbers, and hyphens">
+                                <small class="form-text text-muted">SEO-friendly URL structure (e.g., 'best-hotel-bali')</small>
                             </div>
+
+                            <div class="card mb-3">
+                                <div class="card-header bg-light">
+                                    <h6 class="mb-0">SEO Optimization</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="editMetaTitle">Meta Title</label>
+                                        <input type="text" class="form-control" id="editMetaTitle" placeholder="Optimized page title (50-60 chars)">
+                                        <small class="form-text text-muted">Include primary keywords at beginning</small>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="editMetaDescription">Meta Description</label>
+                                        <textarea class="form-control" id="editMetaDescription" rows="2" placeholder="Compelling summary (150-160 chars)"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="editSeoKeywords">Focus Keywords</label>
+                                        <input type="text" class="form-control" id="editSeoKeywords" placeholder="comma,separated,keywords">
+                                        <small class="form-text text-muted">Primary terms for search optimization</small>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="d-flex justify-content-end">
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" id="editCategoryStatus" checked>
@@ -229,6 +327,647 @@
                 // Add your delete logic here
                 bootstrap.Modal.getInstance(document.getElementById('deleteCategoryModal')).hide();
             }
+
+            // Add character counter for meta description
+            ['metaDescription', 'editMetaDescription'].forEach(id => {
+                const textarea = document.getElementById(id);
+                if (textarea) {
+                    // Add character counter element after textarea
+                    const counterDiv = document.createElement('div');
+                    counterDiv.className = 'd-flex justify-content-between align-items-center mt-1';
+                    counterDiv.innerHTML = `
+                        <small class="text-muted" style="padding-left:15px">
+                            Characters: <span class="char-count">0</span>/160
+                        </small>
+                        <button type="button" class="btn btn-falcon-default btn-sm" onclick="showSourceCode(this.closest('.mb-3').querySelector('textarea').value)">
+                            <span class="fas fa-code me-1"></span>View source code
+                        </button>
+                    `;
+                    textarea.parentNode.appendChild(counterDiv);
+
+                    // Add input listener
+                    textarea.addEventListener('input', function() {
+                        const charCount = this.value.length;
+                        const countSpan = this.parentNode.querySelector('.char-count');
+                        countSpan.textContent = charCount;
+                        
+                        if (charCount > 150) {
+                            countSpan.classList.add('text-warning');
+                        } else {
+                            countSpan.classList.remove('text-warning');
+                        }
+                    });
+                }
+            });
+
+            // Update the showSourceCode function
+            function showSourceCode(description) {
+                const currentModal = document.querySelector('.modal.show');
+                const form = currentModal.querySelector('form');
+                const title = form.querySelector('[id$="MetaTitle"]').value;
+                const slug = form.querySelector('[id$="CategorySlug"]').value;
+
+                // Get keywords from the hashtag container instead of the input field
+                const keywordContainer = form.querySelector('.hashtag-container');
+                const keywords = Array.from(keywordContainer.children)
+                    .map(tag => tag.textContent.trim())
+                    .filter(keyword => keyword)
+                    .join(', ');
+
+                // Generate HTML meta tags with proper escaping
+                const safeTitle = escapeHtml(title);
+                const safeDescription = escapeHtml(description);
+                const safeKeywords = escapeHtml(keywords);
+                const safeSlug = escapeHtml(slug);
+
+                // Generate canonical URL
+                const canonicalUrl = `${window.location.origin}${safeSlug}`;
+
+                // Generate HTML meta tags
+                const htmlMetaTags = `<!-- Primary Meta Tags -->
+<title>${safeTitle}</title>
+<meta name="title" content="${safeTitle}">
+<meta name="description" content="${safeDescription}">
+<meta name="keywords" content="${safeKeywords}">
+<link rel="canonical" href="${canonicalUrl}">
+
+<!-- Robots Meta -->
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">`;
+
+                // Generate Open Graph meta tags
+                const ogMetaTags = `<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="${canonicalUrl}">
+<meta property="og:title" content="${safeTitle}">
+<meta property="og:description" content="${safeDescription}">
+<meta property="og:image" content="${window.location.origin}/assets/img/og-image.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="${canonicalUrl}">
+<meta property="twitter:title" content="${safeTitle}">
+<meta property="twitter:description" content="${safeDescription}">
+<meta property="twitter:image" content="${window.location.origin}/assets/img/twitter-image.jpg">`;
+
+                // Update modal content
+                document.getElementById('sourceCodeText').value = htmlMetaTags;
+                document.getElementById('ogSourceCodeText').value = ogMetaTags;
+
+                // Handle modal stacking
+                const sourceCodeModal = document.getElementById('sourceCodeModal');
+                if (currentModal) {
+                    const currentZIndex = parseInt(getComputedStyle(currentModal).zIndex);
+                    sourceCodeModal.style.zIndex = currentZIndex + 2;
+                    
+                    const modal = new bootstrap.Modal(sourceCodeModal);
+                    modal.show();
+                    
+                    setTimeout(() => {
+                        const backdrop = document.querySelector('.modal-backdrop:last-child');
+                        if (backdrop) {
+                            backdrop.style.zIndex = currentZIndex + 1;
+                        }
+                    }, 0);
+                    
+                    sourceCodeModal.addEventListener('hidden.bs.modal', function handler() {
+                        sourceCodeModal.style.zIndex = '';
+                        this.removeEventListener('hidden.bs.modal', handler);
+                    });
+                } else {
+                    const modal = new bootstrap.Modal(sourceCodeModal);
+                    modal.show();
+                }
+            }
+
+            // Helper function to escape HTML special characters
+            function escapeHtml(text) {
+                if (!text) return '';
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+
+            // Enhanced copy functions
+            function copySourceCode(elementId) {
+                const textArea = document.getElementById(elementId);
+                const textToCopy = textArea.value;
+                
+                copyToClipboard(textToCopy, event.currentTarget);
+            }
+
+            function copyAllSourceCode() {
+                const htmlTags = document.getElementById('sourceCodeText').value;
+                const ogTags = document.getElementById('ogSourceCodeText').value;
+                const allTags = `${htmlTags}\n\n${ogTags}`;
+                
+                copyToClipboard(allTags, event.currentTarget);
+            }
+
+            function copyToClipboard(text, button) {
+                const originalText = button.innerHTML;
+                const originalClass = button.className;
+                
+                try {
+                    if (navigator.clipboard && window.isSecureContext) {
+                        navigator.clipboard.writeText(text).then(() => {
+                            showCopySuccess(button, originalText, originalClass);
+                        });
+                    } else {
+                        const textarea = document.createElement('textarea');
+                        textarea.value = text;
+                        textarea.style.position = 'fixed';
+                        textarea.style.opacity = '0';
+                        document.body.appendChild(textarea);
+                        textarea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textarea);
+                        showCopySuccess(button, originalText, originalClass);
+                    }
+                } catch (err) {
+                    console.error('Failed to copy text: ', err);
+                    button.innerHTML = '<span class="fas fa-times me-1"></span>Failed!';
+                    button.classList.add('btn-danger');
+                    setTimeout(() => {
+                        button.innerHTML = originalText;
+                        button.className = originalClass;
+                    }, 2000);
+                }
+            }
+
+            function showCopySuccess(button, originalText, originalClass) {
+                button.innerHTML = '<span class="fas fa-check me-1"></span>Copied!';
+                button.classList.add('btn-success');
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.className = originalClass;
+                }, 2000);
+            }
+
+            // Add SEO keyword tag handling
+            ['seoKeywords', 'editSeoKeywords'].forEach(id => {
+                const input = document.getElementById(id);
+                if (input) {
+                    // Create tag container
+                    const tagContainer = document.createElement('div');
+                    tagContainer.className = 'hashtag-container d-flex flex-wrap gap-2 mt-2';
+                    input.parentNode.appendChild(tagContainer);
+
+                    // Handle input
+                    input.addEventListener('keydown', function(e) {
+                        if (e.key === 'Enter' || e.key === ',') {
+                            e.preventDefault();
+                            const value = this.value.trim();
+                            if (value) {
+                                addKeywordTag(value, tagContainer);
+                                this.value = '';
+                            }
+                        }
+                    });
+
+                    // Handle paste
+                    input.addEventListener('paste', function(e) {
+                        e.preventDefault();
+                        const paste = (e.clipboardData || window.clipboardData).getData('text');
+                        const keywords = paste.split(/,|\n/).map(k => k.trim()).filter(k => k.length > 0);
+                        keywords.forEach(keyword => addKeywordTag(keyword, tagContainer));
+                    });
+                }
+            });
+
+            function addKeywordTag(keyword, container) {
+                const tag = document.createElement('div');
+                tag.className = 'badge badge-phoenix badge-phoenix-primary d-flex align-items-center gap-1';
+                tag.innerHTML = `
+                    ${keyword}
+                    <span class="fas fa-times cursor-pointer" onclick="this.parentElement.remove()"></span>
+                `;
+                container.appendChild(tag);
+            }
+
+            // Enhanced form validation
+            ['createCategoryForm', 'editCategoryForm'].forEach(formId => {
+                const form = document.getElementById(formId);
+                if (form) {
+                    form.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        
+                        // Reset previous validation states
+                        form.querySelectorAll('.is-invalid').forEach(el => {
+                            el.classList.remove('is-invalid');
+                            const feedback = el.nextElementSibling;
+                            if (feedback && feedback.classList.contains('invalid-feedback')) {
+                                feedback.remove();
+                            }
+                        });
+
+                        let isValid = true;
+
+                        // Validate required fields
+                        const requiredFields = {
+                            '[id$="CategoryName"]': 'Category name is required',
+                            '[id$="CategorySlug"]': 'URL slug is required',
+                            '[id$="MetaTitle"]': 'Meta title is required',
+                            '[id$="MetaDescription"]': 'Meta description is required'
+                        };
+
+                        Object.entries(requiredFields).forEach(([selector, message]) => {
+                            const field = form.querySelector(selector);
+                            if (field && !field.value.trim()) {
+                                showError(field, message);
+                                isValid = false;
+                            }
+                        });
+
+                        // Validate URL slug format
+                        const slugField = form.querySelector('[id$="CategorySlug"]');
+                        if (slugField && slugField.value.trim()) {
+                            const slugRegex = /^[a-z0-9-]+$/;
+                            if (!slugRegex.test(slugField.value.trim())) {
+                                showError(slugField, 'URL slug can only contain lowercase letters, numbers, and hyphens');
+                                isValid = false;
+                            }
+                        }
+
+                        // Validate meta title length
+                        const metaTitleField = form.querySelector('[id$="MetaTitle"]');
+                        if (metaTitleField && metaTitleField.value.trim()) {
+                            const titleLength = metaTitleField.value.trim().length;
+                            if (titleLength < 30 || titleLength > 60) {
+                                showError(metaTitleField, 'Meta title should be between 30 and 60 characters');
+                                isValid = false;
+                            }
+                        }
+
+                        // Validate meta description length
+                        const metaDescField = form.querySelector('[id$="MetaDescription"]');
+                        if (metaDescField && metaDescField.value.trim()) {
+                            const descLength = metaDescField.value.trim().length;
+                            if (descLength < 120 || descLength > 160) {
+                                showError(metaDescField, 'Meta description should be between 120 and 160 characters');
+                                isValid = false;
+                            }
+                        }
+
+                        if (isValid) {
+                            // Collect form data including tags
+                            const formData = {
+                                categoryName: form.querySelector('[id$="CategoryName"]').value,
+                                categorySlug: form.querySelector('[id$="CategorySlug"]').value,
+                                metaTitle: form.querySelector('[id$="MetaTitle"]').value,
+                                metaDescription: form.querySelector('[id$="MetaDescription"]').value,
+                                keywords: Array.from(form.querySelector('.hashtag-container').children).map(tag => tag.textContent.trim()),
+                                status: form.querySelector('[id$="CategoryStatus"]').checked
+                            };
+
+                            // Here you would typically send the data to your backend
+                            console.log('Form data:', formData);
+                            
+                            // Close the modal
+                            const modal = bootstrap.Modal.getInstance(form.closest('.modal'));
+                            modal.hide();
+
+                            // Show success message
+                            showToast('Success', 'Category saved successfully', 'success');
+                        }
+                    });
+                }
+            });
+
+            function showError(element, message) {
+                element.classList.add('is-invalid');
+                const feedback = document.createElement('div');
+                feedback.className = 'invalid-feedback';
+                feedback.textContent = message;
+                element.parentNode.appendChild(feedback);
+            }
+
+            function showToast(title, message, type = 'success') {
+                const toastContainer = document.getElementById('toastContainer') || createToastContainer();
+                const toast = document.createElement('div');
+                toast.className = `toast align-items-center text-white bg-${type} border-0`;
+                toast.setAttribute('role', 'alert');
+                toast.setAttribute('aria-live', 'assertive');
+                toast.setAttribute('aria-atomic', 'true');
+                
+                toast.innerHTML = `
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            <strong>${title}</strong><br>
+                            ${message}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                `;
+                
+                toastContainer.appendChild(toast);
+                const bsToast = new bootstrap.Toast(toast);
+                bsToast.show();
+                
+                toast.addEventListener('hidden.bs.toast', () => toast.remove());
+            }
+
+            function createToastContainer() {
+                const container = document.createElement('div');
+                container.id = 'toastContainer';
+                container.className = 'toast-container position-fixed top-0 end-0 p-3';
+                container.style.zIndex = '1060';
+                document.body.appendChild(container);
+                return container;
+            }
+
+            // Table functionality
+            class TableManager {
+                constructor(tableId, rowsPerPage = 10) {
+                    this.table = document.getElementById(tableId);
+                    this.tbody = this.table.querySelector('tbody');
+                    this.rowsPerPage = rowsPerPage;
+                    this.currentPage = 1;
+                    this.sortColumn = null;
+                    this.sortDirection = 'asc';
+                    
+                    this.initializeSorting();
+                    this.initializePagination();
+                    this.updateTable();
+                }
+
+                initializeSorting() {
+                    const headers = this.table.querySelectorAll('th.sortable');
+                    headers.forEach(header => {
+                        header.addEventListener('click', () => {
+                            const column = header.dataset.sort;
+                            if (this.sortColumn === column) {
+                                this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+                            } else {
+                                this.sortColumn = column;
+                                this.sortDirection = 'asc';
+                            }
+                            
+                            // Update sort icons
+                            headers.forEach(h => h.classList.remove('sort-asc', 'sort-desc'));
+                            header.classList.add(`sort-${this.sortDirection}`);
+                            
+                            this.updateTable();
+                        });
+                    });
+                }
+
+                initializePagination() {
+                    const pagination = document.getElementById('tablePagination');
+                    pagination.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const target = e.target.closest('a');
+                        if (!target) return;
+
+                        const page = target.dataset.page;
+                        if (page === 'prev' && this.currentPage > 1) {
+                            this.currentPage--;
+                        } else if (page === 'next' && this.currentPage < this.getTotalPages()) {
+                            this.currentPage++;
+                        } else if (page !== 'prev' && page !== 'next') {
+                            this.currentPage = parseInt(page);
+                        }
+
+                        this.updateTable();
+                    });
+                }
+
+                getTotalPages() {
+                    return Math.ceil(this.getAllRows().length / this.rowsPerPage);
+                }
+
+                getAllRows() {
+                    return Array.from(this.tbody.children);
+                }
+
+                updateTable() {
+                    const rows = this.getAllRows();
+                    
+                    // Sort rows if needed
+                    if (this.sortColumn) {
+                        rows.sort((a, b) => {
+                            let aVal = this.getCellValue(a, this.sortColumn);
+                            let bVal = this.getCellValue(b, this.sortColumn);
+                            
+                            if (this.sortDirection === 'desc') {
+                                [aVal, bVal] = [bVal, aVal];
+                            }
+                            
+                            return aVal.localeCompare(bVal);
+                        });
+                    }
+                    
+                    // Update pagination
+                    this.updatePagination();
+                    
+                    // Show only current page
+                    const start = (this.currentPage - 1) * this.rowsPerPage;
+                    const end = start + this.rowsPerPage;
+                    
+                    rows.forEach((row, index) => {
+                        row.style.display = (index >= start && index < end) ? '' : 'none';
+                    });
+                }
+
+                getCellValue(row, column) {
+                    const cell = row.querySelector(`td[data-column="${column}"]`);
+                    if (column === 'status') {
+                        return cell.querySelector('.badge-phoenix-success') ? 'active' : 'inactive';
+                    }
+                    return cell.textContent.trim().toLowerCase();
+                }
+
+                updatePagination() {
+                    const totalPages = this.getTotalPages();
+                    const pagination = document.getElementById('tablePagination');
+                    const prevBtn = pagination.querySelector('[data-page="prev"]').parentElement;
+                    const nextBtn = pagination.querySelector('[data-page="next"]').parentElement;
+                    
+                    // Update prev/next buttons
+                    prevBtn.classList.toggle('disabled', this.currentPage === 1);
+                    nextBtn.classList.toggle('disabled', this.currentPage === totalPages);
+                    
+                    // Update page numbers
+                    const pageNumbers = Array.from({length: totalPages}, (_, i) => i + 1);
+                    const pageItems = pageNumbers.map(num => `
+                        <li class="page-item ${num === this.currentPage ? 'active' : ''}">
+                            <a class="page-link" href="#" data-page="${num}">${num}</a>
+                        </li>
+                    `).join('');
+                    
+                    pagination.innerHTML = `
+                        <li class="page-item ${this.currentPage === 1 ? 'disabled' : ''}">
+                            <a class="page-link" href="#" data-page="prev">Previous</a>
+                        </li>
+                        ${pageItems}
+                        <li class="page-item ${this.currentPage === totalPages ? 'disabled' : ''}">
+                            <a class="page-link" href="#" data-page="next">Next</a>
+                        </li>
+                    `;
+                }
+
+                addRow(data) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td class="text-center" data-column="name">${data.categoryName}</td>
+                        <td class="text-center" data-column="slug">${data.categorySlug}</td>
+                        <td class="text-center" data-column="status">
+                            <span class="badge badge-phoenix fs-10 ${data.status ? 'badge-phoenix-success' : 'badge-phoenix-danger'}">
+                                <span class="fa ${data.status ? 'fa-check' : 'fa-xmark'}"></span>
+                            </span>
+                        </td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-falcon-default text-danger" onclick="confirmDelete(this)">
+                                <span class="fas fa-trash-alt"></span>
+                            </button>
+                            <button class="btn btn-sm btn-falcon-default text-warning" onclick="editCategory(this)">
+                                <span class="fas fa-edit me-2"></span>Edit
+                            </button>
+                        </td>
+                    `;
+                    this.tbody.appendChild(row);
+                    this.updateTable();
+                }
+
+                updateRow(row, data) {
+                    row.querySelector('[data-column="name"]').textContent = data.categoryName;
+                    row.querySelector('[data-column="slug"]').textContent = data.categorySlug;
+                    const statusBadge = row.querySelector('[data-column="status"] .badge-phoenix');
+                    statusBadge.className = `badge badge-phoenix fs-10 ${data.status ? 'badge-phoenix-success' : 'badge-phoenix-danger'}`;
+                    statusBadge.querySelector('.fa').className = `fa ${data.status ? 'fa-check' : 'fa-xmark'}`;
+                    this.updateTable();
+                }
+
+                deleteRow(row) {
+                    row.remove();
+                    this.updateTable();
+                }
+            }
+
+            // Initialize table manager
+            const tableManager = new TableManager('categoriesTable');
+
+            // Update edit and delete functions
+            function editCategory(button) {
+                const row = button.closest('tr');
+                const data = {
+                    categoryName: row.querySelector('[data-column="name"]').textContent,
+                    categorySlug: row.querySelector('[data-column="slug"]').textContent,
+                    status: row.querySelector('[data-column="status"] .badge-phoenix-success') !== null
+                };
+
+                // Populate edit modal
+                document.getElementById('editCategoryName').value = data.categoryName;
+                document.getElementById('editCategorySlug').value = data.categorySlug;
+                document.getElementById('editCategoryStatus').checked = data.status;
+
+                // Store reference to the row being edited
+                document.getElementById('editCategoryForm').dataset.editingRow = Array.from(row.parentElement.children).indexOf(row);
+
+                // Show modal
+                const modal = new bootstrap.Modal(document.getElementById('editCategoryModal'));
+                modal.show();
+            }
+
+            function confirmDelete(button) {
+                const row = button.closest('tr');
+                const categoryName = row.querySelector('[data-column="name"]').textContent;
+                
+                // Update delete modal message
+                document.querySelector('#deleteCategoryModal .modal-body p').textContent = 
+                    `Are you sure you want to delete the category "${categoryName}"? This action cannot be undone.`;
+                
+                // Store reference to the row being deleted
+                document.getElementById('deleteCategoryModal').dataset.deletingRow = Array.from(row.parentElement.children).indexOf(row);
+                
+                // Show modal
+                const modal = new bootstrap.Modal(document.getElementById('deleteCategoryModal'));
+                modal.show();
+            }
+
+            // Update form submission handlers
+            document.getElementById('createCategoryForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (validateForm(this)) {
+                    const formData = {
+                        categoryName: this.querySelector('#categoryName').value,
+                        categorySlug: this.querySelector('#categorySlug').value,
+                        status: this.querySelector('#categoryStatus').checked
+                    };
+                    
+                    tableManager.addRow(formData);
+                    bootstrap.Modal.getInstance(document.getElementById('createCategoryModal')).hide();
+                    showToast('Success', 'Category created successfully');
+                    this.reset();
+                }
+            });
+
+            document.getElementById('editCategoryForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (validateForm(this)) {
+                    const formData = {
+                        categoryName: this.querySelector('#editCategoryName').value,
+                        categorySlug: this.querySelector('#editCategorySlug').value,
+                        status: this.querySelector('#editCategoryStatus').checked
+                    };
+                    
+                    const rowIndex = parseInt(this.dataset.editingRow);
+                    const row = tableManager.getAllRows()[rowIndex];
+                    tableManager.updateRow(row, formData);
+                    
+                    bootstrap.Modal.getInstance(document.getElementById('editCategoryModal')).hide();
+                    showToast('Success', 'Category updated successfully');
+                }
+            });
+
+            // Update delete confirmation
+            document.querySelector('#deleteCategoryModal .btn-danger').addEventListener('click', function() {
+                const rowIndex = parseInt(document.getElementById('deleteCategoryModal').dataset.deletingRow);
+                const row = tableManager.getAllRows()[rowIndex];
+                tableManager.deleteRow(row);
+                
+                bootstrap.Modal.getInstance(document.getElementById('deleteCategoryModal')).hide();
+                showToast('Success', 'Category deleted successfully');
+            });
+
+            // Add CSS for sorting
+            const style = document.createElement('style');
+            style.textContent = `
+                .sortable {
+                    cursor: pointer;
+                    position: relative;
+                }
+                .sortable:hover {
+                    background-color: rgba(0,0,0,0.05);
+                }
+                .sort-icon {
+                    display: inline-block;
+                    width: 0;
+                    height: 0;
+                    margin-left: 0.3em;
+                    vertical-align: middle;
+                    content: "";
+                    border-top: 4px solid #ddd;
+                    border-right: 4px solid transparent;
+                    border-bottom: 0;
+                    border-left: 4px solid transparent;
+                }
+                .sort-asc .sort-icon {
+                    border-bottom: 4px solid #333;
+                    border-top: 0;
+                }
+                .sort-desc .sort-icon {
+                    border-top: 4px solid #333;
+                }
+                
+                /* Add indentation for helper text */
+                .form-text.text-muted {
+                    padding-left: 0.75rem;
+                    display: block;
+                    margin-top: 0.25rem;
+                }
+            `;
+            document.head.appendChild(style);
         </script>
     </div>
 </div> 
