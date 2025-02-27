@@ -220,11 +220,11 @@ $(document).ready(function() {
                                 ${banner.status}
                             </span>
                         </td>
-                        <td class="text-center">${new Date(banner.periodDate).toLocaleDateString('en-GB', {
+                        <td class="text-center">${new Date(banner.periodDate).toLocaleDateString('en-US', {
                             day: 'numeric',
                             month: 'short',
                             year: 'numeric'
-                        }).replace(',', '')}</td>
+                        })}</td>
                         <td class="text-center">
                             <div class="d-flex justify-content-center gap-2">
                                 <span class="badge badge-phoenix fs-10 badge-phoenix-${banner.visibilityDesktop ? 'success' : 'danger'}">
