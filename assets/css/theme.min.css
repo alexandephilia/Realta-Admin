@@ -133,8 +133,8 @@
   color-scheme: dark;
   --phoenix-body-color: #9fa6bc;
   --phoenix-body-color-rgb: 159, 166, 188;
-  --phoenix-body-bg: #0f111a;
-  --phoenix-body-bg-rgb: 15, 17, 26;
+  --phoenix-body-bg: rgb(20, 24, 36);
+  --phoenix-body-bg-rgb: 20, 24, 36;
   --phoenix-emphasis-color: #eff2f6;
   --phoenix-emphasis-color-rgb: 239, 242, 246;
   --phoenix-secondary-color: #949db5;
@@ -13272,6 +13272,21 @@ textarea.form-control.is-invalid {
     var(--phoenix-bg-opacity)
   ) !important;
 }
+
+
+.bg-light {
+  --phoenix-bg-opacity: 1;
+  background-color: rgba(var(--phoenix-light-rgb),
+      var(--phoenix-bg-opacity)) !important;
+}
+
+/* Dark mode override */
+[data-bs-theme="dark"] .bg-light {
+  --phoenix-bg-opacity: 1;
+  background-color: rgba(var(--phoenix-dark-rgb),
+      var(--phoenix-bg-opacity)) !important;
+}
+
 .bg-secondary {
   --phoenix-bg-opacity: 1;
   background-color: rgba(
@@ -13307,13 +13322,7 @@ textarea.form-control.is-invalid {
     var(--phoenix-bg-opacity)
   ) !important;
 }
-.bg-light {
-  --phoenix-bg-opacity: 1;
-  background-color: rgba(
-    var(--phoenix-light-rgb),
-    var(--phoenix-bg-opacity)
-  ) !important;
-}
+
 .bg-dark {
   --phoenix-bg-opacity: 1;
   background-color: rgba(
