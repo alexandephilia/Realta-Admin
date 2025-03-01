@@ -236,15 +236,15 @@
 
                                 <!-- META Description -->
                                 <div class="col-12 mt-3">
-                                    <label class="form-label" for="metaDescription">META Description</label>
-                                    <textarea class="form-control" id="metaDescription" rows="3"
+                                    <label class="form-label" for="createMetaDescription">META Description</label>
+                                    <textarea class="form-control" id="createMetaDescription" rows="3"
                                         placeholder="Enter META description for SEO" maxlength="1600"></textarea>
                                     <div class="d-flex justify-content-between align-items-center mt-1">
                                         <small class="text-muted">
-                                            Characters: <span id="charCount">0</span>/1600
+                                            Characters: <span id="createCharCount">0</span>/1600
                                         </small>
                                         <button type="button" class="btn btn-falcon-default btn-sm"
-                                            onclick="showSourceCode(this.closest('.col-12').querySelector('#metaDescription').value)">
+                                            onclick="showSourceCode(this.closest('.col-12').querySelector('#createMetaDescription').value)">
                                             <span class="fas fa-code me-1"></span>Copy source code
                                         </button>
                                     </div>
@@ -276,7 +276,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr data-meta-description="10 essential tips for successfully implementing digital transformation in your organization. Learn about the key strategies and best practices that can help your business thrive in the digital age." data-content="<p>Digital transformation is crucial for modern businesses. This article explores the key strategies and best practices for successful implementation.</p>" data-keywords="digital transformation, business strategy, technology adoption">
                         <td class="text-center">
                             <button class="btn px-1 btn-sm btn-falcon-default me-1">
                                 <span class="fas fa-chevron-up"></span>
@@ -314,7 +314,7 @@
                             </button>
                         </td>
                     </tr>
-                    <tr>
+                    <tr data-meta-description="Explore the future of cloud computing and its impact on business operations. Discover emerging trends, technologies, and best practices in cloud adoption." data-content="<p>Cloud computing continues to evolve at a rapid pace. This comprehensive guide explores the latest trends and technologies shaping the future of cloud infrastructure.</p>" data-keywords="cloud computing, future tech, digital infrastructure, cloud adoption, enterprise solutions">
                         <td class="text-center">
                             <button class="btn px-1 btn-sm btn-falcon-default me-1">
                                 <span class="fas fa-chevron-up"></span>
@@ -597,15 +597,15 @@
 
                                 <!-- META Description -->
                                 <div class="col-12 mt-3">
-                                    <label class="form-label" for="metaDescription">META Description</label>
-                                    <textarea class="form-control" id="metaDescription" rows="3"
+                                    <label class="form-label" for="editMetaDescription">META Description</label>
+                                    <textarea class="form-control" id="editMetaDescription" rows="3"
                                         placeholder="Enter META description for SEO" maxlength="1600"></textarea>
                                     <div class="d-flex justify-content-between align-items-center mt-1">
                                         <small class="text-muted">
-                                            Characters: <span id="charCount">0</span>/1600
+                                            Characters: <span id="editCharCount">0</span>/1600
                                         </small>
                                         <button type="button" class="btn btn-falcon-default btn-sm"
-                                            onclick="showSourceCode(this.closest('.col-12').querySelector('#metaDescription').value)">
+                                            onclick="showSourceCode(this.closest('.col-12').querySelector('#editMetaDescription').value)">
                                             <span class="fas fa-code me-1"></span>Copy source code
                                         </button>
                                     </div>
@@ -705,23 +705,32 @@
     </div>
 </div>
 
-<!-- Add this script at the bottom of the file -->
+<!-- Add this right after the source code modal -->
+<div id="toastContainer" class="position-fixed bottom-0 end-0 p-3" style="z-index: 1500;"></div>
+
 <script>
     // Initialize Flatpickr for both modals with consistent config
+    const flatpickrConfig = {
+        dateFormat: "d M Y",
+        altInput: true,
+        altFormat: "d M Y",
+        defaultDate: "today",
+        allowInput: false,
+        clickOpens: true,
+        monthSelectorType: "static",
+        prevArrow: '<svg class="svg-inline--fa fa-chevron-left" width="8" height="8" viewBox="0 0 8 8"><path d="M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z"/></svg>',
+        nextArrow: '<svg class="svg-inline--fa fa-chevron-right" width="8" height="8" viewBox="0 0 8 8"><path d="M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z"/></svg>'
+    };
+
     ['blogDate', 'editBlogDate'].forEach(id => {
-        flatpickr(`#${id}`, {
-            dateFormat: "dMY",
-            altInput: true,
-            altFormat: "d M Y",
-            defaultDate: "today",
-            allowInput: false,
-            clickOpens: true,
-            appendTo: document.querySelector(`#${id}`).parentElement,
-            positionElement: document.querySelector(`#${id}`),
-            monthSelectorType: "static",
-            prevArrow: '<svg class="svg-inline--fa fa-chevron-left" width="8" height="8" viewBox="0 0 8 8"><path d="M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z"/></svg>',
-            nextArrow: '<svg class="svg-inline--fa fa-chevron-right" width="8" height="8" viewBox="0 0 8 8"><path d="M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z"/></svg>'
-        });
+        const input = document.getElementById(id);
+        if (input) {
+            flatpickr(input, {
+                ...flatpickrConfig,
+                appendTo: input.parentElement,
+                positionElement: input
+            });
+        }
     });
 
     // Handle status toggle
@@ -771,17 +780,109 @@
         }
     });
 
-    // Update character counter for META description
-    document.getElementById('metaDescription').addEventListener('input', function () {
-        const charCount = this.value.length;
-        document.getElementById('charCount').textContent = charCount;
-
-        // Add visual feedback when approaching limit
-        if (charCount > 1500) {
-            document.getElementById('charCount').classList.add('text-warning');
-        } else {
-            document.getElementById('charCount').classList.remove('text-warning');
+    // Add character counter event listeners for both modals
+    ['create', 'edit'].forEach(prefix => {
+        const metaDesc = document.getElementById(`${prefix}MetaDescription`);
+        if (metaDesc) {
+            metaDesc.addEventListener('input', function() {
+                const charCount = this.value.length;
+                const countElement = document.getElementById(`${prefix}CharCount`);
+                if (countElement) {
+                    countElement.textContent = charCount;
+                    if (charCount > 1500) {
+                        countElement.classList.add('text-warning');
+                    } else {
+                        countElement.classList.remove('text-warning');
+                    }
+                }
+            });
         }
+    });
+
+    // Initialize TinyMCE when modals are shown
+    $('#createBlogModal').on('shown.bs.modal', function () {
+        tinymce.remove('.tinymce-editor'); // Remove existing instances first
+        initializeTinyMCE();
+    });
+
+    $('#editBlogModal').on('shown.bs.modal', function () {
+        tinymce.remove('.tinymce-editor'); // Remove existing instances first
+        initializeTinyMCE();
+    });
+
+    // Handle form submissions
+    document.getElementById('createBlogForm').addEventListener('submit', handleCreateSubmit);
+    
+    // Use event delegation for edit form submission
+    document.addEventListener('submit', function(e) {
+        if (e.target.id === 'editBlogForm') {
+            handleEditSubmit(e);
+        }
+    });
+
+    function showToast(message, type = 'success') {
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.setAttribute('role', 'alert');
+        toast.setAttribute('aria-live', 'assertive');
+        toast.setAttribute('aria-atomic', 'true');
+        toast.innerHTML = `
+            <div class="toast-header bg-${type} text-white">
+                <strong class="me-auto">Success</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                ${message}
+            </div>
+        `;
+        document.getElementById('toastContainer').appendChild(toast);
+        const bsToast = new bootstrap.Toast(toast);
+        bsToast.show();
+        
+        // Remove toast after it's hidden
+        toast.addEventListener('hidden.bs.toast', () => toast.remove());
+    }
+
+    // Reset modals when they're hidden
+    ['createBlogModal', 'editBlogModal'].forEach(modalId => {
+        document.getElementById(modalId).addEventListener('hidden.bs.modal', function () {
+            // Reset form
+            this.querySelector('form').reset();
+            
+            // Reset character counter
+            const prefix = modalId.startsWith('create') ? 'create' : 'edit';
+            const countElement = document.getElementById(`${prefix}CharCount`);
+            if (countElement) {
+                countElement.textContent = '0';
+                countElement.classList.remove('text-warning');
+            }
+            
+            // Reset image previews
+            const imagePrefix = modalId.startsWith('create') ? '' : 'edit';
+            const preview1 = document.getElementById(`${imagePrefix}ImagePreview`);
+            const preview2 = document.getElementById(`${imagePrefix}ImagePreview2`);
+            const uploadText1 = document.getElementById(`${imagePrefix}UploadText`);
+            const uploadText2 = document.getElementById(`${imagePrefix}UploadText2`);
+            const removeBtn1 = document.getElementById(`${imagePrefix}RemoveImage`);
+            const removeBtn2 = document.getElementById(`${imagePrefix}RemoveImage2`);
+            
+            if (preview1) preview1.src = 'assets/img/generic/empty-image.png';
+            if (preview2) preview2.src = 'assets/img/generic/empty-image.png';
+            if (uploadText1) uploadText1.style.removeProperty('display');
+            if (uploadText2) uploadText2.style.removeProperty('display');
+            if (removeBtn1) removeBtn1.classList.add('d-none');
+            if (removeBtn2) removeBtn2.classList.add('d-none');
+            
+            // Reset hashtag container
+            const hashtagContainer = this.querySelector('.hashtag-container');
+            if (hashtagContainer) hashtagContainer.innerHTML = '';
+            
+            // Reset TinyMCE content
+            const editorId = modalId.startsWith('create') ? 'blogContent' : 'editContent';
+            if (tinymce.get(editorId)) {
+                tinymce.get(editorId).setContent('');
+            }
+        });
     });
 
     // Enhanced image upload handling for both modals
@@ -882,225 +983,348 @@
         }
     });
 
-    // Update the edit button handler
-    document.querySelectorAll('.btn-falcon-default.text-warning').forEach(button => {
-        button.addEventListener('click', function () {
-            const row = this.closest('tr');
+    // Use event delegation for edit buttons
+    document.querySelector('table tbody').addEventListener('click', function(e) {
+        const editButton = e.target.closest('.btn-falcon-default.text-warning');
+        if (!editButton) return;
 
-            // Get image source from the table's image column
-            const imgElement = row.querySelector('td:nth-child(2) img');
-            const imgSrc = imgElement ? imgElement.src : 'assets/img/generic/empty-image.png';
+        // Remove being-edited class from any other row
+        const previouslyEdited = document.querySelector('tr.being-edited');
+        if (previouslyEdited) {
+            previouslyEdited.classList.remove('being-edited');
+        }
+        
+        const row = editButton.closest('tr');
+        // Add being-edited class to current row
+        row.classList.add('being-edited');
 
-            // Populate the edit modal fields
-            document.getElementById('editTitle').value = row.querySelector('td:nth-child(3)').textContent.trim();
-            document.getElementById('editCategory').value = row.querySelector('td:nth-child(5)').textContent.trim();
+        // Get image source from the table's image column
+        const imgElement = row.querySelector('td:nth-child(2) img');
+        const imgSrc = imgElement ? imgElement.src : 'assets/img/generic/empty-image.png';
 
-            // Update both image previews
-            const editImagePreview = document.getElementById('editImagePreview');
-            const editImagePreview2 = document.getElementById('editImagePreview2');
-            const editUploadText = document.getElementById('editUploadText');
-            const editUploadText2 = document.getElementById('editUploadText2');
-            
-            editImagePreview.src = imgSrc;
-            editImagePreview2.src = imgSrc; // For now, use same image for both. In real implementation, you'd get the featured image from your data
+        // Populate the edit modal fields
+        document.getElementById('editTitle').value = row.querySelector('td:nth-child(3)').textContent.trim();
+        document.getElementById('editCategory').value = row.querySelector('td:nth-child(5)').textContent.trim();
 
-            // Show/hide upload text based on whether there's an image
-            if (imgSrc !== 'assets/img/generic/empty-image.png') {
-                editUploadText.style.display = 'none';
-                editUploadText2.style.display = 'none';
-                document.getElementById('editRemoveImage').classList.remove('d-none');
-                document.getElementById('editRemoveImage2').classList.remove('d-none');
-            } else {
-                editUploadText.style.removeProperty('display');
-                editUploadText2.style.removeProperty('display');
-                document.getElementById('editRemoveImage').classList.add('d-none');
-                document.getElementById('editRemoveImage2').classList.add('d-none');
-            }
+        // Update both image previews
+        const editImagePreview = document.getElementById('editImagePreview');
+        const editImagePreview2 = document.getElementById('editImagePreview2');
+        const editUploadText = document.getElementById('editUploadText');
+        const editUploadText2 = document.getElementById('editUploadText2');
+        
+        editImagePreview.src = imgSrc;
+        editImagePreview2.src = imgSrc;
 
-            // Set date from table
-            const dateText = row.querySelector('td:nth-child(4)').textContent.trim();
-            document.getElementById('editBlogDate').value = dateText;
+        // Show/hide upload text based on whether there's an image
+        if (imgSrc && imgSrc !== 'assets/img/generic/empty-image.png') {
+            editUploadText.style.display = 'none';
+            editUploadText2.style.display = 'none';
+            document.getElementById('editRemoveImage').classList.remove('d-none');
+            document.getElementById('editRemoveImage2').classList.remove('d-none');
+        } else {
+            editUploadText.style.removeProperty('display');
+            editUploadText2.style.removeProperty('display');
+            document.getElementById('editRemoveImage').classList.add('d-none');
+            document.getElementById('editRemoveImage2').classList.add('d-none');
+        }
 
-            // Set featured and status toggles
-            const isFeatured = row.querySelector('td:nth-child(7) .badge-phoenix-success') !== null;
-            const isActive = row.querySelector('td:nth-child(6) .badge-phoenix-success') !== null;
+        // Set date from table
+        const dateText = row.querySelector('td:nth-child(4)').textContent.trim();
+        const editBlogDateInput = document.getElementById('editBlogDate');
+        if (editBlogDateInput._flatpickr) {
+            editBlogDateInput._flatpickr.setDate(dateText, true);
+        }
 
-            document.getElementById('editArticleFeatured').checked = isFeatured;
-            document.getElementById('editArticleStatus').checked = isActive;
+        // Set featured and status toggles
+        const isFeatured = row.querySelector('td:nth-child(7) .badge-phoenix-success') !== null;
+        const isActive = row.querySelector('td:nth-child(6) .badge-phoenix-success') !== null;
 
-            // Update status texts
-            const featuredText = document.querySelector('#editArticleFeatured + label .featured-text');
-            const statusText = document.querySelector('#editArticleStatus + label .status-text');
+        const editArticleFeatured = document.getElementById('editArticleFeatured');
+        const editArticleStatus = document.getElementById('editArticleStatus');
+        
+        editArticleFeatured.checked = isFeatured;
+        editArticleStatus.checked = isActive;
 
+        // Update status texts
+        const featuredText = document.querySelector('#editArticleFeatured + label .featured-text');
+        const statusText = document.querySelector('#editArticleStatus + label .status-text');
+
+        if (featuredText) {
             featuredText.textContent = isFeatured ? 'Yes' : 'No';
             featuredText.className = `ms-1 featured-text ${isFeatured ? 'text-success' : 'text-danger'}`;
+        }
 
+        if (statusText) {
             statusText.textContent = isActive ? 'Active' : 'Inactive';
             statusText.className = `ms-1 status-text ${isActive ? 'text-success' : 'text-danger'}`;
-        });
-    });
+        }
 
-    // Initialize TinyMCE when modals are shown
-    $('#createBlogModal').on('shown.bs.modal', function () {
-        tinymce.remove('.tinymce-editor'); // Remove existing instances first
-        initializeTinyMCE();
-    });
+        // Populate META description from data attribute
+        const metaDescription = row.dataset.metaDescription || '';
+        const editMetaDesc = document.getElementById('editMetaDescription');
+        if (editMetaDesc) {
+            editMetaDesc.value = metaDescription;
+            
+            // Update character counter
+            const editCharCount = document.getElementById('editCharCount');
+            if (editCharCount) {
+                editCharCount.textContent = metaDescription.length;
+                editCharCount.classList.toggle('text-warning', metaDescription.length > 1500);
+            }
+        }
 
-    $('#editBlogModal').on('shown.bs.modal', function () {
-        tinymce.remove('.tinymce-editor'); // Remove existing instances first
-        initializeTinyMCE();
-    });
+        // Populate content in TinyMCE
+        const content = row.dataset.content || '';
+        const editor = tinymce.get('editContent');
+        if (editor) {
+            editor.setContent(content);
+        } else {
+            // If TinyMCE isn't initialized yet, wait for the modal to be shown
+            $('#editBlogModal').one('shown.bs.modal', function() {
+                if (tinymce.get('editContent')) {
+                    tinymce.get('editContent').setContent(content);
+                }
+            });
+        }
 
-    // Enhanced cleanup for create blog modal
-    $('#createBlogModal').on('hidden.bs.modal', function () {
-        // Remove TinyMCE instances
-        tinymce.remove('.tinymce-editor');
-        
-        // Reset the form
-        document.getElementById('createBlogForm').reset();
-        
-        // Reset image previews and states for both images
-        ['imagePreview', 'imagePreview2'].forEach(previewId => {
-            const preview = document.getElementById(previewId);
-            const uploadText = document.getElementById(previewId === 'imagePreview' ? 'uploadText' : 'uploadText2');
-            const removeButton = document.getElementById(previewId === 'imagePreview' ? 'removeImage' : 'removeImage2');
-            const fileInput = document.getElementById(previewId === 'imagePreview' ? 'imageUpload' : 'imageUpload2');
-            
-            // Reset image preview
-            preview.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-            
-            // Show upload text
-            uploadText.style.removeProperty('display');
-            
-            // Hide remove button
-            removeButton.classList.add('d-none');
-            
-            // Clear file input
-            fileInput.value = '';
-        });
-        
-        // Reset hashtags
-        const hashtagContainer = this.querySelector('.hashtag-container');
+        // Add SEO keywords from data attribute
+        const hashtagContainer = document.querySelector('#editBlogModal .hashtag-container');
         if (hashtagContainer) {
-            hashtagContainer.innerHTML = '';
+            hashtagContainer.innerHTML = ''; // Clear existing tags
+            const keywords = (row.dataset.keywords || '').split(',');
+            keywords.forEach(tag => {
+                if (tag.trim()) {
+                    const tagElement = document.createElement('div');
+                    tagElement.className = 'badge badge-phoenix badge-phoenix-primary d-flex align-items-center gap-1';
+                    tagElement.innerHTML = `
+                        ${tag.trim()}
+                        <span class="fas fa-times cursor-pointer" onclick="this.parentElement.remove()"></span>
+                    `;
+                    hashtagContainer.appendChild(tagElement);
+                }
+            });
         }
-        
-        // Reset switches
-        const featuredSwitch = document.getElementById('articleFeatured');
-        const statusSwitch = document.getElementById('articleStatus');
-        
-        if (featuredSwitch) {
-            featuredSwitch.checked = false;
-            const featuredText = featuredSwitch.parentElement.querySelector('.featured-text');
-            if (featuredText) {
-                featuredText.textContent = 'No';
-                featuredText.classList.remove('text-success');
-                featuredText.classList.add('text-danger');
-            }
-        }
-        
-        if (statusSwitch) {
-            statusSwitch.checked = true;
-            const statusText = statusSwitch.parentElement.querySelector('.status-text');
-            if (statusText) {
-                statusText.textContent = 'Active';
-                statusText.classList.remove('text-danger');
-                statusText.classList.add('text-success');
-            }
-        }
-        
-        // Reset character counter
-        const charCount = document.getElementById('charCount');
-        if (charCount) {
-            charCount.textContent = '0';
-            charCount.classList.remove('text-warning');
-        }
+
+        // Show the modal
+        const editModal = new bootstrap.Modal(document.getElementById('editBlogModal'));
+        editModal.show();
     });
 
-    // Enhanced cleanup for edit blog modal
-    $('#editBlogModal').on('hidden.bs.modal', function () {
-        // Remove TinyMCE instances
-        tinymce.remove('.tinymce-editor');
-        
-        // Reset the form
-        document.getElementById('editBlogForm').reset();
-        
-        // Reset image previews and states for both images
-        ['editImagePreview', 'editImagePreview2'].forEach(previewId => {
-            const preview = document.getElementById(previewId);
-            const uploadText = document.getElementById(previewId === 'editImagePreview' ? 'editUploadText' : 'editUploadText2');
-            const removeButton = document.getElementById(previewId === 'editImagePreview' ? 'editRemoveImage' : 'editRemoveImage2');
-            const fileInput = document.getElementById(previewId === 'editImagePreview' ? 'editImageUpload' : 'editImageUpload2');
-            
-            // Reset image preview
-            preview.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-            
-            // Show upload text
-            uploadText.style.removeProperty('display');
-            
-            // Hide remove button
-            removeButton.classList.add('d-none');
-            
-            // Clear file input
-            fileInput.value = '';
-        });
-        
-        // Reset hashtags
-        const hashtagContainer = this.querySelector('.hashtag-container');
-        if (hashtagContainer) {
-            hashtagContainer.innerHTML = '';
-        }
-        
-        // Reset switches
-        const featuredSwitch = document.getElementById('editArticleFeatured');
-        const statusSwitch = document.getElementById('editArticleStatus');
-        
-        if (featuredSwitch) {
-            featuredSwitch.checked = false;
-            const featuredText = featuredSwitch.parentElement.querySelector('.featured-text');
-            if (featuredText) {
-                featuredText.textContent = 'No';
-                featuredText.classList.remove('text-success');
-                featuredText.classList.add('text-danger');
-            }
-        }
-        
-        if (statusSwitch) {
-            statusSwitch.checked = true;
-            const statusText = statusSwitch.parentElement.querySelector('.status-text');
-            if (statusText) {
-                statusText.textContent = 'Active';
-                statusText.classList.remove('text-danger');
-                statusText.classList.add('text-success');
-            }
-        }
-        
-        // Reset character counter
-        const charCount = document.getElementById('charCount');
-        if (charCount) {
-            charCount.textContent = '0';
-            charCount.classList.remove('text-warning');
-        }
-    });
-
-    // Modified hashtag input handler for edit modal
-    document.getElementById('editHashtagInput').addEventListener('keypress', function (e) {
+    // Add edit hashtag input handler
+    document.getElementById('editHashtagInput')?.addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
             e.preventDefault();
             const value = this.value.trim();
             if (value) {
                 const container = this.closest('.col-12').querySelector('.hashtag-container');
-                const tag = document.createElement('div');
-                tag.className = 'badge badge-phoenix badge-phoenix-primary d-flex align-items-center gap-1';
-                tag.innerHTML = `
-                    ${value}
-                    <span class="fas fa-times cursor-pointer" onclick="this.parentElement.remove()"></span>
-                `;
-                container.appendChild(tag);
-                this.value = '';
+                if (container) {
+                    const tag = document.createElement('div');
+                    tag.className = 'badge badge-phoenix badge-phoenix-primary d-flex align-items-center gap-1';
+                    tag.innerHTML = `
+                        ${value}
+                        <span class="fas fa-times cursor-pointer" onclick="this.parentElement.remove()"></span>
+                    `;
+                    container.appendChild(tag);
+                    this.value = '';
+                }
             }
         }
     });
+
+    // Handle status toggle in edit modal
+    document.getElementById('editArticleStatus')?.addEventListener('change', function () {
+        const statusText = this.parentElement.querySelector('.status-text');
+        if (statusText) {
+            if (this.checked) {
+                statusText.textContent = 'Active';
+                statusText.classList.remove('text-danger');
+                statusText.classList.add('text-success');
+            } else {
+                statusText.textContent = 'Inactive';
+                statusText.classList.remove('text-success');
+                statusText.classList.add('text-danger');
+            }
+        }
+    });
+
+    // Handle featured toggle in edit modal
+    document.getElementById('editArticleFeatured')?.addEventListener('change', function () {
+        const featuredText = this.parentElement.querySelector('.featured-text');
+        if (featuredText) {
+            if (this.checked) {
+                featuredText.textContent = 'Yes';
+                featuredText.classList.remove('text-danger');
+                featuredText.classList.add('text-success');
+            } else {
+                featuredText.textContent = 'No';
+                featuredText.classList.remove('text-success');
+                featuredText.classList.add('text-danger');
+            }
+        }
+    });
+
+    function handleCreateSubmit(e) {
+        e.preventDefault();
+        
+        // Get form values
+        const title = document.getElementById('blogTitle').value;
+        const category = document.getElementById('blogCategory').value;
+        const dateInput = document.getElementById('blogDate');
+        const date = dateInput._flatpickr ? dateInput._flatpickr.formatDate(dateInput._flatpickr.selectedDates[0], "d M Y") : dateInput.value;
+        const content = tinymce.get('blogContent').getContent();
+        const metaDescription = document.getElementById('createMetaDescription').value;
+        const isFeatured = document.getElementById('articleFeatured').checked;
+        const isActive = document.getElementById('articleStatus').checked;
+        
+        // Get keywords
+        const keywords = Array.from(this.querySelector('.hashtag-container').children)
+            .map(tag => tag.textContent.trim())
+            .join(', ');
+        
+        // Get images
+        const thumbnailSrc = document.getElementById('imagePreview').src;
+        const featuredSrc = document.getElementById('imagePreview2').src;
+        
+        // Create new table row
+        const newRow = document.createElement('tr');
+        newRow.dataset.metaDescription = metaDescription;
+        newRow.dataset.content = content;
+        newRow.dataset.keywords = keywords;
+        
+        newRow.innerHTML = `
+            <td class="text-center">
+                <button class="btn px-1 btn-sm btn-falcon-default me-1">
+                    <span class="fas fa-chevron-up"></span>
+                </button>
+                <button class="btn px-1 btn-sm btn-falcon-default">
+                    <span class="fas fa-chevron-down"></span>
+                </button>
+            </td>
+            <td class="text-center">
+                <div class="avatar avatar-xl">
+                    <img class="rounded-soft" src="${thumbnailSrc}" alt="Article thumbnail" />
+                </div>
+            </td>
+            <td class="text-center">${title}</td>
+            <td class="text-center">${date}</td>
+            <td class="text-center">${category}</td>
+            <td class="text-center">
+                <span class="badge badge-phoenix fs-10 badge-phoenix-${isActive ? 'success' : 'danger'}">
+                    <span class="fa fa-${isActive ? 'check' : 'times'}"></span>
+                </span>
+            </td>
+            <td class="text-center">
+                <span class="badge badge-phoenix fs-10 badge-phoenix-${isFeatured ? 'success' : 'danger'}">
+                    <span class="fa fa-${isFeatured ? 'check' : 'times'}"></span>
+                </span>
+            </td>
+            <td class="text-center">
+                <button class="btn btn-sm btn-falcon-default text-danger" data-bs-toggle="modal"
+                    data-bs-target="#deleteModal">
+                    <span class="fas fa-trash-alt"></span>
+                </button>
+                <button class="btn btn-sm btn-falcon-default text-warning" data-bs-toggle="modal"
+                    data-bs-target="#editBlogModal">
+                    <span class="fas fa-edit me-2"></span>Edit
+                </button>
+            </td>
+        `;
+        
+        // Add to table
+        document.querySelector('table tbody').insertBefore(newRow, document.querySelector('table tbody').firstChild);
+        
+        // Close modal and clean up backdrop
+        const createModal = document.getElementById('createBlogModal');
+        const modalInstance = bootstrap.Modal.getInstance(createModal);
+        if (modalInstance) {
+            modalInstance.hide();
+            // Clean up any remaining backdrops
+            const backdrops = document.querySelectorAll('.modal-backdrop');
+            backdrops.forEach(backdrop => {
+                backdrop.remove();
+            });
+            // Remove modal-open class from body
+            document.body.classList.remove('modal-open');
+            document.body.style.removeProperty('padding-right');
+        }
+    }
+
+    function handleEditSubmit(e) {
+        e.preventDefault();
+        
+        try {
+            // Get form values
+            const title = document.getElementById('editTitle').value;
+            const category = document.getElementById('editCategory').value;
+            const dateInput = document.getElementById('editBlogDate');
+            const date = dateInput._flatpickr ? dateInput._flatpickr.formatDate(dateInput._flatpickr.selectedDates[0], "d M Y") : dateInput.value;
+            const content = tinymce.get('editContent')?.getContent() || '';
+            const metaDescription = document.getElementById('editMetaDescription').value;
+            
+            // Get toggle states
+            const isFeatured = document.getElementById('editArticleFeatured').checked;
+            const isActive = document.getElementById('editArticleStatus').checked;
+            
+            // Get keywords
+            const keywords = Array.from(e.target.querySelector('.hashtag-container').children)
+                .map(tag => tag.textContent.trim())
+                .join(', ');
+            
+            // Get images
+            const thumbnailSrc = document.getElementById('editImagePreview').src;
+            const featuredSrc = document.getElementById('editImagePreview2').src;
+            
+            // Get current row being edited
+            const currentRow = document.querySelector('tr.being-edited');
+            if (!currentRow) throw new Error('No row is currently being edited');
+            
+            // Update data attributes
+            currentRow.dataset.metaDescription = metaDescription;
+            currentRow.dataset.content = content;
+            currentRow.dataset.keywords = keywords;
+            
+            // Update visible content
+            const img = currentRow.querySelector('td:nth-child(2) img');
+            if (img) img.src = thumbnailSrc;
+            
+            currentRow.querySelector('td:nth-child(3)').textContent = title;
+            currentRow.querySelector('td:nth-child(4)').textContent = date;
+            currentRow.querySelector('td:nth-child(5)').textContent = category;
+            
+            // Update status badge with proper classes and icon
+            const statusCell = currentRow.querySelector('td:nth-child(6)');
+            statusCell.innerHTML = `
+                <span class="badge badge-phoenix fs-10 badge-phoenix-${isActive ? 'success' : 'danger'}">
+                    <span class="fa fa-${isActive ? 'check' : 'times'}"></span>
+                </span>
+            `;
+            
+            // Update featured badge with proper classes and icon
+            const featuredCell = currentRow.querySelector('td:nth-child(7)');
+            featuredCell.innerHTML = `
+                <span class="badge badge-phoenix fs-10 badge-phoenix-${isFeatured ? 'success' : 'danger'}">
+                    <span class="fa fa-${isFeatured ? 'check' : 'times'}"></span>
+                </span>
+            `;
+            
+            // Remove editing class
+            currentRow.classList.remove('being-edited');
+            
+            // Close modal and clean up
+            const editModal = document.getElementById('editBlogModal');
+            const modalInstance = bootstrap.Modal.getInstance(editModal);
+            if (modalInstance) {
+                modalInstance.hide();
+                // Clean up any remaining backdrops
+                document.querySelectorAll('.modal-backdrop').forEach(backdrop => backdrop.remove());
+                // Remove modal-open class and padding
+                document.body.classList.remove('modal-open');
+                document.body.style.removeProperty('padding-right');
+            }
+        } catch (error) {
+            console.error('Error updating row:', error);
+        }
+    }
 
     // Update the showSourceCode function
     function showSourceCode(text) {
@@ -1594,4 +1818,86 @@
             document.body.removeChild(tempTextArea);
         }
     }
+
+    // Add click handler for edit buttons
+    document.addEventListener('click', function(e) {
+        const editButton = e.target.closest('.btn-falcon-default.text-warning');
+        if (editButton) {
+            const row = editButton.closest('tr');
+            if (row) {
+                // Mark the row as being edited
+                document.querySelectorAll('tr.being-edited').forEach(tr => tr.classList.remove('being-edited'));
+                row.classList.add('being-edited');
+                
+                // Get current values
+                const title = row.querySelector('td:nth-child(3)').textContent;
+                const date = row.querySelector('td:nth-child(4)').textContent;
+                const category = row.querySelector('td:nth-child(5)').textContent;
+                const isActive = row.querySelector('td:nth-child(6) .badge').classList.contains('badge-phoenix-success');
+                const isFeatured = row.querySelector('td:nth-child(7) .badge').classList.contains('badge-phoenix-success');
+                const thumbnailSrc = row.querySelector('td:nth-child(2) img').src;
+                
+                // Set form values
+                document.getElementById('editTitle').value = title;
+                document.getElementById('editCategory').value = category;
+                
+                // Set date
+                const dateInput = document.getElementById('editBlogDate');
+                if (dateInput._flatpickr) {
+                    const dateParts = date.split(' ');
+                    const monthIndex = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'].indexOf(dateParts[1]);
+                    const dateObj = new Date(dateParts[2], monthIndex, dateParts[0]);
+                    dateInput._flatpickr.setDate(dateObj);
+                } else {
+                    dateInput.value = date;
+                }
+                
+                // Set toggle states and update their text
+                const statusToggle = document.getElementById('editArticleStatus');
+                const featuredToggle = document.getElementById('editArticleFeatured');
+                
+                statusToggle.checked = isActive;
+                featuredToggle.checked = isFeatured;
+                
+                // Update toggle texts
+                const statusText = statusToggle.closest('.form-check').querySelector('.status-text');
+                if (statusText) {
+                    statusText.textContent = isActive ? 'Active' : 'Inactive';
+                    statusText.className = `ms-1 status-text ${isActive ? 'text-success' : 'text-danger'}`;
+                }
+                
+                const featuredText = featuredToggle.closest('.form-check').querySelector('.featured-text');
+                if (featuredText) {
+                    featuredText.textContent = isFeatured ? 'Yes' : 'No';
+                    featuredText.className = `ms-1 featured-text ${isFeatured ? 'text-success' : 'text-danger'}`;
+                }
+                
+                // Set content and meta description
+                const content = row.dataset.content || '';
+                const metaDescription = row.dataset.metaDescription || '';
+                
+                document.getElementById('editMetaDescription').value = metaDescription;
+                
+                // Set image previews
+                document.getElementById('editImagePreview').src = thumbnailSrc;
+                document.getElementById('editImagePreview2').src = row.dataset.featuredImage || thumbnailSrc;
+                
+                // Set keywords
+                const keywordsContainer = document.querySelector('#editBlogModal .hashtag-container');
+                keywordsContainer.innerHTML = '';
+                const keywords = (row.dataset.keywords || '').split(',');
+                keywords.forEach(keyword => {
+                    if (keyword.trim()) {
+                        const tag = document.createElement('div');
+                        tag.className = 'badge badge-phoenix badge-phoenix-primary d-flex align-items-center gap-1';
+                        tag.innerHTML = `
+                            ${keyword.trim()}
+                            <span class="fas fa-times cursor-pointer" onclick="this.parentElement.remove()"></span>
+                        `;
+                        keywordsContainer.appendChild(tag);
+                    }
+                });
+            }
+        }
+    });
 </script>

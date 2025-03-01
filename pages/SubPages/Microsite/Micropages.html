@@ -1,73 +1,328 @@
 <!DOCTYPE html>
-<h4 class="mb-3 text-body mb-0">Micro Pages</h4>
+<h4 class="mb-3 text-body mb-0">Microsite Pages</h4>
 <div class="card">
     <div class="card-body">
-        <div class="text-end">
-            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#createCategoryModal">
-                <span class="fas fa-plus me-2"></span>Add Pages
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <select class="form-select form-select-sm" id="micrositeFilter" style="width: auto;">
+                    <option value="">All Pages</option>
+                </select>
+            </div>
+            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addPageModal">
+                <span class="fas fa-plus me-2"></span>Add New Page
             </button>
         </div>
 
-        <!-- Create Category Modal -->
-        <div class="modal fade" id="createCategoryModal" tabindex="-1" aria-labelledby="createCategoryModalLabel"
+        <!-- Add Page Modal -->
+        <div class="modal fade" id="addPageModal" tabindex="-1" aria-labelledby="addPageModalLabel"
             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-dialog modal-xl">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="createCategoryModalLabel">Add New Category</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-header bg-light d-flex justify-content-between align-items-center">
+                        <h5 class="modal-title" id="addPageModalLabel">
+                            <i class="fas fa-plus me-2"></i>Add New Page
+                        </h5>
+                        <div class="d-flex align-items-center">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
                     </div>
                     <div class="modal-body">
-                        <form id="createCategoryForm">
-                            <div class="mb-3">
-                                <label class="form-label" for="categoryName">Category Name</label>
-                                <input type="text" class="form-control" id="categoryName" placeholder="Enter category name">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="categorySlug">URL Slug</label>
-                                <input type="text" class="form-control" id="categorySlug" placeholder="enter-url-slug" pattern="[a-z0-9-]+" title="Use lowercase letters, numbers, and hyphens">
-                                <small class="form-text text-muted">SEO-friendly URL structure (e.g., 'best-hotel-bali')</small>
-                            </div>
+                        <form id="addPageForm">
+                            <div class="row g-3">
+                                <!-- Left Column -->
+                                <div class="col-12 col-lg-4">
+                                    <!-- Basic Information Card -->
+                                    <div class="card h-100">
+                                        <div class="card-header bg-light">
+                                            <h6 class="mb-0">Page Configuration</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <!-- Page Details -->
+                                            <div class="mb-4">
+                                                <h6 class="mb-3">Page Details</h6>
+                                                <div class="mb-3">
+                                                    <label class="form-label fw-semibold" for="pageName">Page Name</label>
+                                                    <input type="text" class="form-control" id="pageName" name="pageName"
+                                                        placeholder="Enter page name">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label fw-semibold" for="urlSlug">URL Slug</label>
+                                                    <input type="text" class="form-control" id="urlSlug" name="urlSlug"
+                                                        placeholder="Enter URL slug">
+                                                </div>
+                                            </div>
 
-                            <div class="card mb-3">
-                                <div class="card-header bg-light">
-                                    <h6 class="mb-0">SEO Optimization</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="metaTitle">Meta Title</label>
-                                        <input type="text" class="form-control" id="metaTitle" placeholder="Optimized page title (50-60 chars)">
-                                        <small class="form-text text-muted">Include primary keywords at beginning</small>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label" for="metaDescription">Meta Description</label>
-                                        <textarea class="form-control" id="metaDescription" rows="2" placeholder="Compelling summary (150-160 chars)"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label" for="seoKeywords">Focus Keywords</label>
-                                        <input type="text" class="form-control" id="seoKeywords" placeholder="comma,separated,keywords">
-                                        <small class="form-text text-muted">Primary terms for search optimization</small>
+                                            <!-- Display Settings -->
+                                            <div class="mb-4">
+                                                <h6 class="mb-3">Page Settings</h6>
+                                                <div class="d-flex justify-content-end pe-4">
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="pageStatus" name="pageStatus" checked>
+                                                        <label class="form-check-label ms-2" for="pageStatus">
+                                                            Status: <span class="text-success status-text">Active</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="d-flex justify-content-end">
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="categoryStatus" checked>
-                                    <label class="form-check-label" for="categoryStatus">
-                                        Status: <span class="text-success status-text">Active</span>
-                                    </label>
+                                <!-- Right Column -->
+                                <div class="col-12 col-lg-8">
+                                    <!-- Content Card -->
+                                    <div class="card h-100">
+                                        <div class="card-header bg-light">
+                                            <h6 class="mb-0">SEO Configuration</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label fw-semibold" for="metaTitle">Meta Title</label>
+                                                    <input type="text" class="form-control" id="metaTitle" name="metaTitle"
+                                                        placeholder="Enter meta title">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label fw-semibold" for="hashtagInput">SEO Keywords</label>
+                                                    <div class="input-group mb-2">
+                                                        <input type="text" class="form-control" id="hashtagInput"
+                                                            placeholder="Enter keyword and press Enter">
+                                                    </div>
+                                                    <small class="text-muted mb-2 d-block">Separate multiple keywords with Enter key</small>
+                                                    <div class="hashtag-container d-flex flex-wrap gap-2">
+                                                        <!-- Tags will be dynamically added here -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <label class="form-label fw-semibold" for="metaDescription">Meta Description</label>
+                                                    <textarea class="form-control" id="metaDescription" name="metaDescription" rows="3"
+                                                        placeholder="Enter meta description" maxlength="1600"></textarea>
+                                                    <div class="d-flex justify-content-between align-items-center mt-1">
+                                                        <small class="text-muted">
+                                                            Characters: <span id="charCount">0</span>/1600
+                                                        </small>
+                                                        <button type="button" class="btn btn-falcon-default btn-sm"
+                                                            onclick="showSourceCode(this.closest('.col-12').querySelector('#metaDescription').value)">
+                                                            <span class="fas fa-code me-1"></span>Copy source code
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" form="createCategoryForm" class="btn btn-primary">Save Category</button>
+                    <div class="modal-footer bg-light">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" form="addPageForm" class="btn btn-primary">Add Page</button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Edit Page Modal -->
+        <div class="modal fade" id="editPageModal" tabindex="-1" aria-labelledby="editPageModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header bg-light d-flex justify-content-between align-items-center">
+                        <h5 class="modal-title" id="editPageModalLabel">
+                            <i class="fas fa-edit me-2"></i>Edit Page
+                        </h5>
+                        <div class="d-flex align-items-center">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editPageForm">
+                            <input type="hidden" id="editPageId" name="editPageId">
+                            <div class="row g-3">
+                                <!-- Left Column -->
+                                <div class="col-12 col-lg-4">
+                                    <!-- Basic Information Card -->
+                                    <div class="card h-100">
+                                        <div class="card-header bg-light">
+                                            <h6 class="mb-0">Page Configuration</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <!-- Page Details -->
+                                            <div class="mb-4">
+                                                <h6 class="mb-3">Page Details</h6>
+                                                <div class="mb-3">
+                                                    <label class="form-label fw-semibold" for="editPageName">Page Name</label>
+                                                    <input type="text" class="form-control" id="editPageName" name="editPageName"
+                                                        placeholder="Enter page name">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label fw-semibold" for="editUrlSlug">URL Slug</label>
+                                                    <input type="text" class="form-control" id="editUrlSlug" name="editUrlSlug"
+                                                        placeholder="Enter URL slug">
+                                                </div>
+                                            </div>
+
+                                            <!-- Display Settings -->
+                                            <div class="mb-4">
+                                                <h6 class="mb-3">Page Settings</h6>
+                                                <div class="d-flex justify-content-end pe-4">
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="editPageStatus" name="editPageStatus">
+                                                        <label class="form-check-label ms-2" for="editPageStatus">
+                                                            Status: <span class="text-success status-text">Active</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Right Column -->
+                                <div class="col-12 col-lg-8">
+                                    <!-- Content Card -->
+                                    <div class="card h-100">
+                                        <div class="card-header bg-light">
+                                            <h6 class="mb-0">SEO Configuration</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label fw-semibold" for="editMetaTitle">Meta Title</label>
+                                                    <input type="text" class="form-control" id="editMetaTitle" name="editMetaTitle"
+                                                        placeholder="Enter meta title">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label fw-semibold" for="editHashtagInput">SEO Keywords</label>
+                                                    <div class="input-group mb-2">
+                                                        <input type="text" class="form-control" id="editHashtagInput"
+                                                            placeholder="Enter keyword and press Enter">
+                                                    </div>
+                                                    <small class="text-muted mb-2 d-block">Separate multiple keywords with Enter key</small>
+                                                    <div class="hashtag-container d-flex flex-wrap gap-2">
+                                                        <!-- Tags will be dynamically added here -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <label class="form-label fw-semibold" for="editMetaDescription">Meta Description</label>
+                                                    <textarea class="form-control" id="editMetaDescription" name="editMetaDescription" rows="3"
+                                                        placeholder="Enter meta description" maxlength="1600"></textarea>
+                                                    <div class="d-flex justify-content-between align-items-center mt-1">
+                                                        <small class="text-muted">
+                                                            Characters: <span id="editCharCount">0</span>/1600
+                                                        </small>
+                                                        <button type="button" class="btn btn-falcon-default btn-sm"
+                                                            onclick="showSourceCode(this.closest('.col-12').querySelector('#editMetaDescription').value)">
+                                                            <span class="fas fa-code me-1"></span>Copy source code
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer bg-light">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" form="editPageForm" class="btn btn-warning">Update Page</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table Section -->
+        <div class="table-responsive mt-4">
+            <table class="table table-hover" id="pagesTable">
+                <thead>
+                    <tr>
+                        <th class="text-center">Page Name</th>
+                        <th class="text-center">URL Slug</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-page='{"id": "1", "name": "Home Page", "urlSlug": "/home", "status": true, "metaTitle": "Home Page", "metaDescription": "Welcome to our homepage", "keywords": ["home", "welcome", "main"]}'>
+                        <td class="text-center">Home Page</td>
+                        <td class="text-center">/home</td>
+                        <td class="text-center">
+                            <span class="badge badge-phoenix fs-10 badge-phoenix-success">
+                                <span class="fa fa-check"></span>
+                            </span>
+                        </td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-falcon-default text-danger" data-bs-toggle="modal"
+                                data-bs-target="#deletePageModal">
+                                <span class="fas fa-trash-alt"></span>
+                            </button>
+                            <button class="btn btn-sm btn-falcon-default text-warning" onclick="handleEdit(this)">
+                                <span class="fas fa-edit me-2"></span>Edit
+                            </button>
+                        </td>
+                    </tr>
+                    <tr data-page='{"id": "2", "name": "About Us", "urlSlug": "/about", "status": false, "metaTitle": "About Us", "metaDescription": "Learn more about our company", "keywords": ["about", "company", "info"]}'>
+                        <td class="text-center">About Us</td>
+                        <td class="text-center">/about</td>
+                        <td class="text-center">
+                            <span class="badge badge-phoenix fs-10 badge-phoenix-danger">
+                                <span class="fa fa-xmark"></span>
+                            </span>
+                        </td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-falcon-default text-danger" data-bs-toggle="modal"
+                                data-bs-target="#deletePageModal">
+                                <span class="fas fa-trash-alt"></span>
+                            </button>
+                            <button class="btn btn-sm btn-falcon-default text-warning" onclick="handleEdit(this)">
+                                <span class="fas fa-edit me-2"></span>Edit
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Delete Page Modal -->
+        <div class="modal fade" id="deletePageModal" tabindex="-1" aria-labelledby="deletePageModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deletePageModalLabel">Delete Page</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this page? This action cannot be undone.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger" onclick="confirmDelete()">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">Previous</a>
+                </li>
+                <li class="page-item active">
+                    <a class="page-link" href="#">1</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">2</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
 
         <!-- Source Code Modal -->
         <div class="modal fade" id="sourceCodeModal" tabindex="-1" aria-labelledby="sourceCodeModalLabel" aria-hidden="true">
@@ -88,10 +343,12 @@
                         </div>
                         <div class="text-end mt-3">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-falcon-default btn-sm" onclick="copySourceCode('sourceCodeText')">
+                                <button type="button" class="btn btn-falcon-default btn-sm"
+                                    onclick="copySourceCode('sourceCodeText')">
                                     <span class="fas fa-copy me-1"></span>Copy HTML Tags
                                 </button>
-                                <button type="button" class="btn btn-falcon-default btn-sm" onclick="copySourceCode('ogSourceCodeText')">
+                                <button type="button" class="btn btn-falcon-default btn-sm"
+                                    onclick="copySourceCode('ogSourceCodeText')">
                                     <span class="fas fa-copy me-1"></span>Copy OG Tags
                                 </button>
                                 <button type="button" class="btn btn-falcon-default btn-sm" onclick="copyAllSourceCode()">
@@ -104,180 +361,10 @@
             </div>
         </div>
 
-        <!-- Table Section -->
-        <div class="table-responsive mt-4">
-            <table class="table table-hover" id="categoriesTable">
-                <thead>
-                    <tr>
-                        <th class="text-center sortable" data-sort="name">Category Name <span class="sort-icon"></span></th>
-                        <th class="text-center sortable" data-sort="slug">URL Slug <span class="sort-icon"></span></th>
-                        <th class="text-center sortable" data-sort="status">Status <span class="sort-icon"></span></th>
-                        <th class="text-center">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-center">Bimasakti</td>
-                        <td class="text-center">/bimasakti</td>
-                        <td class="text-center">
-                            <span class="badge badge-phoenix fs-10 badge-phoenix-success">
-                                <span class="fa fa-check"></span>
-                            </span>
-                        </td>
-                        <td class="text-center">
-                            <button class="btn btn-sm btn-falcon-default text-danger" data-bs-toggle="modal"
-                                data-bs-target="#deleteCategoryModal">
-                                <span class="fas fa-trash-alt"></span>
-                            </button>
-                            <button class="btn btn-sm btn-falcon-default text-warning" data-bs-toggle="modal"
-                                data-bs-target="#editCategoryModal">
-                                <span class="fas fa-edit me-2"></span>Edit
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">Rhapsody Hotel</td>
-                        <td class="text-center">/rhapsody-hotel</td>
-                        <td class="text-center">
-                            <span class="badge badge-phoenix fs-10 badge-phoenix-success">
-                                <span class="fa fa-check"></span>
-                            </span>
-                        </td>
-                        <td class="text-center">
-                            <button class="btn btn-sm btn-falcon-default text-danger" data-bs-toggle="modal"
-                                data-bs-target="#deleteCategoryModal">
-                                <span class="fas fa-trash-alt"></span>
-                            </button>
-                            <button class="btn btn-sm btn-falcon-default text-warning" data-bs-toggle="modal"
-                                data-bs-target="#editCategoryModal">
-                                <span class="fas fa-edit me-2"></span>Edit
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">Rhapsody Golf</td>
-                        <td class="text-center">/rhapsody-golf</td>
-                        <td class="text-center">
-                            <span class="badge badge-phoenix fs-10 badge-phoenix-danger">
-                                <span class="fa fa-xmark"></span>
-                            </span>
-                        </td>
-                        <td class="text-center">
-                            <button class="btn btn-sm btn-falcon-default text-danger" data-bs-toggle="modal"
-                                data-bs-target="#deleteCategoryModal">
-                                <span class="fas fa-trash-alt"></span>
-                            </button>
-                            <button class="btn btn-sm btn-falcon-default text-warning" data-bs-toggle="modal"
-                                data-bs-target="#editCategoryModal">
-                                <span class="fas fa-edit me-2"></span>Edit
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <!-- Pagination -->
-            <nav aria-label="Page navigation" class="mt-4">
-                <ul class="pagination justify-content-center" id="tablePagination">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" data-page="prev">Previous</a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link" href="#" data-page="1">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" data-page="next">Next</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-
-        <!-- Delete Category Modal -->
-        <div class="modal fade" id="deleteCategoryModal" tabindex="-1" aria-labelledby="deleteCategoryModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="deleteCategoryModalLabel">Delete Category</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Are you sure you want to delete this category? This action cannot be undone.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-danger" onclick="confirmDelete()">Delete</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Edit Category Modal -->
-        <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="editCategoryForm">
-                            <input type="hidden" id="editCategoryId">
-                            <div class="mb-3">
-                                <label class="form-label" for="editCategoryName">Category Name</label>
-                                <input type="text" class="form-control" id="editCategoryName" placeholder="Enter category name">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="editCategorySlug">URL Slug</label>
-                                <input type="text" class="form-control" id="editCategorySlug" placeholder="enter-url-slug" pattern="[a-z0-9-]+" title="Use lowercase letters, numbers, and hyphens">
-                                <small class="form-text text-muted">SEO-friendly URL structure (e.g., 'best-hotel-bali')</small>
-                            </div>
-
-                            <div class="card mb-3">
-                                <div class="card-header bg-light">
-                                    <h6 class="mb-0">SEO Optimization</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="editMetaTitle">Meta Title</label>
-                                        <input type="text" class="form-control" id="editMetaTitle" placeholder="Optimized page title (50-60 chars)">
-                                        <small class="form-text text-muted">Include primary keywords at beginning</small>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label" for="editMetaDescription">Meta Description</label>
-                                        <textarea class="form-control" id="editMetaDescription" rows="2" placeholder="Compelling summary (150-160 chars)"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label" for="editSeoKeywords">Focus Keywords</label>
-                                        <input type="text" class="form-control" id="editSeoKeywords" placeholder="comma,separated,keywords">
-                                        <small class="form-text text-muted">Primary terms for search optimization</small>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="d-flex justify-content-end">
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="editCategoryStatus" checked>
-                                    <label class="form-check-label" for="editCategoryStatus">
-                                        Status: <span class="text-success status-text">Active</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" form="editCategoryForm" class="btn btn-primary">Save Changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <script>
-            // Handle category status toggle for both create and edit modals
-            ['categoryStatus', 'editCategoryStatus'].forEach(id => {
-                document.getElementById(id).addEventListener('change', function() {
+            // Handle page status toggle for both modals
+            ['pageStatus', 'editPageStatus'].forEach(id => {
+                document.getElementById(id)?.addEventListener('change', function () {
                     const statusText = this.closest('.form-check').querySelector('.status-text');
                     if (this.checked) {
                         statusText.textContent = 'Active';
@@ -291,131 +378,172 @@
                 });
             });
 
-            // Function to populate edit modal with row data
-            function populateEditModal(button) {
-                const row = button.closest('tr');
-                const categoryName = row.cells[0].textContent.trim();
-                const categorySlug = row.cells[1].textContent.trim();
-                const isActive = row.cells[2].querySelector('.badge-phoenix-success') !== null;
-
-                document.getElementById('editCategoryName').value = categoryName;
-                document.getElementById('editCategorySlug').value = categorySlug;
-                
-                const statusToggle = document.getElementById('editCategoryStatus');
-                statusToggle.checked = isActive;
-                const statusText = statusToggle.closest('.form-check').querySelector('.status-text');
-                if (isActive) {
-                    statusText.textContent = 'Active';
-                    statusText.classList.remove('text-danger');
-                    statusText.classList.add('text-success');
-                } else {
-                    statusText.textContent = 'Inactive';
-                    statusText.classList.remove('text-success');
-                    statusText.classList.add('text-danger');
-                }
-            }
-
-            // Add click handlers to edit buttons
-            document.querySelectorAll('[data-bs-target="#editCategoryModal"]').forEach(button => {
-                button.addEventListener('click', function() {
-                    populateEditModal(this);
+            // Handle hashtag input for both modals
+            ['hashtagInput', 'editHashtagInput'].forEach(id => {
+                document.getElementById(id)?.addEventListener('keypress', function (e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        const value = this.value.trim();
+                        if (value) {
+                            const container = this.closest('.col-12').querySelector('.hashtag-container');
+                            const tag = document.createElement('div');
+                            tag.className = 'badge badge-phoenix badge-phoenix-primary d-flex align-items-center gap-1';
+                            tag.innerHTML = `
+                                ${value}
+                                <span class="fas fa-times cursor-pointer" onclick="this.parentElement.remove()"></span>
+                            `;
+                            container.appendChild(tag);
+                            this.value = '';
+                        }
+                    }
                 });
             });
 
-            // Function to confirm delete
-            function confirmDelete() {
-                // Add your delete logic here
-                bootstrap.Modal.getInstance(document.getElementById('deleteCategoryModal')).hide();
-            }
-
-            // Add character counter for meta description
+            // Update character counter for META description in both modals
             ['metaDescription', 'editMetaDescription'].forEach(id => {
-                const textarea = document.getElementById(id);
-                if (textarea) {
-                    // Add character counter element after textarea
-                    const counterDiv = document.createElement('div');
-                    counterDiv.className = 'd-flex justify-content-between align-items-center mt-1';
-                    counterDiv.innerHTML = `
-                        <small class="text-muted" style="padding-left:15px">
-                            Characters: <span class="char-count">0</span>/160
-                        </small>
-                        <button type="button" class="btn btn-falcon-default btn-sm" onclick="showSourceCode(this.closest('.mb-3').querySelector('textarea').value)">
-                            <span class="fas fa-code me-1"></span>View source code
-                        </button>
-                    `;
-                    textarea.parentNode.appendChild(counterDiv);
+                document.getElementById(id)?.addEventListener('input', function () {
+                    const charCount = this.value.length;
+                    const counter = this.closest('.col-12').querySelector('[id$="charCount"]');
+                    counter.textContent = charCount;
 
-                    // Add input listener
-                    textarea.addEventListener('input', function() {
-                        const charCount = this.value.length;
-                        const countSpan = this.parentNode.querySelector('.char-count');
-                        countSpan.textContent = charCount;
-                        
-                        if (charCount > 150) {
-                            countSpan.classList.add('text-warning');
-                        } else {
-                            countSpan.classList.remove('text-warning');
-                        }
-                    });
-                }
+                    if (charCount > 1500) {
+                        counter.classList.add('text-warning');
+                    } else {
+                        counter.classList.remove('text-warning');
+                    }
+                });
             });
 
-            // Update the showSourceCode function
-            function showSourceCode(description) {
+            // Function to create a table row from page data
+            function createTableRow(pageData) {
+                const row = document.createElement('tr');
+                row.setAttribute('data-page', JSON.stringify(pageData));
+                
+                row.innerHTML = `
+                    <td class="text-center">${pageData.name}</td>
+                    <td class="text-center">${pageData.urlSlug}</td>
+                    <td class="text-center">
+                        <span class="badge badge-phoenix fs-10 badge-phoenix-${pageData.status ? 'success' : 'danger'}">
+                            <span class="fa fa-${pageData.status ? 'check' : 'xmark'}"></span>
+                        </span>
+                    </td>
+                    <td class="text-center">
+                        <button class="btn btn-sm btn-falcon-default text-danger" data-bs-toggle="modal"
+                            data-bs-target="#deletePageModal">
+                            <span class="fas fa-trash-alt"></span>
+                        </button>
+                        <button class="btn btn-sm btn-falcon-default text-warning" onclick="handleEdit(this)">
+                            <span class="fas fa-edit me-2"></span>Edit
+                        </button>
+                    </td>
+                `;
+                
+                return row;
+            }
+
+            // Function to handle edit button click
+            function handleEdit(button) {
+                const row = button.closest('tr');
+                const pageData = JSON.parse(row.getAttribute('data-page'));
+                openEditModal(pageData);
+            }
+
+            // Function to open edit modal with data
+            function openEditModal(pageData) {
+                const modal = document.getElementById('editPageModal');
+                if (!modal) return;
+
+                // Fill in the form fields
+                document.getElementById('editPageId').value = pageData.id;
+                document.getElementById('editPageName').value = pageData.name;
+                document.getElementById('editUrlSlug').value = pageData.urlSlug;
+                document.getElementById('editMetaTitle').value = pageData.metaTitle;
+                document.getElementById('editMetaDescription').value = pageData.metaDescription;
+                
+                // Set status
+                const statusToggle = document.getElementById('editPageStatus');
+                statusToggle.checked = pageData.status;
+                statusToggle.dispatchEvent(new Event('change'));
+
+                // Clear and add keywords
+                const container = modal.querySelector('.hashtag-container');
+                container.innerHTML = '';
+                if (pageData.keywords && Array.isArray(pageData.keywords)) {
+                    pageData.keywords.forEach(keyword => {
+                        const tag = document.createElement('div');
+                        tag.className = 'badge badge-phoenix badge-phoenix-primary d-flex align-items-center gap-1';
+                        tag.innerHTML = `
+                            ${keyword}
+                            <span class="fas fa-times cursor-pointer" onclick="this.parentElement.remove()"></span>
+                        `;
+                        container.appendChild(tag);
+                    });
+                }
+
+                // Update character counter
+                const descriptionField = document.getElementById('editMetaDescription');
+                const counter = modal.querySelector('#editCharCount');
+                counter.textContent = pageData.metaDescription?.length || 0;
+
+                // Show the modal using Bootstrap's Modal class
+                const bsModal = new bootstrap.Modal(modal);
+                bsModal.show();
+            }
+
+            // Remove the old event listeners for edit buttons
+            document.querySelectorAll('button.text-warning').forEach(btn => {
+                btn.removeAttribute('data-bs-toggle');
+                btn.removeAttribute('data-bs-target');
+            });
+
+            // Function to confirm page deletion
+            function confirmDelete() {
+                // Add your delete logic here
+                $('#deletePageModal').modal('hide');
+            }
+
+            // Add the SEO-related functions from blogList.html
+            function showSourceCode(text) {
+                // Get the current active modal
                 const currentModal = document.querySelector('.modal.show');
-                const form = currentModal.querySelector('form');
-                const title = form.querySelector('[id$="MetaTitle"]').value;
-                const slug = form.querySelector('[id$="CategorySlug"]').value;
+                
+                // Determine which form we're working with
+                let titleElement, keywordsContainer;
+                if (currentModal) {
+                    if (currentModal.id === 'editPageModal') {
+                        titleElement = document.querySelector('#editPageName');
+                        keywordsContainer = currentModal.querySelector('.hashtag-container');
+                    } else if (currentModal.id === 'addPageModal') {
+                        titleElement = document.querySelector('#pageName');
+                        keywordsContainer = currentModal.querySelector('.hashtag-container');
+                    }
+                }
 
-                // Get keywords from the hashtag container instead of the input field
-                const keywordContainer = form.querySelector('.hashtag-container');
-                const keywords = Array.from(keywordContainer.children)
+                // Get values
+                const title = titleElement?.value || '';
+                const keywords = Array.from(keywordsContainer?.querySelectorAll('.badge') || [])
                     .map(tag => tag.textContent.trim())
-                    .filter(keyword => keyword)
                     .join(', ');
-
-                // Generate HTML meta tags with proper escaping
-                const safeTitle = escapeHtml(title);
-                const safeDescription = escapeHtml(description);
-                const safeKeywords = escapeHtml(keywords);
-                const safeSlug = escapeHtml(slug);
-
-                // Generate canonical URL
-                const canonicalUrl = `${window.location.origin}${safeSlug}`;
 
                 // Generate HTML meta tags
                 const htmlMetaTags = `<!-- Primary Meta Tags -->
-<title>${safeTitle}</title>
-<meta name="title" content="${safeTitle}">
-<meta name="description" content="${safeDescription}">
-<meta name="keywords" content="${safeKeywords}">
-<link rel="canonical" href="${canonicalUrl}">
-
-<!-- Robots Meta -->
-<meta name="robots" content="index, follow">
-<meta name="googlebot" content="index, follow">`;
+<title>${title}</title>
+<meta name="title" content="${title}">
+<meta name="description" content="${text}">
+<meta name="keywords" content="${keywords}">`;
 
                 // Generate Open Graph meta tags
                 const ogMetaTags = `<!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="${canonicalUrl}">
-<meta property="og:title" content="${safeTitle}">
-<meta property="og:description" content="${safeDescription}">
-<meta property="og:image" content="${window.location.origin}/assets/img/og-image.jpg">
-
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="${canonicalUrl}">
-<meta property="twitter:title" content="${safeTitle}">
-<meta property="twitter:description" content="${safeDescription}">
-<meta property="twitter:image" content="${window.location.origin}/assets/img/twitter-image.jpg">`;
+<meta property="og:title" content="${title}">
+<meta property="og:description" content="${text}">`;
 
                 // Update modal content
                 document.getElementById('sourceCodeText').value = htmlMetaTags;
                 document.getElementById('ogSourceCodeText').value = ogMetaTags;
 
-                // Handle modal stacking
                 const sourceCodeModal = document.getElementById('sourceCodeModal');
+                
                 if (currentModal) {
                     const currentZIndex = parseInt(getComputedStyle(currentModal).zIndex);
                     sourceCodeModal.style.zIndex = currentZIndex + 2;
@@ -427,6 +555,7 @@
                         const backdrop = document.querySelector('.modal-backdrop:last-child');
                         if (backdrop) {
                             backdrop.style.zIndex = currentZIndex + 1;
+                            backdrop.style.opacity = '0.5';
                         }
                     }, 0);
                     
@@ -440,534 +569,224 @@
                 }
             }
 
-            // Helper function to escape HTML special characters
-            function escapeHtml(text) {
-                if (!text) return '';
-                const div = document.createElement('div');
-                div.textContent = text;
-                return div.innerHTML;
-            }
-
-            // Enhanced copy functions
+            // Function to copy specific source code to clipboard
             function copySourceCode(elementId) {
                 const textArea = document.getElementById(elementId);
-                const textToCopy = textArea.value;
+                textArea.select();
                 
-                copyToClipboard(textToCopy, event.currentTarget);
+                try {
+                    if (navigator.clipboard && window.isSecureContext) {
+                        navigator.clipboard.writeText(textArea.value);
+                    } else {
+                        document.execCommand('copy');
+                    }
+                    
+                    const copyBtn = event.currentTarget;
+                    const originalText = copyBtn.innerHTML;
+                    copyBtn.innerHTML = '<span class="fas fa-check me-1"></span>Copied!';
+                    copyBtn.classList.add('btn-success');
+
+                    setTimeout(() => {
+                        copyBtn.innerHTML = originalText;
+                        copyBtn.classList.remove('btn-success');
+                    }, 2000);
+                } catch (err) {
+                    console.error('Failed to copy text: ', err);
+                    const tempTextArea = document.createElement('textarea');
+                    tempTextArea.value = textArea.value;
+                    document.body.appendChild(tempTextArea);
+                    tempTextArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(tempTextArea);
+                }
             }
 
+            // Function to copy all source code
             function copyAllSourceCode() {
                 const htmlTags = document.getElementById('sourceCodeText').value;
                 const ogTags = document.getElementById('ogSourceCodeText').value;
                 const allTags = `${htmlTags}\n\n${ogTags}`;
                 
-                copyToClipboard(allTags, event.currentTarget);
-            }
-
-            function copyToClipboard(text, button) {
-                const originalText = button.innerHTML;
-                const originalClass = button.className;
-                
                 try {
                     if (navigator.clipboard && window.isSecureContext) {
-                        navigator.clipboard.writeText(text).then(() => {
-                            showCopySuccess(button, originalText, originalClass);
-                        });
+                        navigator.clipboard.writeText(allTags);
                     } else {
-                        const textarea = document.createElement('textarea');
-                        textarea.value = text;
-                        textarea.style.position = 'fixed';
-                        textarea.style.opacity = '0';
-                        document.body.appendChild(textarea);
-                        textarea.select();
+                        const tempTextArea = document.createElement('textarea');
+                        tempTextArea.value = allTags;
+                        document.body.appendChild(tempTextArea);
+                        tempTextArea.select();
                         document.execCommand('copy');
-                        document.body.removeChild(textarea);
-                        showCopySuccess(button, originalText, originalClass);
+                        document.body.removeChild(tempTextArea);
                     }
+                    
+                    const copyBtn = event.currentTarget;
+                    const originalText = copyBtn.innerHTML;
+                    copyBtn.innerHTML = '<span class="fas fa-check me-1"></span>All Copied!';
+                    copyBtn.classList.add('btn-success');
+
+                    setTimeout(() => {
+                        copyBtn.innerHTML = originalText;
+                        copyBtn.classList.remove('btn-success');
+                    }, 2000);
                 } catch (err) {
                     console.error('Failed to copy text: ', err);
-                    button.innerHTML = '<span class="fas fa-times me-1"></span>Failed!';
-                    button.classList.add('btn-danger');
-                    setTimeout(() => {
-                        button.innerHTML = originalText;
-                        button.className = originalClass;
-                    }, 2000);
+                    const tempTextArea = document.createElement('textarea');
+                    tempTextArea.value = allTags;
+                    document.body.appendChild(tempTextArea);
+                    tempTextArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(tempTextArea);
                 }
             }
 
-            function showCopySuccess(button, originalText, originalClass) {
-                button.innerHTML = '<span class="fas fa-check me-1"></span>Copied!';
-                button.classList.add('btn-success');
-                setTimeout(() => {
-                    button.innerHTML = originalText;
-                    button.className = originalClass;
-                }, 2000);
+            // Function to get keywords from a container
+            function getKeywordsFromContainer(container) {
+                return Array.from(container.querySelectorAll('.badge'))
+                    .map(tag => tag.textContent.trim());
             }
 
-            // Add SEO keyword tag handling
-            ['seoKeywords', 'editSeoKeywords'].forEach(id => {
-                const input = document.getElementById(id);
-                if (input) {
-                    // Create tag container
-                    const tagContainer = document.createElement('div');
-                    tagContainer.className = 'hashtag-container d-flex flex-wrap gap-2 mt-2';
-                    input.parentNode.appendChild(tagContainer);
-
-                    // Handle input
-                    input.addEventListener('keydown', function(e) {
-                        if (e.key === 'Enter' || e.key === ',') {
-                            e.preventDefault();
-                            const value = this.value.trim();
-                            if (value) {
-                                addKeywordTag(value, tagContainer);
-                                this.value = '';
-                            }
-                        }
-                    });
-
-                    // Handle paste
-                    input.addEventListener('paste', function(e) {
-                        e.preventDefault();
-                        const paste = (e.clipboardData || window.clipboardData).getData('text');
-                        const keywords = paste.split(/,|\n/).map(k => k.trim()).filter(k => k.length > 0);
-                        keywords.forEach(keyword => addKeywordTag(keyword, tagContainer));
-                    });
-                }
-            });
-
-            function addKeywordTag(keyword, container) {
-                const tag = document.createElement('div');
-                tag.className = 'badge badge-phoenix badge-phoenix-primary d-flex align-items-center gap-1';
-                tag.innerHTML = `
-                    ${keyword}
-                    <span class="fas fa-times cursor-pointer" onclick="this.parentElement.remove()"></span>
-                `;
-                container.appendChild(tag);
-            }
-
-            // Enhanced form validation
-            ['createCategoryForm', 'editCategoryForm'].forEach(formId => {
-                const form = document.getElementById(formId);
-                if (form) {
-                    form.addEventListener('submit', function(e) {
-                        e.preventDefault();
-                        
-                        // Reset previous validation states
-                        form.querySelectorAll('.is-invalid').forEach(el => {
-                            el.classList.remove('is-invalid');
-                            const feedback = el.nextElementSibling;
-                            if (feedback && feedback.classList.contains('invalid-feedback')) {
-                                feedback.remove();
-                            }
-                        });
-
-                        let isValid = true;
-
-                        // Validate required fields
-                        const requiredFields = {
-                            '[id$="CategoryName"]': 'Category name is required',
-                            '[id$="CategorySlug"]': 'URL slug is required',
-                            '[id$="MetaTitle"]': 'Meta title is required',
-                            '[id$="MetaDescription"]': 'Meta description is required'
-                        };
-
-                        Object.entries(requiredFields).forEach(([selector, message]) => {
-                            const field = form.querySelector(selector);
-                            if (field && !field.value.trim()) {
-                                showError(field, message);
-                                isValid = false;
-                            }
-                        });
-
-                        // Validate URL slug format
-                        const slugField = form.querySelector('[id$="CategorySlug"]');
-                        if (slugField && slugField.value.trim()) {
-                            const slugRegex = /^[a-z0-9-]+$/;
-                            if (!slugRegex.test(slugField.value.trim())) {
-                                showError(slugField, 'URL slug can only contain lowercase letters, numbers, and hyphens');
-                                isValid = false;
-                            }
-                        }
-
-                        // Validate meta title length
-                        const metaTitleField = form.querySelector('[id$="MetaTitle"]');
-                        if (metaTitleField && metaTitleField.value.trim()) {
-                            const titleLength = metaTitleField.value.trim().length;
-                            if (titleLength < 30 || titleLength > 60) {
-                                showError(metaTitleField, 'Meta title should be between 30 and 60 characters');
-                                isValid = false;
-                            }
-                        }
-
-                        // Validate meta description length
-                        const metaDescField = form.querySelector('[id$="MetaDescription"]');
-                        if (metaDescField && metaDescField.value.trim()) {
-                            const descLength = metaDescField.value.trim().length;
-                            if (descLength < 120 || descLength > 160) {
-                                showError(metaDescField, 'Meta description should be between 120 and 160 characters');
-                                isValid = false;
-                            }
-                        }
-
-                        if (isValid) {
-                            // Collect form data including tags
-                            const formData = {
-                                categoryName: form.querySelector('[id$="CategoryName"]').value,
-                                categorySlug: form.querySelector('[id$="CategorySlug"]').value,
-                                metaTitle: form.querySelector('[id$="MetaTitle"]').value,
-                                metaDescription: form.querySelector('[id$="MetaDescription"]').value,
-                                keywords: Array.from(form.querySelector('.hashtag-container').children).map(tag => tag.textContent.trim()),
-                                status: form.querySelector('[id$="CategoryStatus"]').checked
-                            };
-
-                            // Here you would typically send the data to your backend
-                            console.log('Form data:', formData);
-                            
-                            // Close the modal
-                            const modal = bootstrap.Modal.getInstance(form.closest('.modal'));
-                            modal.hide();
-
-                            // Show success message
-                            showToast('Success', 'Category saved successfully', 'success');
-                        }
-                    });
-                }
-            });
-
-            function showError(element, message) {
-                element.classList.add('is-invalid');
-                const feedback = document.createElement('div');
-                feedback.className = 'invalid-feedback';
-                feedback.textContent = message;
-                element.parentNode.appendChild(feedback);
-            }
-
-            function showToast(title, message, type = 'success') {
-                const toastContainer = document.getElementById('toastContainer') || createToastContainer();
-                const toast = document.createElement('div');
-                toast.className = `toast align-items-center text-white bg-${type} border-0`;
-                toast.setAttribute('role', 'alert');
-                toast.setAttribute('aria-live', 'assertive');
-                toast.setAttribute('aria-atomic', 'true');
+            // Function to update microsite filter options
+            function updateMicrositeFilter() {
+                const filter = document.getElementById('micrositeFilter');
+                const rows = document.querySelectorAll('#pagesTable tbody tr');
+                const pageNames = new Set(['']); // Start with empty option
                 
-                toast.innerHTML = `
-                    <div class="d-flex">
-                        <div class="toast-body">
-                            <strong>${title}</strong><br>
-                            ${message}
-                        </div>
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                `;
+                // Get all existing page names from the table
+                rows.forEach(row => {
+                    const data = JSON.parse(row.getAttribute('data-page'));
+                    pageNames.add(data.name);
+                });
                 
-                toastContainer.appendChild(toast);
-                const bsToast = new bootstrap.Toast(toast);
-                bsToast.show();
+                // Clear existing options
+                filter.innerHTML = '';
                 
-                toast.addEventListener('hidden.bs.toast', () => toast.remove());
+                // Add options in alphabetical order
+                Array.from(pageNames)
+                    .sort()
+                    .forEach(name => {
+                        const option = document.createElement('option');
+                        option.value = name;
+                        option.textContent = name || 'All Pages';
+                        filter.appendChild(option);
+                    });
             }
 
-            function createToastContainer() {
-                const container = document.createElement('div');
-                container.id = 'toastContainer';
-                container.className = 'toast-container position-fixed top-0 end-0 p-3';
-                container.style.zIndex = '1060';
-                document.body.appendChild(container);
-                return container;
-            }
-
-            // Table functionality
-            class TableManager {
-                constructor(tableId, rowsPerPage = 10) {
-                    this.table = document.getElementById(tableId);
-                    this.tbody = this.table.querySelector('tbody');
-                    this.rowsPerPage = rowsPerPage;
-                    this.currentPage = 1;
-                    this.sortColumn = null;
-                    this.sortDirection = 'asc';
-                    
-                    this.initializeSorting();
-                    this.initializePagination();
-                    this.updateTable();
-                }
-
-                initializeSorting() {
-                    const headers = this.table.querySelectorAll('th.sortable');
-                    headers.forEach(header => {
-                        header.addEventListener('click', () => {
-                            const column = header.dataset.sort;
-                            if (this.sortColumn === column) {
-                                this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
-                            } else {
-                                this.sortColumn = column;
-                                this.sortDirection = 'asc';
-                            }
-                            
-                            // Update sort icons
-                            headers.forEach(h => h.classList.remove('sort-asc', 'sort-desc'));
-                            header.classList.add(`sort-${this.sortDirection}`);
-                            
-                            this.updateTable();
-                        });
-                    });
-                }
-
-                initializePagination() {
-                    const pagination = document.getElementById('tablePagination');
-                    pagination.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const target = e.target.closest('a');
-                        if (!target) return;
-
-                        const page = target.dataset.page;
-                        if (page === 'prev' && this.currentPage > 1) {
-                            this.currentPage--;
-                        } else if (page === 'next' && this.currentPage < this.getTotalPages()) {
-                            this.currentPage++;
-                        } else if (page !== 'prev' && page !== 'next') {
-                            this.currentPage = parseInt(page);
-                        }
-
-                        this.updateTable();
-                    });
-                }
-
-                getTotalPages() {
-                    return Math.ceil(this.getAllRows().length / this.rowsPerPage);
-                }
-
-                getAllRows() {
-                    return Array.from(this.tbody.children);
-                }
-
-                updateTable() {
-                    const rows = this.getAllRows();
-                    
-                    // Sort rows if needed
-                    if (this.sortColumn) {
-                        rows.sort((a, b) => {
-                            let aVal = this.getCellValue(a, this.sortColumn);
-                            let bVal = this.getCellValue(b, this.sortColumn);
-                            
-                            if (this.sortDirection === 'desc') {
-                                [aVal, bVal] = [bVal, aVal];
-                            }
-                            
-                            return aVal.localeCompare(bVal);
-                        });
-                    }
-                    
-                    // Update pagination
-                    this.updatePagination();
-                    
-                    // Show only current page
-                    const start = (this.currentPage - 1) * this.rowsPerPage;
-                    const end = start + this.rowsPerPage;
-                    
-                    rows.forEach((row, index) => {
-                        row.style.display = (index >= start && index < end) ? '' : 'none';
-                    });
-                }
-
-                getCellValue(row, column) {
-                    const cell = row.querySelector(`td[data-column="${column}"]`);
-                    if (column === 'status') {
-                        return cell.querySelector('.badge-phoenix-success') ? 'active' : 'inactive';
-                    }
-                    return cell.textContent.trim().toLowerCase();
-                }
-
-                updatePagination() {
-                    const totalPages = this.getTotalPages();
-                    const pagination = document.getElementById('tablePagination');
-                    const prevBtn = pagination.querySelector('[data-page="prev"]').parentElement;
-                    const nextBtn = pagination.querySelector('[data-page="next"]').parentElement;
-                    
-                    // Update prev/next buttons
-                    prevBtn.classList.toggle('disabled', this.currentPage === 1);
-                    nextBtn.classList.toggle('disabled', this.currentPage === totalPages);
-                    
-                    // Update page numbers
-                    const pageNumbers = Array.from({length: totalPages}, (_, i) => i + 1);
-                    const pageItems = pageNumbers.map(num => `
-                        <li class="page-item ${num === this.currentPage ? 'active' : ''}">
-                            <a class="page-link" href="#" data-page="${num}">${num}</a>
-                        </li>
-                    `).join('');
-                    
-                    pagination.innerHTML = `
-                        <li class="page-item ${this.currentPage === 1 ? 'disabled' : ''}">
-                            <a class="page-link" href="#" data-page="prev">Previous</a>
-                        </li>
-                        ${pageItems}
-                        <li class="page-item ${this.currentPage === totalPages ? 'disabled' : ''}">
-                            <a class="page-link" href="#" data-page="next">Next</a>
-                        </li>
-                    `;
-                }
-
-                addRow(data) {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="text-center" data-column="name">${data.categoryName}</td>
-                        <td class="text-center" data-column="slug">${data.categorySlug}</td>
-                        <td class="text-center" data-column="status">
-                            <span class="badge badge-phoenix fs-10 ${data.status ? 'badge-phoenix-success' : 'badge-phoenix-danger'}">
-                                <span class="fa ${data.status ? 'fa-check' : 'fa-xmark'}"></span>
-                            </span>
-                        </td>
-                        <td class="text-center">
-                            <button class="btn btn-sm btn-falcon-default text-danger" onclick="confirmDelete(this)">
-                                <span class="fas fa-trash-alt"></span>
-                            </button>
-                            <button class="btn btn-sm btn-falcon-default text-warning" onclick="editCategory(this)">
-                                <span class="fas fa-edit me-2"></span>Edit
-                            </button>
-                        </td>
-                    `;
-                    this.tbody.appendChild(row);
-                    this.updateTable();
-                }
-
-                updateRow(row, data) {
-                    row.querySelector('[data-column="name"]').textContent = data.categoryName;
-                    row.querySelector('[data-column="slug"]').textContent = data.categorySlug;
-                    const statusBadge = row.querySelector('[data-column="status"] .badge-phoenix');
-                    statusBadge.className = `badge badge-phoenix fs-10 ${data.status ? 'badge-phoenix-success' : 'badge-phoenix-danger'}`;
-                    statusBadge.querySelector('.fa').className = `fa ${data.status ? 'fa-check' : 'fa-xmark'}`;
-                    this.updateTable();
-                }
-
-                deleteRow(row) {
-                    row.remove();
-                    this.updateTable();
-                }
-            }
-
-            // Initialize table manager
-            const tableManager = new TableManager('categoriesTable');
-
-            // Update edit and delete functions
-            function editCategory(button) {
-                const row = button.closest('tr');
-                const data = {
-                    categoryName: row.querySelector('[data-column="name"]').textContent,
-                    categorySlug: row.querySelector('[data-column="slug"]').textContent,
-                    status: row.querySelector('[data-column="status"] .badge-phoenix-success') !== null
+            // Add form submission handler
+            document.getElementById('addPageForm')?.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const pageData = {
+                    id: Date.now().toString(), // Generate temporary ID
+                    name: document.getElementById('pageName').value,
+                    urlSlug: document.getElementById('urlSlug').value,
+                    status: document.getElementById('pageStatus').checked,
+                    metaTitle: document.getElementById('metaTitle').value,
+                    metaDescription: document.getElementById('metaDescription').value,
+                    keywords: getKeywordsFromContainer(this.querySelector('.hashtag-container'))
                 };
 
-                // Populate edit modal
-                document.getElementById('editCategoryName').value = data.categoryName;
-                document.getElementById('editCategorySlug').value = data.categorySlug;
-                document.getElementById('editCategoryStatus').checked = data.status;
+                // Validate required fields
+                if (!pageData.name || !pageData.urlSlug) {
+                    alert('Please fill in all required fields');
+                    return;
+                }
 
-                // Store reference to the row being edited
-                document.getElementById('editCategoryForm').dataset.editingRow = Array.from(row.parentElement.children).indexOf(row);
+                // Add new row to table
+                const tableBody = document.querySelector('#pagesTable tbody');
+                const newRow = createTableRow(pageData);
+                tableBody.appendChild(newRow);
 
-                // Show modal
-                const modal = new bootstrap.Modal(document.getElementById('editCategoryModal'));
-                modal.show();
-            }
+                // Update filter options
+                updateMicrositeFilter();
 
-            function confirmDelete(button) {
-                const row = button.closest('tr');
-                const categoryName = row.querySelector('[data-column="name"]').textContent;
-                
-                // Update delete modal message
-                document.querySelector('#deleteCategoryModal .modal-body p').textContent = 
-                    `Are you sure you want to delete the category "${categoryName}"? This action cannot be undone.`;
-                
-                // Store reference to the row being deleted
-                document.getElementById('deleteCategoryModal').dataset.deletingRow = Array.from(row.parentElement.children).indexOf(row);
-                
-                // Show modal
-                const modal = new bootstrap.Modal(document.getElementById('deleteCategoryModal'));
-                modal.show();
-            }
+                // Close modal and reset form
+                const modal = bootstrap.Modal.getInstance(document.getElementById('addPageModal'));
+                modal.hide();
+                this.reset();
+                this.querySelector('.hashtag-container').innerHTML = '';
+            });
 
-            // Update form submission handlers
-            document.getElementById('createCategoryForm').addEventListener('submit', function(e) {
+            // Edit form submission handler
+            document.getElementById('editPageForm')?.addEventListener('submit', function(e) {
                 e.preventDefault();
-                if (validateForm(this)) {
-                    const formData = {
-                        categoryName: this.querySelector('#categoryName').value,
-                        categorySlug: this.querySelector('#categorySlug').value,
-                        status: this.querySelector('#categoryStatus').checked
-                    };
-                    
-                    tableManager.addRow(formData);
-                    bootstrap.Modal.getInstance(document.getElementById('createCategoryModal')).hide();
-                    showToast('Success', 'Category created successfully');
-                    this.reset();
-                }
-            });
-
-            document.getElementById('editCategoryForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                if (validateForm(this)) {
-                    const formData = {
-                        categoryName: this.querySelector('#editCategoryName').value,
-                        categorySlug: this.querySelector('#editCategorySlug').value,
-                        status: this.querySelector('#editCategoryStatus').checked
-                    };
-                    
-                    const rowIndex = parseInt(this.dataset.editingRow);
-                    const row = tableManager.getAllRows()[rowIndex];
-                    tableManager.updateRow(row, formData);
-                    
-                    bootstrap.Modal.getInstance(document.getElementById('editCategoryModal')).hide();
-                    showToast('Success', 'Category updated successfully');
-                }
-            });
-
-            // Update delete confirmation
-            document.querySelector('#deleteCategoryModal .btn-danger').addEventListener('click', function() {
-                const rowIndex = parseInt(document.getElementById('deleteCategoryModal').dataset.deletingRow);
-                const row = tableManager.getAllRows()[rowIndex];
-                tableManager.deleteRow(row);
                 
-                bootstrap.Modal.getInstance(document.getElementById('deleteCategoryModal')).hide();
-                showToast('Success', 'Category deleted successfully');
+                // Get form data
+                const pageData = {
+                    id: document.getElementById('editPageId').value,
+                    name: document.getElementById('editPageName').value,
+                    urlSlug: document.getElementById('editUrlSlug').value,
+                    status: document.getElementById('editPageStatus').checked,
+                    metaTitle: document.getElementById('editMetaTitle').value,
+                    metaDescription: document.getElementById('editMetaDescription').value,
+                    keywords: getKeywordsFromContainer(this.querySelector('.hashtag-container'))
+                };
+
+                // Validate required fields
+                if (!pageData.name || !pageData.urlSlug) {
+                    alert('Please fill in all required fields');
+                    return;
+                }
+
+                // Find and update existing row
+                const rows = document.querySelectorAll('#pagesTable tbody tr');
+                let existingRow = null;
+                
+                rows.forEach(row => {
+                    const rowData = JSON.parse(row.getAttribute('data-page'));
+                    if (rowData.id === pageData.id) {
+                        existingRow = row;
+                    }
+                });
+
+                if (existingRow) {
+                    const newRow = createTableRow(pageData);
+                    existingRow.replaceWith(newRow);
+                }
+
+                // Update filter options
+                updateMicrositeFilter();
+
+                // Close modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('editPageModal'));
+                modal.hide();
             });
 
-            // Add CSS for sorting
-            const style = document.createElement('style');
-            style.textContent = `
-                .sortable {
-                    cursor: pointer;
-                    position: relative;
-                }
-                .sortable:hover {
-                    background-color: rgba(0,0,0,0.05);
-                }
-                .sort-icon {
-                    display: inline-block;
-                    width: 0;
-                    height: 0;
-                    margin-left: 0.3em;
-                    vertical-align: middle;
-                    content: "";
-                    border-top: 4px solid #ddd;
-                    border-right: 4px solid transparent;
-                    border-bottom: 0;
-                    border-left: 4px solid transparent;
-                }
-                .sort-asc .sort-icon {
-                    border-bottom: 4px solid #333;
-                    border-top: 0;
-                }
-                .sort-desc .sort-icon {
-                    border-top: 4px solid #333;
-                }
-                
-                /* Add indentation for helper text */
-                .form-text.text-muted {
-                    padding-left: 0.75rem;
-                    display: block;
-                    margin-top: 0.25rem;
-                }
+            // Initialize filter with existing data and update select element
+            const micrositeFilter = document.getElementById('micrositeFilter');
+            micrositeFilter.innerHTML = `
+                <option value="">All Pages</option>
+                <option value="Home Page">Home Page</option>
+                <option value="About Us">About Us</option>
             `;
-            document.head.appendChild(style);
+
+            // Add filter functionality
+            micrositeFilter.addEventListener('change', function() {
+                const selectedValue = this.value.toLowerCase();
+                const rows = document.querySelectorAll('#pagesTable tbody tr');
+                
+                rows.forEach(row => {
+                    const pageData = JSON.parse(row.getAttribute('data-page'));
+                    const pageName = pageData.name.toLowerCase();
+                    
+                    if (!selectedValue || pageName === selectedValue) {
+                        row.style.display = ''; // Show row
+                    } else {
+                        row.style.display = 'none'; // Hide row
+                    }
+                });
+            });
+
+            // Reset forms when modals are closed
+            ['addPageModal', 'editPageModal'].forEach(modalId => {
+                document.getElementById(modalId)?.addEventListener('hidden.bs.modal', function() {
+                    const form = this.querySelector('form');
+                    if (form) {
+                        form.reset();
+                        form.querySelector('.hashtag-container').innerHTML = '';
+                    }
+                });
+            });
         </script>
     </div>
-</div> 
+</div>
